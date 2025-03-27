@@ -1,0 +1,80 @@
+
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space container saving-acc-outer">
+  <div class="row padd-t-b pb-0 col-md-justify-content-center">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-2 saving-acc-box md-offset-none">
+      <div class="inner-box">
+        <h6 class="extra-hding">Provident Fund</h6>
+
+        <h2 class="main-hding">
+          <span *ngIf="!isLoading">{{pfAmount | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+          <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+        </h2>
+        <p class="sub-para m-0">Total Provident Accrued</p>
+      </div>
+    </div>
+    <!-- <div class="col-lg-4 col-md-6 saving-acc-box">
+      <div class="inner-box">
+        <h6 class="extra-hding">Provident Fund</h6>
+        <h2 class="main-hding">
+          <span *ngIf="!isLoading"> {{pfInterest | number:'1.0-0'}}</span>
+          <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+        </h2>
+        <p class="sub-para m-0">Total Interest Earned</p>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<section class="savings-box container">
+  <h2 class="section-title">Your Provident Fund</h2>
+  <div class="row" *ngIf="isLoading">
+      <mat-spinner  class="mx-auto"></mat-spinner>
+  </div>
+   <div class="col-lg-4 offset-lg-8 col-sm-8 mt-sm-5 mt-3" *ngIf="(this.pfList.length > 0 && isLoadingD)">
+    <h5 class="main-hding">Select Provident Fund</h5>
+    <div class="position-relative">
+      <div ngbDropdown class="d-inline-block w-100">
+        <button class="select-custom select-custom-img select-arrow-no mt-2 text-left" id="dropdownBasic1" ngbDropdownToggle>{{filterStartDate | date: 'dd MMM yyyy'}} - {{filterEndDate | date: 'dd MMM yyyy'}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem *ngFor="let data of pfListFiltered" (click)="setCycle(data.main_id, data.start_date, data.end_date)"><hr>{{data.cycle_start_date | date: 'dd MMM yyyy'}}  -  {{data.cycle_end_date | date: 'dd MMM yyyy'}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"  *ngIf="pfList.length > 0 && !isLoading">
+    <div class="col-lg-4 col-sm-6" *ngFor="let list of pfList; let i = index">
+      <a href="javascript:void(0)"
+      class="box-line-white d-block"
+      [ngClass]="[
+          list.payment_type === '2' ? 'blue-line' : '',
+          list.payment_type === '1' ? 'red-line' : ''
+        ]">
+        <div class="mb-3">
+          <img src="assets/images/provident.png" class="img-fluid" >
+        </div>
+        <h4 class="main-hding" >{{list.pf_amount| currency:'GBP': 'symbol' : '1.0-0'}} </h4>
+        <p class="sub-para date_celender" *ngIf="list.cycle_start_date !== '' " (click)="linktoSavePage(list.cycle_start_date,list.cycle_end_date, list.main_id)">{{list.cycle_start_date | date: 'd MMM, y'}} - {{list.cycle_end_date | date: 'd MMM, y'}}</p>
+        <p class="sub-para" *ngIf="list.cycle_start_date === ''">-</p>
+        <p class="sub-para">{{list.created_at | date: 'd MMM, y'}}</p>
+        <p class="sub-para">{{groupTypeArray[list.group_type_id]}}</p>
+      </a >
+    </div>
+  </div>
+
+  <div class="row" *ngIf="pfList.length <= 0 && !isLoading">
+    <div *ngIf="isLoading">
+      <p>Data Not Found</p>
+    </div>
+  </div>
+</section>
+<app-sub-menu></app-sub-menu>           
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+
+
+
+

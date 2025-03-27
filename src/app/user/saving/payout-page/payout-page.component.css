@@ -1,0 +1,13 @@
+.dropdown-toggle::after{
+  display: none;
+}
+
+.dropdown-menu{
+  min-width: 100%;
+}
+
+.ct_flex {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+}

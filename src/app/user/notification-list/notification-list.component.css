@@ -1,0 +1,13 @@
+.view-btns-box a {
+  display: block;
+  padding: 4px 20px;
+  margin-left: 10px;
+  background-color: #092c4c;
+  border-color: #092c4c;
+  border-radius: 5px;
+}
+
+.view-btns-box a:hover, .view-btns-box a:focus{
+  background-color: #03182c;
+  border-color: #03182c;
+}

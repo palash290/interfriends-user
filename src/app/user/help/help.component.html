@@ -1,0 +1,602 @@
+
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()"class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space">
+  <div class="savings-box container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs bg-blue" id="myTab">
+          <li class="nav-item">
+            <a class="nav-link active" id="faq-tab" data-toggle="tab" href="#faq">FAQs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="msg-tab" data-toggle="tab" href="#msgs">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="callus-tab" data-toggle="tab" href="#callus">Call Us</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="faq">
+            <div class="row">
+              <div class="col-md-12 mt-5">
+                <div class="faq" id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-1">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-1" data-aria-expanded="true" data-aria-controls="faqCollapse-1">
+                                    Who are we?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-1" class="collapse" aria-labelledby="faqHeading-1" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Interfriends Group also known as INTERFRIENDS was initially conceived in August 2012 by close family members. At the time it was just bringing equal amounts of money together as a family on a monthly basis. The total collected monthly was meant to be passed around to each member in turn until the circle was completed. </p>
+                                <p>From a humble beginning of just 9 close family and friends who started this savings circle, we have steadily grown and evolved to become known as Interfriends with nearly 100 closely connected members.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-2">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-2" data-aria-expanded="false" data-aria-controls="faqCollapse-2">
+                                    I can save my money with the bank, why should I join Interfriends?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-2" class="collapse" aria-labelledby="faqHeading-2" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>As a group, we believe very strongly that there are a lot more we can achieve collectively than individually if only we can come together with one mind and trust each other.  By joining interfriends, you are expressing trust in our ability to do things together rather than singularly.</p>
+                                <p>Interfriends is also about encouraging and promoting the habit of saving money on a regular basis. You and I know how difficult it can sometimes be when we try to save consistently on our own. The beauty of Interfriends is that you are encouraged to save consistently as you see other members doing the same. You will soon realise that saving consistently no matter how small can become a habit.</p>
+                                <p>You will also benefit from leveraging our efforts to achieve much more than you alone can achieve.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-3">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-3" data-aria-expanded="false" data-aria-controls="faqCollapse-3">
+                                    How is Interfriends managed?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-3" class="collapse" aria-labelledby="faqHeading-3" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Interfriends is managed by a core team, Operations. The team is responsible for the day-to-day running of the group. In addition, there is also the Interfriends board which is made up of selected members. The board makes strategic decisions which govern how the group is managed. The board is led by a chair who moderates and directs the board affairs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-4">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-4" data-aria-expanded="false" data-aria-controls="faqCollapse-4">
+                                    I have heard of similar saving schemes am a bit uncomfortable about such schemes
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-4" class="collapse" aria-labelledby="faqHeading-4" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Interfriends in principle may be similar to the traditional savings clubs you may be familiar with however, this is much more advanced and well organised. The day-to-day running of the group is by a small dedicated and highly experienced team. Below this core team is the Interfriends board who set the strategic direction for the group and set various policies and operational framework for the group.</p>
+                                <p>Interfriends is also highly transparent, members are kept up to date, involved, and informed at all times. The operational team makes themselves very visible and open. Interfriends is more like a network of closely associated friends and family with a mission to leverage our efforts to help one another.</p>
+                                <p>Interfriends operation is guided by agreed policies set by the board and ensures our operations and decisions are based on sound principles that are also fair which ensures we are open, accountable, and trustworthy.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-5">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-5" data-aria-expanded="false" data-aria-controls="faqCollapse-5">
+                                    I want to join Interfriends but I still have questions
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-5" class="collapse" aria-labelledby="faqHeading-5" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Yes, we fully understand your concerns about joining us for the first time. Like any new venture, it is okay to have doubts even after speaking with us.</p>
+                                <p>If you are still in doubt about the group,  speak to your recommender or feel free to request to speak to other members of the group to seek their views about how they have found it before making up your mind. If you still have concerns, you can, by all means, we suggest you speak to Sam Buah, the chair of the board who will try to assist and answer any concerns you may have.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-6">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-6" data-aria-expanded="false" data-aria-controls="faqCollapse-6">
+                                    What happens once I am accepted as a member?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-6" class="collapse" aria-labelledby="faqHeading-6" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Once you are accepted as a member, you will become part of a growing family of closely associated friends and family with a common vision to leverage our efforts to achieve much more.</p>
+                                <p>For ease of communication, you will be added to our group WhatsApp too. You will also be given a unique ID that will be used in some of the key and sensitive communication. You must keep your ID very private and secret.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-7">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-7" data-aria-expanded="false" data-aria-controls="faqCollapse-7">
+                                    When do I start paying my monthly contributions (savings)
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-7" class="collapse" aria-labelledby="faqHeading-7" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>There are two cycles of 6 months each. November to April and May to October. As a group, we all start and end the cycle at the same time. Depending on when you join, you will either start your savings in November or May.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-8">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-8" data-aria-expanded="false" data-aria-controls="faqCollapse-8">
+                                    Is there a minimum or maximum amount to save?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-8" class="collapse" aria-labelledby="faqHeading-8" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>The minimum saving is £50 however, there is no maximum. We strongly recommend that you start with an amount that you are comfortable with. You will always be given the opportunity to increase, decrease or suspend your membership before every new cycle starts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-9">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-9" data-aria-expanded="false" data-aria-controls="faqCollapse-9">
+                                    Do you need specific numbers to save the same amount I want to save before I can start?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-9" class="collapse" aria-labelledby="faqHeading-9" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>No, the beauty of Interfriends is that your savings are specific to you. You decide the amount you can comfortably save each month for a period of  6 months regardless of what anyone else is saving.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-10">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-10" data-aria-expanded="false" data-aria-controls="faqCollapse-10">
+                                    Do I always have to wait till the end of the cycle to receive my bulk payments?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-10" class="collapse" aria-labelledby="faqHeading-10" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>No, you may opt to receive your bulk funds at the end of the first, second, third, up to the sixth month. When you receive your bulk funds is dependent on the amount of provident you have accrued in the group. This means a new member with no provident will automatically receive their bulk funds at the end of the cycle compared to another member who has accrued enough provident who may receive their bulk funds earlier.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-11">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-11" data-aria-expanded="false" data-aria-controls="faqCollapse-11">
+                                    Will the amount of bulk funds I receive be affected if another delay or misses their payment?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-11" class="collapse" aria-labelledby="faqHeading-11" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>No, as a group we have tried to minimise most of the potential risk exposure to the group. The immediate one is the bulk funds we payout to members before the cycle has ended. To minimise this risk, every member receives their funds less (10%) of their total savings. The provident is recorded and saved for the member. Over time your provident grows and becomes sufficient to cover some of your monthly savings.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-12">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-12" data-aria-expanded="false" data-aria-controls="faqCollapse-12">
+                                    What if I decide to collect my bulk funds last all the time, will you still deduct provident?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-12" class="collapse" aria-labelledby="faqHeading-12" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>The provident deduction is mandatory for all members regardless of when they want to collect their bulk funds. The principle of the provident is also to afford the group the ability to leverage our combined finances for the benefit of the wider group. Interfriends is not about one person but all of us.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-13">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-13" data-aria-expanded="false" data-aria-controls="faqCollapse-13">
+                                    How often can I receive my bulk funds in a cycle?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-13" class="collapse" aria-labelledby="faqHeading-13" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Each member is entitled to their bulk funds payments once within the six months (cycle). This amount is equal to six times your monthly contribution but less the agreed provident fund deduction which is currently set at 10% of the bulk funds. This means if you save £100 a month, you will be paid £540 as bulk and £60 kept as your provident.</p>
+                                <p>Bulk funds are paid to recipients on the last day of each month. We do not pay cash, all payments will come directly from our dedicated Interfriends account into your designated bank account. Under no circumstance will your bulk funds be delayed or not paid.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-14">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-14" data-aria-expanded="false" data-aria-controls="faqCollapse-14">
+                                    How long will you keep my provident and where will you keep it?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-14" class="collapse" aria-labelledby="faqHeading-14" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>So long as you remain a member of the group, we will hold the provident funds for you in the group’s dedicated bank account. Whenever you decide to leave the group, all their accrued provident funds will be returned to you by the last day of that cycle.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-15">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-15" data-aria-expanded="false" data-aria-controls="faqCollapse-15">
+                                    Can you use a table to demonstrate how this Interfriends cycle works?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-15" class="collapse" aria-labelledby="faqHeading-15" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>1. See the demonstration below for three members in the group</p>
+                                <img src="assets/images/faq-table.png" alt="Interfriends Table" title="Interfriends Cycle" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-16">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-16" data-aria-expanded="false" data-aria-controls="faqCollapse-16">
+                                    What do you do with the provident funds apart from using it as a safety net and to determine the size of the assistance I get if I need one?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-16" class="collapse" aria-labelledby="faqHeading-16" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Apart from using your provident as your safety net, you can also see it as another form of savings you are gradually accruing or a rainy day. </p>
+                                <p>As a group, we also engage in specific profit-generating ventures with a portion of the provident.This means while your provident is kept with us, you will also be generating some profits from it. </p>
+                                <p>The board may consult you prior to engaging in new investment ventures. There are many things we can collectively achieve together as a group than as individuals.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-17">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-17" data-aria-expanded="false" data-aria-controls="faqCollapse-17">
+                                    So it is possible that I will lose my provident?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-17" class="collapse" aria-labelledby="faqHeading-17" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>As much as possible we hold the bulk of your provident in our dedicated bank account. It is only a percentage we may invest to generate profit for you. So it is very unlikely that you will ever lose all your provident plus members have the right to decide not to be involved in specific investment opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-18">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-18" data-aria-expanded="false" data-aria-controls="faqCollapse-18">
+                                    Can I decide to leave Interfriends anytime I want?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-18" class="collapse" aria-labelledby="faqHeading-18" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>No, you cannot leave Interfriends anytime, you can only do so only at the end of a cycle. Usually, a month before every cycle ends, members are asked to confirm if they want to increase or reduce their savings in the coming cycle. This is also a time member are asked to confirm if they wish to leave Interfriends or suspend their membership.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-19">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-19" data-aria-expanded="false" data-aria-controls="faqCollapse-19">
+                                    I can see there is a lot of work with Interfriends, do you charge any membership fees?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-19" class="collapse" aria-labelledby="faqHeading-19" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>No, there is no charge to join Interfriends, neither do we charge ongoing membership fees. Interfriends is not a profit-making business venture. Our aim is to help ourselves to achieve things we may not be able to achieve individually.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-20">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-20" data-aria-expanded="false" data-aria-controls="faqCollapse-20">
+                                    How do I make my payments, can I pay cash or via a credit card?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-20" class="collapse" aria-labelledby="faqHeading-20" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Interfriends has a dedicated UK bank account. All payments should be made directly into the bank account using our sort code; 30-98-97 Acc no. 32774168, Lloyds Bank, Account name, Interfriends.</p>
+                                <p>All payments to members are also made from our dedicated INTERFRIENDS account. We do not pay cash to any member under any circumstance.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-21">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-21" data-aria-expanded="false" data-aria-controls="faqCollapse-21">
+                                    Is there a specific day I have to make my monthly payment?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-21" class="collapse" aria-labelledby="faqHeading-21" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>As a group, we recognise that members receive their salaries at different times in the month so we are also flexible with when you are expected to make your monthly payment. You are allowed to pay anytime between the 1st and the last day of each month.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-22">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-22" data-aria-expanded="false" data-aria-controls="faqCollapse-22">
+                                    What happens if I miss or make payments late.
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-22" class="collapse" aria-labelledby="faqHeading-22" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>The group relies so much on the trustworthiness of the members however, we also appreciate that we have to do more to ensure we are all responsible and accountable for the good of the group. For this reason, we also operate our own credit scoring scheme. We record missed or late payments and use this to make future decisions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-23">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-23" data-aria-expanded="false" data-aria-controls="faqCollapse-23">
+                                    Can I change my savings amount for future cycles?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-23" class="collapse" aria-labelledby="faqHeading-23" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Yes, at the end of each cycle, usually 6 months per cycle, members are given the opportunity to to upgrade, downgrade, keep to their existing savings or leave the group altogether.Should a member decide to leave the group, all their accrued provident funds will be returned to them less any money they owe the group at the time of leaving.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-24">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-24" data-aria-expanded="false" data-aria-controls="faqCollapse-24">
+                                    Will Intefriends help me if I require additional financial help?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-24" class="collapse" aria-labelledby="faqHeading-24" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Interfriends operate a small assistance scheme aimed at helping members to raise extra money over and above their bulk funds. Extra assistance can be requested anytime during the cycle.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-25">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-25" data-aria-expanded="false" data-aria-controls="faqCollapse-25">
+                                    If I need extra financial help, is there a maximum amount I can receive?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-25" class="collapse" aria-labelledby="faqHeading-25" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Yes, we do not have unlimited amounts to help every member so there is a cap on the maximum we can offer. This maximum amount is also dependent on the amount of provident funds the member has accrued. We will also take into consideration your repayment habit and history  (this is the reason why as a group we operate our own credit scoring system to help us make fair decisions). The maximum amount given is subject to the availability of funds and other factors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-26">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-26" data-aria-expanded="false" data-aria-controls="faqCollapse-26">
+                                    What is Interfriends emergency?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-26" class="collapse" aria-labelledby="faqHeading-26" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Interfriends emergency is special assistance we have put in place for all members. This is a quick up to £500 payment you can request any time, any day.  For example, rather than going to your friend or family to ask for a small emergency cash help. Just text us, you do not need to explain why you need it and we will send you up to £500 within 24hrs.Every member can qualify for emergency funds twice in the cycle regardless of their financial standing in the group. Emergencies once collected should be returned within 30 days.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-27">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-27" data-aria-expanded="false" data-aria-controls="faqCollapse-27">
+                                    How long do I have to repay if you give me a loan?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-27" class="collapse" aria-labelledby="faqHeading-27" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>To minimise the risk exposure to the group, we require that all assistance offered to members are repaid over 12 months. Under exceptional circumstances, additional time may be allowed to repay the loan, this will be reviewed on a case by case basis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-28">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-28" data-aria-expanded="false" data-aria-controls="faqCollapse-28">
+                                    Will you charge any interest on loans you give me?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-28" class="collapse" aria-labelledby="faqHeading-28" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Any additional funds requested over and above a member’s normal bulk funds will attract a fixed 10% interest. We give the interest back to the members according to the amount of provident they have in the group.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-29">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-29" data-aria-expanded="false" data-aria-controls="faqCollapse-29">
+                                    What happens if I default on repayments?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-29" class="collapse" aria-labelledby="faqHeading-29" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Where a member defaults, misses, or delays payment, this will be recorded and used as a basis for making future decisions pertaining to the member. As a group, we hope that we work together, trust each other and help one another. This is the only way we can all prosper together.In the event that a member does not uphold the ethos and principles of the group, the board reserves the right to refuse future loan applications should they feel authorising such loans will not be in the best interest of the group.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqHeading-30">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-30" data-aria-expanded="false" data-aria-controls="faqCollapse-30">
+                                    Is Interfriends all about savings?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-30" class="collapse" aria-labelledby="faqHeading-30" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>No, Interfriends is not only about savings, there are a lot more we can achieve together as a group. For this reason, the board is always seeking opportunities to put into responsible use any extra funds we have as a group. One key area we are actively exploring as a group is to invest in properties. Over time, we believe there will be other business ventures that can be spun off from Interfriends provided we keep working together as one core group bounded by a common interest and vision.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <div class="card-header" id="faqHeading-31">
+                            <div class="mb-0">
+                                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-31" data-aria-expanded="false" data-aria-controls="faqCollapse-31">
+                                    How do you currently operate and manage your risks?
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="faqCollapse-31" class="collapse" aria-labelledby="faqHeading-31" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>a. As a group, we are trying to minimise any risk of financial loss to any member by instituting various strategies to remove or minimise potential risks. For example, all new members of the group collect their bulk funds last and work their way up in subsequent cycles until they have accrued sufficient provident funds to also allow them to collect their bulk funds early.</p>
+                                <p>b.  Before each cycle starts we give the opportunity to members to reconsider their savings; either to increase, decrease, suspend or leave the group. This flexibility allows members to save relevant amounts applicable to their individual circumstances.</p>
+                                <p>c. Once a member decides to leave the group, they can only be readmitted to the group after a minimum of 12 months and this will be subject to the approval of the board.</p>
+                                <p>d. All members are subject to a percentage deduction from their bulk funds within each cycle. This deduction is set at 10% of total savings per cycle.</p>
+                                <p class="text-danger">This is not a charge but a safety fund saved on behalf of the member. This will be used to cover the member in the event of an emergency</p>
+                                <p>e. In the event a member defaults and the money cannot be immediately recovered, their accrued provident will be used to cover/offset any money they owe.</p>
+                                <p>f. The board reserves the right to ask a member to resign from the group should they find or have a reason to believe that such a member poses a substantial risk to the group.</p>
+                                <p>g.  Any member can recommend a friend and or relation to join the group before the beginning of each cycle. The board will ultimately decide if this person should be admitted to the group or not.</p>
+                                <p>h. Members have access to their dashboard which has every detail of their savings, provident, loans, profits etc. </p>
+                                <p>i. A member’s dashboard can be accessed by entering the unique ID provided to the member during registration. </p>
+                                <p>j. At the end of each cycle, members will be issued with their most up-to-date financial statements in the group.</p>
+                                <p>k. If the group decides to invest any capital you hold with the group, you will be notified and given the option to opt-in or out should you wish.</p>
+                                <p>l. The board will make decisions on behalf of the members and in the interest of the group.</p>
+                                <p>m. From time to time members will be allowed to sit in board meetings as an observer(s). The board will inform members and request for expression of interest where this is necessary.</p>
+                                <p>n. As a minimum, the board will hold a general meeting for members once a year. The date and time will be communicated to members.</p>
+                                <p>o. In the interest of the group, board members are expected to act honestly, professionally and in the fear of God to represent the interest of the group.</p>
+                                <p>p. Board members should act in the absolute interest of the group and not in a way that will result in any financial loss to the group.</p>
+                                <p>q. Interfriends is a voluntary group and members will be called upon from time to time support with their time and resource</p>
+                                <p>r. Members may be allowed to become board members on a rolling basis and for a set period to be decided.</p>
+                                <p>s. Interfriends is governed by a board that run and makes key decisions on behalf of the group.</p>
+                                <p>t. In the interest of the whole membership, Interfriends will be governed by policies agreed by the board and which sets out the minimum expected behaviour for each of the policy areas. Where appropriate, policies will be shared with the members of the group.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="msgs">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="profile-card help-card" [formGroup]="form" (submit)="onSave()">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" formControlName="name" value="John" class="form-control">
+                        <div class="icon">
+                          <img src="assets/images/user.png" align="" alt="" title="">
+                        </div>
+                        <span class="error-form" *ngIf="form.get('name').invalid  && form.get('name').touched">
+                          Please enter a name.
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-label">Help Type</label>
+                        <select class="form-control" formControlName="type">
+                          <option value="Emergency loan">Emergency loan</option>
+                          <option value="Savings">Savings</option>
+                          <option value="Loan">Loan</option>
+                          <option value="Provident">Provident</option>
+                          <option value="General">General</option>
+                        </select>
+                        <div class="icon hide-caret"></div>
+                        <div class="icon">
+                          <img src="assets/images/caret.png" align="" alt="" title="">
+                        </div>
+                        <span class="error-form" *ngIf="form.get('type').invalid  && form.get('type').touched">
+                          Please enter a type.
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea formControlName="message" placeholder="Enter your message" class="form-control"></textarea>
+                        <div class="icon">
+                          <img src="assets/images/mail.png" align="" alt="" title="">
+                        </div>
+                        <span class="error-form" *ngIf="form.get('message').invalid  && form.get('message').touched">
+                          Please enter a message.
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                      <button class="btn-cstm btn-orange mt-4 min-width-230" type="submit" [disabled]="isLoading">
+                        <span *ngIf="!isLoading">Submit</span>
+                        <span *ngIf="isLoading"> <i class="fa fa-refresh fa-spin" ></i></span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="callus">
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="text-center mt-5 mb-5">What is the call about?</h4>
+                <div class="call-box-wrapper">
+                  <div class="call-box">
+                    <h3>Membership</h3>
+                    <span class="call-icon"></span>
+                    Tina
+                    <a href="callto:07931592786">07931592786</a>
+                  </div>
+                  <div class="call-box">
+                    <h3>Savings</h3>
+                    <span class="call-icon"></span>
+                    Tina
+                    <a href="callto:07931592786">07931592786</a>
+                  </div>
+                  <div class="call-box">
+                    <h3>Investment</h3>
+                    <span class="call-icon"></span>
+                    Sam
+                    <a href="callto:07956421030">07956421030</a>
+                  </div>
+                  <div class="call-box">
+                    <h3>Property</h3>
+                    <span class="call-icon"></span>
+                    Sam
+                    <a href="callto:07956421030">07956421030</a>
+                  </div>
+                  <div class="call-box">
+                    <h3>General</h3>
+                    <span class="call-icon"></span>
+                    Ruby
+                    <a href="callto:07838053950">07838053950</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

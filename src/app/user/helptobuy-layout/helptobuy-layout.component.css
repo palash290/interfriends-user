@@ -1,0 +1,76 @@
+/*Meter CSS*/
+.meter-credit-score-wrap {
+  background: #092C4C;
+  box-shadow: 0px 10px 30px rgba(31, 65, 247, 0.25);
+  border-radius: 20px;
+  max-width: 95%;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px 0 10px;
+}
+
+.meter-credit-score-wrap:before {
+  content: '';
+    width: 94%;
+    height: 94%;
+    background: transparent;
+    border: 3px dashed #fff;
+    position: absolute;
+    display: block;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+}
+
+.member-type {
+  text-align: center;
+  text-transform: capitalize;
+  color: #B38D00;
+}
+
+.member-since {
+  font-size: 18px !important;
+}
+mwl-gauge{
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+.box-one .main-hding .orange {
+  font-size: 28px !important;
+}
+
+.ct_height_400 img{
+  height: 300px !important;
+    object-fit: cover;
+    max-width: 800px;
+    margin: auto;
+}
+
+.ct_height_400{
+  height: 300px !important;
+  max-width: 800px;
+  margin: auto;
+}
+
+
+.ct_center_div{
+  display: grid;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+
+.ct_mt_top{
+  margin-top: 120px;
+}
+
+.box-line-white .sub-para{
+  line-height: 28px;
+}

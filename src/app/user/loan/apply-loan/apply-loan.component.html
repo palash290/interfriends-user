@@ -1,0 +1,159 @@
+<app-header></app-header>
+<a (click)="backClicked()" class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space container">
+    <div class="row box-one">
+      <div class="col-md-12">
+        <h2 class="section-title">Apply</h2>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a  (click)="onSelectLoan('1')" class="blue-line-solid text-center">
+            <div class="img-box loan"></div>
+            <p class="md-title mt-4 mb-0">loan</p>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a  (click)="onSelectLoan('2')"  class="blue-line-solid text-center">
+            <div class="img-box car-inc"></div>
+            <p class="md-title mt-4 mb-0">Help2Pay(Car Insurance)</p>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="javascript(void);" data-toggle="modal" data-target="#applyEmergencyModal" class="blue-line-solid text-center">
+          <div class="img-box investment"></div>
+            <p class="md-title mt-4 mb-0">emergency Help</p>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a (click)="onSelectLoan('3')"  class="blue-line-solid text-center">
+            <div class="img-box buy-car"></div>
+            <p class="md-title mt-4 mb-0">Help2Buy(Car)</p>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a  (click)="onSelectLoan('4')"  class="blue-line-solid text-center">
+          <div class="img-box cc"></div>
+            <p class="md-title mt-4 mb-0">Help2Pay(credit card)</p>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a  (click)="onSelectLoan('5')"  class="blue-line-solid text-center">
+            <div class="img-box mobile"></div>
+            <p class="md-title mt-4 mb-0">Help2Buy(other)</p>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a  (click)="onSelectLoan('6')"  class="blue-line-solid text-center">
+            <div class="img-box home-loan"></div>
+            <p class="md-title mt-4 mb-0">Help2Buy(house)</p>
+        </a>
+      </div>
+    </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#applyModal">Open Modal</button>
+
+<!-- Modal Start -->
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+  <app-add-loan-request [loanType]= "loanType" [eachChange]= "eachChange"></app-add-loan-request>
+</div>
+<!-- Modal end-->
+
+<!-- Modal Start-->
+<div class="modal fade" id="applyEmergencyModal" tabindex="-1" role="dialog" aria-labelledby="exampleEmergencyModalLabel" aria-hidden="true">
+  <app-emergency-loan-request></app-emergency-loan-request>
+</div>
+<!-- Modal end-->
+
+ <!-- Modal Start-->
+ <div class="modal fade" id="applyModalCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0 justify-content-center">
+        <div>
+          <h5 class="modal-title" id="applyModalLabel">Apply for Loan</h5>
+          <p class="para-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p>
+        </div>
+        <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+          <img src="assets/images/close.png">
+        </button>
+      </div>
+      <div class="modal-body border-0 pb-0">
+        <form class="theme-form">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <input type="text" name="" placeholder="Enter Loan Amount" class="form-control">
+                  <div class="icon">
+                    <img src="assets/images/amt.png" align="" alt="" title="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <select class="form-control">
+                    <option selected disabled hidden>Select Loan term</option>
+                    <option>1 Month</option>
+                    <option>3 Months</option>
+                    <option>6 Months</option>
+                  </select>
+                  <div class="icon hide-caret"></div>
+                  <div class="icon">
+                    <img src="assets/images/caret.png" align="" alt="" title="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <input type="number" name="" placeholder="Contact number" class="form-control">
+                  <div class="icon">
+                    <img src="assets/images/call-sm.png" align="" alt="" title="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>Select loan type</option>
+                    <option>Car Loan</option>
+                    <option>Mobile Loan</option>
+                  </select>
+                  <div class="icon hide-caret"></div>
+                  <div class="icon">
+                    <img src="assets/images/caret.png" align="" alt="" title="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <input type="file" name="" class="form-control">
+                  <div class="icon">
+                    <img src="assets/images/upload-cam.png" width="25" style="filter: brightness(0);">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <input type="text" name="" value="£600 Per Month" class="form-control" readonly="">
+                  <div class="icon">
+                    <img src="assets/images/amt.png" align="" alt="" title="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <button class="btn-cstm btn-blue mt-3 min-width-230">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end-->
+
+

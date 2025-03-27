@@ -1,0 +1,240 @@
+<div class="modal-dialog modal-lg modal-apply ct_scroll_modal  ct_position_center" role="document">
+  <div class="modal-content">
+    <div class="modal-header border-0 justify-content-center">
+      <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close" id="closePopupLoanRequest" (click)="onClose()">
+        <img src="assets/images/close.png">
+      </button>
+    </div>
+    <div class="ct_modal_body_scroll">
+    <div>
+      <h5 class="modal-title" id="applyModalLabel">
+        <span *ngIf="mainId === '1'">Apply for Loan</span>
+        <span *ngIf="mainId === '2'">Help2 pay(Car Insurance)</span>
+        <span *ngIf="mainId === '3'">Help2 Buy(Car)</span>
+        <span *ngIf="mainId === '4'">Help2 me pay(credit card)</span>
+        <span *ngIf="mainId === '5'">Help2 pay(other)</span>
+        <span *ngIf="mainId === '6'">Help2 buy(property)</span>
+      </h5>
+      <!-- <p class="para-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
+    </div>
+
+    <form class="theme-form" [formGroup]="form" (submit)="onSave()">
+    <div class="modal-body border-0 pb-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <label class="hidden-label">Label</label>
+              <div class="form-group">
+                <div class="position-relative ct_language_euro">
+                  <label>Payout Amount</label>
+                  <!--<input type="text" formControlName="loan_amount" placeholder="Enter Loan Amount" class="form-control"   *ngIf="mainId === '1'" (input)="onInputAmount1($event.target.value) ">-->
+                  <select class="form-control" formControlName="loan_amount" (input)="onInputAmount($event.target.value)" >
+                    <option value=''>Payout Amount</option>
+                    <option *ngFor="let item of payOutElem|keyvalue" value={{item.value}}>{{item.value}}</option>
+                    <!--<option value='12000'>£ 12000</option>
+                    <option value='10000'>£ 10000</option>
+                    <option value='8000'>£ 8000</option>
+                    <option value='6000'>£ 6000</option>
+                    <option value='4000'>£ 4000</option> -->
+                  </select>
+                  <div class="ct_euro_sign">
+                    <p class="mb-0">£</p>
+                  </div>
+                </div>
+                <div class="icon_payout">
+                  <img src="assets/images/amt.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('loan_amount').invalid  && form.get('loan_amount').touched">
+                  Please enter a loan amount.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <label class="hidden-label">Label</label>
+              <div class="form-group">
+                <label>Term</label>
+                 <select class="form-control" formControlName="tenure" (change)="onTermChange($event.target.value)" >
+                 <option value=''>Select Loan Term</option>
+                  <option value='18' *ngIf="mainId === '1'">18 Months</option>
+                  <option value='12' *ngIf="mainId === '2'">12 Months</option>
+                  <option value='40' *ngIf="mainId === '3'">40 Months</option>
+                  <option value='24' *ngIf="mainId === '4'">24 Months</option>
+                  <option value='36' *ngIf="mainId === '5'">36 Months</option>
+                  <option value='40' *ngIf="mainId === '6'">40 Months</option>
+                </select>
+
+                <!--<select class="form-control" formControlName="tenure" (change)="onTermChange($event.target.value)" *ngIf="mainId === '2'">
+                  <option value=''>Select Loan Term</option>
+                  <option value='40'>40 Months</option>
+                </select>
+                <select class="form-control" formControlName="tenure" (change)="onTermChange1($event.target.value)" *ngIf="mainId === '1'">
+                  <option value=''>Select Loan Term</option>
+                  <option value='12'>12 Months</option>
+                  <option value='18'>18 Months</option>
+                  <option value='24'>24 Months</option>
+                  <option value='30'>30 Months</option>
+                  <option value='36'>36 Months</option>
+                  <option value='40'>40 Months</option>
+                </select>-->
+                <!--<div class="icon hide-caret"></div>
+                <div class="icon">
+                  <img src="assets/images/caret.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('tenure').invalid  && form.get('tenure').touched">
+                  Please enter a loan term.
+                </span> -->
+              </div>
+            </div>
+            <!-- <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <select class="form-control" formControlName="loan_type" (change)="onSelectCategory()">
+                  <option  value=''>Select loan type</option>
+                  <option value='1'>loan</option>
+                  <option value='2'>Car Insurance Loan</option>
+                  <option value='3'>Help me Buy a Car</option>
+                  <option value='4'>Help me pay off credit card</option>
+                  <option value='5'>Help me pay something else</option>
+                  <option value='6'>Help me raise my house deposit</option>
+                </select>
+                <div class="icon hide-caret"></div>
+                <div class="icon">
+                  <img src="assets/images/caret.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('loan_type').invalid  && form.get('loan_type').touched">
+                  Please select a loan type.
+                </span>
+              </div>
+            </div> -->
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="mainId === '4'">
+              <label class="hidden-label">&nbsp;</label>
+              <div class="form-group">
+                <label class="hidden-label">&nbsp;</label>
+                <input type="file"  accept="image/*" (change)="getcreditcardimage($event)" class="form-control">
+                <div class="icon">
+                  <!-- <img src="assets/images/call-sm.png" align="" alt="" title=""> -->
+                </div>
+                <!-- <span class="error-form" *ngIf="form.get('contact_number').invalid  && form.get('contact_number').touched">
+                  Please enter a contact number.
+                </span> -->
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <label class="hidden-label">&nbsp;</label>
+              <div class="form-group">
+                <label>Unique ID</label>
+                <input type="text" formControlName="contact_number" placeholder="unique ID" class="form-control" [(ngModel)]='unique_ID' readonly="" >
+
+                <span class="error-form" *ngIf="form.get('contact_number').invalid  && form.get('contact_number').touched">
+                  Please enter a unique ID.
+                </span>
+              </div>
+            </div>
+        <!--Changes Interfriends Phase 2 Starts-->
+        <div class="col-lg-6 col-md-6 col-sm-12 " disable>
+          <label class="hidden-label">&nbsp;</label>
+          <div class="form-group">
+            <label>{{totaloverMonths}}</label>
+            <div class="ct_euro_sign">
+              <p class="mb-0">£</p>
+           </div>
+            <input type="text" formControlName="total40Months" placeholder={{totaloverMonths}} class="form-control" [(ngModel)]='total40month' readonly="" >
+          </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label class="hidden-label" >&nbsp;</label>
+          <div class="form-group">
+            <label>Provident</label>
+            <div class="ct_euro_sign">
+              <p class="mb-0">£</p>
+           </div>
+            <input type="text" formControlName="provident" placeholder="Provident" class="form-control" [(ngModel)]='provident' readonly="" >
+          </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label class="hidden-label">&nbsp;</label>
+          <div class="form-group">
+            <label>Admin/Risk</label>
+            <div class="ct_euro_sign">
+              <p class="mb-0">£</p>
+           </div>
+            <input type="text" formControlName="admin_risk" placeholder="Admin/Risk" class="form-control" [(ngModel)]='provident' readonly="" >
+          </div>
+
+        </div>
+       <!--Changes Interfriends Phase 2 Ends-->
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="mainId === '2'">
+              <label class="hidden-label">&nbsp;</label>
+              <div class="form-group">
+                <label>When do you require payment select date</label>
+                <div class="position-relative">
+                <input type="date" formControlName="pay_date" placeholder="Enter Loan Amount" class="form-control">
+                <div class="icon">
+                  <img src="assets/images/amt.png" align="" alt="" title="">
+                </div>
+              </div>
+                <span class="error-form" *ngIf="form.get('pay_date').invalid  && form.get('pay_date').touched">
+                  Please enter a pay date.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <label >&nbsp;</label>
+              <div class="form-group">
+                <label>Guarantor</label>
+                <div class="position-relative">
+                <select class="form-control" formControlName="gurarantor">
+                  <option  value=''>select guarantor</option>
+                  <option [value]="data.user_id" *ngFor="let data of userList">{{data.first_name+' '+data.last_name}}</option>
+                </select>
+                <div class="icon hide-caret"></div>
+                <div class="icon_Guarantor">
+                  <img src="assets/images/caret.png" align="" alt="" title="">
+                </div>
+              </div>
+                <span class="error-form" *ngIf="form.get('gurarantor').invalid  && form.get('gurarantor').touched">
+                  Please select a gurarantor.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" >
+              <label class="hidden-label">Label</label>
+              <div class="form-group">
+                <label>Estimated monthly payment</label>
+                <div class="position-relative">
+                <input type="text" formControlName="emi"  class="form-control" [(ngModel)]='monthlypayment' readonly="">
+                <div class="icon">
+                  <img src="assets/images/amt.png" align="" alt="" title="">
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="mainId === '2'">
+              <label >&nbsp;</label>
+              <div class="form-group">
+                <label >&nbsp;</label>
+                <div class="position-relative">
+                <input type="file"  class="form-control" (change)="onImagePicked($event)">
+                <div class="icon">
+                  <img src="assets/images/upload-cam.png" width="25" style="filter: brightness(0);">
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center border-0">
+      <button class="btn-cstm btn-blue mt-3 min-width-230" type="submit" [disabled]="isLoading">
+        <div class="spinner-border" role="status" *ngIf="isLoading">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <span *ngIf="!isLoading">Apply</span>
+      </button>
+    
+    </div>
+  </form>
+</div>
+  </div>
+</div>

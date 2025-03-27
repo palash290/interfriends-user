@@ -1,0 +1,31 @@
+.ct_signup_scroll{
+    overflow-y: auto;
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+    padding-inline: 10px;
+}
+.ct_signup_scroll::-webkit-scrollbar {
+    width: 10px !important;
+  }
+  /* Track */
+.ct_signup_scroll::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .ct_signup_scroll::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .ct_signup_scroll::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  .auth-card{
+    max-width: 600px;
+  }
+
+  .form-group.has-error .help-block {
+    color: #dd4b39
+}

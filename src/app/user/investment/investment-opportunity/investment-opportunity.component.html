@@ -1,0 +1,109 @@
+
+<app-header></app-header>
+<a routerLink="/user/investmentList" class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="savings-box mt-5 container">
+  <div class="row" *ngIf="isLoading">
+    <mat-spinner  class="mx-auto"></mat-spinner>
+  </div>
+  <div *ngIf="lists.length > 0 && !isLoading">
+    <div
+                class=" row search-results"
+                infiniteScroll
+                [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="50"
+                (scrolled)="onScroll()"
+              >
+    <div class="col-lg-12">
+      <div class="box-line-white blue-line" *ngFor="let data of lists; let i = index">
+        <div class="pr-wrapper-box">
+            <div class="pr-img-box">
+              <img [src]="data.show_property_image">
+            </div>
+            <div class="pr-desc-box">
+              <h4 class="main-hding">{{data.title}}</h4>
+              <p class="sub-para invst-para">{{data.short_description}}</p>
+              <p class="sub-para time-est"><span>Opportunity open for :</span> {{data.property_tenure}} Months</p>
+              <ul class="list-inline mb-4 p-0">
+                <li class="list-inline-item">
+                  <p class="sub-para time-est mar-0 p-0"><span>Start Date :</span> {{data.start_date| date: 'dd MMM yyyy'}}</p>
+                </li>
+                <li class="list-inline-item">
+                  <p class="sub-para time-est mar-0 p-0">|</p>
+                </li>
+                <li class="list-inline-item">
+                  <p class="sub-para time-est mar-0 p-0"><span>End Date :</span> {{data.end_date| date: 'dd MMM yyyy'}}</p>
+                </li>
+              </ul>
+              <p class="extra-para">{{data.long_description}}</p>
+              <div class="progress mt-3"><div class="progress-bar progress-bar-success ct_box_grey" [ngStyle]="{'width': data.invest_percentage+'%'}"></div></div>
+              <!-- <p class="extra-para mt-3 time-est"></p> -->
+              <ul class="list-inv list-inline extra-para mt-3">
+                <li>
+                  <span class="inv-box box-grey"></span>
+                  <span>Funded: </span>
+                  <!-- <strong>{{data.invest_amount | currency:'GBP': 'symbol' : '1.0-0'}}/{{data.main_amount | currency:'GBP': 'symbol' : '1.0-0'}}</strong> -->
+                  <strong>{{data.invest_amount | currency:'GBP': 'symbol' : '1.0-0'}}</strong>
+                  <span class="inv-percent ml-2">({{data.invest_amount * 100 / data.main_amount}}%)</span>
+                </li>
+                <li>
+                  <span class="inv-box box-grey"></span>
+                  <span>Remaining: </span> <strong>{{data.main_amount - data.invest_amount | currency:'GBP': 'symbol' : '1.0-0'}}</strong>
+                </li>
+              </ul>
+              <a href="javascript(void);" (click)="onSelectId(data.id)" data-toggle="modal" data-target="#investModal" class="btn-cstm btn-blue d-inline-block">
+                <i class="fa fa-bank"></i> Invest
+              </a>
+            </div>
+        </div>
+        <div class="show-more-images" *ngIf="!data.more_image_status" (click)="onShowImage(i, data.id)">Show More Images</div>
+        <div class="multi-image-box" *ngIf="data.more_image_status">
+            <div class="single-image-box" [ngClass]="{'active': data.show_property_image === data.property_image}" (click)="setShowImage(i, data.property_image)">
+                <img [src]="data.property_image" width="60" height="60" alt="" title="">
+            </div>
+            <div class="single-image-box" [ngClass]="{'active': data.show_property_image === img.background_image}" (click)="setShowImage(i, img.background_image)" *ngFor="let img of data.background_image">
+                <img [src]="img.background_image" width="60" height="60" alt="" title="">
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  <div id="loadmoreuserqsn" class="text-center mt-4" *ngIf="notEmptyPost">
+    <div class="row pb-5">
+       <div class="col-md-12 p-5">
+          <ngx-spinner
+             bdOpacity = 0.9
+             bdColor = ""
+             size = "default"
+             color = "#581f87"
+             type = "ball-pulse-sync"
+             [fullScreen] = "false"
+             >
+          </ngx-spinner>
+       </div>
+    </div>
+ </div>
+  <div class="row" *ngIf="lists.length <= 0 && !isLoading">
+    <div *ngIf="isLoading">
+      <p>Data Not Found</p>
+    </div>
+  </div>
+
+</section>
+
+
+ <!-- Modal Start-->
+ <div class="modal fade" id="investModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <app-contact-investment [uniqueId]= "selectedId" [eachChange]= "eachChange"></app-contact-investment>
+</div>
+<!-- Modal end-->
+
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+
+
+
+

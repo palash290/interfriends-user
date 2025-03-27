@@ -1,0 +1,237 @@
+
+<app-header></app-header>
+<a href="javascript:void(0);" class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" (click)="backClicked()" title="Back to prevoius view">
+</a>
+<section class="top-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="title-banner">My Profile</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="profile-form-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12" *ngIf="isLoading">
+        <mat-spinner  class="mx-auto"></mat-spinner>
+      </div>
+      <div class="col-lg-12" *ngIf="!isLoading">
+        <form class="profile-card" [formGroup]="form" (submit)="onSave()">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2 class="section-title">Profile Details</h2>
+              <p class="para-md mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p>
+              <a href="javascript:void(0);" class="theme-link">Edit Profile</a>
+            </div>
+            <div class="col-lg-12">
+              <figure class="position-relative overflow-hidden main-img-profile my-0" (click)="filePicker.click()">
+                <img [src]="imagePreview" alt="" class="rounded-circle border h-100 w-100 rounded-circle border img-fluid" style="object-fit: cover;">
+                <input type="file" class="d-none" accept="image/*" (change)="onImagePicked($event)" #filePicker >
+                <div class="position-absolute rounded-circle bg-white border img-button-profile">
+                   <i class="fa fa-camera font-size-14"></i>
+                </div>
+             </figure>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" name="" value="John" class="form-control" formControlName="first_name">
+                <div class="icon">
+                  <img src="assets/images/user.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('first_name').invalid  && form.get('first_name').touched">
+                  Please enter a first name.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" name="" value="Deo" class="form-control" formControlName="last_name">
+                <div class="icon">
+                  <img src="assets/images/user.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('last_name').invalid  && form.get('last_name').touched">
+                  Please enter a last name.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Unique ID</label>
+                <input type="text" name="" value="" class="form-control" readonly=""  formControlName="Uniqueid">
+                <div class="icon">
+                  <img src="assets/images/user.png" align="" alt="" title="">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="" value="john97@gmail.com" class="form-control" formControlName="email">
+                <div class="icon">
+                  <img src="assets/images/mail.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('email').invalid  && form.get('email').touched">
+                  Please enter a email.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Date Of Birth</label>
+                <input type="date" name="" value="12-07-1975" class="form-control" formControlName="dob">
+                <div class="icon">
+                  <img src="assets/images/calendar.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('dob').invalid  && form.get('dob').touched">
+                  Please enter a dob.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Mobile Number</label>
+                <input type="number" name="" placeholder="Mobile number" class="form-control" formControlName="mobile_number">
+                <div class="icon">
+                  <img src="assets/images/call-sm.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('mobile_number').invalid  && form.get('mobile_number').touched">
+                  Please enter a mobile number.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Home number</label>
+                <input type="number"  placeholder="Home number" class="form-control" formControlName="home_number">
+                <div class="icon">
+                  <img src="assets/images/call-sm.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('home_number').invalid  && form.get('home_number').touched">
+                  Please enter a home number.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Emergency number</label>
+                <input type="number"  placeholder="Emergency number" class="form-control" formControlName="emergency_number">
+                <div class="icon">
+                  <img src="assets/images/call-sm.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('emergency_number').invalid  && form.get('emergency_number').touched">
+                  Please enter a emergency number.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Next of kin</label>
+                <input type="text" name="" placeholder="Robert Blex" class="form-control" formControlName="kin_name">
+                <div class="icon">
+                  <img src="assets/images/user.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('kin_name').invalid  && form.get('kin_name').touched">
+                  Please enter a next of kin.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Next of kin Contact Number</label>
+                <input type="number" name="" placeholder="Next of kin contact number" class="form-control" formControlName="kin_number">
+                <div class="icon">
+                  <img src="assets/images/call-sm.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('kin_number').invalid  && form.get('kin_number').touched">
+                  Please enter a kin contact number.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Address line 1</label>
+                <input type="text" name="" value="264-265 Silicon Velley, Near Star Sqaure" class="form-control" formControlName="address_line_1">
+                <div class="icon">
+                  <img src="assets/images/home.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('address_line_1').invalid  && form.get('address_line_1').touched">
+                  Please enter a address line 1.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Address line 2</label>
+                <input type="text" name="" value="264-265 Silicon Velley, Near Star Sqaure" class="form-control" formControlName="address_line_2">
+                <div class="icon">
+                  <img src="assets/images/home.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('address_line_2').invalid  && form.get('address_line_2').touched">
+                  Please enter a address line 2.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Post Code</label>
+                <input type="text" name="" value="26478" class="form-control" formControlName="post_code">
+                <div class="icon">
+                  <img src="assets/images/home.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('post_code').invalid  && form.get('post_code').touched">
+                  Please enter a post code.
+                  </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Employement Type</label>
+                <select class="form-control" formControlName="employement_type">
+                  <option>Select employement type</option>
+                  <option value='1'>Full Time</option>
+                  <option value='2'>Part Time</option>
+                  <option value='3'>Self</option>
+                  <option value='4'>Not</option>
+                </select>
+                <div class="icon hide-caret"></div>
+                <div class="icon">
+                  <img src="assets/images/caret.png" align="" alt="" title="">
+                </div>
+
+                <span class="help-block" *ngIf="form.get('employement_type').invalid  && form.get('employement_type').touched">
+                  Please enter a Loan Type.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" name="" value="26478" class="form-control" formControlName="city">
+                <div class="icon">
+                  <img src="assets/images/home.png" align="" alt="" title="">
+                </div>
+                <span class="help-block" *ngIf="form.get('city').invalid  && form.get('city').touched">
+                  Please enter a city.
+                  </span>
+              </div>
+            </div>
+            <div class="col-sm-12 text-center">
+              <button type="submit" class="btn-cstm btn-orange mt-4 min-width-230" [disabled]="isLoadingUpdate">
+                <span *ngIf="!isLoadingUpdate">Update</span>
+                <span *ngIf="isLoadingUpdate"><i class="fa fa-refresh fa-spin"></i></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

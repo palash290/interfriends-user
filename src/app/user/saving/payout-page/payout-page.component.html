@@ -1,0 +1,44 @@
+<div class="tab-pane fade show active" id="savings">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-8 col-sm-8 mt-sm-5 mt-3" *ngIf="!isLoading && this.cycleList.length > 0">
+      <h5 class="main-hding">Select Saving Cycle</h5>
+      <div class="position-relative">
+        <div ngbDropdown class="d-inline-block w-100">
+          <button class="select-custom select-custom-img select-arrow-no mt-2 text-left" id="dropdownBasic1" ngbDropdownToggle>{{filterStartDate | date: 'dd MMM yyyy'}} - {{filterEndDate | date: 'dd MMM yyyy'}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem *ngFor="let data of cycleList" (click)="setCycle(data.id, data.start_date, data.end_date)"><hr>{{data.start_date | date: 'dd MMM yyyy'}}  -  {{data.end_date | date: 'dd MMM yyyy'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-md-0 mt-4" *ngIf=" isLoading || isLoadingChangeCycle">
+    <mat-spinner  class="mx-auto"></mat-spinner>
+  </div>
+  <div class="row mt-md-0 mt-4" *ngIf="lists.length > 0 && !isLoading && !isLoadingChangeCycle">
+      <div class=" ct_flex" *ngFor="let list of lists; let i = index">
+        <div class="box-line-white">
+          <div class="">
+            <img src="assets/images/money.png" class="img-fluid">
+          </div>
+          <h4 class="main-hding">{{list.payout_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+          <p class="sub-para">{{list.created_at}}</p>
+          <div class="bg-payment">Fully Paid</div>
+        </div>
+        <div class="box-line-white">
+          <div class="">
+            <img src="assets/images/money.png" class="img-fluid">
+          </div>
+          <h4 class="main-hding">{{list.payout_pf_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+          <p class="sub-para">{{list.created_at}}</p>
+          <div class="bg-payment">Provident deducted</div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="row mt-5 d-block text-center" *ngIf="lists.length <= 0 && !isLoading && !isLoadingChangeCycle">
+  <img src="assets/images/no-data.png" class="img-fluid mb-2">
+  <h1 class="">Oops!No Data Found</h1>
+</div>

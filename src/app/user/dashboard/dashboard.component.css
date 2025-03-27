@@ -1,0 +1,140 @@
+/*Meter CSS*/
+.meter-credit-score-wrap {
+  background: #092C4C;
+  box-shadow: 0px 10px 30px rgba(31, 65, 247, 0.25);
+  border-radius: 20px;
+  max-width: 95%;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px 0 10px;
+}
+
+.meter-credit-score-wrap:before {
+  content: '';
+    width: 94%;
+    height: 94%;
+    background: transparent;
+    border: 3px dashed #fff;
+    position: absolute;
+    display: block;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+}
+
+.member-type {
+  text-align: center;
+  text-transform: capitalize;
+  color: #B38D00;
+}
+
+.member-since {
+  font-size: 18px !important;
+}
+mwl-gauge{
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+.box-one .main-hding .orange {
+  font-size: 28px !important;
+}
+
+.ct_height_400 img{
+  height: 300px !important;
+    object-fit: cover;
+    max-width: 800px;
+    margin: auto;
+}
+
+.ct_height_400{
+  height: 300px !important;
+  max-width: 800px;
+  margin: auto;
+}
+
+
+.ct_center_div{
+  display: grid;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+
+.ct_flex_item_div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.score-details-box ul{
+  background: unset;
+}
+
+@media screen and (max-width:767px) {
+  .next-arrow-hm {
+
+    right: 5px;
+
+}
+}
+
+.ct_icon_bg {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  color: #fff;
+  margin-block: 10px;
+  cursor: pointer;
+
+
+}
+.ct_icon_bg.minus{
+  background-color: #ea423a;
+}
+.ct_icon_bg.check{
+  background-color: #3da75c;
+}
+.ct_icon_bg.remove{
+  background-color: #ea423a;
+}
+
+.ct_icon_bg i {
+  font-weight: 100;
+  font-size: 16px;
+}
+.ct_icon_list{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* padding: .75rem 5px; */
+  padding-inline: 5px;
+  justify-content: center;
+}
+
+.ct_fs_24{
+  font-size: 18px;
+}
+.ct_score_fs_18{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+.ct_icon_list {
+  background-color: #fff;
+  width: fit-content;
+  padding: 2px 25px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.09);
+  border: 1px solid #d8d8d8;
+}

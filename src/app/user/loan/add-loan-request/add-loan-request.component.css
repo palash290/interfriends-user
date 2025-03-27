@@ -1,0 +1,58 @@
+.form-group {
+  margin-bottom: 15px;
+}
+
+.ct_language_euro input {
+  text-indent: 12px;
+}
+.ct_euro_sign {
+  position: absolute;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  left: 17px;
+}
+
+.icon_payout{
+  position: absolute;
+    top: 40px;
+    right: 15px;
+    /* transform: translateY(-50%); */
+    z-index: 1;
+}
+
+.icon_Guarantor{
+  position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0%, -50%);
+    z-index: 1;
+}
+
+.ct_euro_sign p {
+  color: #676767;
+  font-size: 16px;
+}
+
+select.form-control.ng-dirty.ng-valid.ng-touched {
+  padding: 0px 0px 0px 24px;
+}
+
+input.form-control.ng-untouched.ng-pristine.ng-valid {
+  padding: 0 0 0 24px;
+}
+
+input.form-control.ng-pristine.ng-valid.ng-touched {
+  padding: 0 0 0 24px;
+}
+
+
+
+select.form-control.ng-untouched.ng-pristine.ng-invalid {
+  padding: 0 0 0 24px;
+}
+
+select.form-control.ng-untouched.ng-dirty.ng-valid{
+  padding: 0 0 0 24px;
+}
+
+

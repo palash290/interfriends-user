@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-3 mt-5 ct_max_width_50">
+    <div class="d-flex align-items-center mb-4">
+      <div class="square-box bg-green"></div>
+      <h6 class="mb-0 text-show">Paid On Time</h6>
+    </div>
+    <div class="d-flex align-items-center mb-4">
+      <div class="square-box bg-red"></div>
+      <h6 class="mb-0 text-show">Paid Late</h6>
+    </div>
+  </div>
+  <div class="col-md-5 mt-5 ct_max_width_50">
+   <div class="row">
+   <div class="col-xl-6 ">
+    <div class="d-flex align-items-center mb-4">
+      <div class="square-box bg-grey"></div>
+      <h6 class="mb-0 text-show">Pending</h6>
+    </div>
+   </div>
+   <div class="col-xl-6">
+    <div class="d-flex align-items-center mb-4">
+      <div class="square-box bg-danger"></div>
+      <h6 class="mb-0 text-show">Missed Payment</h6>
+    </div>
+   </div>
+   </div>
+  </div>
+  <div class="col-xl-4 mt-md-5 mt-md-4 mt-3" *ngIf="(!isLoading && this.cycleList.length > 0 && lists.length > 0) || (!isLoading && callFromPF)">
+    <h5 class="main-hding">Select Saving Cycle</h5>
+    <div class="position-relative">
+      <div ngbDropdown class="d-inline-block w-100">
+        <button class="select-custom select-custom-img select-arrow-no mt-2 text-left" id="dropdownBasic1" ngbDropdownToggle>{{filterStartDate | date: 'dd MMM yyyy'}} - {{filterEndDate | date: 'dd MMM yyyy'}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem *ngFor="let data of cycleList" (click)="setCycle(data.id, data.start_date, data.end_date)"><hr>{{data.start_date | date: 'dd MMM yyyy'}}  -  {{data.end_date | date: 'dd MMM yyyy'}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-3" *ngIf=" isLoading || isLoadingChangeCycle">
+    <mat-spinner  class="mx-auto"></mat-spinner>
+</div>
+<div class="row"  *ngIf="lists.length > 0 && !isLoading && !isLoadingChangeCycle">
+  <div class="col-lg-4 col-sm-6" *ngFor="let list of lists; let i = index">
+    <div class="box-line-white position-relative"
+    [ngClass]="[
+    list.status === '1' ? 'grey-line' : '',
+    list.status === '2' ? 'green-line' : '',
+    list.status === '4' ? 'yellow-line' : '',
+    list.status === '3' ? 'red-line' : ''
+    ]"
+    >
+      <div class="">
+        <img src="assets/images/money.png" class="img-fluid">
+      </div>
+      <h4 class="main-hding">{{list.amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+      <p class="sub-para">{{list.date | date: 'dd MMM yyyy'}}</p>
+      <span class="loan-month">{{list.month}}</span>
+    </div>
+  </div>
+</div>
+<div class="row mt-5 d-block text-center" *ngIf="lists.length <= 0 && !isLoading && !isLoadingChangeCycle">
+  <img src="assets/images/no-data.png" class="img-fluid mb-2">
+  <h1 class="">Oops!No Data Found</h1>
+</div>

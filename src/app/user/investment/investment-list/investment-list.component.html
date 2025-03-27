@@ -1,0 +1,54 @@
+
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space container saving-acc-outer">
+  <div class="row padd-t-b pb-0">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 saving-acc-box">
+      <div class="inner-box">
+        <h6 class="extra-hding">Investment Account</h6>
+        <h2 class="main-hding">
+          <span *ngIf="!isLoading">{{totalAmount| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+          <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+        </h2>
+        <p class="sub-para m-0">Total investment</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+      <a routerLink="/user/investmentProfit" class="theme-link border border-dark btn bg-white mr-1">Dividend</a>
+      <a routerLink="/user/investmentOpportunity" class="theme-link border border-dark btn bg-white btn-inline">Investment Opportunities</a>
+  </div>
+</section>
+
+<section class="savings-box container">
+  <h2 class="section-title">Your Investments</h2>
+  <div class="row" *ngIf="isLoading">
+    <mat-spinner  class="mx-auto"></mat-spinner>
+  </div>
+  <div class="row" *ngIf="lists.length > 0 && !isLoading">
+    <div class="col-lg-4 col-sm-6" *ngFor="let data of lists; let i = index">
+      <div class="box-line-white blue-line">
+        <div class="">
+          <img src="assets/images/building.png" class="img-fluid">
+        </div>
+        <h4 class="main-hding">{{data.amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+        <p class="sub-para">{{data.created_at| date: 'dd MMM yyyy'}}</p>
+        <p class="extra-para">{{data.description}}</p>
+      </div>
+    </div>
+    <div class="row" *ngIf="lists.length <= 0 && !isLoading">
+      <div *ngIf="isLoading">
+        <p>Data Not Found</p>
+      </div>
+    </div>
+  </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+
+
+
+

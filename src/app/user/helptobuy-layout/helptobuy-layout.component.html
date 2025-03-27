@@ -1,0 +1,99 @@
+<app-header></app-header>
+<section class="overview-box container ct_mt_top">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="section-title">Help to Buy Options</h2>
+      <div class="row">
+      <div class="col-lg-4 col-sm-6">
+        <a [routerLink]="['/user/help2buyloanlist', '2']" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/savings.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Help2 Pay<br>  (Car Insurance)</p>
+            <h4 class="main-hding">
+              <span *ngIf="helpToBuyCarInsurance != '0' " >-{{helpToBuyCarInsurance | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="helpToBuyCarInsurance == '0' "  >{{helpToBuyCarInsurance | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="loading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a [routerLink]="['/user/help2buyloanlist', '3']" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/savings.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Help2 Buy<br>(Car)</p>
+            <h4 class="main-hding">
+
+              <span *ngIf="helpToBuycar != '0' "  >-{{helpToBuycar | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span  *ngIf="helpToBuycar == '0' "  >{{helpToBuycar | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="loading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a [routerLink]="['/user/help2buyloanlist', '4']" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/savings.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Help2 pay<br>(Credit Card)</p>
+            <h4 class="main-hding">
+              <span *ngIf="helpToBuyCreditCard != '0' " >-{{helpToBuyCreditCard | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="helpToBuyCreditCard == '0' "  >{{helpToBuyCreditCard | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="loading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a [routerLink]="['/user/help2buyloanlist', '5']" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/savings.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Help2 Pay<br>(Other)</p>
+            <h4 class="main-hding">
+              <span *ngIf="helpToBuyOther != '0' ">-{{helpToBuyOther | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span  *ngIf="helpToBuyOther == '0' " >{{helpToBuyOther | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="loading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+        </a>
+      </div>
+       <div class="col-lg-4 col-sm-6">
+        <a [routerLink]="['/user/help2buyloanlist', '6']" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/savings.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Help2 Buy<br>(Property)</p>
+            <h4 class="main-hding">
+              <span *ngIf="helpToBuyProperty != '0' " >-{{helpToBuyProperty | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="helpToBuyProperty == '0' " >{{helpToBuyProperty | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="loading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+        </a>
+      </div>
+    </div>
+    </div>
+   </div>
+  </section>
+  <app-sub-menu></app-sub-menu>
+  <app-mobile-menu></app-mobile-menu>
+  <app-footer></app-footer>

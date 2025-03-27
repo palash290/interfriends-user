@@ -1,0 +1,140 @@
+
+<app-header></app-header>
+<a href="javascript:void(0);" class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" (click)="backClicked()" title="Back to prevoius view">
+</a>
+<section class="top-space container container-medium">
+  <form class="row box-one" [formGroup]="form" (submit)="onSave()">
+    <div class="col-lg-12 mb-3">
+      <h2 class="section-title">Recommend a Friend</h2>
+      <!-- <p class="para-md mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="text" formControlName="name" placeholder="Friend's name" class="form-control">
+        <div class="icon">
+          <img src="assets/images/user.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('name').invalid  && form.get('name').touched">
+          Please enter a name.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="email" formControlName="email" placeholder="Friend's email" class="form-control">
+        <div class="icon">
+          <img src="assets/images/mail.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('email').invalid  && form.get('email').touched">
+          Please enter email.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="number" formControlName="mobile_number" placeholder="Friend's contact number" class="form-control">
+        <div class="icon">
+          <img src="assets/images/call-sm.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('mobile_number').invalid  && form.get('mobile_number').touched">
+          Please enter a mobile number.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <select class="form-control" formControlName="friend_employed">
+          <option  value=null>Is this friend employed</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Don’t Know">Don’t Know</option>
+        </select>
+        <div class="icon hide-caret"></div>
+        <div class="icon">
+          <img src="assets/images/caret.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('friend_employed').invalid  && form.get('friend_employed').touched">
+          Please confirm employment.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <select class="form-control" formControlName="employement_type">
+          <option  value=null>If employed | Employement Type</option>
+          <option value="Full Time">Full Time</option>
+          <option value="Part Time">Part Time</option>
+          <option value="Don’t Know">Don’t Know</option>
+        </select>
+        <div class="icon hide-caret"></div>
+        <div class="icon">
+          <img src="assets/images/caret.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('employement_type').invalid  && form.get('employement_type').touched">
+          Please enter employement type.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="text" formControlName="know_this_person" placeholder="How long have you known this person?" class="form-control">
+        <div class="icon">
+          <img src="assets/images/user.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('know_this_person').invalid  && form.get('know_this_person').touched">
+          Please confirm how long you have know this person.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="text" formControlName="know_them_as_what" placeholder="How have you known them?" class="form-control">
+        <div class="icon">
+          <img src="assets/images/user.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('know_them_as_what').invalid  && form.get('know_them_as_what').touched">
+          Enter a text.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <input type="text" formControlName="recommending_this_person" placeholder="Why are you recommending this person?" class="form-control">
+        <div class="icon">
+          <img src="assets/images/user.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('recommending_this_person').invalid  && form.get('recommending_this_person').touched">
+          State reason for recommendation
+        </span>
+      </div>
+    </div>
+    <div class="offset-lg-3 offset-md-3 col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <select class="form-control" formControlName="recommend_user_by">
+          <option  value=null>Please select a second recommender</option>
+          <option [value]="data.user_id" *ngFor="let data of userList">{{data.first_name+' '+data.last_name}}</option>
+        </select>
+        <div class="icon hide-caret"></div>
+        <div class="icon">
+          <img src="assets/images/caret.png" align="" alt="" title="">
+        </div>
+        <span class="error-form" *ngIf="form.get('recommend_user_by').invalid  && form.get('recommend_user_by').touched">
+          Please select a second recommender.
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-12 text-center">
+     
+      <button class="btn-cstm btn-blue mt-4 min-width-230" type="submit">
+        <div class="spinner-border" role="status" *ngIf="isLoading">
+          <span class="sr-only">Loading...</span>
+          </div>
+          <span *ngIf="!isLoading">Recommend</span>
+      </button>
+    </div>
+  </form>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

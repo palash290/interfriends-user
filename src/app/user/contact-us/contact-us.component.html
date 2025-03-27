@@ -1,0 +1,78 @@
+
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()"class="back_navigator">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space profile-form-section contact-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <form class="profile-card" [formGroup]="form" (submit)="onSave()">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2 class="section-title">Contact Us</h2>
+              <!-- <p class="para-md mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" formControlName="name" value="John" class="form-control">
+                <div class="icon">
+                  <img src="assets/images/user.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('name').invalid  && form.get('name').touched">
+                  Please enter a name.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" formControlName="email" value="john97@gmail.com" class="form-control">
+                <div class="icon">
+                  <img src="assets/images/mail.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('email').invalid  && form.get('email').touched">
+                  Please enter a email.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Mobile Number</label>
+                <input type="number" formControlName="mobile_number" placeholder="Mobile number" class="form-control">
+                <div class="icon">
+                  <img src="assets/images/call-sm.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('mobile_number').invalid  && form.get('mobile_number').touched">
+                  Please enter a mobile number.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea formControlName="message" placeholder="Enter your message" class="form-control"></textarea>
+                <div class="icon">
+                  <img src="assets/images/mail.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('message').invalid  && form.get('message').touched">
+                  Please enter a message.
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12 text-center">
+              <button class="btn-cstm btn-orange mt-4 min-width-230" type="submit" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Submit</span>
+                <span *ngIf="isLoading"> <i class="fa fa-refresh fa-spin" ></i></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

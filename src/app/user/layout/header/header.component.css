@@ -1,0 +1,13 @@
+@media(max-width:768px){
+  a.navbar-brand {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+.header-menu .navbar{
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+}
+

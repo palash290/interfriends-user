@@ -1,0 +1,286 @@
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
+<img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space container">
+   <div class="row padd-t-b pb-0">
+      <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 saving-acc-box">
+         <div class="inner-box">
+            <h6 class="extra-hding">Welfare Account</h6>
+            <h2 class="main-hding">
+              <span *ngIf="!isLoading">
+                <span *ngIf="status == '1'" class="ct_textcolor">{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+                <span *ngIf="status == '2'">{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              </span>
+              <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+            </h2>
+            <p class="sub-para m-0" >Balance</p>
+
+         </div>
+      </div>
+   </div>
+</section>
+<section class="savings-box container">
+   <div class="row">
+      <div class="col-md-12">
+         <h2 class="section-title mb-5">Your Welfare Loans</h2>
+         <ul class="nav nav-tabs bg-blue" id="myTab">
+            <li class="nav-item">
+               <a class="nav-link" [ngClass]="{'active': status == '1'}" href="javascript:void(0)" (click)="onSetStatus('1')">Active</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" [ngClass]="{'active': status == '2'}" href="javascript:void(0)" (click)="onSetStatus('2')">Historic</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" [ngClass]="{'active': status == '3'}" href="javascript:void(0)" (click)="onSetStatus('3')">Application Status</a>
+            </li>
+         </ul>
+         <div class="tab-content loan-tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="savings">
+               <div class="row">
+                  <div  class="col-lg-12"  *ngIf="isLoading">
+                     <mat-spinner  class="mx-auto"></mat-spinner>
+                  </div>
+                  <div class="col-lg-12" *ngIf="status === '1'">
+                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"  *ngIf="laonActive.length > 0 && !isLoading">
+                        <div class="panel panel-default" *ngFor="let data of laonActive; let i = index">
+                           <div class="panel-heading" role="tab" id="headingOne">
+                              <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
+                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true" aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
+                                    <div class="row d-flex align-items-center position-relative">
+                                       <div class="col-sm-3 mb-sm-0 mb-4">
+                                          <div class="row">
+                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                                                <h6 class="loan-sm-text">Loan Type</h6>
+                                                <h5 class="loan-hl-text">
+                                                   <span >Welfare</span>
+                                                </h5>
+                                             </div>
+                                             <div class="col-lg-6 col-sm-12 col-6">
+                                                <h6 class="loan-sm-text">Start Date</h6>
+                                                <h5 class="loan-hl-text">{{data.date}}</h5>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-3 mb-sm-0 mb-4">
+                                          <div class="row">
+                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                                                <h6 class="loan-sm-text">Total to pay</h6>
+                                                <h5 class="ct_textcolor" >{{data.total_payment | currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                             </div>
+                                             <div class="col-lg-6 col-sm-12 col-6">
+                                                <h6 class="loan-sm-text">Amt Paid</h6>
+                                                <h5 class="loan-hl-text">{{data.paid_amount | currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-2 mb-sm-0 mb-4">
+                                          <div class="row">
+                                             <div class="col-lg-12 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                                                <h6 class="loan-sm-text">Remaining Amt</h6>
+                                                <h5 class="ct_textcolor">{{data.total_payment - data.paid_amount | currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                             </div>
+                                             <!-- <div class="col-lg-6 col-sm-12 col-6">
+                                                <h6 class="loan-sm-text">Interest Rate</h6>
+                                                <h5 class="loan-hl-text">@{{data.interest_rate}}%</h5>
+                                             </div> -->
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-3">
+                                          <div class="row">
+                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                                                <h6 class="loan-sm-text">Loan ID</h6>
+                                                <h5 class="loan-hl-text">{{data.id}}</h5>
+                                             </div>
+                                             <div class="col-lg-6 col-sm-12 col-6">
+                                                <h6 class="loan-sm-text">Term</h6>
+                                                <h5 class="loan-hl-text">{{data.tenure}} months</h5>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <img src="assets/images/caret-red.png" class="caret-open">
+                                    </div>
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="collapse{{data.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                              <div class="panel-body">
+                                <div *ngIf="data.payment_list_status === false && data.payment_list.length > 0">
+                                 <div class="box-line-white second-line-none orange-line rounded-0 py-3 mt-0" *ngFor="let item of data.payment_list; let it = index">
+                                    <div class="row">
+                                       <div class="col-6 left-box">
+                                          <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
+                                          <p class="sub-para">{{item.created_at}}</p>
+                                       </div>
+                                       <div class="col-6 right-box">
+                                          <div class="d-flex align-items-center">
+                                             <!-- <img src="assets/images/chevron.png" class="img-fluid mr-3"> -->
+                                             <h4 class="main-hding my-0">{{item.amount | currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+                                          </div>
+                                          <!-- <p class="sub-para">
+                                             <span class="extra-para mr-2">Remaning Amount </span> €60,000
+                                          </p> -->
+                                       </div>
+                                    </div>
+                                 </div>
+                                </div>
+                                <div *ngIf="data.payment_list_status === false && data.payment_list.length <= 0">
+                                  <p>Data not found</p>
+                                </div>
+                                <div *ngIf="data.payment_list_status === true">
+                                  <mat-spinner  class="mx-auto"></mat-spinner>
+                                </div>
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
+                      <img src="assets/images/no-data.png" class="img-fluid mb-2">
+                      <h1 class="">Oops!No Data Found</h1>
+                    </div>
+                  </div>
+                  <div class="col-lg-12" *ngIf="status === '2'">
+                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngIf="laonComplete.length > 0 && !isLoading">
+                        <div class="panel panel-default" *ngFor="let data of laonComplete;let i = index">
+                           <div class="panel-heading" role="tab" id="headingOne">
+                              <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
+                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true" aria-controls="collapseOne" (click)="onAddHistory('2', i, data.id)">
+                                    <div class="row d-flex align-items-center position-relative">
+                                       <div class="col-sm-5 mb-sm-0 mb-4">
+                                          <div class="row">
+                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4">
+                                                <h6 class="loan-sm-text">Loan Type</h6>
+                                                <h5 class="loan-hl-text">
+                                                  <span >Welfare</span>
+                                                </h5>
+                                             </div>
+                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                                                <h6 class="loan-sm-text">Start Date</h6>
+                                                <h5 class="loan-hl-text">{{data.date}}</h5>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-2 mb-sm-0 mb-4 center-box">
+                                          <div class="img-loan-head">
+                                             <img src="assets/images/loans.png" class="img-fluid">
+                                          </div>
+                                          <h4 class="loan-lg-text mt-3">Loan Amount</h4>
+                                          <h4 class="main-hding">{{data.amount | currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+                                       </div>
+                                       <div class="col-sm-5">
+                                          <div class="row">
+                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
+                                                <h6 class="loan-sm-text">Status</h6>
+                                                <h5 class="loan-hl-text">Fully Paid</h5>
+                                             </div>
+                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
+                                                <h6 class="loan-sm-text">Loan ID</h6>
+                                                <h5 class="loan-hl-text">{{data.id}}</h5>
+                                             </div>
+                                             <div class="col-lg-4 col-sm-12 col-12 mb-sm-0 mb-2">
+                                                <h6 class="loan-sm-text">Loan Term</h6>
+                                                <h5 class="loan-hl-text">{{data.month}} Months</h5>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <img src="assets/images/caret-red.png" class="caret-open">
+                                    </div>
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="collapse{{data.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              <div *ngIf="data.payment_list_status === false && data.payment_list.length > 0">
+                               <div class="box-line-white second-line-none orange-line rounded-0 py-3 mt-0" *ngFor="let item of data.payment_list; let it = index">
+                                  <div class="row">
+                                     <div class="col-6 left-box">
+                                        <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
+                                        <p class="sub-para">{{item.created_at}}</p>
+                                     </div>
+                                     <div class="col-6 right-box">
+                                        <div class="d-flex align-items-center">
+                                           <!-- <img src="assets/images/chevron.png" class="img-fluid mr-3"> -->
+                                           <h4 class="main-hding my-0">{{item.amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+                                        </div>
+                                        <!-- <p class="sub-para">
+                                           <span class="extra-para mr-2">Remaning Amount </span> €60,000
+                                        </p> -->
+                                     </div>
+                                  </div>
+                               </div>
+                              </div>
+                              <div *ngIf="data.payment_list_status === false && data.payment_list.length <= 0">
+                                <p>Data not found</p>
+                              </div>
+                              <div *ngIf="data.payment_list_status === true">
+                                <mat-spinner  class="mx-auto"></mat-spinner>
+                              </div>
+
+                            </div>
+                         </div>
+                        </div>
+                     </div>
+                     <div class="row mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
+                      <img src="assets/images/no-data.png" class="img-fluid mb-2">
+                      <h1 class="">Oops!No Data Found</h1>
+                    </div>
+                  </div>
+                  <div class="col-lg-12" *ngIf="status === '3'">
+                     <div  *ngIf="laonPending.length > 0 && !isLoading">
+                        <div class="box-line-white orange-line rounded-0 py-4 click-accordion" *ngFor="let data of laonPending">
+                           <div>
+                              <div class="row d-flex align-items-center pl-lg-5 pl-0">
+                                 <div class="col-sm-6 mb-sm-0 mb-4">
+                                    <div class="row">
+                                       <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4">
+                                          <h6 class="loan-sm-text">Loan Type</h6>
+                                          <h5 class="loan-hl-text">
+                                            <span >Welfare</span>
+                                          </h5>
+                                       </div>
+                                       <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                                          <h6 class="loan-sm-text">Application Date</h6>
+                                          <h5 class="loan-hl-text">{{data.date}}</h5>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-6">
+                                    <div class="row">
+                                       <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
+                                          <h6 class="loan-sm-text">Loan Amt</h6>
+                                          <h5 class="loan-hl-text">{{data.amount | currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                       </div>
+                                       <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
+                                        <h6 class="loan-sm-text">Term</h6>
+                                        <h5 class="loan-hl-text">{{data.month}} Month</h5>
+                                     </div>
+                                       <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
+                                          <h6 class="loan-sm-text">Status</h6>
+                                          <h5 class="loan-hl-text text-danger">
+                                             <span *ngIf="data.status === '1'">Pending</span>
+                                             <span *ngIf="data.status === '4'">Accepted</span>
+                                             <span *ngIf="data.status === '3'">Declined</span>
+                                             <span *ngIf="data.status === '2'">Complete</span>
+                                          </h5>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
+                      <img src="assets/images/no-data.png" class="img-fluid mb-2">
+                      <h1 class="">Oops!No Data Found</h1>
+                    </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

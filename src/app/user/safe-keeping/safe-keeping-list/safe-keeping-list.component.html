@@ -1,0 +1,97 @@
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
+  <img
+    src="assets/images/back-btn.png"
+    alt="back button"
+    title="Back to prevoius view"
+  />
+</a>
+<section class="top-space container">
+  <div class="row padd-t-b pb-0 d-flex align-items-center">
+    <div class="col-lg-4 offset-lg-0 mb-lg-0 mb-5 d-md-block d-none">
+      <div class="d-flex align-items-center">
+        <div class="square-box bg-blue"></div>
+        <h6 class="mb-0 text-show">Deposit</h6>
+      </div>
+      <div class="d-flex align-items-center mt-4">
+        <div class="square-box bg-red"></div>
+        <h6 class="mb-0 text-show">Withdrawals</h6>
+      </div>
+    </div>
+    <div class="col-lg-4 offset-lg-0 col-md-6 offset-md-3 saving-acc-box">
+      <div class="inner-box">
+        <h6 class="extra-hding">Safe Keeping Account</h6>
+        <h2 class="main-hding">
+          <span *ngIf="!isLoading">{{ safeKeepingAmount| currency:'GBP': 'symbol' : '1.0-0' }}</span>
+          <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+        </h2>
+        <p class="sub-para m-0">Overall balance</p>
+      </div>
+    </div>
+    <div class="col-lg-12 text-center mt-3">
+      <a
+        href="javascript(void);"
+        data-toggle="modal"
+        data-target="#applyModal"
+        class="btn-cstm btn-blue mt-sm-4 mt-0 d-inline-block"
+        >Request Money</a
+      >
+    </div>
+    <div class="col-md-3 offset-md-3 mt-lg-0 mt-5 d-md-none d-block">
+      <div class="d-flex align-items-center">
+        <div class="square-box bg-blue"></div>
+        <h6 class="mb-0 text-show">Credits</h6>
+      </div>
+      <div class="d-flex align-items-center mt-4">
+        <div class="square-box bg-red"></div>
+        <h6 class="mb-0 text-show">Withdrawals</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="savings-box container">
+  <h2 class="section-title">Your transactions</h2>
+  <div class="row" *ngIf="isLoading">
+    <mat-spinner class="mx-auto"></mat-spinner>
+  </div>
+  <div class="row" *ngIf="safeKeepingList.length > 0 && !isLoading">
+    <div
+      class="col-lg-4 col-sm-6"
+      *ngFor="let list of safeKeepingList; let i = index"
+    >
+      <div
+        class="box-line-white"
+        [ngClass]="[
+          list.pyment_type === '2' ? 'blue-line' : '',
+          list.pyment_type === '1' ? 'red-line' : ''
+        ]"
+      >
+        <div class="">
+          <img src="assets/images/divided.png" class="img-fluid" />
+        </div>
+        <h4 class="main-hding">{{ list.amount| currency:'GBP': 'symbol' : '1.0-0' }}</h4>
+        <p class="sub-para">{{ list.created_at }}</p>
+        <!-- <p class="extra-para">
+          Lorem Ipsum dolor sit amet, eltisa consectetur adipiscing.
+        </p> -->
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="safeKeepingList.length <= 0 && !isLoading">
+    <div *ngIf="isLoading">
+      <p>Data Not Found</p>
+    </div>
+  </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+
+
+
+ <!-- Modal Start-->
+ <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-add-safe-keeping-request></app-add-safe-keeping-request>
+</div>
+<!-- Modal end-->

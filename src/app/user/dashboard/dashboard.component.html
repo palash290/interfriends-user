@@ -1,0 +1,553 @@
+<app-header></app-header>
+<section class="top-space container">
+  <div class="row box-one d-flex align-items-center home-top-mbl pb-0">
+    <div class="col-sm-12 text-center mb-sm-0 mb-5 m-mb-0">
+      <h3 class="main-hding">Hi, <span class="orange">{{this.name}}</span></h3>
+      <!-- <h4 class="sub-para w-50 m-auto m-w-100"> We are INTERFRIENDS, a unique savings club with the vision to leverage the power of our collective effort in trust, to achieve what may be impossible individually</h4> -->
+      <owl-carousel-o [options]="customOptions" class="ct_height_400">
+
+        <ng-container *ngFor="let slide of apiData">
+          <ng-template class="slide" carouselSlide [id]="slide.id">
+            <img *ngIf="slide.image != ''" [src]="slide.image" [alt]="slide.id">
+            <h4 *ngIf="slide.title != ''" class="ct_height_400 ct_center_div ">{{slide.title}}</h4>
+          </ng-template>
+        </ng-container>
+
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>
+<section class="overview-box container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="section-title">Accounts Preview</h2>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/savingDetail" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/savings.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Savings</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoadingSaving">{{avgAmountCycle| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoadingSaving">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a [routerLink]="['/user/JNRsavingDetail', '2']" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/savings.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Savings JNR</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoadingSavingJNR">{{avgAmountCycleJNR| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoadingSavingJNR">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-lg-4 col-sm-6">
+      <!--<a [routerLink]="['/user/HepToBuysavingDetail', '3']" class="box-line-white h-120 dark-line d-flex align-items-center"> -->
+      <a [routerLink]="['/user/help2buylayout', groupId, userId]"
+        class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/building.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Help to Buy</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoadingSavingHelpToBuy">{{avgAmountHelpToBuy | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoadingSavingHelpToBuy">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/myLoans" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/loans.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Loans</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{avgAmountLoan| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/safeKeepingList" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/safekeeping.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Safekeeping</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{avgAmountSafeKeeping| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/pfList" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/provident.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Provident</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{avgAmountPf| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/investmentList" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/investment.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Investment</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{totalAmountInvestment| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/investmentProfit" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/divided.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Dividend</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/welfareLoan" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/divided.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Welfare</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{avgwelfare| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <!--<div class="col-lg-4 col-sm-6">
+        <a routerLink="/user/investmentProfit" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/divided.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Misc</p>
+            <h4 class="main-hding"> -->
+    <!-- <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
+    <!--<span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right" ></i>
+          </h3>
+        </a>
+      </div> -
+      <div class="col-lg-4 col-sm-6">
+        <a routerLink="/user/investmentProfit" class="box-line-white h-120 dark-line d-flex align-items-center">
+          <div class="mr-4">
+            <img src="assets/images/divided.png" class="img-fluid">
+          </div>
+          <div class="">
+            <p class="sub-para">Emergency</p>
+            <h4 class="main-hding">-->
+    <!-- <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
+    <!-- <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin" ></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right" ></i>
+          </h3>
+        </a>
+      </div> -->
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/miscellaneousList" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/divided.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Miscellaneous</p>
+
+            <h4 class="main-hding">
+              <!-- <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
+              <span *ngIf="!isLoading">{{avgAmountMiscellaneous| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a routerLink="/user/emergencyLoanList" class="box-line-white h-120 dark-line d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/divided.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Emergency Loans</p>
+            <h4 class="main-hding">
+              <!-- <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
+              <span *ngIf="!isLoading">{{avgAmountEmergencyLoan| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+          <h3 class="next-arrow-hm">
+            <i class="fa fa-chevron-right"></i>
+          </h3>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6" *ngIf="overAllTotal < 0">
+      <a class="box-line-white h-120 dark-line pink-background d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/investment.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Overall account balance</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{overAllTotal| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6" *ngIf="overAllTotal >= 0">
+      <a class="box-line-white h-120 dark-line  blue-background d-flex align-items-center">
+        <div class="mr-4">
+          <img src="assets/images/investment.png" class="img-fluid">
+        </div>
+        <div class="ct_flex_item_div">
+          <div class="">
+            <p class="sub-para">Overall account balance</p>
+            <h4 class="main-hding">
+              <span *ngIf="!isLoading">{{overAllTotal| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              <span *ngIf="isLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+              </span>
+            </h4>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+<!-- <section class="container">
+   <div class="row box-two d-flex align-items-start">
+      <div class="col-md-6 mb-md-0 mb-5 mt-md-0 mt-5 text-center">
+
+<app-donut-chart></app-donut-chart>
+
+        <h6 class="mt-3">Member Since: 12-March-2021</h6>
+      </div>
+      <div class="col-md-6 mb-md-0 mb-5 cs-desc-box">
+        <h3 class="main-hding mb-4 click-accordion mt-sm-5 mt-0 pt-sm-5 pt-0">What does this credit score mean?</h3>
+        <div class="old-heights show-accordion">
+          <p class="sub-para">0 - 650
+            <span class="color-red"> Caution - (No Rating) </span>
+          </p>
+          <p class="sub-para">651 - 700
+            <span class="color-orange"> Poor - (Bronze Member) </span>
+          </p>
+          <p class="sub-para">701 - 800
+            <span class="color-grey"> Fair - (Silver Member) </span>
+          </p>
+          <p class="sub-para">801 - 850
+            <span class="color-gold"> Good - (Gold Member) </span>
+          </p>
+          <p class="sub-para">851 - 900
+            <span class="color-green"> Excellent - (Platinum Member) </span>
+          </p>
+        </div>
+      </div>
+    </div>
+</section> -->
+<section class="container  mb-3" *ngIf="transactionData.length > 0">
+  <div class="col-md-12">
+    <h2 class="section-title" style="font-size: 28px !important;">Last 6 Payments</h2>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-4 mb-2">
+      <div class="ct_icon_list w-100">
+        <div class=" text-center" *ngFor="let userGroupInfo of transactionData; let i = index">
+
+          <div class="minus ct_icon_bg " *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </div>
+
+          <div class="remove ct_icon_bg " *ngIf="userGroupInfo.status == 3">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+
+          <div class="check ct_icon_bg " *ngIf="userGroupInfo.status == 2">
+            <i class="fa fa-check" aria-hidden="true"></i> 
+            {{ i + 1 }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-2">
+      <div class="ct_icon_list d-block w-100" style="padding: 6px;">
+        <h4 class="mb-2 txt-center ct_fs_24 text-center">Average Trust Score</h4>
+        <p class=" text-center ct_score_fs_18">{{averageTrustScore | number:'1.0-0'}} (Your circle)</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<section class="container">
+
+  <div class="row box-two d-flex align-items-start justify-content-around">
+    <div class="col-md-4 mb-md-0 mb-5 mt-md-0 mt-5 text-center">
+      <div class="meter-credit-score-wrap">
+        <h3 class="main-hding mb-0 mt-2 text-white">Your Interfriends <br>Trust Score</h3>
+        <mwl-gauge [max]="1650" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [color]="creditScoreColor"
+          [value]="total_credit_score" [animated]="true" [animationDuration]="1" [showValue]="name">
+        </mwl-gauge>
+      </div>
+      <!-- <span *ngIf="!isLoading">£{{avgAmountLoan| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
+      <span *ngIf="isLoading">
+        <i class="fa fa-refresh fa-spin"></i>
+      </span>
+      <h5 class="mt-4" style="text-align: center;text-transform: capitalize;" [ngStyle]="{'color': creditScoreColor}">
+        {{this.creditScoreTxt}}</h5>
+      <h6 class="mt-2 member-since" *ngIf="!isLoadingUser">Member Since: {{userDetail.created_at | date: 'd MMM, y'}}
+      </h6>
+    </div>
+    <div class="col-md-8 mb-md-0 mb-5 cs-desc-box">
+      <h3 class="main-hding mb-4 click-accordion mt-sm-5 mt-0">What does this trust score mean?</h3>
+      <div class="old-heights show-accordion score-details-box">
+        <ul class="list-inline" *ngFor="let CSscore of creditScoreAll">
+          <li class="list-inline-item">
+            <p class="sub-para">{{CSscore.score1}} - {{CSscore.score2}}</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span [ngClass]="getClassOf(CSscore.credit_score_name)">{{CSscore.credit_score_name}}</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span [ngClass]="getClassOf(CSscore.credit_score_name)">{{CSscore.credit_score_description}}</span>
+            </p>
+          </li>
+        </ul>
+        <!-- <ul class="list-inline">
+          <li class="list-inline-item">
+            <p class="sub-para">0 - 650</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-red">Caution</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-red">(No Rating)</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <p class="sub-para">651 - 700</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-orange">Poor</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-orange">(Bronze Member)</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <p class="sub-para">701 - 800</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-grey">Fair</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-grey">(Silver Member)</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <p class="sub-para">801 - 850</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-gold">Good</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-gold">(Gold Member)</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <p class="sub-para">851 - 900</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-green">Excellent</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-green">(Platinum Member)</span>
+            </p>
+          </li>
+        </ul>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <p class="sub-para">1000 - 1300</p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-blue">Exemplary</span>
+            </p>
+          </li>
+          <li class="list-inline-item">
+            <p class="sub-para">
+              <span class="color-blue">(Diamond member)</span>
+            </p>
+          </li>
+        </ul> -->
+        <!-- <p class="sub-para">0 - 650
+           <span class="color-red"> Caution - (No Rating) </span>
+         </p>
+         <p class="sub-para">651 - 700
+           <span class="color-orange"> Poor - (Bronze Member) </span>
+         </p>
+         <p class="sub-para">701 - 800
+           <span class="color-grey"> Fair - (Silver Member) </span>
+         </p>
+         <p class="sub-para">801 - 850
+           <span class="color-gold"> Good - (Gold Member) </span>
+         </p>
+         <p class="sub-para">851 - 900
+           <span class="color-green"> Excellent - (Platinum Member) </span>
+         </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

@@ -1,0 +1,118 @@
+<header class="header-menu wow bounceInDown" data-wow-duration="1s">
+  <nav class="container navbar navbar-expand-xl d-flex align-items-center justify-content-between py-32 px-0" style="background: transparent">
+    <div class="header-box">
+      <a class="navbar-brand" routerLink="/user/dashboard">
+        <!-- <h1 class="logo">
+          <img src="assets/images/newLogo.jpeg" alt="">
+        </h1> -->
+        <h1 class="logo">InterFriends</h1>
+      </a>
+      <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse mt-xl-0 mt-4" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/savingDetail">Savings</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" routerLinkActive="active"  [routerLink]="['/user/JNRsavingDetail', '2']">JNR</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" routerLinkActive="active"  [routerLink]="['/user/HepToBuysavingDetail', '3']">Help Buy</a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/user/miscellaneousList']"  >Miscellaneous</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/safeKeepingList">Safe Keeping</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/myLoans">My Loans</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLinkActive="active" routerLink="/user/pfList" >Provident</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLinkActive="active" routerLink="/user/emergencyLoanList">Emergency Loan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLinkActive="active" routerLink="/user/investmentList">Property Investments</a>
+        </li>
+        <li class="nav-item position-relative">
+          <a class="nav-link profile-click" [ngClass]="{'have-notification': notificationCount > 0}"href="javascript:void(0)" (click)="onToggleMenu()">
+            <img [src]="profileImage" class="img-fluid">
+          </a>
+          <ul class="menu-show"  [ngClass]="{'d-none': showMenu}" style="list-style: none;">
+            <li>
+              <a routerLink="/user/userProfile" class="d-flex">
+                <div class="menu-icon">
+                  <img src="assets/images/user-menu.png" class="dark-icon">
+                  <img src="assets/images/user-menu-hover.png" class="colored-icon">
+                </div>
+                <div>Profile</div>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/user/notificationList" class="d-flex">
+                <div class="menu-icon">
+                  <img src="assets/images/notification.png" class="dark-icon">
+                  <img src="assets/images/notification-hover.png" class="colored-icon">
+                </div>
+                <div>Notifications</div>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/user/changePassword" class="d-flex">
+                <div class="menu-icon">
+                  <img src="assets/images/power-sign.png" class="dark-icon">
+                  <img src="assets/images/power-sign-hover.png" class="colored-icon">
+                </div>
+                <div>Change Password</div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#logoutModal" class="d-flex">
+                <div class="menu-icon">
+                  <img src="assets/images/power-sign.png" class="dark-icon">
+                  <img src="assets/images/power-sign-hover.png" class="colored-icon">
+                </div>
+                <div>Logout</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+ <!-- Logout Modal-->
+ <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary bg-theme border-theme" href="javascript:void(0);" (click)="onLogout()">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+p.sub-para.date_celender:before {
+  content: '\f073';
+  bottom: 0px;
+  font-family: 'FontAwesome';
+  /* font-size: 14px;
+  line-height: 2; */
+  margin-right: 10px;
+  color: #092c4c;
+}
+.savings-box .box-line-white .sub-para{
+  color: #444 !important;
+}
+
+.dropdown-toggle::after{
+  display: none;
+}
+.dropdown-menu{
+  min-width: 100%;
+}

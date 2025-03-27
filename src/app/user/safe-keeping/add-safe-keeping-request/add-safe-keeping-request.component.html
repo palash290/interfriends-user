@@ -1,0 +1,58 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header border-0 justify-content-center">
+      <div>
+        <h5 class="modal-title" id="applyModalLabel">Request money from safe keeping</h5>
+        <!-- <p class="para-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
+      </div>
+      <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close" id="closePopupRequest" (click)="onClose()">
+        <img src="assets/images/close.png">
+      </button>
+    </div>
+    <form class="theme-form" [formGroup]="form" (submit)="onSave()">
+    <div class="modal-body border-0 pb-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <label>Amount</label>
+              <div class="form-group">
+                <input type="text" formControlName="amount" placeholder="Enter Amount" class="form-control">
+                <div class="icon">
+                  <img src="assets/images/amt.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('amount').invalid  && form.get('amount').touched">
+                  Please enter a amount.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <label>tell us when you want this to be paid to you</label>
+              <div class="form-group">
+                <input type="date" formControlName="date" class="form-control">
+                <div class="icon">
+                  <img src="assets/images/calendar.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('date').invalid  && form.get('date').touched">
+                  Please enter a date.
+                </span>
+              </div>
+            </div>
+            <div class="offset-lg-3 col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <textarea formControlName="reason" placeholder="Any comments/notes" class="form-control"></textarea>
+                <span class="error-form" *ngIf="form.get('reason').invalid  && form.get('reason').touched">
+                  Please enter a reason.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center border-0">
+      <button class="btn-cstm btn-blue mt-3 min-width-230" type="submit" [disabled]="isLoading">
+        <span>Apply</span>
+      </button>
+    </div>
+  </form>
+  </div>
+</div>

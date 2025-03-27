@@ -1,0 +1,84 @@
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
+<img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+</a>
+<section class="top-space container">
+   <div class="row" *ngIf="isLoading">
+      <mat-spinner  class="mx-auto"></mat-spinner>
+   </div>
+   <div class="row savings-box" *ngIf="lists.length > 0 && !isLoading">
+      <div class="col-md-12">
+         <h2 class="section-title mb-5">Notifications</h2>
+         <div
+         class="search-results"
+         infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         (scrolled)="onScroll()"
+         >
+         <div class="row">
+            <div class="col-lg-12 px-lg-3 px-0" *ngFor="let data of lists; let i = index">
+               <div class="old-heights show-accordion">
+                  <div class="box-line-white second-line-none border-0 rounded-0 py-4 mt-0 mb-2 border-left-5">
+                     <div class="row">
+                        <div class="col-12 right-box text-left d-flex">
+                           <div class="">
+                              <a class="nav-link profile-click have-notification mt-0" href="javascript:void(0)">
+                              <img src="assets/images/user-img.png" class="img-fluid">
+                              </a>
+                           </div>
+                           <div class="ml-3 w-100">
+                              <div class="d-flex align-items-center">
+                                 <p class="sub-para text-left mr-3">{{data.user_send_from_name}}</p>
+                                 <span class="ml-auto extra-para text-right mt-0">{{data.created_at | dateAgo}}</span>
+                                 <div class="text-center float-lg-right view-btns-box">
+                                  <a routerLink="/user/savingDetail" class="btn btn-primary" *ngIf="data.type === '1'">View</a>
+                                  <a routerLink="/user/myLoans" class="btn btn-primary" *ngIf="data.type === '2'">View</a>
+                                  <a routerLink="/user/investmentProfit" class="btn btn-primary" *ngIf="data.type === '3'">View</a>
+                                  <a routerLink="/user/investmentList" class="btn btn-primary" *ngIf="data.type === '4'">View</a>
+                                  <a routerLink="/user/emergencyLoanList" class="btn btn-primary" *ngIf="data.type === '5'">View</a>
+                                  <a routerLink="/user/emergencyLoanList" class="btn btn-primary" *ngIf="data.type === '6'">View</a>
+                                  <a routerLink="/user/emergencyLoanList" class="btn btn-primary" *ngIf="data.type === '7'">View</a>
+                                  <a routerLink="/user/emergencyLoanList" class="btn btn-primary" *ngIf="data.type === '8'">View</a>
+                                  <a routerLink="/user/myLoans" class="btn btn-primary" *ngIf="data.type === '9'">View</a>
+                                  <a routerLink="/user/myLoans" class="btn btn-primary" *ngIf="data.type === '10'">View</a>
+                                  <a routerLink="/user/myLoans" class="btn btn-primary" *ngIf="data.type === '11'">View</a>
+                                  <a routerLink="/user/myLoans" class="btn btn-primary" *ngIf="data.type === '12'">View</a>
+                                  <a routerLink="/user/savingDetail" class="btn btn-primary" *ngIf="data.type === '13'">View</a>
+                                  <a routerLink="/user/safeKeepingList" class="btn btn-primary" *ngIf="data.type === '14'">View</a>
+                                  <a routerLink="/user/myLoans" class="btn btn-primary" *ngIf="data.type === '15'">View</a>
+                                  <!-- <button class="btn btn-danger" data-toggle="modal" data-target="#activateModal" (click)="onSetId(data.id, i)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                  </button> -->
+                                  </div>
+                                </div>
+                              <span class="extra-para">{{data.message}}</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="loadmoreuserqsn" class="text-center mt-4" *ngIf="notEmptyPost">
+         <div class="row pb-5">
+            <div class="col-md-12 p-5">
+               <ngx-spinner
+                  bdOpacity = 0.9
+                  bdColor = ""
+                  size = "default"
+                  color = "#581f87"
+                  type = "ball-pulse-sync"
+                  [fullScreen] = "false"
+                  >
+               </ngx-spinner>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
