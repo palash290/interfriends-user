@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -16,39 +17,43 @@ const routes: Routes = [
   {
     path: '',
     children: [
-         {
-            path: 'home',
-            component: HomePageComponent
-         },
-         {
-          path: '',
-          component: LoginComponent,
-          canActivate: [AuthHomeGuard]
-         },
-         {
-          path: '',
-          component: LoginComponent,
-          canActivate: [AuthHomeGuard]
-         },
-         {
-          path: 'register',
-          component: RegisterUserComponent,
-         },
-         {
-           path: 'resetPassword/:token',
-           component: ResetPasswordComponent,
-           canActivate: [AuthHomeGuard]
-         },
-         {
-           path: 'verifyUser/:token',
-           component: VerifyUserComponent,
-           canActivate: [AuthHomeGuard]
-         },
-         {
-           path: 'forgotPassword',
-           component: ForgotPasswordComponent,
-           canActivate: [AuthHomeGuard]
-         }
+      //  {
+      //     path: 'home',
+      //     component: HomePageComponent
+      //  },
+      {
+        path: 'home',
+        component: LandingPageComponent
+      },
+      {
+        path: '',
+        component: LoginComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      //  {
+      //   path: '',
+      //   component: LoginComponent,
+      //   canActivate: [AuthHomeGuard]
+      //  },
+      {
+        path: 'register',
+        component: RegisterUserComponent,
+      },
+      {
+        path: 'resetPassword/:token',
+        component: ResetPasswordComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'verifyUser/:token',
+        component: VerifyUserComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'forgotPassword',
+        component: ForgotPasswordComponent,
+        canActivate: [AuthHomeGuard]
+      }
     ]
   }
 ];

@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.usersSub = this.userService.getLast5trancstionUserInfo(this.userId).subscribe(
       (userData: { users: UserList[]; userCount: number, userList: [], Avg_circle_score: string }) => {
         this.averageTrustScore = userData.Avg_circle_score;
-        console.log(userData, "userData")
+        console.log(userData, "userData===========>")
         this.transactionData = userData.userList;
         // this.users = userData.users;
         // this.totalUsers =  userData.userCount;

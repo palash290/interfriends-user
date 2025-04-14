@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -35,7 +36,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     ResetPasswordComponent,
     ForgotPasswordComponent,
     VerifyUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    LandingPageComponent
   ],
   providers: [
   ],

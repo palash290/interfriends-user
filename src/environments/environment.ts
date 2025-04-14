@@ -6,9 +6,9 @@ export const environment = {
   production: false,
   // apiUrl: 'https://interfriends.uk/interfriendsApp/Api/ApiTest',
 
-//  live one
-  apiUrl: 'https://interfriends.uk/interfriendsApp/Api',
-  // apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
+  // live one
+  //apiUrl: 'https://interfriends.uk/interfriendsApp/Api',
+  apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
 
   // apiUrl :'http://stlsmap.com/CT01/interfriends/Api',
   // apiUrl: 'http://192.168.1.138/interfriendsApp/Api',
