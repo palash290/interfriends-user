@@ -59,6 +59,7 @@ import { PrivacyPolicyComponent } from './layout/privacy-policy/privacy-policy.c
 import { WelfareLoanComponent } from './loan/welfare-loan/welfare-loan.component';
 import { HelptobuyLayoutComponent } from './helptobuy-layout/helptobuy-layout.component';
 import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/help2buy-loanlist.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 
 
@@ -133,6 +134,7 @@ import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/
   WelfareLoanComponent,
   HelptobuyLayoutComponent,
   Help2buyLoanlistComponent,
+  WelcomePageComponent,
   ],
   providers: [],
   exports: [],

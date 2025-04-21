@@ -14,6 +14,15 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { VerifyUserComponent } from './verify-user/verify-user.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HomeHeaderComponent } from './home-header/home-header.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { HowWorkComponent } from './how-work/how-work.component';
+import { OurProductsComponent } from './our-products/our-products.component';
+import { FaqComponent } from './faq/faq.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { GetUserDetailComponent } from './get-user-detail/get-user-detail.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NewUserInfoComponent } from './new-user-info/new-user-info.component';
 
 
 
@@ -26,7 +35,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CarouselModule
   ],
   declarations: [
     HomePageComponent,
@@ -37,7 +47,15 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ForgotPasswordComponent,
     VerifyUserComponent,
     RegisterUserComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HomeHeaderComponent,
+    AboutUsComponent,
+    HowWorkComponent,
+    OurProductsComponent,
+    FaqComponent,
+    GetUserDetailComponent,
+    ContactUsComponent,
+    NewUserInfoComponent
   ],
   providers: [
   ],

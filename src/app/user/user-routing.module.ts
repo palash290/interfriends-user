@@ -26,6 +26,7 @@ import { PrivacyPolicyComponent } from './layout/privacy-policy/privacy-policy.c
 import { WelfareLoanComponent } from './loan/welfare-loan/welfare-loan.component';
 import { HelptobuyLayoutComponent } from './helptobuy-layout/helptobuy-layout.component';
 import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/help2buy-loanlist.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 
 
@@ -33,146 +34,151 @@ const routes: Routes = [
   {
     path: '',
     children: [
-         {
-            path: 'dashboard',
-            component: DashboardComponent,
-            canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'myLoans',
-          component: MyLoansComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'applyLoan',
-          component: ApplyLoanComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'term&condition',
-          component: TermandconditionComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'savingDetail',
-          component: SavingDetailComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'JNRsavingDetail/:lifeCycleType',
-          component: SavingDetailComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'PFsavingDetails/:fromPF',
-          component: SavingDetailComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'HepToBuysavingDetail/:lifeCycleType',
-          component: SavingDetailComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'userProfile',
-          component: UserProfileComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'pfList',
-          component: PfListComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'safeKeepingList',
-          component: SafeKeepingListComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'emergencyLoanList',
-          component: EmergencyLoanListComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'miscellaneousList',
-          component: MiscellaneousListComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'recommendUser',
-          component: RecommendUserComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'investmentList',
-          component: InvestmentListComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'investmentProfit',
-          component: InvestmentProfitComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'investmentOpportunity',
-          component: InvestmentOpportunityComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'imageMagnifyPage',
-          component: ImageMagnifyPageComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'notificationList',
-          component: NotificationListComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'progessBar',
-          component: ProgessBarComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'donutChart',
-          component: DonutChartComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'help',
-          component: HelpComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'contactUs',
-          component: ContactUsComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'changePassword',
-          component: ChangeUserPasswordComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path: 'privacyPolicy',
-          component: PrivacyPolicyComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-          path : 'welfareLoan',
-          component : WelfareLoanComponent,
-          canActivate: [AuthUserGuard]
-         },
-         {
-           path : 'help2buylayout/:groupId/:userId',
-           component : HelptobuyLayoutComponent,
-           canActivate: [AuthUserGuard]
-         },
-         {
-          path : 'help2buyloanlist/:loanType',
-          component : Help2buyLoanlistComponent,
-          canActivate: [AuthUserGuard]
-        }
+      {
+        path: 'welcome',
+        component: WelcomePageComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'myLoans',
+        component: MyLoansComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'applyLoan',
+        component: ApplyLoanComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'term&condition',
+        component: TermandconditionComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'savingDetail',
+        component: SavingDetailComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'JNRsavingDetail/:lifeCycleType',
+        component: SavingDetailComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'PFsavingDetails/:fromPF',
+        component: SavingDetailComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'HepToBuysavingDetail/:lifeCycleType',
+        component: SavingDetailComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'userProfile',
+        component: UserProfileComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'pfList',
+        component: PfListComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'safeKeepingList',
+        component: SafeKeepingListComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'emergencyLoanList',
+        component: EmergencyLoanListComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'miscellaneousList',
+        component: MiscellaneousListComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'recommendUser',
+        component: RecommendUserComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'investmentList',
+        component: InvestmentListComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'investmentProfit',
+        component: InvestmentProfitComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'investmentOpportunity',
+        component: InvestmentOpportunityComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'imageMagnifyPage',
+        component: ImageMagnifyPageComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'notificationList',
+        component: NotificationListComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'progessBar',
+        component: ProgessBarComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'donutChart',
+        component: DonutChartComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'help',
+        component: HelpComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'contactUs',
+        component: ContactUsComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'changePassword',
+        component: ChangeUserPasswordComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'privacyPolicy',
+        component: PrivacyPolicyComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'welfareLoan',
+        component: WelfareLoanComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'help2buylayout/:groupId/:userId',
+        component: HelptobuyLayoutComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'help2buyloanlist/:loanType',
+        component: Help2buyLoanlistComponent,
+        canActivate: [AuthUserGuard]
+      }
     ]
   }
 ];

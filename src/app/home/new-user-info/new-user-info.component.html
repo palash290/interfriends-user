@@ -1,0 +1,125 @@
+<form class="auth-form ct_signup_scroll" [formGroup]="userForm" (submit)="onSubmit()">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('first_name').invalid  && userForm.get('first_name').touched}">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="Enter first name"
+                    formControlName="first_name" />
+                <span class="help-block"
+                    *ngIf="userForm.get('first_name').invalid  && userForm.get('first_name').touched">
+                    Please enter a first name.
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('last_name').invalid  && userForm.get('last_name').touched}">
+                <label>Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter last name"
+                    formControlName="last_name" />
+                <span class="help-block"
+                    *ngIf="userForm.get('last_name').invalid  && userForm.get('last_name').touched">
+                    Please enter a last name.
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('email').invalid  && userForm.get('email').touched}">
+                <label>Email</label>
+                <div class="position-relative">
+                    <input type="email" formControlName="email" placeholder="Enter email address"
+                        class="form-control">
+                    <div class="icon">
+                        <img src="assets/images/mail.png" align="" alt="" title="">
+                    </div>
+                </div>
+                <span class="help-block"
+                    *ngIf="userForm.get('email').invalid && userForm.get('email').touched">Please Enter
+                    Email</span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('country_of_residence').invalid  && userForm.get('country_of_residence').touched}">
+                <label>Country Of Rresidence</label>
+                <input type="text" class="form-control" placeholder="Enter country name"
+                    formControlName="country_of_residence" />
+                <span class="help-block"
+                    *ngIf="userForm.get('country_of_residence').invalid  && userForm.get('country_of_residence').touched">
+                    Please enter a country name.
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('mobile_number').invalid  && userForm.get('mobile_number').touched}">
+                <label>Mobile Number</label>
+                <!-- <input type="text" class="form-control" placeholder="Enter mobile number"
+                    formControlName="mobile_number" /> -->
+                <input type="tel" maxlength="15" class="form-control et_grey_input"
+                    placeholder="Enter your number..." formControlName="mobile_number" />
+                <span class="help-block"
+                    *ngIf="userForm.get('mobile_number').invalid  && userForm.get('mobile_number').touched">
+                    Please enter a mobile number.
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('profession').invalid  && userForm.get('profession').touched}">
+                <label>Profession</label>
+                <input type="text" class="form-control" placeholder="Enter profession"
+                    formControlName="profession" />
+                <span class="help-block"
+                    *ngIf="userForm.get('profession').invalid  && userForm.get('profession').touched">
+                    Please enter a profession.
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('type_of_employment').invalid  && userForm.get('type_of_employment').touched}">
+                <label>Type Of Employment</label>
+                <input type="text" class="form-control" placeholder="Enter type of employment"
+                    formControlName="type_of_employment" />
+                <span class="help-block"
+                    *ngIf="userForm.get('type_of_employment').invalid  && userForm.get('type_of_employment').touched">
+                    Please enter a type of employment.
+                </span>
+            </div> -->
+
+            <div class="form-group">
+                <label>Employement Type</label>
+                <select class="form-control" formControlName="type_of_employment">
+                    <option disabled value="">Select employement type</option>
+                    <option value='1'>Full Time</option>
+                    <option value='2'>Part Time</option>
+                    <option value='3'>Self</option>
+                    <option value='4'>Not</option>
+                </select>
+
+                <span class="help-block error-message"
+                    *ngIf="userForm.get('type_of_employment').invalid  && userForm.get('type_of_employment').touched">
+                    Please enter a Loan Type.
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center"
+        [disabled]="isLoading">
+        <span *ngIf="!isLoading">Submit</span>
+        <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+        <button hidden type="button" class="et_orange_btn et_outline_btn" #closeModal1
+            data-dismiss="modal">Close</button>
+    </button>
+</form>

@@ -109,7 +109,8 @@ export class AuthService {
           console.log('notification code', this.userId);
           messagingService.requestPermission(this.userId);
           // notification code end
-          this.router.navigate(['/user/dashboard']);
+          // this.router.navigate(['/user/dashboard']);
+          this.router.navigate(['/user/welcome']);
         } else {
           this.toastr.error(response.message);
           this.authUserStatusListner.next(false);

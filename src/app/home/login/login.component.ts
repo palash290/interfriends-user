@@ -40,9 +40,15 @@ export class LoginComponent implements OnInit {
         this.form.value.email,
         this.form.value.password
     );
-    this.isLoading = false;
 
     this.form.reset();
   }
+
+  showPassword: boolean = false;
+  
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
 
 }

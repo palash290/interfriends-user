@@ -99,6 +99,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     animateTitle: true,
   };
 
+
+  showHiddenFields: boolean = false;
+
   apiData: PhotosApi;
   limit: number = 10; // <==== Edit this number to limit API results
   customOptions: OwlOptions = {
@@ -291,6 +294,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   fetchBanners() {
     this.getbanners.GetbannersAndmessages().subscribe((response: any) => {
       this.apiData = response.banners;
@@ -329,6 +333,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       return false
     }
   };
+
+  toggleShow() {
+    this.showHiddenFields = !this.showHiddenFields;
+  }
 
 
 }

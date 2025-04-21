@@ -1,0 +1,46 @@
+
+.ct_modal_logo {
+    background-color: #f2994a;
+    width: 86px;
+    border-radius: 100px;
+    display: flex
+  ;
+    align-items: center;
+    justify-content: center;
+    height: 86px;
+    margin-inline: auto;
+    margin-top: -59px;
+  }
+  .ct_modal_logo img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .ct_welcome_main {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 100%;
+}
+.ct_welcome_bg {
+    background-color: #fff;
+    padding: 10px 29px 49px;
+    height: 100%;
+    width: auto;
+    max-width: 500px;
+    margin-inline: auto;
+    border-radius: 15px;
+    border: 2px dashed #f2994a;
+}
+.et_orange_btn{
+    overflow: hidden;
+}
+
+.ct_modal_logo img {
+    width: 86px;
+    object-fit: cover !important;
+    height: 86px;
+    border-radius: 100px;
+    padding: 6px;
+}

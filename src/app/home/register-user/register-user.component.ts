@@ -13,6 +13,7 @@ export class RegisterUserComponent implements OnInit {
 
   isLoading = false;
   form: FormGroup;
+  token: string = '';
 
   constructor(
     public authService: AuthService,
@@ -23,7 +24,11 @@ export class RegisterUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.isLoading = false;
+    this.token = this.route.snapshot.queryParamMap.get('token') || '';
+
+    console.log('Token:', this.token);
     this.form = new FormGroup({
       first_name: new FormControl(null, { validators: [Validators.required] }),
       last_name: new FormControl(null, { validators: [Validators.required] }),
@@ -78,7 +83,11 @@ export class RegisterUserComponent implements OnInit {
     formData.append('address_line_2', this.form.value.address_line_2)
     formData.append('post_code', this.form.value.post_code)
     formData.append('city', this.form.value.city)
-    formData.append('password', this.form.value.password)
+    formData.append('password', this.form.value.password);
+
+    if (this.token) {
+      formData.append('token', this.token);
+    }
 
     // formData.append('image',  this.form.value.unique_id)
 
@@ -123,4 +132,6 @@ export class RegisterUserComponent implements OnInit {
     );
 
   }
+
+
 }

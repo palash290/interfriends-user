@@ -9,6 +9,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { VerifyUserComponent } from './verify-user/verify-user.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { HowWorkComponent } from './how-work/how-work.component';
+import { OurProductsComponent } from './our-products/our-products.component';
+import { FaqComponent } from './faq/faq.component';
+import { GetUserDetailComponent } from './get-user-detail/get-user-detail.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -53,7 +59,38 @@ const routes: Routes = [
         path: 'forgotPassword',
         component: ForgotPasswordComponent,
         canActivate: [AuthHomeGuard]
-      }
+      },
+
+      {
+        path: 'about-us',
+        component: AboutUsComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'how-it-works',
+        component: HowWorkComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'our-products',
+        component: OurProductsComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'faq',
+        component: FaqComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'user-details',
+        component: GetUserDetailComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent,
+        canActivate: [AuthHomeGuard]
+      },
     ]
   }
 ];

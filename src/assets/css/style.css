@@ -262,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'gilroy-semibold' !important;}
 }
 .form-group .icon {
     position: absolute;
-    top: 50%;
+    top: 24px;
     right: 15px;
     transform: translateY(-50%);
     z-index: 1;
@@ -422,7 +422,7 @@ footer.auth-footer .copyright {
     top: 5px;
 }
 .profile-card .form-group .icon {
-    top: 65%;
+    top: 48px;
 }
 .upload-box {
     text-align: center;

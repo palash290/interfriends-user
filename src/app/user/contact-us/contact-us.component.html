@@ -1,6 +1,5 @@
-
 <app-header></app-header>
-<a href="javascript:void(0);" (click)="backClicked()"class="back_navigator">
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
   <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
 </a>
 <section class="top-space profile-form-section contact-section">
@@ -44,7 +43,8 @@
                 <div class="icon">
                   <img src="assets/images/call-sm.png" align="" alt="" title="">
                 </div>
-                <span class="error-form" *ngIf="form.get('mobile_number').invalid  && form.get('mobile_number').touched">
+                <span class="error-form"
+                  *ngIf="form.get('mobile_number').invalid  && form.get('mobile_number').touched">
                   Please enter a mobile number.
                 </span>
               </div>
@@ -64,7 +64,7 @@
             <div class="col-sm-12 text-center">
               <button class="btn-cstm btn-orange mt-4 min-width-230" type="submit" [disabled]="isLoading">
                 <span *ngIf="!isLoading">Submit</span>
-                <span *ngIf="isLoading"> <i class="fa fa-refresh fa-spin" ></i></span>
+                <span *ngIf="isLoading"> <i class="fa fa-refresh fa-spin"></i></span>
               </button>
             </div>
           </div>

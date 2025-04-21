@@ -1,5 +1,10 @@
-<header class="header-menu header-auth">
+<!-- <header class="header-menu header-auth">
     <h1 class="logo logo-auth">InterFriends</h1>
+</header> -->
+<header class="header-menu header-auth text-center pb-4">
+    <a>
+        <img src="assets/img/logo.svg" alt="">
+    </a>
 </header>
 <section class="auth-center-content">
     <div class="container">
@@ -44,7 +49,8 @@
                                             <img src="assets/images/mail.png" align="" alt="" title="">
                                         </div>
                                     </div>
-                                    <span *ngIf="form.get('email').invalid && form.get('email').touched">Please Enter
+                                    <span class="help-block"
+                                        *ngIf="form.get('email').invalid && form.get('email').touched">Please Enter
                                         Email</span>
                                 </div>
                             </div>
@@ -53,8 +59,9 @@
                                     <label>Password</label>
                                     <input type="password" formControlName="password" placeholder="Enter password"
                                         class="form-control">
-                                 
-                                    <span *ngIf="form.get('password').invalid && form.get('password').touched">Please
+
+                                    <span class="help-block"
+                                        *ngIf="form.get('password').invalid && form.get('password').touched">Please
                                         Enter
                                         Password</span>
                                 </div>
@@ -191,8 +198,8 @@
                                     </span>
                                 </div>
                             </div>
-                        
-                    
+
+
                         </div>
 
                         <div class="text-right">

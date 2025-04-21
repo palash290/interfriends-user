@@ -1,0 +1,89 @@
+<header class="et_header">
+    <div class="et_logo">
+        <a href="index.html">
+            <img src="assets/img/logo.svg" alt="">
+        </a>
+    </div>
+    <div class="et_navbar">
+        <ul>
+            <div class="et_close_menu">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
+            <li><a routerLink="/how-it-works" routerLinkActive="active">How It Works </a></li>
+            <li><a routerLink="/our-products" routerLinkActive="active">Our Products</a></li>
+            <li><a routerLink="/faq" routerLinkActive="active">FAQs</a></li>
+            <li><a routerLink="/contact-us" routerLinkActive="active">Contact Us</a></li>
+        </ul>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+        <a href="#" class="et_orange_btn" data-toggle="modal" data-target="#viewModal">New To Interfriends</a>
+        <a routerLink="/" class="et_orange_btn">Log In</a>
+        <div class="et_menu_bar">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+    </div>
+</header>
+
+
+<div class="modal fade show ct_view_modal" id="viewModal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <h5 class="modal-title fw-bold text-center  text-center">Welcome to Interfriends</h5>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                <p>
+                    <strong>Interfriends</strong> is a member-only and exclusive savings club. To become a member of any
+                    of our savings circles, a recommendation from an existing member is required.
+                </p>
+                <p>
+                    If you have already received a recommendation and a welcome email, please enter your email address
+                    to proceed with the registration process.
+                </p>
+
+                <!-- <p>
+                    If you are interested in joining Interfriends but haven’t yet received a recommendation, we invite
+                    you to express your interest by providing information about yourself.
+                </p> -->
+
+                <p class="text-ceter">
+                    If you are interested in joining Interfriends but have not yet been recommended, we
+                    invite you to express your interest by providing information about yourself. <a routerLink="/home"
+                        data-toggle="modal" data-target="#viewModal22" data-dismiss="modal">Click
+                        here</a> to express interest
+                </p>
+
+                <p>
+                    <strong>Please provide:</strong> First Name, Last Name, Email, Country of Residence, Telephone
+                    Number, Profession, and Type of Employment.
+                </p>
+
+                <p class="mb-4">
+                    Thank you for your interest in joining. Our team will contact you shortly.
+                </p>
+                <div class="d-flex justify-content-end gap-2">
+                    <button (click)="go()" class="et_orange_btn px-4">Continue</button>
+                    <button type="button" class="et_orange_btn et_outline_btn" data-dismiss="modal">Close</button>
+                    <button hidden type="button" class="et_orange_btn et_outline_btn" #closeModal
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade show ct_view_modal" id="viewModal22" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <h5 class="modal-title fw-bold text-center  text-center">Welcome to Interfriends</h5>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                <app-new-user-info></app-new-user-info>
+            </div>
+        </div>
+    </div>
+</div>

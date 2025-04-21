@@ -1,0 +1,51 @@
+.modal-content {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .btn {
+    border-radius: 10px;
+  }
+  
+  .et_outline_btn{
+    background-color: transparent;
+    color: #333;
+
+  }
+
+  .et_orange_btn{
+    overflow: hidden;
+  }
+
+  .ct_view_modal .modal-body{
+    height: auto;
+    max-height: 400px;
+    overflow-y: auto;
+}
+/* width */
+ .ct_view_modal .modal-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+ .ct_view_modal .modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+ .ct_view_modal .modal-body::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+ .ct_view_modal .modal-body::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.ct_view_modal p{
+  font-size: 16px;
+}

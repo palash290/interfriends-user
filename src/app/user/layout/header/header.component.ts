@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     this.userService.logout(this.userId).subscribe((response: any) => {
 
     });
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   onToggleMenu() {

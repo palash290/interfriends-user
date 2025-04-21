@@ -2,8 +2,8 @@ export const environment = {
   production: true,
   // apiUrl: 'https://interfriends.uk/interfriendsApp/Api',
 
-    apiUrl: 'https://interfriends.uk/interfriendsApp/Api',
-    // apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
+    //apiUrl: 'https://interfriends.uk/interfriendsApp/Api',
+     apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
   // apiUrl :'http://stlsmap.com/CT01/interfriends/Api',
   // apiUrl: 'http://192.168.1.138/interfriendsApp/Api',
   adminUrl: 'https://interfriends.uk/interfriendsApp/Api/Admin',

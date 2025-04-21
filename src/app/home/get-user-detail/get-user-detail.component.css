@@ -1,0 +1,21 @@
+.header-menu img{
+    max-width: 121px;
+    width: 100%;
+    object-fit: contain;
+}
+.header-menu {
+    position: absolute;
+}
+.et_orange_btn{
+    overflow: hidden;
+}
+.et_outline_btn{
+    background-color: transparent;
+    color: #333;
+}
+.et_outline_btn:before{
+    background-color: #F2994A;
+}
+.et_outline_btn:hover{
+    color: #fff;
+}

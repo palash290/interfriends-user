@@ -1,1 +1,681 @@
-<p>landing-page works!</p>
+<div class="et_main_banner_bg">
+
+    <app-home-header></app-home-header>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="et_banner_section text-center">
+                        <h2 class="et_fs_58 et_ff_Gilroy-Bold  text-white mb-0">Community driven savings club</h2>
+                        <h5 class="et_fs_34 text-white pt-2 et_ff_Gilroy-Medium ">(Succeeding Together)</h5>
+                        <p class="et_fs_24 text-white et_pt_22 et_ff_Gilroy-Medium ">Join an interfriends savings
+                            circle and stay in
+                            control of <br> your finances.</p>
+
+                        <div class="text-center mt-4">
+                            <a routerLink="/" class="et_orange_btn et_fit_content mx-auto">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Key Facts section S -->
+<section class="et_pt_83 et_pb_83">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">Key Facts</h2>
+                <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">Built on Trust. Designed for
+                    You.</h4>
+                <p class="et_dark_blue_text et_fs_18">Each feature of Interfriends is crafted to empower you—whether
+                    it's flexible savings, trusted
+                    circles, or emergency help when you need it most. These key facts reflect our commitment to
+                    transparency, and the financial well-being of the community.</p>
+
+            </div>
+        </div>
+        <div class="row et_pt_44">
+
+            <!-- <div class="owl-carousel owl-theme et_key_fact_slider">
+                <div class="item">
+                    <div class="et_key_fact_card">
+                        <div class="et_icon_key_fact">
+                            <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                        </div>
+                        <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
+                        <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
+                            existing
+                            members only. Be in a circle
+                            with people you know and can trust</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="et_key_fact_card">
+                        <div class="et_icon_key_fact">
+                            <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                        </div>
+                        <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
+                        <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
+                            existing
+                            members only. Be in a circle
+                            with people you know and can trust</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="et_key_fact_card">
+                        <div class="et_icon_key_fact">
+                            <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                        </div>
+                        <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
+                        <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
+                            existing
+                            members only. Be in a circle
+                            with people you know and can trust</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="et_key_fact_card">
+                        <div class="et_icon_key_fact">
+                            <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                        </div>
+                        <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
+                        <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
+                            existing
+                            members only. Be in a circle
+                            with people you know and can trust</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="et_key_fact_card">
+                        <div class="et_icon_key_fact">
+                            <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                        </div>
+                        <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
+                        <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
+                            existing
+                            members only. Be in a circle
+                            with people you know and can trust</p>
+                    </div>
+                </div>
+            </div> -->
+
+            <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let item of items">
+                    <ng-template carouselSlide>
+                        <div class="et_key_fact_card">
+                            <div class="et_icon_key_fact">
+                                <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                            </div>
+                            <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
+                            <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
+                                existing members only. Be in a circle with people you know and can trust</p>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+
+
+
+        </div>
+
+    </div>
+</section>
+<!-- Key Facts section E -->
+
+<!-- why choose us Section S -->
+<section class="et_why_choose_bg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="et_why_choose_img">
+                    <img src="assets/img/home/why_choose_1.jpg" alt="">
+                    <img src="assets/img/home/why_choose_2.png" alt="">
+
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Why Choose Us</h3>
+                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
+                </h4>
+                <ul class="et_grid_2">
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Trusted Circle-Based Savings</p>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Intuitive & Secure Tools</p>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Transparent Transactions</p>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Business startup/growth
+                            opportunities</p>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Vary your savings each cycle based
+                            on your situation</p>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Trust Score & Community Benefits</p>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- why choose us Section E -->
+
+<!-- Trusted Community Section S -->
+<section class="et_pt_83 et_pb_83">
+    <div class="container ms-md-0 ps-md-0">
+        <div class="row align-items-center">
+            <div class="col-md-5 mb-4 mb-md-0">
+                <div class="et_video_img">
+                    <img src="assets/img/home/trusted_img.jpg" alt="">
+                    <div class="et_video_icon">
+                        <a>
+                            <img src="assets/img/home/video_icon.png" alt="">
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6  mb-4 mb-md-0 offset-md-1">
+                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Join a trusted community</h3>
+                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
+                </h4>
+                <ul class="et_list_style_disc mt-3">
+                    <li>
+                        Interfriends is more than just a savings platform—it's a trusted, community-driven network.
+                    </li>
+                    <li class="mt-2">Designed to help you achieve your financial goals with ease.</li>
+                    <li class="mt-2">Ideal for future planning, handling unexpected expenses, or saving for major
+                        milestones.
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Trusted Community Section E -->
+
+<!-- Testimonial Section S -->
+<section class="et_pb_83">
+    <section class="et_why_choose_bg et_pt_68">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">What Our Users Say</h2>
+                    <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">Trusted by the members,
+                        Transparency and Reliability</h4>
+                    <p class="et_dark_blue_text et_fs_18">Each feature of Interfriends is crafted to empower
+                        you—whether
+                        it's flexible savings, trusted
+                        circles, or emergency help when you need it most. These key facts reflect our commitment to
+                        transparency, and the financial well-being of the community.</p>
+
+                </div>
+            </div>
+            <div style="height: 100px;"></div>
+        </div>
+    </section>
+
+    <div class="et_overlay_testimonial">
+        <div class="owl-carousel owl-theme et_testimonial_slider">
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+            <div class="item">
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">My friend  Victoria
+                        introduced me to
+                        interfriends. It has
+                        helped me to save money, and the emergency assistance I get has helped me and my family. One
+                        thing I  like about  Interfriends is that l know my money is safe and the leaders are very
+                        transparent.</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="assets/img/dummy_icon.png" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">Janet Afriyie
+                        </h4>
+
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonial Section E -->
+
+<!-- Project Counter Section S -->
+<section class="et_project_counter_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
+                <div class="et_project_counter_card">
+                    <img src="assets/img/home/icon_1.png" alt="">
+                    <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">2012</h3>
+                    <span class="et_badge">Established</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
+                <div class="et_project_counter_card">
+                    <img src="assets/img/home/icon_2.png" alt="">
+                    <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">200+</h3>
+                    <span class="et_badge">Unique Members</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
+                <div class="et_project_counter_card">
+                    <img src="assets/img/home/icon_3.png" alt="">
+                    <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">30+</h3>
+                    <span class="et_badge">Active Savings Circles</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
+                <div class="et_project_counter_card">
+                    <img src="assets/img/home/icon_4.png" alt="">
+                    <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">£1M+ </h3>
+                    <span class="et_badge">Total Rotated</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- Project Counter Section E -->
+
+<!-- Faq Section S -->
+<section class="et_pt_83 et_pb_83">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5 mb-4 mb-md-0">
+                <div class="et_faq_img">
+                    <img src="assets/img/faq_img.png" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-1  mb-4 mb-md-0">
+                <div class="et_faq_question_main">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button et_ff_Gilroy-Medium" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    I want to join Interfriends but I still have questions
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body et_line_h_30 et_text_clr_212529 et_ff_Gilroy-Regular">
+                                    Yes, we fully understand your concerns about joining us for the first time. Like
+                                    any new venture, it is okay to have doubts even after speaking with us. 
+                                    If you are still in doubt about the group,  speak to your recommender or feel
+                                    free to request to speak to other members of the group to seek their views
+                                    before making up your mind. If you still have concerns, you can, by all means,
+                                    we suggest you speak to Sam Buah, the chair of the board who will try to assist
+                                    and answer any concerns you may have
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed et_ff_Gilroy" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    Is my money safe?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body et_line_h_30 et_text_clr_212529 et_ff_Gilroy-Regular">
+                                    Yes, we fully understand your concerns about joining us for the first time. Like
+                                    any new venture, it is okay to have doubts even after speaking with us. 
+                                    If you are still in doubt about the group,  speak to your recommender or feel
+                                    free to request to speak to other members of the group to seek their views
+                                    before making up your mind. If you still have concerns, you can, by all means,
+                                    we suggest you speak to Sam Buah, the chair of the board who will try to assist
+                                    and answer any concerns you may have
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    How do I join a savings circle?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body  et_line_h_30 et_text_clr_212529 et_ff_Gilroy-Regular">
+                                    Yes, we fully understand your concerns about joining us for the first time. Like
+                                    any new venture, it is okay to have doubts even after speaking with us. 
+                                    If you are still in doubt about the group,  speak to your recommender or feel
+                                    free to request to speak to other members of the group to seek their views
+                                    before making up your mind. If you still have concerns, you can, by all means,
+                                    we suggest you speak to Sam Buah, the chair of the board who will try to assist
+                                    and answer any concerns you may have
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- Faq Section E -->
+
+<!-- Get in touch Section S -->
+<section class="et_pb_83">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="et_white_bg">
+                    <h4 class="et_fs_28 et_ff_Gilroy-Bold et_text_clr_212529 et_border_btn_dotted">Get in touch with
+                        us.</h4>
+                    <form [formGroup]="form" class="mt-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="" class="mb-1 et_ff_Gilroy-Medium et_fs_18">Name</label>
+                                    <input type="text" class="form-control et_grey_input"
+                                        placeholder="Enter your name..." formControlName="name">
+
+                                    <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+                                        class="error-message">
+                                        <div *ngIf="form.controls['name'].errors?.['required']" class="ct_fs_14">
+                                            Name is
+                                            required.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="" class="mb-1 et_ff_Gilroy-Medium et_fs_18">Email</label>
+                                    <input type="email" class="form-control et_grey_input"
+                                        placeholder="Enter your email..." formControlName="email">
+
+                                    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+                                        class="error-message">
+                                        <div *ngIf="form.controls['email'].errors?.['required']" class="ct_fs_14 mt-1">
+                                            Email is required.
+                                        </div>
+                                        <div *ngIf="form.controls['email'].errors?.['email'] && !form.controls['email'].errors?.['required']"
+                                            class="ct_fs_14 mt-1">
+                                            Invalid email format.</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="" class="mb-1 et_ff_Gilroy-Medium et_fs_18">Phone no.</label>
+                                    <input type="email" class="form-control et_grey_input"
+                                        placeholder="Enter your number..." formControlName="mobile_number">
+
+                                    <div *ngIf="form.controls['mobile_number'].invalid && form.controls['mobile_number'].touched"
+                                        class="error-message">
+                                        <div *ngIf="form.controls['mobile_number'].errors?.['required']"
+                                            class="ct_fs_14">
+                                            Phone no. is
+                                            required.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="" class="mb-1 et_ff_Gilroy-Medium et_fs_18">Country</label>
+                                    <!-- <select class="form-control et_grey_input">
+                                        <option value="United Kingdom">United Kingdom</option>
+                                    </select> -->
+                                    <input type="email" class="form-control et_grey_input"
+                                        placeholder="Enter your country..." formControlName="country">
+
+                                    <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched"
+                                        class="error-message">
+                                        <div *ngIf="form.controls['country'].errors?.['required']" class="ct_fs_14">
+                                            Country is
+                                            required.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-4">
+                                    <label for="" class="mb-1 et_ff_Gilroy-Medium et_fs_18">Message</label>
+                                    <textarea type="email" class="form-control et_grey_input h-auto" rows="7"
+                                        placeholder="Enter your message..." formControlName="message"></textarea>
+
+                                    <div *ngIf="form.controls['message'].invalid && form.controls['message'].touched"
+                                        class="error-message">
+                                        <div *ngIf="form.controls['message'].errors?.['required']" class="ct_fs_14">
+                                            Message is
+                                            required.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <p class="text-ceter">
+                                If you are interested in joining Interfriends but have not yet been recommended, we
+                                invite you to express your interest by providing information about yourself. <a
+                                routerLink="/home" data-toggle="modal" data-target="#viewModal223">Click
+                                here</a> to express interest
+                            </p>
+
+                        </div>
+                        <div class="pt-3">
+                            <button type="button" class="et_orange_btn" (click)="onSave()">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Get in touch Section E -->
+
+
+<footer class="et_footer">
+    <div class="container">
+        <div class="col-md-12">
+            <p class="mb-0 et_ff_Gilroy-Medium">Copyright © 2021 <a href="javascript:void(0)"
+                    class="et_orange_text">INTERFRIENDS</a>. All rights reserved.</p>
+        </div>
+
+    </div>
+</footer>
+
+<div class="modal fade show ct_view_modal" id="viewModal223" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <h5 class="modal-title fw-bold text-center  text-center">Welcome to Interfriends</h5>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                <app-new-user-info></app-new-user-info>
+            </div>
+        </div>
+    </div>
+</div>
