@@ -96,6 +96,8 @@ export class LandingPageComponent implements OnInit {
   customOptions = {
     loop: true,
     margin: 10,
+    autoHeight: true,
+
     nav: true,
     dots: true,
     responsive: {
@@ -108,6 +110,7 @@ export class LandingPageComponent implements OnInit {
   customOptions1 = {
     loop: true,
     margin: 10,
+    autoHeight: true,
     nav: true,
     dots: true,
     responsive: {
