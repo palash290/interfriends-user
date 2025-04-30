@@ -7,15 +7,15 @@
             <div class="row">
                 <div class="col-md-10 mx-auto">
                     <div class="et_banner_section text-center">
-                        <h2 class="et_fs_58 et_ff_Gilroy-Bold  text-white mb-0">Community driven savings club</h2>
+                        <h2 class="et_fs_58 et_ff_Gilroy-Bold text-white mb-0">Community-driven Savings Club</h2>
                         <h5 class="et_fs_34 text-white pt-2 et_ff_Gilroy-Medium ">(Succeeding Together)</h5>
-                        <p class="et_fs_24 text-white et_pt_22 et_ff_Gilroy-Medium ">Join an interfriends savings
+                        <p class="et_fs_24 text-white et_pt_22 et_ff_Gilroy-Medium ">Join an Interfriends savings
                             circle and stay in
                             control of <br> your finances.</p>
 
-                        <div class="text-center mt-4">
+                        <!-- <div class="text-center mt-4">
                             <a routerLink="/" class="et_orange_btn et_fit_content mx-auto">Get Started</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -36,7 +36,6 @@
                     it's flexible savings, trusted
                     circles, or emergency help when you need it most. These key facts reflect our commitment to
                     transparency, and the financial well-being of the community.</p>
-
             </div>
         </div>
         <div class="row et_pt_44">
@@ -106,23 +105,20 @@
 
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let item of items">
-                    <ng-template carouselSlide>
-                        <div class="et_key_fact_card">
-                            <div class="et_icon_key_fact">
-                                <img src="assets/img/home/key_fact_icon_1.svg" alt="">
-                            </div>
-                            <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">Exclusive Savings Club</h4>
-                            <p class="et_dark_blue_text et_fs_18">Membership to Interfriends is by invitation from
-                                existing members only. Be in a circle with people you know and can trust</p>
-                        </div>
-                    </ng-template>
+                  <ng-template carouselSlide >
+                    <div class="et_key_fact_card" style="height: 60vh;">
+                      <div class="et_icon_key_fact">
+                        <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                      </div>
+                      <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">{{ item.title }}</h4>
+                      <p class="et_dark_blue_text et_fs_18">{{ item.description }}</p>
+                    </div>
+                  </ng-template>
                 </ng-container>
-            </owl-carousel-o>
-
-
+              </owl-carousel-o>
+              
 
         </div>
-
     </div>
 </section>
 <!-- Key Facts section E -->
@@ -135,14 +131,12 @@
                 <div class="et_why_choose_img">
                     <img src="assets/img/home/why_choose_1.jpg" alt="">
                     <img src="assets/img/home/why_choose_2.png" alt="">
-
                 </div>
-
             </div>
             <div class="col-md-6 mb-4 mb-md-0">
                 <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Why Choose Us</h3>
-                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
-                </h4>
+                <!-- <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
+                </h4> -->
                 <ul class="et_grid_2">
                     <li class="d-flex gap-2">
                         <img src="assets/img/check_icon.svg" alt="">
@@ -170,12 +164,13 @@
                         <img src="assets/img/check_icon.svg" alt="">
                         <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Trust Score & Community Benefits</p>
                     </li>
-
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Bespoke circle created for you</p>
+                    </li>
                 </ul>
             </div>
-
         </div>
-
     </div>
 </section>
 <!-- why choose us Section E -->
@@ -191,31 +186,28 @@
                         <a>
                             <img src="assets/img/home/video_icon.png" alt="">
                         </a>
-
                     </div>
 
                 </div>
             </div>
-            <div class="col-md-6  mb-4 mb-md-0 offset-md-1">
-                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Join a trusted community</h3>
-                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
-                </h4>
+            <div class="col-md-6 mb-4 mb-md-0 offset-md-1">
+                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Join the Interfriends savings circle</h3>
+                <!-- <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
+                </h4> -->
                 <ul class="et_list_style_disc mt-3">
                     <li>
-                        Interfriends is more than just a savings platform—it's a trusted, community-driven network.
+                        Interfriends is more than just a savings platform—it's a trusted community-driven network.
                     </li>
                     <li class="mt-2">Designed to help you achieve your financial goals with ease.</li>
                     <li class="mt-2">Ideal for future planning, handling unexpected expenses, or saving for major
                         milestones.
                     </li>
+                    <li class="mt-2">Apply to create a bespoke circle of trusted members.
+                    </li>
                 </ul>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 <!-- Trusted Community Section E -->
 
@@ -226,21 +218,21 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">What Our Users Say</h2>
-                    <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">Trusted by the members,
-                        Transparency and Reliability</h4>
+                    <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">Trusted by the members for
+                        transparency and reliability</h4>
                     <p class="et_dark_blue_text et_fs_18">Each feature of Interfriends is crafted to empower
                         you—whether
                         it's flexible savings, trusted
-                        circles, or emergency help when you need it most. These key facts reflect our commitment to
+                        circles, or emergency help when you need it most. These testimonials reflect our commitment to
                         transparency, and the financial well-being of the community.</p>
 
                 </div>
             </div>
-            <div style="height: 100px;"></div>
+            <!-- <div style="height: 100px;"></div> -->
         </div>
     </section>
 
-    <div class="et_overlay_testimonial">
+    <!-- <div class="et_overlay_testimonial">
         <div class="owl-carousel owl-theme et_testimonial_slider">
             <div class="item">
                 <div class="et_key_fact_card et_testimonial_section text-start">
@@ -411,7 +403,36 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+
+    <owl-carousel-o [options]="customOptions1">
+        <ng-container *ngFor="let testimonial of testimonials">
+          <ng-template carouselSlide>
+            <div class="et_key_fact_card et_testimonial_section text-start" style="height: 57vh;">
+                <div class="et_rating_star">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+              <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">
+                {{ testimonial.message }}
+              </p>
+              <div class="d-flex align-items-center gap-2">
+                <img [src]="testimonial.image" alt="" class="et_img_44">
+                <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">
+                  {{ testimonial.name }}
+                </h4>
+              </div>
+              <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      
+      
 </section>
 <!-- Testimonial Section E -->
 
@@ -463,7 +484,7 @@
                     <img src="assets/img/faq_img.png" alt="">
                 </div>
             </div>
-            <div class="col-md-6 offset-md-1  mb-4 mb-md-0">
+            <div class="col-md-6 offset-md-1 mb-4 mb-md-0">
                 <div class="et_faq_question_main">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
@@ -517,7 +538,7 @@
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body  et_line_h_30 et_text_clr_212529 et_ff_Gilroy-Regular">
+                                <div class="accordion-body et_line_h_30 et_text_clr_212529 et_ff_Gilroy-Regular">
                                     Yes, we fully understand your concerns about joining us for the first time. Like
                                     any new venture, it is okay to have doubts even after speaking with us. 
                                     If you are still in doubt about the group,  speak to your recommender or feel
@@ -663,7 +684,6 @@
             <p class="mb-0 et_ff_Gilroy-Medium">Copyright © 2021 <a href="javascript:void(0)"
                     class="et_orange_text">INTERFRIENDS</a>. All rights reserved.</p>
         </div>
-
     </div>
 </footer>
 
@@ -671,7 +691,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">
-                <h5 class="modal-title fw-bold text-center  text-center">Welcome to Interfriends</h5>
+                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5>
             </div>
             <div class="modal-body text-secondary fs-5">
                 <app-new-user-info></app-new-user-info>

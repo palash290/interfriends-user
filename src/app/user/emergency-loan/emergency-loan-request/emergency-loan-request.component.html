@@ -20,7 +20,7 @@
                 <div class="icon">
                   <img src="assets/images/amt.png" align="" alt="" title="">
                 </div>
-                <span class="error-form" *ngIf="form.get('loan_amount').invalid  && form.get('loan_amount').touched">
+                <span class="error-form" *ngIf="form.get('loan_amount').invalid && form.get('loan_amount').touched">
                   Please enter a loan amount.
                 </span>
               </div>
@@ -32,7 +32,7 @@
                 <div class="icon">
                   <img src="assets/images/amt.png" align="" alt="" title="">
                 </div>
-                <span class="error-form" *ngIf="form.get('pay_by').invalid  && form.get('pay_by').touched">
+                <span class="error-form" *ngIf="form.get('pay_by').invalid && form.get('pay_by').touched">
                   Please enter a pay by.
                 </span>
               </div>
@@ -43,7 +43,7 @@
                 <div class="icon">
                   <!-- <img src="assets/images/call-sm.png" align="" alt="" title=""> -->
                 </div>
-                <span class="error-form" *ngIf="form.get('contact_number').invalid  && form.get('contact_number').touched"  >
+                <span class="error-form" *ngIf="form.get('contact_number').invalid && form.get('contact_number').touched"  >
                   Please enter a unique ID.
                 </span>
               </div>
@@ -51,14 +51,14 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="form-group">
                 <select class="form-control" formControlName="gurarantor">
-                  <option  value=''>select gurarantor</option>
+                  <option value=''>select gurarantor</option>
                   <option [value]="data.user_id" *ngFor="let data of userList">{{data.first_name+' '+data.last_name}}</option>
                 </select>
                 <div class="icon hide-caret"></div>
                 <div class="icon">
                   <img src="assets/images/caret.png" align="" alt="" title="">
                 </div>
-                <span class="error-form" *ngIf="form.get('gurarantor').invalid  && form.get('gurarantor').touched">
+                <span class="error-form" *ngIf="form.get('gurarantor').invalid && form.get('gurarantor').touched">
                   Please select a gurarantor.
                 </span>
               </div>

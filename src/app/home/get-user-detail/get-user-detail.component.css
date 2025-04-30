@@ -4,7 +4,7 @@
     object-fit: contain;
 }
 .header-menu {
-    position: absolute;
+    /* position: absolute; */
 }
 .et_orange_btn{
     overflow: hidden;
@@ -19,3 +19,12 @@
 .et_outline_btn:hover{
     color: #fff;
 }
+
+.header-menu_1 {
+    /* position: fixed; */
+    width: 100%;
+    /* z-index: 999; */
+    background: #092C4C;
+    top: 0px;
+    border-bottom: 1px solid #f4f4fc;
+  }

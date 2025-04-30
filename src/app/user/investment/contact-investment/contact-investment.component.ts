@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChange, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
-import { LoanService } from 'src/app/service/loan.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -19,8 +18,6 @@ export class ContactInvestmentComponent implements OnInit, OnChanges {
   isLoading = false;
   userId: string;
   groupId: string;
-
-
 
 
   constructor(

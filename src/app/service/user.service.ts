@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth.service';
 
 
@@ -14,8 +11,6 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private toastr: ToastrService,
     private authService: AuthService) { }
 
 
@@ -395,6 +390,58 @@ export class UserService {
     );
   }
 
+  avgSafeKeeping(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/avgSafeKeeping', authData
+    );
+  }
+
+
+  avgPf(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/avgAmountPf', authData
+    );
+  }
+
+  avgInvesting(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/totalAmountInvestment', authData
+    );
+  }
+
+  avgDivident(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/totalAmountDivided', authData
+    );
+  }
 
 
   avgSavingHelpToBuy(group_id: string, user_id: string): any {
@@ -407,6 +454,58 @@ export class UserService {
       avgAmountCycle: string,
     }>(
       API_URL + '/avgSavingHelpToBuy', authData
+    );
+  }
+
+  avgLoan(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/avgAmountLoan', authData
+    );
+  }
+
+  avgEmergencyLoan(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/avgAmountEmergencyLoan', authData
+    );
+  }
+
+  avgWelfare(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/avgWelfareAmount', authData
+    );
+  }
+
+  avgMiscelinaous(group_id: string, user_id: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      avgAmountCycle: string,
+    }>(
+      API_URL + '/avgMiscellaneous', authData
     );
   }
 
@@ -424,7 +523,9 @@ export class UserService {
 
 
   recommendUser(
-    name: string,
+    // name: string,
+    firstName: any,
+    lastName: any,
     email: string,
     mobile_number: string,
     friend_employed: string,
@@ -439,7 +540,9 @@ export class UserService {
     let groupId = this.authService.getgroupId();
     authData.append('user_id', userId);
     authData.append('group_id', groupId);
-    authData.append('name', name);
+    // authData.append('name', name);
+    authData.append('firstName', firstName);
+    authData.append('lastName', lastName);
     authData.append('email', email);
     authData.append('mobile_number', mobile_number);
     authData.append('friend_employed', friend_employed);

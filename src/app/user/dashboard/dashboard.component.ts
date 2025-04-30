@@ -7,12 +7,9 @@ import {
 } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { UserService } from 'src/app/service/user.service';
-import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/model/user.model';
 import { UserList } from 'src/app/model/userList.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpClient } from '@angular/common/http';
-import { Subscription, throwError } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { bannersAndmessagesService } from 'src/app/service/bannersAndmessages.service';
 export interface PhotosApi {
   albumId?: number;
@@ -98,7 +95,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     animation: true,
     animateTitle: true,
   };
-
+  savingData: any;
+  savingJnrData: any;
+  avgSafeKeepingData: any;
+  avgPfData: any;
+  avgInvestingData: any;
+  avgDividentData: any;
+  avgHelptoBuyData: any;
+  avgLoanData: any;
+  avgEmergencyLoanData: any;
+  avgMiscelinaousData: any;
+  avgWelfareData: any;
 
   showHiddenFields: boolean = false;
 
@@ -125,10 +132,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
-    private readonly http: HttpClient,
     public authService: AuthService,
     public userService: UserService,
-    private toastr: ToastrService,
     private getbanners: bannersAndmessagesService
   ) { }
 
@@ -138,7 +143,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.usersSub = this.userService.getLast5trancstionUserInfo(this.userId).subscribe(
       (userData: { users: UserList[]; userCount: number, userList: [], Avg_circle_score: string }) => {
         this.averageTrustScore = userData.Avg_circle_score;
-        console.log(userData, "userData===========>")
         this.transactionData = userData.userList;
         // this.users = userData.users;
         // this.totalUsers =  userData.userCount;
@@ -257,6 +261,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           .avgSaving(this.groupId, this.userId)
           .subscribe((response: any) => {
             this.avgAmountCycle = response.avgAmountCycle;
+            //debugger
+            this.savingData = response.lastSixTransactions;
             this.overAllTotal =
               this.overAllTotal + parseInt(this.avgAmountCycle);
             this.isLoadingSaving = false;
@@ -265,30 +271,82 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           .avgSavingJNR(this.groupId, this.userId)
           .subscribe((response: any) => {
             this.avgAmountCycleJNR = response.avgAmountCycle;
+            this.savingJnrData = response.lastSixTransactions;
             this.overAllTotal =
               this.overAllTotal + parseInt(this.avgAmountCycleJNR);
             this.isLoadingSavingJNR = false;
           });
 
         this.userService
+          .avgSafeKeeping(this.groupId, this.userId)
+          .subscribe((response: any) => {
+
+            this.avgSafeKeepingData = response.lastSixTransactions;
+          });
+
+        this.userService
+          .avgPf(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgPfData = response.lastSixTransactions;
+          });
+
+        this.userService
+          .avgInvesting(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgInvestingData = response.lastSixTransactions;
+          });
+
+        this.userService
+          .avgDivident(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgDividentData = response.lastSixTransactions;
+          });
+
+        this.userService
           .avgSavingHelpToBuy(this.groupId, this.userId)
           .subscribe((response: any) => {
             this.avgAmountHelpToBuy = response.avgAmountCycle;
+            this.avgHelptoBuyData = response.lastSixTransactions;
             this.overAllTotal =
               this.overAllTotal + parseInt(this.avgAmountHelpToBuy);
             this.isLoadingSavingHelpToBuy = false;
           });
+
+        this.userService
+          .avgLoan(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgLoanData = response.lastSixTransactions;
+          });
+
+        this.userService
+          .avgEmergencyLoan(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgEmergencyLoanData = response.lastSixTransactions;
+          });
+
+        this.userService
+          .avgWelfare(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgWelfareData = response.lastSixTransactions;
+          });
+
+        this.userService
+          .avgMiscelinaous(this.groupId, this.userId)
+          .subscribe((response: any) => {
+            this.avgMiscelinaousData = response.lastSixTransactions;
+          });
+
       });
 
     this.userService.getUserInfo(this.userId).subscribe((response: any) => {
       this.userDetail = response.userinfo;
-      console.log(this.userDetail, 'userDetail');
+      //console.log(this.userDetail, 'userDetail');
       this.isLoadingUser = false;
     });
 
     this.userService.getCreditScoreForDasboard().subscribe((response: any) => {
       if (response.success == '1') {
-        console.log('credit color', response);
+        //console.log('credit color', response);
         this.creditScoreAll = response.credit_score_list;
       } else {
       }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {UserService} from '../../../service/user.service';
 import { GroupCycle } from '../../../model/groupCycle.model';
-import { ActivatedRoute, ParamMap} from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { userCycle } from 'src/app/model/userCycle.model';
 import { SavingService } from 'src/app/service/saving.service';

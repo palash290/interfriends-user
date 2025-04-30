@@ -7,7 +7,7 @@
     <div class="et_navbar">
         <ul>
             <div class="et_close_menu">
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fa fa-times"></i>
             </div>
             <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
             <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
@@ -15,13 +15,17 @@
             <li><a routerLink="/our-products" routerLinkActive="active">Our Products</a></li>
             <li><a routerLink="/faq" routerLinkActive="active">FAQs</a></li>
             <li><a routerLink="/contact-us" routerLinkActive="active">Contact Us</a></li>
+            <li class="ms-md-auto">
+                <a href="#" class="et_orange_btn et_white_btn_res" data-toggle="modal" data-target="#viewModal">New to Interfriends</a>
+            </li>
+            <!-- <li><a routerLink="/contact-us" routerLinkActive="active">Interfriends Co-operative</a></li> -->
         </ul>
     </div>
     <div class="d-flex align-items-center gap-3">
-        <a href="#" class="et_orange_btn" data-toggle="modal" data-target="#viewModal">New To Interfriends</a>
+       
         <a routerLink="/" class="et_orange_btn">Log In</a>
         <div class="et_menu_bar">
-            <i class="fa-solid fa-bars-staggered"></i>
+            <i class="fa fa-bars"></i>
         </div>
     </div>
 </header>
@@ -31,7 +35,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">
-                <h5 class="modal-title fw-bold text-center  text-center">Welcome to Interfriends</h5>
+                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5>
             </div>
             <div class="modal-body text-secondary fs-5">
                 <p>
@@ -55,10 +59,10 @@
                         here</a> to express interest
                 </p>
 
-                <p>
+                <!-- <p>
                     <strong>Please provide:</strong> First Name, Last Name, Email, Country of Residence, Telephone
                     Number, Profession, and Type of Employment.
-                </p>
+                </p> -->
 
                 <p class="mb-4">
                     Thank you for your interest in joining. Our team will contact you shortly.
@@ -79,7 +83,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">
-                <h5 class="modal-title fw-bold text-center  text-center">Welcome to Interfriends</h5>
+                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5>
             </div>
             <div class="modal-body text-secondary fs-5">
                 <app-new-user-info></app-new-user-info>

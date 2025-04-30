@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @Component({
   selector: 'app-image-magnify-page',

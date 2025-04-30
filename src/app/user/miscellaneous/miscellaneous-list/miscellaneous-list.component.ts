@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Loan } from 'src/app/model/loan.model';
 import { AuthService } from 'src/app/service/auth.service';
-import { LoanService } from 'src/app/service/loan.service';
 import {Location} from '@angular/common';
 import { Miscellaneous } from 'src/app/model/miscellaneous.model';
 import { MiscellaneousService } from 'src/app/service/miscellaneous.service';

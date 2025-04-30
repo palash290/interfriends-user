@@ -185,7 +185,7 @@ a:hover {
   position: relative;
   transition: 0.4s ease all;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
 }
 .et_navbar li a:hover,
 .et_navbar li a.active {
@@ -234,7 +234,7 @@ a:hover {
   animation: slideDown 0.35s ease-out;
   left: 0px;
   padding-block: 15px;
-  z-index: 20;
+  z-index: 999;
 }
 @keyframes slideDown {
   from {

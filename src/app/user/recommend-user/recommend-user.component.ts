@@ -33,13 +33,21 @@ export class RecommendUserComponent implements OnInit {
     //   this.userList = response.userList;
     // });
 
-    this.userService.allRecommnedUserList(this.groupId).subscribe((response: any) => {
-      this.userList = response.userList.filter((user: any) => user.user_id !== this.userId);
-    });
+    // this.userService.allRecommnedUserList(this.groupId).subscribe((response: any) => {
+    //   this.userList = response.userList.filter((user: any) => user.user_id !== this.userId);
+    // });
 
+    this.userService.allRecommnedUserList(this.groupId).subscribe((response: any) => {
+      this.userList = response.userList
+        .filter((user: any) => user.user_id !== this.userId)
+        .sort((a: any, b: any) => a.first_name.localeCompare(b.first_name));
+    });
+    
 
     this.form = new FormGroup({
-      name: new FormControl(null, { validators: [Validators.required] }),
+      // name: new FormControl(null, { validators: [Validators.required] }),
+      firstName: new FormControl(null, { validators: [Validators.required] }),
+      lastName: new FormControl(null, { validators: [Validators.required] }),
       email: new FormControl(null, { validators: [Validators.required] }),
       mobile_number: new FormControl(null, { validators: [Validators.required] }),
       friend_employed: new FormControl(null, { validators: [Validators.required] }),
@@ -62,7 +70,9 @@ export class RecommendUserComponent implements OnInit {
     this.isLoading = true;
 
     this.userService.recommendUser(
-      this.form.value.name,
+      // this.form.value.name,
+      this.form.value.firstName,
+      this.form.value.lastName,
       this.form.value.email,
       this.form.value.mobile_number,
       this.form.value.friend_employed,
@@ -76,7 +86,7 @@ export class RecommendUserComponent implements OnInit {
       this.isLoading = false;
       if (response.success === '1') {
         this.toastr.success(response.message);
-        console.log(this.form.get('recommend_user_by').value); // Should log ''
+        //console.log(this.form.get('recommend_user_by').value); // Should log ''
       } else {
         this.toastr.error(response.message);
       }

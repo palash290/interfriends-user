@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { UserService} from '../../service/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
-import {ActivatedRoute, ParamMap} from '@angular/router';
-import { Router} from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -26,8 +26,8 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      password: new FormControl(null, {validators: [Validators.required]}),
-      confirmPassword: new FormControl(null, {validators: [Validators.required]})
+      password: new FormControl(null, { validators: [Validators.required] }),
+      confirmPassword: new FormControl(null, { validators: [Validators.required] })
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -57,7 +57,7 @@ export class ResetPasswordComponent implements OnInit {
 
     this.isLoading = true;
     this.userService.resetForgetPassword(this.form.value.password, this.token).subscribe((response: any) => {
-      if (response.success  === '1') {
+      if (response.success === '1') {
         this.toastr.success(response.message);
         this.router.navigate(['/']);
       } else {

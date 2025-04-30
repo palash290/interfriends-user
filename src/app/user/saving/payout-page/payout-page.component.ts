@@ -2,8 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {UserService} from '../../../service/user.service';
 import { GroupCycle } from '../../../model/groupCycle.model';
 import { ActivatedRoute, ParamMap} from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { userCycle } from 'src/app/model/userCycle.model';
 import { SavingService } from 'src/app/service/saving.service';
 import { Payout } from 'src/app/model/payout.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -31,7 +29,6 @@ export class PayoutPageComponent implements OnInit {
   constructor(
     public userService: UserService,
     public savingService: SavingService,
-    private toastr: ToastrService,
     public authService: AuthService,
     public route: ActivatedRoute
   ) { }

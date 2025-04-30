@@ -4,12 +4,9 @@
 
 <section class="savings-box container">
     <div class="row">
-       <div class="col-md-12">
-
-        {{termAndcondition}}
-        </div>
-        </div>
-        </section>
+        <div class="col-md-12" [innerHTML]="termAndcondition"></div>
+    </div>
+</section>
 <app-sub-menu></app-sub-menu>
 <app-mobile-menu></app-mobile-menu>
 <app-footer></app-footer>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TermandconditionService } from 'src/app/service/termandcondition.service';
 
 @Component({
@@ -7,18 +8,19 @@ import { TermandconditionService } from 'src/app/service/termandcondition.servic
   styleUrls: ['./termandcondition.component.css']
 })
 export class TermandconditionComponent implements OnInit {
-termAndcondition : any;
-  constructor(private termAndconditonService : TermandconditionService) { }
+  termAndcondition: SafeHtml = '';
+
+  constructor(
+    private termAndconditonService: TermandconditionService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit(): void {
-
-    this.termAndconditonService.getTermAndcondition().subscribe((response : any)=>{
-      if(response.success == 1){
-        this.termAndcondition = response.termsInfo;
-      }else{
-
+    this.termAndconditonService.getTermAndcondition().subscribe((response: any) => {
+      if (response.success == 1) {
+        this.termAndcondition = this.sanitizer.bypassSecurityTrustHtml(response.termsInfo);
       }
-    })
+    });
   }
 
 }

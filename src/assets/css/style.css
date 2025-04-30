@@ -310,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {font-family: 'gilroy-semibold' !important;}
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 62px);
-    padding-top: 100px;
+    padding: 30px 0;
 }
 footer.auth-footer{
     background: #092C4C;
@@ -516,7 +516,7 @@ footer.auth-footer .copyright {
 .menu-show .menu-icon img {vertical-align: sub; margin-right: 8px; width: 15px;}
 
 .menu-show {list-style: none; background: #ffffff; border-radius: 10px; width: 240px; position: absolute;
-    top: 55px; padding: 20px 25px; right: 0px; box-shadow: 0px 5px 15px #0d385f59;}
+    top: 55px; padding: 20px 25px; right: 0px; box-shadow: 0px 5px 15px #0d385f59; z-index: 999;}
 .menu-show li {margin-bottom: 12px; border-bottom: 1px solid #e7edf3; padding-bottom: 12px; cursor: pointer;}
 .menu-show li a {color: #092c4c; font-family: 'gilroy-bold'!important; text-decoration: none;}
 .menu-show li:hover a {color: #ed8a4b;}
@@ -525,7 +525,7 @@ footer.auth-footer .copyright {
 
 .top-space {padding-top: 120px;}
 .box-one, .overview-box, .savings-box, .padd-t-b {padding-top: 80px; padding-bottom: 80px;}
-.header-menu {position: fixed; width: 100%; z-index: 999; background: #092C4C; top: 0px;border-bottom: 1px solid #f4f4fc;}
+.header-menu { width: 100%; z-index: 999; background: #092C4C; top: 0px;border-bottom: 1px solid #f4f4fc;}
 .profile-click {width: 45px; height: 45px; overflow: hidden; object-fit: cover;
   border-radius: 50%; padding: 0px!important; margin-left: 14px; border: 1px solid #868686;}
 
@@ -564,8 +564,8 @@ footer.auth-footer .copyright {
 .loan-sm-text {font-size: 14px; font-family: 'gilroy-semibold' !important;}
 .loan-hl-text {color: #092C4C; font-family: 'gilroy-bold'!important;margin: 0;}
 
-.overview-box .box-line-white.h-120 {height: 120px;position: relative;}
-.box-line-white {background: #fff; border-radius: 20px; width: 100%; padding: 20px;
+.overview-box .box-line-white.h-120 {height: 160px;position: relative;}
+.box-line-white {background: #fff; border-radius: 20px; width: 100%; padding: 20px; padding-top: 0 !important;
     margin-top: 50px!important; border: 2px dashed #092C4C;}
 .mt-0, .my-0 {margin-top: 0!important;}
 .box-line-white.dark-line {border: 2px dashed #092C4C;}

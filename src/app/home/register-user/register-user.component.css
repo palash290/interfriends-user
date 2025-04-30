@@ -1,31 +1,47 @@
 .ct_signup_scroll{
     overflow-y: auto;
     height: auto;
-    max-height: 500px;
+    /* max-height: 500px; */
     overflow-x: hidden;
     padding-inline: 10px;
 }
-.ct_signup_scroll::-webkit-scrollbar {
-    width: 10px !important;
-  }
-  /* Track */
-.ct_signup_scroll::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  .ct_signup_scroll::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  .ct_signup_scroll::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+
   .auth-card{
-    max-width: 600px;
+    max-width: 750px;
   }
 
   .form-group.has-error .help-block {
     color: #dd4b39
 }
+
+.header-menu_1 {
+  /* position: fixed; */
+  width: 100%;
+  /* z-index: 999; */
+  background: #092C4C;
+  top: 0px;
+  border-bottom: 1px solid #f4f4fc;
+}
+
+.header-menu img{
+  max-width: 121px;
+  width: 100%;
+  object-fit: contain;
+}
+.header-menu {
+  position: absolute;
+}
+.et_orange_btn{
+  overflow: hidden;
+}
+.et_outline_btn{
+  background-color: transparent;
+  color: #333;
+}
+.et_outline_btn:before{
+  background-color: #F2994A;
+}
+.et_outline_btn:hover{
+  color: #fff;
+}
+

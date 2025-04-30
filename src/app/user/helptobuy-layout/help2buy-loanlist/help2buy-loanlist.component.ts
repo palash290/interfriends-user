@@ -27,7 +27,6 @@ export class Help2buyLoanlistComponent implements OnInit {
     public loanService: LoanService,
     public authService: AuthService,
     private _location: Location,
-
     public route: ActivatedRoute
   ) { }
 

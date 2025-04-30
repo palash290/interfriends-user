@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Property } from 'src/app/model/property.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';

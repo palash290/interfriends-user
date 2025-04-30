@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthHomeGuard } from '../auth/auth-home.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';

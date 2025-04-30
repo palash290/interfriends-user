@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
-import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-apply-loan',
