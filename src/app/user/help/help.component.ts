@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+declare var $: any;
 
 @Component({
   selector: 'app-help',
@@ -30,8 +31,8 @@ export class HelpComponent implements OnInit {
 
     this.form = new FormGroup({
       name: new FormControl(null, { validators: [Validators.required] }),
-      type	: new FormControl('', { validators: [Validators.required] }),
-      message	: new FormControl('', { validators: [Validators.required] }),
+      type: new FormControl('', { validators: [Validators.required] }),
+      message: new FormControl('', { validators: [Validators.required] }),
     });
   }
 
@@ -45,22 +46,29 @@ export class HelpComponent implements OnInit {
     this.isLoading = true;
 
     this.userService.help(
-        this.form.value.name,
-        this.form.value.type,
-        this.form.value.message
-      ).subscribe((response: any) => {
-        this.form.reset();
-        this.isLoading = false;
-        if (response.success === '1') {
-          this.toastr.success(response.message);
-        } else {
-          this.toastr.error(response.message);
-        }
-      });
+      this.form.value.name,
+      this.form.value.type,
+      this.form.value.message
+    ).subscribe((response: any) => {
+      this.form.reset();
+      this.isLoading = false;
+      if (response.success === '1') {
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.error(response.message);
+      }
+    });
   }
 
   backClicked() {
     this._location.back();
   }
+
+  ngAfterViewInit(): void {
+    $('.open-message-tab').on('click', () => {
+      $('#msg-tab').tab('show');
+    });
+  }
+
 
 }

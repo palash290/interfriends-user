@@ -4,9 +4,9 @@
             <img src="assets/img/logo.svg" alt="">
         </a>
     </div>
-    <div class="et_navbar">
+    <div class="et_navbar" [ngClass]="{ 'et_show': isNavbarVisible }">
         <ul>
-            <div class="et_close_menu">
+            <div class="et_close_menu" (click)="closeNavbar()">
                 <i class="fa fa-times"></i>
             </div>
             <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
@@ -24,7 +24,7 @@
     <div class="d-flex align-items-center gap-3">
        
         <a routerLink="/" class="et_orange_btn">Log In</a>
-        <div class="et_menu_bar">
+        <div class="et_menu_bar" (click)="openNavbar()">
             <i class="fa fa-bars"></i>
         </div>
     </div>

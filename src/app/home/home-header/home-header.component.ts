@@ -70,7 +70,16 @@ export class HomeHeaderComponent implements OnInit {
         console.error('Login error:', error.message);
       }
     });
+  }
 
+  isNavbarVisible: boolean = false;
+
+  openNavbar(): void {
+    this.isNavbarVisible = true;
+  }
+
+  closeNavbar(): void {
+    this.isNavbarVisible = false;
   }
 
 

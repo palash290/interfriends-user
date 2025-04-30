@@ -48,18 +48,18 @@
           </div>
         </div>
         <div class="ct_icon_list_2">
-          <div class=" text-center" *ngFor="let userGroupInfo of savingData; let i = index; let first = first">
+          <div class=" text-center" *ngFor="let userGroupInfo of savingData; let i = index; let last = last">
 
-            <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+            <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
               *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
 
-            <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+            <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
               <i class="fa fa-times" aria-hidden="true"></i>
             </div>
 
-            <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+            <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
               <i class="fa fa-check" aria-hidden="true"></i>
             </div>
           </div>
@@ -88,18 +88,18 @@
             </h3>
 
             <div class="ct_icon_list_2">
-              <div class=" text-center" *ngFor="let userGroupInfo of savingJnrData; let i = index; let first = first">
+              <div class=" text-center" *ngFor="let userGroupInfo of savingJnrData; let i = index; let last = last">
 
-                <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+                <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                   *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
                   <i class="fa fa-minus" aria-hidden="true"></i>
                 </div>
 
-                <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+                <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
                   <i class="fa fa-times" aria-hidden="true"></i>
                 </div>
 
-                <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+                <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
                   <i class="fa fa-check" aria-hidden="true"></i>
                 </div>
               </div>
@@ -132,13 +132,13 @@
             <div class="ct_icon_list_2">
 
               <div class=" text-center"
-                *ngFor="let userGroupInfo of avgSafeKeepingData; let i = index; let first = first">
+                *ngFor="let userGroupInfo of avgSafeKeepingData; let i = index; let last = last">
 
-                <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}" *ngIf="userGroupInfo.pyment_type == 1">
+                <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}" *ngIf="userGroupInfo.pyment_type == 1">
                   <i class="fa fa-minus" aria-hidden="true"></i>
                 </div>
 
-                <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.pyment_type == 2">
+                <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.pyment_type == 2">
                   <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
 
@@ -170,23 +170,20 @@
               <i class="fa fa-chevron-right"></i>
             </h3>
 
-            <div class="ct_icon_list_2">
+            <!-- <div class="ct_icon_list_2">
               <div class=" text-center" *ngFor="let userGroupInfo of avgPfData; let i = index; let first = first">
 
                 <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}" *ngIf="userGroupInfo.payment_type == 1">
                   <i class="fa fa-minus" aria-hidden="true"></i>
                 </div>
 
-                <!-- <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
-                <i class="fa fa-times" aria-hidden="true"></i>
-              </div> -->
-
                 <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.payment_type == 2">
                   <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
 
               </div>
-            </div>
+            </div> -->
+
           </div>
 
         </div>
@@ -213,7 +210,7 @@
               <i class="fa fa-chevron-right"></i>
             </h3>
 
-            <div class="ct_icon_list_2">
+            <!-- <div class="ct_icon_list_2">
               <div class=" text-center" *ngFor="let userGroupInfo of avgInvestingData; let i = index; let first = first">
 
                 <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}" *ngIf="userGroupInfo.payment_status == 2">
@@ -224,7 +221,8 @@
                   <i class="fa fa-check" aria-hidden="true"></i>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
         </div>
       </a>
@@ -250,7 +248,7 @@
               <i class="fa fa-chevron-right"></i>
             </h3>
 
-            <div class="ct_icon_list_2">
+            <!-- <div class="ct_icon_list_2">
               <div class=" text-center" *ngFor="let userGroupInfo of avgDividentData; let i = index; let first = first">
 
                 <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}" *ngIf="userGroupInfo.payment_status == 2">
@@ -261,7 +259,8 @@
                   <i class="fa fa-check" aria-hidden="true"></i>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
         </div>
       </a>
@@ -295,18 +294,18 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgHelptoBuyData; let i = index; let first = first">
+                  *ngFor="let userGroupInfo of avgHelptoBuyData; let i = index; let last = last">
 
-                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
                     <i class="fa fa-minus" aria-hidden="true"></i>
                   </div>
 
-                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
                     <i class="fa fa-times" aria-hidden="true"></i>
                   </div>
 
-                  <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+                  <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </div>
                 </div>
@@ -339,18 +338,18 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgLoanData; let i = index; let first = first">
+                  *ngFor="let userGroupInfo of avgLoanData; let i = index; let last = last">
 
-                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
                     <i class="fa fa-minus" aria-hidden="true"></i>
                   </div>
 
-                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
                     <i class="fa fa-times" aria-hidden="true"></i>
                   </div>
 
-                  <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+                  <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </div>
                 </div>
@@ -385,18 +384,18 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgEmergencyLoanData; let i = index; let first = first">
+                  *ngFor="let userGroupInfo of avgEmergencyLoanData; let i = index; let last = last">
 
-                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
                     <i class="fa fa-minus" aria-hidden="true"></i>
                   </div>
 
-                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
                     <i class="fa fa-times" aria-hidden="true"></i>
                   </div>
 
-                  <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+                  <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </div>
                 </div>
@@ -428,18 +427,18 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgWelfareData; let i = index; let first = first">
+                  *ngFor="let userGroupInfo of avgWelfareData; let i = index; let last = last">
 
-                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
                     <i class="fa fa-minus" aria-hidden="true"></i>
                   </div>
 
-                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
                     <i class="fa fa-times" aria-hidden="true"></i>
                   </div>
 
-                  <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+                  <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </div>
                 </div>
@@ -473,18 +472,18 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgMiscelinaousData; let i = index; let first = first">
+                  *ngFor="let userGroupInfo of avgMiscelinaousData; let i = index; let last = last">
 
-                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}"
+                  <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
                     <i class="fa fa-minus" aria-hidden="true"></i>
                   </div>
 
-                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 3">
+                  <div class="remove ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 3">
                     <i class="fa fa-times" aria-hidden="true"></i>
                   </div>
 
-                  <div class="check ct_icon_bg_2" [ngClass]="{'last': first}" *ngIf="userGroupInfo.status == 2">
+                  <div class="check ct_icon_bg_2" [ngClass]="{'last': last}" *ngIf="userGroupInfo.status == 2">
                     <i class="fa fa-check" aria-hidden="true"></i>
                   </div>
                 </div>
