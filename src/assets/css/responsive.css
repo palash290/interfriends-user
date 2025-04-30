@@ -1,3 +1,14 @@
+@media screen and (max-width: 1400px) {
+  .et_navbar li a {
+    font-size: 14px;
+  }
+  .et_navbar ul {
+    gap: 20px;
+  }
+  .et_orange_btn {
+    padding-inline: 20px;
+  }
+}
 @media screen and (max-width: 1199px) {
   .et_grid_5 {
     grid-template-columns: repeat(3, 1fr);
@@ -39,7 +50,7 @@
   a.et_orange_btn.et_white_btn_res {
     background-color: #fff;
     color: var(--orange);
-}
+  }
 }
 @media screen and (max-width: 991px) {
   /* .et_navbar ul {
@@ -116,6 +127,18 @@
   }
   .et_grid_5 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .et_key_fact_slider .owl-nav {
+    position: unset !important;
+    transform: unset !important;
+    justify-content: center !important;
+  }
+  .et_key_fact_slider .owl-prev {
+    left: 0 !important;
+  }
+  .et_key_fact_slider .owl-next {
+    right: 0 !important;
   }
 }
 

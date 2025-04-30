@@ -103,20 +103,20 @@
                 </div>
             </div> -->
 
-            <owl-carousel-o [options]="customOptions">
+            <owl-carousel-o [options]="customOptions" class="et_key_fact_slider">
                 <ng-container *ngFor="let item of items">
-                  <ng-template carouselSlide >
-                    <div class="et_key_fact_card" style="height: 60vh;">
-                      <div class="et_icon_key_fact">
-                        <img src="assets/img/home/key_fact_icon_1.svg" alt="">
-                      </div>
-                      <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">{{ item.title }}</h4>
-                      <p class="et_dark_blue_text et_fs_18">{{ item.description }}</p>
-                    </div>
-                  </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="et_key_fact_card">
+                            <div class="et_icon_key_fact">
+                                <img src="assets/img/home/key_fact_icon_1.svg" alt="">
+                            </div>
+                            <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">{{ item.title }}</h4>
+                            <p class="et_dark_blue_text et_fs_18">{{ item.description }}</p>
+                        </div>
+                    </ng-template>
                 </ng-container>
-              </owl-carousel-o>
-              
+            </owl-carousel-o>
+
 
         </div>
     </div>
@@ -176,10 +176,11 @@
 <!-- why choose us Section E -->
 
 <!-- Trusted Community Section S -->
-<section class="et_pt_83 et_pb_83">
-    <div class="container ms-md-0 ps-md-0">
+<section class="et_pt_83 et_pb_83 et_trust_community_bg12"
+    style="background-image: url(assets/img/home/trusted_img.jpg)">
+    <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-5 mb-4 mb-md-0">
+            <!-- <div class="col-md-5 mb-4 mb-md-0">
                 <div class="et_video_img">
                     <img src="assets/img/home/trusted_img.jpg" alt="">
                     <div class="et_video_icon">
@@ -189,12 +190,12 @@
                     </div>
 
                 </div>
-            </div>
-            <div class="col-md-6 mb-4 mb-md-0 offset-md-1">
+            </div> -->
+            <div class="col-md-12 mb-4 mb-md-0 mx-auto">
                 <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Join the Interfriends savings circle</h3>
                 <!-- <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
                 </h4> -->
-                <ul class="et_list_style_disc mt-3">
+                <ul class="et_list_style_disc mt-3 text-white">
                     <li>
                         Interfriends is more than just a savings platform—it's a trusted community-driven network.
                     </li>
@@ -408,31 +409,31 @@
 
     <owl-carousel-o [options]="customOptions1">
         <ng-container *ngFor="let testimonial of testimonials">
-          <ng-template carouselSlide>
-            <div class="et_key_fact_card et_testimonial_section text-start" style="height: 57vh;">
-                <div class="et_rating_star">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
+            <ng-template carouselSlide>
+                <div class="et_key_fact_card et_testimonial_section text-start">
+                    <div class="et_rating_star">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">
+                        {{ testimonial.message }}
+                    </p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img [src]="testimonial.image" alt="" class="et_img_44">
+                        <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">
+                            {{ testimonial.name }}
+                        </h4>
+                    </div>
+                    <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
                 </div>
-              <p class="et_dark_blue_text et_fs_22 et_line_h_34 et_ff_Gilroy-Regular">
-                {{ testimonial.message }}
-              </p>
-              <div class="d-flex align-items-center gap-2">
-                <img [src]="testimonial.image" alt="" class="et_img_44">
-                <h4 class="et_ff_Gilroy-Bold et_fs_24 et_dark_blue_text mb-0">
-                  {{ testimonial.name }}
-                </h4>
-              </div>
-              <img src="assets/img/home/qhote_down.png" alt="" class="et_quote_down_icon">
-            </div>
-          </ng-template>
+            </ng-template>
         </ng-container>
-      </owl-carousel-o>
-      
-      
+    </owl-carousel-o>
+
+
 </section>
 <!-- Testimonial Section E -->
 
@@ -444,28 +445,28 @@
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_1.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">2012</h3>
-                    <span class="et_badge">Established</span>
+                    <span class="et_badge w-100">Established</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_2.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">200+</h3>
-                    <span class="et_badge">Unique Members</span>
+                    <span class="et_badge w-100">Unique Members</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_3.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">30+</h3>
-                    <span class="et_badge">Active Savings Circles</span>
+                    <span class="et_badge w-100">Active Savings Circles</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_4.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">£1M+ </h3>
-                    <span class="et_badge">Total Rotated</span>
+                    <span class="et_badge w-100">Total Rotated</span>
                 </div>
             </div>
 
@@ -661,8 +662,8 @@
                             <p class="text-ceter">
                                 If you are interested in joining Interfriends but have not yet been recommended, we
                                 invite you to express your interest by providing information about yourself. <a
-                                routerLink="/home" data-toggle="modal" data-target="#viewModal223">Click
-                                here</a> to express interest
+                                    routerLink="/home" data-toggle="modal" data-target="#viewModal223">Click
+                                    here</a> to express interest
                             </p>
 
                         </div>

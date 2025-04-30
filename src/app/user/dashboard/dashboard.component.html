@@ -212,6 +212,9 @@
 
             <!-- <div class="ct_icon_list_2">
               <div class=" text-center" *ngFor="let userGroupInfo of avgInvestingData; let i = index; let first = first">
+            <div class="ct_icon_list_2">
+              <div class=" text-center"
+                *ngFor="let userGroupInfo of avgInvestingData; let i = index; let first = first">
 
                 <div class="minus ct_icon_bg_2" [ngClass]="{'last':first}" *ngIf="userGroupInfo.payment_status == 2">
                   <i class="fa fa-minus" aria-hidden="true"></i>
@@ -338,7 +341,7 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgLoanData; let i = index; let last = last">
+                  *ngFor="let userGroupInfo of avgLoanData; let i = index; let first = first">
 
                   <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
@@ -614,7 +617,8 @@
   </div> -->
   <div class="row justify-content-center mt-3 mb-5">
     <div class="col-xl-5 col-lg-6 mb-2">
-      <div class="ct_icon_list d-block w-100 h-100 py-3 d-grid place-content-center" style="padding: 6px;">
+      <div class="ct_icon_list d-block w-100 h-100 py-3 d-grid place-content-center"
+        style="padding: 6px; background-color: var(--orange);color: #fff;">
         <h4 class="mb-0 txt-center ct_fs_24 text-center">Your circle</h4>
         <p class=" text-center ct_score_fs_18">{{averageTrustScore | number:'1.0-0'}} (Average Trust Score)</p>
       </div>
