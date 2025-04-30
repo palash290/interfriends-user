@@ -1,0 +1,25 @@
+.et_faq_question_main {
+    overflow-y: auto;
+    height: auto;
+    max-height: 503px;
+    padding-right: 15px;
+  }
+  
+  .et_faq_question_main::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  .et_faq_question_main::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .et_faq_question_main::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  .et_faq_question_main::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

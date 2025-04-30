@@ -14,6 +14,9 @@ import { OurProductsComponent } from './our-products/our-products.component';
 import { FaqComponent } from './faq/faq.component';
 import { GetUserDetailComponent } from './get-user-detail/get-user-detail.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CoOpComponent } from './co-op/co-op.component';
+import { HomePrivacyComponent } from './home-privacy/home-privacy.component';
+import { HomeTermsComponent } from './home-terms/home-terms.component';
 
 
 
@@ -88,6 +91,22 @@ const routes: Routes = [
       {
         path: 'contact-us',
         component: ContactUsComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'co-operative',
+        component: CoOpComponent,
+        canActivate: [AuthHomeGuard]
+      },
+
+      {
+        path: 'privacyPolicy',
+        component: HomePrivacyComponent,
+        canActivate: [AuthHomeGuard]
+      },
+      {
+        path: 'term&condition',
+        component: HomeTermsComponent,
         canActivate: [AuthHomeGuard]
       },
     ]

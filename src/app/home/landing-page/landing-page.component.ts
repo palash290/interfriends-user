@@ -65,31 +65,38 @@ export class LandingPageComponent implements OnInit {
   items = [
     {
       title: 'Exclusive Savings Club',
-      description: 'Membership to Interfriends is by invitation from existing members only. Be in a circle with people you know and can trust'
+      description: 'Membership to Interfriends is by invitation from existing members only. Be in a circle with people you know and can trust',
+      image: 'assets/img/home/key_fact_icon_1.svg'
     },
     {
       title: 'Join a Circle',
-      description: 'Become part of a trusted circle that empowers your financial journey or request to create a bespoke circle around you.'
+      description: 'Become part of a trusted circle that empowers your financial journey or request to create a bespoke circle around you.',
+      image: 'assets/img/home/key_fact_icon_2.svg'
     },
     {
       title: 'Build Trust',
-      description: 'Build your Trust Score as you keep paying on time and stay loyal as a member'
+      description: 'Build your Trust Score as you keep paying on time and stay loyal as a member',
+      image: 'assets/img/home/key_fact_icon_3.svg'
     },
     {
       title: 'Flexible Payout',
-      description: 'Request and receive your payout first or later in the cycle'
+      description: 'Request and receive your payout first or later in the cycle',
+      image: 'assets/img/home/key_fact_icon_4.svg'
     },
     {
       title: 'Safekeeping',
-      description: 'Keep your Payout in safekeeping and request it anytime'
+      description: 'Keep your Payout in safekeeping and request it anytime',
+      image: 'assets/img/home/key_fact_icon_5.svg'
     },
     {
       title: 'Emergency Help',
-      description: 'SOS help available to you in times of emergency'
+      description: 'SOS help available to you in times of emergency',
+      image: 'assets/img/home/key_fact_icon_6.svg'
     },
     {
       title: 'Co-operative Mindset',
-      description: 'Become part of our co-operative business'
+      description: 'Become part of our co-operative business',
+      image: 'assets/img/home/key_fact_icon_7.svg'
     },
   ];
 
@@ -97,9 +104,12 @@ export class LandingPageComponent implements OnInit {
     loop: true,
     margin: 10,
     autoHeight: true,
-
     nav: true,
     dots: true,
+    navText: [
+      '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
+      '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
+    ],
     responsive: {
       0: { items: 1 },
       600: { items: 2 },
@@ -107,12 +117,17 @@ export class LandingPageComponent implements OnInit {
     }
   };
 
+
   customOptions1 = {
     loop: true,
     margin: 10,
     autoHeight: true,
     nav: true,
     dots: true,
+    navText: [
+      '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
+      '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
+    ],
     responsive: {
       0: { items: 1 },
       600: { items: 2 },

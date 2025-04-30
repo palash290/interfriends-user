@@ -23,6 +23,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { GetUserDetailComponent } from './get-user-detail/get-user-detail.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewUserInfoComponent } from './new-user-info/new-user-info.component';
+import { CoOpComponent } from './co-op/co-op.component';
+import { SharedFaqComponent } from './shared-faq/shared-faq.component';
+import { HomeFooterComponent } from './home-footer/home-footer.component';
+import { HomePrivacyComponent } from './home-privacy/home-privacy.component';
+import { HomeTermsComponent } from './home-terms/home-terms.component';
 
 
 
@@ -55,7 +60,12 @@ import { NewUserInfoComponent } from './new-user-info/new-user-info.component';
     FaqComponent,
     GetUserDetailComponent,
     ContactUsComponent,
-    NewUserInfoComponent
+    NewUserInfoComponent,
+    CoOpComponent,
+    SharedFaqComponent,
+    HomeFooterComponent,
+    HomePrivacyComponent,
+    HomeTermsComponent
   ],
   providers: [
   ],

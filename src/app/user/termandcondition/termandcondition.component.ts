@@ -8,6 +8,7 @@ import { TermandconditionService } from 'src/app/service/termandcondition.servic
   styleUrls: ['./termandcondition.component.css']
 })
 export class TermandconditionComponent implements OnInit {
+
   termAndcondition: SafeHtml = '';
 
   constructor(
@@ -22,5 +23,6 @@ export class TermandconditionComponent implements OnInit {
       }
     });
   }
+  
 
 }
