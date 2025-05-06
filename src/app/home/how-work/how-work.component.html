@@ -1,6 +1,7 @@
-<div class="et_main_banner_bg" style="height: 395px;">
+<app-home-header></app-home-header>
+<!-- <div class="et_main_banner_bg" style="height: 395px;">
 
-    <app-home-header></app-home-header>
+
 
     <section>
         <div class="container">
@@ -20,8 +21,34 @@
             </div>
         </div>
     </section>
-</div>
+</div> -->
 
+<owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
+    <ng-container *ngFor="let banner of banners">
+        <ng-template carouselSlide>
+            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="et_banner_section text-center">
+                                    <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">How It Works</h2>
+                                    <ul class="et_breadcrumb">
+                                        <li>
+                                            <a routerLink="/home" class="et_orange_text">Home</a>
+                                        </li>
+                                        <li><i class="fa-solid fa-angle-right"></i></li>
+                                        <li>How It Works</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
 
 <!-- Our Product Section S -->
 
@@ -61,7 +88,7 @@
                             <img src="assets/img/how-it-works/icon_2.png" alt="">
                         </div>
                         <div class="text-center mt-4">
-                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Manage your finances
+                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Join a Saving Circle
                             </h4>
                             <p class="et_ff_Gilroy-Regular mb-0">Join a Savings Circle or apply to create a bespoke
                                 circle
@@ -73,7 +100,7 @@
                             <img src="assets/img/how-it-works/icon_3.png" alt="">
                         </div>
                         <div class="text-center mt-4">
-                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Track transactions
+                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Track/Manage your finances
                             </h4>
                             <p class="et_ff_Gilroy-Regular mb-0">View your payments, and other products via your
                                 dashboard
@@ -85,7 +112,7 @@
                             <img src="assets/img/how-it-works/icon_4.png" alt="">
                         </div>
                         <div class="text-center mt-4">
-                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Build Trust Score
+                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Build Your Trust Score
                             </h4>
                             <p class="et_ff_Gilroy-Regular mb-0">Improve credibility for better opportunities
                             </p>
@@ -96,10 +123,10 @@
                             <img src="assets/img/how-it-works/icon_4.png" alt="">
                         </div>
                         <div class="text-center mt-4">
-                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Additional Benefits
+                            <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Access additional benefits
                             </h4>
                             <p class="et_ff_Gilroy-Regular mb-0">Access additional benefits with increased Provident
-                                and Trust score
+                                and Trust Score
                             </p>
                         </div>
                     </div>
@@ -140,7 +167,8 @@
                 </h4>
                 <ul class="et_list_style_disc mt-3">
                     <li>
-                        Apply to create a circle around you.(Control who can be in your circle; max 25 members)
+                        Join an existing circle or apply to create a circle around you. (Control who can be in your
+                        circle; max 25 members)
                     </li>
                 </ul>
 
@@ -180,8 +208,8 @@
                 <div class="et_exlusive_img_card">
                     <figure>
                         <div class="et_exlusive_img">
-                            <img src="assets/img/how-it-works/membership_img.png" alt="">
-                            <!-- <img src="assets/img/how-it-works/Frame.png" alt=""> -->
+                            <!-- <img src="assets/img/how-it-works/membership_img.png" alt=""> -->
+                            <img src="assets/img/how-it-works/IMG_1152.jpg" alt="">
                         </div>
                         <figcaption>
                             <ul class="nav nav-pills mb-3 et_custom_tab" id="pills-tab" role="tablist">

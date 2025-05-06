@@ -27,6 +27,7 @@ import { WelfareLoanComponent } from './loan/welfare-loan/welfare-loan.component
 import { HelptobuyLayoutComponent } from './helptobuy-layout/helptobuy-layout.component';
 import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/help2buy-loanlist.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { ApprovalPageComponent } from './approval-page/approval-page.component';
 
 
 
@@ -105,11 +106,6 @@ const routes: Routes = [
         canActivate: [AuthUserGuard]
       },
       {
-        path: 'recommendUser',
-        component: RecommendUserComponent,
-        canActivate: [AuthUserGuard]
-      },
-      {
         path: 'investmentList',
         component: InvestmentListComponent,
         canActivate: [AuthUserGuard]
@@ -178,7 +174,17 @@ const routes: Routes = [
         path: 'help2buyloanlist/:loanType',
         component: Help2buyLoanlistComponent,
         canActivate: [AuthUserGuard]
-      }
+      },
+      {
+        path: 'recommendUser',
+        component: RecommendUserComponent,
+        canActivate: [AuthUserGuard]
+      },
+      // {
+      //   path: 'approval-page',
+      //   component: ApprovalPageComponent,
+      //   canActivate: [AuthUserGuard]
+      // },
     ]
   }
 ];

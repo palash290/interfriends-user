@@ -1,28 +1,55 @@
-<div class="et_main_banner_bg">
-
-    <app-home-header></app-home-header>
-
+<app-home-header></app-home-header>
+<!-- <div class="et_main_banner_bg" style=" background-image: url(assets/img/banner.png);">
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-md-10 mx-auto">
                     <div class="et_banner_section text-center">
-                        <h2 class="et_fs_58 et_ff_Gilroy-Bold text-white mb-0">Community-driven Savings Club</h2>
+                        <h2 class="et_fs_58 et_ff_Gilroy-Bold text-white mb-0">Community-centred Savings Club</h2>
                         <h5 class="et_fs_34 text-white pt-2 et_ff_Gilroy-Medium ">(Succeeding Together)</h5>
                         <p class="et_fs_24 text-white et_pt_22 et_ff_Gilroy-Medium ">Join an Interfriends savings
-                            circle and stay in
-                            control of <br> your finances.</p>
-
-                        <!-- <div class="text-center mt-4">
-                            <a routerLink="/" class="et_orange_btn et_fit_content mx-auto">Get Started</a>
-                        </div> -->
+                            circle and <br>stay in control of your finances.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+</div> -->
 
-</div>
+<owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
+    <ng-container *ngFor="let banner of banners">
+        <ng-template carouselSlide>
+            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="et_banner_section text-center">
+                                    <h2 class="et_fs_58 et_ff_Gilroy-Bold text-white mb-0">
+                                        {{ banner.title }}
+                                    </h2>
+                                    <h5 class="et_fs_34 text-white pt-2 et_ff_Gilroy-Medium">
+                                        {{ banner.subtitle }}
+                                    </h5>
+                                    <p class="et_fs_24 text-white et_pt_22 et_ff_Gilroy-Medium"
+                                        [innerHTML]="banner.description"></p>
+
+                                    <!-- Optional CTA -->
+                                    <!--
+                    <div class="text-center mt-4">
+                      <a routerLink="/" class="et_orange_btn et_fit_content mx-auto">Get Started</a>
+                    </div>
+                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
+
 
 <!-- Key Facts section S -->
 <section class="et_pt_83 et_pb_83">
@@ -111,6 +138,7 @@
                                 <img [src]="item.image" alt="">
                             </div>
                             <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">{{ item.title }}</h4>
+                            <h4 class="et_fs_24 et_ff_Gilroy-SemiBold et_dark_blue_text">{{ item.sub }}</h4>
                             <p class="et_dark_blue_text et_fs_18">{{ item.description }}</p>
                         </div>
                     </ng-template>
@@ -129,7 +157,8 @@
             <div class="col-md-6 mb-4 mb-md-0">
                 <div class="et_why_choose_img">
                     <img src="assets/img/home/why_choose_1.jpg" alt="">
-                    <img src="assets/img/home/why_choose_2.png" alt="">
+                    <!-- <img src="assets/img/home/why_choose_2.png" alt=""> -->
+                    <img src="assets/img/home/mob_full_img.png" alt="">
                 </div>
             </div>
             <div class="col-md-6 mb-4 mb-md-0">
@@ -165,7 +194,11 @@
                     </li>
                     <li class="d-flex gap-2">
                         <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Bespoke circle created for you</p>
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Bespoke Circle created for you</p>
+                    </li>
+                    <li class="d-flex gap-2">
+                        <img src="assets/img/check_icon.svg" alt="">
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative/ROSCA</p>
                     </li>
                 </ul>
             </div>
@@ -191,12 +224,12 @@
                 </div>
             </div> -->
             <div class="col-md-12 mb-4 mb-md-0 mx-auto">
-                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Join the Interfriends savings circle</h3>
+                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Join an Interfriends savings circle</h3>
                 <!-- <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Join the interfriends savings circle
                 </h4> -->
                 <ul class="et_list_style_disc mt-3 text-white">
                     <li>
-                        Interfriends is more than just a savings platform—it's a trusted community-driven network.
+                        Interfriends is more than just a savings platform—it's a trusted Community-centred network.
                     </li>
                     <li class="mt-2">Designed to help you achieve your financial goals with ease.</li>
                     <li class="mt-2">Ideal for future planning, handling unexpected expenses, or saving for major
@@ -601,7 +634,8 @@
 
 <app-home-footer></app-home-footer>
 
-<div class="modal fade show ct_view_modal" id="viewModal223" tabindex="-1" aria-modal="true" role="dialog">
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal223" tabindex="-1" aria-modal="true"
+    role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">

@@ -1,27 +1,33 @@
-<div class="et_main_banner_bg" style="height: 395px;">
+<app-home-header></app-home-header>
 
-    <app-home-header></app-home-header>
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 mx-auto">
-                    <div class="et_banner_section text-center">
-                        <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">About Us</h2>
-                        <ul class="et_breadcrumb">
-                            <li>
-                                <a routerLink="/home" class="et_orange_text">Home</a>
-                            </li>
-                            <li><i class="fa-solid fa-angle-right"></i></li>
-                            <li>About Us</li>
-                        </ul>
+<owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
+    <ng-container *ngFor="let banner of banners">
+        <ng-template carouselSlide>
+            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="et_banner_section text-center">
+                                    <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">About Us</h2>
+                                    <ul class="et_breadcrumb">
+                                        <li>
+                                            <a routerLink="/home" class="et_orange_text">Home</a>
+                                        </li>
+                                        <li><i class="fa-solid fa-angle-right"></i></li>
+                                        <li>About Us</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
-    </section>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
 
-</div>
 
 
 <!-- Our Product Section S -->
@@ -36,11 +42,14 @@
             </div>
             <div class="col-md-6 offset-md-1 mb-4 mb-md-0">
                 <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Who We Are</h3>
-                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Simplifying Finance, Securing Your
-                    Future
+                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Smart, digitised and modernised ROSCA
                 </h4>
-                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Interfriends is a savings club that
-                    helps you manage your money, and access it when needed. Whether you need a reliable savings circle account, emergency financial
+                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Interfriends is a savings club (ROSCA) that
+                    helps you manage your money, and access it when needed.</p>
+                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">It is modernised and digitised Rotating
+                    Saving and Credit Association (ROSCA).</p>
+                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Whether you need a reliable savings circle
+                    account, emergency financial
                     help, or want to purchase your first property, we ensure a smooth and transparent experience for
                     all our users.</p>
                 <ul class="et_grid_2 mb-4">
@@ -54,7 +63,7 @@
                     </li>
                     <li class="d-flex gap-2">
                         <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative</p>
+                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative/ROSCA</p>
                     </li>
                     <li class="d-flex gap-2">
                         <img src="assets/img/check_icon.svg" alt="">
@@ -76,9 +85,12 @@
                     <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">A Legacy of Shared Growth
                         & Financial Support</h4>
                     <p class="et_dark_blue_text et_fs_18">"Interfriends was built on the values of trust,
-                        reliability, and community-driven financial empowerment. Since 2012, we’ve helped members
+                        reliability, and community-centred financial empowerment. Since 2012, we’ve helped members
                         through secure savings circles, ensuring that everyone has access to the financial help they
                         need—without any hidden fees. Together, we grow, save, and succeed."</p>
+                    <p class="et_dark_blue_text et_fs_18">It has been proven that you are most likely to realise your
+                        savings goal
+                        if you join a Saving Circle (ROSCA) then saving alone.</p>
                 </div>
             </div>
 
@@ -125,7 +137,7 @@
                 <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Empowering Financial Security & Growth
                 </h4>
                 <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">We provide a trusted platform where
-                    members can save, support each other, and achieve financial stability through community-driven
+                    members can save, support each other, and achieve financial stability through community-centerd
                     savings.</p>
 
                 <h6 class="et_orange_text et_ff_Gilroy-semi-bold mb-0">Our Key Pillars:</h6>

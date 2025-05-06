@@ -86,3 +86,6 @@ mwl-gauge > .gauge > .value-text {
 .owl-carousel .owl-stage {
   display: flex;
 }
+.et_key_fact_slider .owl-next ,.et_key_fact_slider .owl-prev{
+  background: #7b7b7b !important;
+}

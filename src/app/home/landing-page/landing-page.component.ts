@@ -66,37 +66,44 @@ export class LandingPageComponent implements OnInit {
     {
       title: 'Exclusive Savings Club',
       description: 'Membership to Interfriends is by invitation from existing members only. Be in a circle with people you know and can trust',
-      image: 'assets/img/home/key_fact_icon_1.svg'
+      image: 'assets/img/home/key_fact_icon_1.svg',
+      sub: ''
     },
     {
-      title: 'Join a Circle',
-      description: 'Become part of a trusted circle that empowers your financial journey or request to create a bespoke circle around you.',
-      image: 'assets/img/home/key_fact_icon_2.svg'
+      title: 'Trusted Circles',
+      description: 'Become part of a savings circle that empowers your financial journey or request to create a bespoke circle around you.',
+      image: 'assets/img/home/key_fact_icon_2.svg',
+      sub: '(ROSCA)'
     },
     {
-      title: 'Build Trust',
-      description: 'Build your Trust Score as you keep paying on time and stay loyal as a member',
-      image: 'assets/img/home/key_fact_icon_3.svg'
+      title: 'Trusted People',
+      description: 'Pay on time, stay loyal and build your Trust Score',
+      image: 'assets/img/home/key_fact_icon_3.svg',
+      sub: ''
     },
     {
       title: 'Flexible Payout',
       description: 'Request and receive your payout first or later in the cycle',
-      image: 'assets/img/home/key_fact_icon_4.svg'
+      image: 'assets/img/home/key_fact_icon_4.svg',
+      sub: ''
     },
     {
       title: 'Safekeeping',
       description: 'Keep your Payout in safekeeping and request it anytime',
-      image: 'assets/img/home/key_fact_icon_5.svg'
+      image: 'assets/img/home/key_fact_icon_5.svg',
+      sub: ''
     },
     {
       title: 'Emergency Help',
       description: 'SOS help available to you in times of emergency',
-      image: 'assets/img/home/key_fact_icon_6.svg'
+      image: 'assets/img/home/key_fact_icon_6.svg',
+      sub: ''
     },
     {
       title: 'Co-operative Mindset',
       description: 'Become part of our co-operative business',
-      image: 'assets/img/home/key_fact_icon_7.svg'
+      image: 'assets/img/home/key_fact_icon_7.svg',
+      sub: ''
     },
   ];
 
@@ -106,17 +113,17 @@ export class LandingPageComponent implements OnInit {
     autoHeight: true,
     nav: true,
     dots: true,
+    slideBy: 3,
     navText: [
       '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
       '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
     ],
     responsive: {
-      0: { items: 1 },
-      600: { items: 2 },
-      1000: { items: 3 }
+      0: { items: 1, slideBy: 1 },
+      600: { items: 2, slideBy: 2 },
+      1000: { items: 3, slideBy: 3 }
     }
   };
-
 
   customOptions1 = {
     loop: true,
@@ -138,7 +145,7 @@ export class LandingPageComponent implements OnInit {
   testimonials = [
     {
       name: 'Irene Y',
-      message: `Joining the Interfriends has been an incredibly rewarding experience for me. Introduced by a dear friend from my church, this society has truly transformed my life in so many ways. One of the first benefits I experienced was the 'Help to Buy' support, which eased my financial planning and made achieving certain goals much more manageable. The availability of assistance in emergencies has provided a safety net in times of need, offering me peace of mind and stability when faced with unexpected challenges. Additionally, the society's welfare initiatives have been a source of comfort and reassurance, proving that the community genuinely cares for its members. The sense of belonging and support within the Interfriends is unmatched. It’s more than just a group—it's a family that uplifts and empowers one another. I’m deeply grateful to my lovely friend for introducing me to this remarkable community, as it has brought immense value to my life.`,
+      message: `Joining Interfriends has been an incredibly rewarding experience for me. Introduced by a dear friend from my church, this society has truly transformed my life in so many ways. One of the first benefits I experienced was the 'Help to Buy' support, which eased my financial planning and made achieving certain goals much more manageable. The availability of assistance in emergencies has provided a safety net in times of need, offering me peace of mind and stability when faced with unexpected challenges. Additionally, the society's welfare initiatives have been a source of comfort and reassurance, proving that the community genuinely cares for its members. The sense of belonging and support within the Interfriends is unmatched. It’s more than just a group—it's a family that uplifts and empowers one another. I’m deeply grateful to my lovely friend for introducing me to this remarkable community, as it has brought immense value to my life.`,
       image: 'assets/img/dummy_icon.png'
     },
     {
@@ -216,6 +223,73 @@ One unique thing about Interfriends is the honesty and the transparency of the l
     },
 
   ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+  banners = [
+    {
+      image: 'assets/img/banner.png',
+      title: 'Community-centred Savings Club',
+      subtitle: '(Succeeding Together)',
+      description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    },
+    {
+      image: 'assets/img/collage_banner.png',
+      title: 'Community-centred Savings Club',
+      subtitle: '(Succeeding Together)',
+      description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    },
+    // {
+    //   image: 'assets/img/banner2.JPG',
+    //   title: 'Community-centred Savings Club',
+    //   subtitle: '(Succeeding Together)',
+    //   description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    // },
+    // {
+    //   image: 'assets/img/banner3.JPG',
+    //   title: 'Community-centred Savings Club',
+    //   subtitle: '(Succeeding Together)',
+    //   description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    // },
+
+    // {
+    //   image: 'assets/img/banner4.JPG',
+    //   title: 'Community-centred Savings Club',
+    //   subtitle: '(Succeeding Together)',
+    //   description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    // },
+    // {
+    //   image: 'assets/img/banner5.JPG',
+    //   title: 'Community-centred Savings Club',
+    //   subtitle: '(Succeeding Together)',
+    //   description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    // },
+    // Add more slides as needed
+  ];
+
+  bannerOptions = {
+    loop: true,
+    items: 1,
+    dots: true,
+    navText: [
+      '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
+      '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
+    ],
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: true
+  };
 
 
 }

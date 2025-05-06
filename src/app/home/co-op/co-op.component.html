@@ -1,6 +1,7 @@
-<div class="et_main_banner_bg" style="height: 395px;">
+<app-home-header></app-home-header>
 
-    <app-home-header></app-home-header>
+<!-- <div class="et_main_banner_bg" style="height: 395px;">
+
 
     <section>
         <div class="container">
@@ -20,8 +21,35 @@
             </div>
         </div>
     </section>
+</div> -->
 
-</div>
+<owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
+    <ng-container *ngFor="let banner of banners">
+        <ng-template carouselSlide>
+            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="et_banner_section text-center">
+                                    <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">Interfriends Co-operative
+                                    </h2>
+                                    <ul class="et_breadcrumb">
+                                        <li>
+                                            <a routerLink="/home" class="et_orange_text">Home</a>
+                                        </li>
+                                        <li><i class="fa-solid fa-angle-right"></i></li>
+                                        <li>Interfriends Co-operative</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
 
 
 
@@ -29,7 +57,7 @@
 
 <section class="et_pt_83 et_pb_83 et_pt_res_0">
     <div class="container">
-        
+
         <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
                 <h4 class="et_fs_28 et_ff_Gilroy-semi-bold et_orange_text">About Interfriends Co-operative
@@ -39,38 +67,30 @@
                         Interfriends Co-operative is registered in England as a registered society under the
                         Co-operative and Community Benefit Societies Act 2014
                     </li>
-                    <li class="mt-2">As a co-operative, we exist for the benefit of the members who have invested in our
+                    <li class="mt-2">As a Co-operative, we exist for the benefit of the members who have invested in our
                         co-operative business</li>
-
-                    <li>
+                    <li class="mt-2">
                         Interfriends Co-operative membership is open to interfriends members only
                     </li>
-                    <li class="mt-2">As a Co-operative, our vision is to collectively pull our resources together to own
+                    <li class="mt-2">Our vision is to collectively pull our resources together to own
                         and run businesses for the benefit of our members and the community</li>
-                    <li>
+                    <li class="mt-2">
                         At Interfriends Co-operative, we believe in the power of leveraging our efforts to succeed
                         together
                     </li>
                 </ul>
 
-                <!-- <h4 class="et_fs_28 mt-4 et_ff_Gilroy-semi-bold et_orange_text">Organised Cycles
-                </h4>
-                <ul class="et_list_style_disc mt-3">
-                    <li>
-                        Interfriends operate in two Cycles of six months per Cycle. All members start and end the
-                        Cycle at the same time.
-                    </li>
-                </ul> -->
-
                 <h4 class="et_fs_28 mt-4 et_ff_Gilroy-semi-bold et_orange_text">How our Co-operative works</h4>
                 <ul class="et_list_style_disc mt-3">
                     <li>Existing Interfriends members can apply for membership in the Co-operative</li>
-                    <li class="mt-2">Membership criteria are to purchase and own at least one share in the Interfriends
+                    <li class="mt-2">Purchase and own at least one share in the Interfriends
                         co-operative</li>
-                    <li>Your investment in the Co-operative business makes you a shareholder in the business</li>
+                    <li class="mt-2">Your investment in the Co-operative business makes you a shareholder in the
+                        business</li>
                     <li class="mt-2">Your share in our Co-operative business entitles you to receive a dividend as the
                         business performs and becomes profitable</li>
-                    <li>You can withdraw your shares at any point in time by providing us with the minimum notice period
+                    <li class="mt-2">You can withdraw your shares at any point in time by providing us with the minimum
+                        notice period
                     </li>
                     <li class="mt-2">As a shareholder in our Co-operative business, you will have a say in how some of
                         our services are run</li>
@@ -82,17 +102,16 @@
                 <ul class="et_list_style_disc mt-3">
                     <li>You have to be an existing Interfriends savings club member</li>
                     <li class="mt-2">You have to meet the minimum joining criteria to become a member</li>
-                    <li class="mt-2">You should purchase a minimum of 1 share in the Co-operative</li>
+                    <li class="mt-2">You should purchase a minimum of one share in the Co-operative</li>
                 </ul>
 
 
                 <h4 class="et_fs_28 mt-4 et_ff_Gilroy-semi-bold et_orange_text">How to become an Interfriends member
                 </h4>
                 <ul class="et_list_style_disc mt-3">
-                    <li>Provide a link to where it says - Get Started from the Home Page</li>
+                    <li>Click on this <a routerLink="/co-operative" data-toggle="modal"
+                            data-target="#viewModal">link</a> if you are new to Interfriends</li>
                 </ul>
-
-
 
             </div>
 
@@ -113,3 +132,68 @@
 
 
 <app-home-footer></app-home-footer>
+
+<!-- <div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal2222" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                <app-new-user-info></app-new-user-info>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal" tabindex="-1" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                <p>
+                    <strong>Interfriends</strong> is a member-only and exclusive savings club. To become a member of any
+                    of our savings circles, a recommendation from an existing member is required.
+                </p>
+                <p>
+                    If you have already received a recommendation and a welcome email, please enter your email address
+                    to proceed with the registration process.
+                </p>
+
+                <!-- <p>
+                    If you are interested in joining Interfriends but haven’t yet received a recommendation, we invite
+                    you to express your interest by providing information about yourself.
+                </p> -->
+
+                <p class="text-ceter">
+                    If you are interested in joining Interfriends but have not yet been recommended, we
+                    invite you to express your interest by providing information about yourself. <a routerLink="/home"
+                        data-toggle="modal" data-target="#viewModal22" data-dismiss="modal">Click
+                        here</a> to express interest
+                </p>
+
+                <!-- <p>
+                    <strong>Please provide:</strong> First Name, Last Name, Email, Country of Residence, Telephone
+                    Number, Profession, and Type of Employment.
+                </p> -->
+
+                <p class="mb-4">
+                    Thank you for your interest in joining. Our team will contact you shortly.
+                </p>
+                <div class="d-flex justify-content-end gap-2">
+                    <button (click)="go()" class="et_orange_btn px-4">Continue</button>
+                    <button type="button" class="et_orange_btn et_outline_btn" data-dismiss="modal">Close</button>
+                    <button hidden type="button" class="et_orange_btn et_outline_btn" #closeModal
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -152,13 +152,12 @@ a:hover {
 /* Header Css S */
 
 .et_main_banner_bg {
-  background-image: url(../img/banner.png);
   background-position: 100% 62%;
   background-size: cover;
   height: 692px;
   position: relative;
-
   padding-block: 30px;
+  margin-top: -73px;
 }
 .et_main_banner_bg:before {
   content: "";
@@ -175,6 +174,10 @@ a:hover {
   gap: 30px;
   justify-content: space-between;
   padding: 0px 60px;
+  z-index: 99;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 .et_navbar ul {
   display: flex;
@@ -246,14 +249,16 @@ a:hover {
 }
 /* Header Css E */
 /* Banner css S */
+
+
 .et_banner_section {
-  position: relative;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  width: 100%;
-  padding-inline: 30px;
-  padding-top: 120px;
+    position: relative;
+    top: 50%;
+    /* transform: translate(-50%, -50%); */
+    /* left: 50%; */
+    width: 100%;
+    padding-inline: 30px;
+    padding-top: 120px;
 }
 
 .et_fit_content {
@@ -315,6 +320,14 @@ a:hover {
 .et_testimonial_slider .owl-dots {
   display: none;
 }
+
+.et_home_banner_slider .owl-prev{
+  left: 0px !important;
+ }
+
+ .et_home_banner_slider .owl-next{
+  right: 0px !important;
+ }
 .et_key_fact_slider .owl-nav,
 .et_testimonial_slider .owl-nav {
   text-align: center;
@@ -375,7 +388,7 @@ a:hover {
 .et_why_choose_img img:last-child {
   width: 255px;
   height: 225px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 4px;
   position: absolute;
   bottom: 10px;
@@ -456,11 +469,11 @@ img.et_quote_down_icon {
   top: -70px;
 }
 
-.et_testimonial_section p {
+/* .et_testimonial_section p {
   max-height: 304px;
   height: auto;
   overflow-y: auto;
-}
+} */
 .et_overlay_testimonial {
   position: relative;
   margin-top: -100px;

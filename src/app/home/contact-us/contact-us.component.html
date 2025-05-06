@@ -1,6 +1,7 @@
-<div class="et_main_banner_bg" style="height: 395px;">
+<app-home-header></app-home-header>
 
-    <app-home-header></app-home-header>
+<!-- <div class="et_main_banner_bg" style="height: 395px;">
+
 
     <section>
         <div class="container">
@@ -21,7 +22,34 @@
         </div>
     </section>
 
-</div>
+</div> -->
+
+<owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
+    <ng-container *ngFor="let banner of banners">
+        <ng-template carouselSlide>
+            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="et_banner_section text-center">
+                                    <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">Contact Us</h2>
+                                    <ul class="et_breadcrumb">
+                                        <li>
+                                            <a routerLink="/home" class="et_orange_text">Home</a>
+                                        </li>
+                                        <li><i class="fa-solid fa-angle-right"></i></li>
+                                        <li>Contact Us</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>
 
 
 <!-- Get in touch Section S -->
@@ -146,11 +174,12 @@
 <app-home-footer></app-home-footer>
 
 
-<div class="modal fade show ct_view_modal" id="viewModal222" tabindex="-1" aria-modal="true" role="dialog">
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal222" tabindex="-1" aria-modal="true"
+    role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">
-                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriendsss</h5>
+                <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5>
             </div>
             <div class="modal-body text-secondary fs-5">
                 <app-new-user-info></app-new-user-info>

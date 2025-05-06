@@ -60,6 +60,8 @@ import { WelfareLoanComponent } from './loan/welfare-loan/welfare-loan.component
 import { HelptobuyLayoutComponent } from './helptobuy-layout/helptobuy-layout.component';
 import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/help2buy-loanlist.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { ApprovalPageComponent } from './approval-page/approval-page.component';
+import { DeclinePageComponent } from './decline-page/decline-page.component';
 
 
 
@@ -135,6 +137,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
   HelptobuyLayoutComponent,
   Help2buyLoanlistComponent,
   WelcomePageComponent,
+  ApprovalPageComponent,
+  DeclinePageComponent,
   ],
   providers: [],
   exports: [],

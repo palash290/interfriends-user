@@ -38,42 +38,6 @@ export class ContactUsComponent implements OnInit {
   }
 
 
-  // onSave(): void {
-  //   this.form.markAllAsTouched();
-  //   const formData = new FormData();
-
-  //   formData.append('name', this.form.value.name)
-  //   formData.append('email', this.form.value.email)
-  //   formData.append('mobile_number', this.form.value.mobile_number)
-  //   formData.append('country', this.form.value.country)
-  //   formData.append('message', this.form.value.message)
-
-  //   if (this.form.invalid) {
-  //     return;
-  //   }
-
-  //   this.isLoading = true;
-
-  //   this.sharedService.postAPI('/contact-us', formData).subscribe(
-  //     {
-  //       next: (response: any) => {
-  //         if (response.success == 1) {
-  //           this.form.reset();
-  //           this.isLoading = false;
-  //           this.toastr.success(response.message);
-  //         } else {
-  //           this.isLoading = false;
-  //           this.toastr.error(response.message);
-  //         }
-  //       }, error: (err: any) => {
-  //         console.log(err);
-  //       }
-  //     }
-  //   );
-
-  // }
-
-
   onSave() {
     this.form.markAllAsTouched();
     if (!this.form.valid) {
@@ -153,6 +117,48 @@ export class ContactUsComponent implements OnInit {
       600: { items: 2 },
       1000: { items: 3 }
     }
+  };
+
+  banners = [
+    {
+      image: 'assets/img/banner.png',
+      title: 'Community-centred Savings Club',
+      subtitle: '(Succeeding Together)',
+      description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    },
+    {
+      image: 'assets/img/collage_banner.png',
+      title: 'Community-centred Savings Club',
+      subtitle: '(Succeeding Together)',
+      description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    },
+    // {
+    //   image: 'assets/img/banner2.JPG',
+    //   title: 'Community-centred Savings Club',
+    //   subtitle: '(Succeeding Together)',
+    //   description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    // },
+    // {
+    //   image: 'assets/img/banner3.JPG',
+    //   title: 'Community-centred Savings Club',
+    //   subtitle: '(Succeeding Together)',
+    //   description: 'Join an Interfriends savings circle and<br>stay in control of your finances.'
+    // },
+    // Add more slides as needed
+  ];
+
+  bannerOptions = {
+    loop: true,
+    items: 1,
+    dots: true,
+    navText: [
+      '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
+      '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
+    ],
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: true
   };
 
 

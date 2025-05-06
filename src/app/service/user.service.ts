@@ -541,8 +541,8 @@ export class UserService {
     authData.append('user_id', userId);
     authData.append('group_id', groupId);
     // authData.append('name', name);
-    authData.append('firstName', firstName);
-    authData.append('lastName', lastName);
+    authData.append('first_name', firstName);
+    authData.append('last_name', lastName);
     authData.append('email', email);
     authData.append('mobile_number', mobile_number);
     authData.append('friend_employed', friend_employed);
@@ -555,7 +555,7 @@ export class UserService {
       success: string,
       message: string,
     }>(
-      API_URL + '/recommendUser', authData
+      API_URL + '/recommendUser010525', authData
     );
   }
 

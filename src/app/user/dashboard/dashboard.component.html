@@ -341,7 +341,7 @@
 
               <div class="ct_icon_list_2">
                 <div class=" text-center"
-                  *ngFor="let userGroupInfo of avgLoanData; let i = index; let first = first">
+                  *ngFor="let userGroupInfo of avgLoanData; let i = index; let last = last">
 
                   <div class="minus ct_icon_bg_2" [ngClass]="{'last':last}"
                     *ngIf="userGroupInfo.status == 1 || userGroupInfo.status == 4">
