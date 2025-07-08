@@ -66,14 +66,14 @@
                           </div>
                           <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
                             <h6 class="loan-sm-text">Status</h6>
-                            <h5 class="loan-hl-text text-success" *ngIf="data.status == 4">Active/Late</h5>
+                            <h5 class="loan-hl-text text-success" *ngIf="data.status == 4">Active/<span class="text-danger">Late</span></h5>
                             <h5 class="loan-hl-text text-success" *ngIf="data.status == 2">complete</h5>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
+                  <div class=" mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
                     <img src="assets/images/no-data.png" class="img-fluid mb-2">
                     <h1 class="">Oops!No Data Found</h1>
                   </div>
@@ -106,7 +106,7 @@
               </div>
             </div>
           </div>
-          <div class="row mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
+          <div class=" mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
             <img src="assets/images/no-data.png" class="img-fluid mb-2">
             <h1 class="">Oops!No Data Found</h1>
           </div>
@@ -131,7 +131,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
+              <div class="mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
                 <img src="assets/images/no-data.png" class="img-fluid mb-2">
                 <h1 class="">Oops!No Data Found</h1>
               </div>

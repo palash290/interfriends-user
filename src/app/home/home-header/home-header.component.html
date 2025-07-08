@@ -1,7 +1,7 @@
 <header class="et_header">
     <div class="et_logo">
         <a href="index.html">
-            <img src="assets/img/logo.svg" alt="">
+            <img src="assets/img/interfriend_white.png" alt="">
         </a>
     </div>
     <div class="et_navbar" [ngClass]="{ 'et_show': isNavbarVisible }">
@@ -9,13 +9,14 @@
             <div class="et_close_menu" (click)="closeNavbar()">
                 <i class="fa fa-times"></i>
             </div>
-            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/" routerLinkActive="active">Home</a></li>
             <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
-            <li><a routerLink="/how-it-works" routerLinkActive="active">How It Works </a></li>
             <li><a routerLink="/our-products" routerLinkActive="active">Our Products</a></li>
-            <li><a routerLink="/faq" routerLinkActive="active">FAQs</a></li>
+            <li><a routerLink="/how-it-works" routerLinkActive="active">How It Works </a></li>
             <li><a routerLink="/co-operative" routerLinkActive="active"> Interfriends Co-op</a></li>
             <li><a routerLink="/contact-us" routerLinkActive="active">Contact Us</a></li>
+            <li><a routerLink="/faq" routerLinkActive="active">FAQs</a></li>
+
 
             <li class="ms-md-auto">
                 <a href="#" class="et_orange_btn et_white_btn_res" data-toggle="modal" data-target="#viewModal">New to
@@ -26,7 +27,7 @@
     </div>
     <div class="d-flex align-items-center gap-3">
 
-        <a routerLink="/" class="et_orange_btn">Log In</a>
+        <a routerLink="/login" class="et_orange_btn">Log In</a>
         <div class="et_menu_bar" (click)="openNavbar()">
             <i class="fa fa-bars"></i>
         </div>
@@ -34,7 +35,8 @@
 </header>
 
 
-<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal" tabindex="-1" aria-modal="true" role="dialog">
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal" tabindex="-1" aria-modal="true"
+    role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">
@@ -57,7 +59,7 @@
 
                 <p class="text-ceter">
                     If you are interested in joining Interfriends but have not yet been recommended, we
-                    invite you to express your interest by providing information about yourself. <a routerLink="/home"
+                    invite you to express your interest by providing information about yourself. <a routerLink="/"
                         data-toggle="modal" data-target="#viewModal22" data-dismiss="modal">Click
                         here</a> to express interest
                 </p>
@@ -71,7 +73,7 @@
                     Thank you for your interest in joining. Our team will contact you shortly.
                 </p>
                 <div class="d-flex justify-content-end gap-2">
-                    <button (click)="go()" class="et_orange_btn px-4">Continue</button>
+                    <!-- <button (click)="go()" class="et_orange_btn px-4">Continue</button> -->
                     <button type="button" class="et_orange_btn et_outline_btn" data-dismiss="modal">Close</button>
                     <button hidden type="button" class="et_orange_btn et_outline_btn" #closeModal
                         data-dismiss="modal">Close</button>
@@ -82,7 +84,8 @@
 </div>
 
 
-<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal22" tabindex="-1" aria-modal="true" role="dialog">
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="viewModal22" tabindex="-1" aria-modal="true"
+    role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
             <div class="modal-header border-0 pb-0 justify-content-center">

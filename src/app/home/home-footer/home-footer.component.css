@@ -1,0 +1,23 @@
+
+.ct_footer_menu ul {
+    display: flex
+;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.ct_footer_menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.ct_footer_menu ul li a{
+    color: #fff;
+}
+
+@media screen and (max-width:991px){
+    .ct_footer_menu{
+        flex-direction: column;
+    }
+}

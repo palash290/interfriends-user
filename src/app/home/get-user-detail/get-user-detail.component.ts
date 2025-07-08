@@ -83,11 +83,9 @@ export class GetUserDetailComponent implements OnInit {
     );
   }
 
-  closeModal(): void {
+  closeModal() {
     this.showModal = false;
   }
-
-
 
 
 }

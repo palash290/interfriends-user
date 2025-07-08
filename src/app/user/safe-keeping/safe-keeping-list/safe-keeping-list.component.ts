@@ -3,6 +3,7 @@ import { SafeKeepingList } from 'src/app/model/safeKeeping.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import {Location} from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-safe-keeping-list',
@@ -12,7 +13,7 @@ import {Location} from '@angular/common';
 export class SafeKeepingListComponent implements OnInit {
 
   safeKeepingList: SafeKeepingList[]= [];
-  safeKeepingAmount: string;
+  safeKeepingAmount: any;
   isLoading = true;
   groupId: string;
   userId: string;
@@ -20,7 +21,8 @@ export class SafeKeepingListComponent implements OnInit {
   constructor(
     public userService: UserService,
     public authService: AuthService,
-    private _location: Location
+    private _location: Location,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class SafeKeepingListComponent implements OnInit {
 
   backClicked() {
     this._location.back();
+  }
+
+  showMsg(){
+    this.toastr.warning('You dont have enough balance!')
   }
 
 }

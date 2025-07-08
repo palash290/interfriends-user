@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { AuthService} from '../../service/auth.service';
-import {ActivatedRoute} from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../service/auth.service';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -34,18 +34,15 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    
+
     this.isLoading = true;
-    this.authService.login(
-        this.form.value.email,
-        this.form.value.password
-    );
+    this.authService.login(this.form.value.email, this.form.value.password);
 
     this.form.reset();
   }
 
   showPassword: boolean = false;
-  
+
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }

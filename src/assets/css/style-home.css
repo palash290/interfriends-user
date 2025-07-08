@@ -207,6 +207,9 @@ a:hover {
   position: relative;
   z-index: 1;
 }
+.et_logo_200 img {
+  width: 200px;
+}
 .et_close_menu {
   position: absolute;
   top: 15px;

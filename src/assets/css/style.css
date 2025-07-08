@@ -494,6 +494,10 @@ footer.auth-footer .copyright {
     margin: 0;
 }
 
+.ct_ff_gilroy_bold{
+    font-family: 'gilroy-bold' !important;
+}
+
 .profile-card {
     background: #FFFFFF;
     border: 2px dashed #092C4C;
@@ -720,7 +724,7 @@ footer.auth-footer .copyright {
 .overview-box,
 .savings-box,
 .padd-t-b {
-    /* padding-top: 80px; */
+    padding-top: 80px;
     padding-bottom: 80px;
 }
 
@@ -1676,11 +1680,28 @@ label.hidden-label {
         display: none;
     }
 
-    ul.navbar-nav {
+    /* ul.navbar-nav {
         max-height: 290px;
         overflow-y: scroll;
-    }
-
+    } */
+div#navbarNavDropdown {
+    position: fixed;
+    width: 100%;
+    max-width: 300px;
+    right: -100%;
+    padding: 50px 20px;
+    top: 0px;
+    margin-top: 0px !important;
+    border-radius: 0px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: 0.4s ease all;
+   
+}
+div#navbarNavDropdown.show{
+    right: 0px;
+     display: block;
+}
     .top-banner {
         margin-top: 110px;
     }
@@ -1771,6 +1792,13 @@ label.hidden-label {
     .logo {
         font-size: 18px;
     }
+
+    .et_header_menu23 {
+  
+    height: 100px;
+    display: flex
+;
+}
 
     .savings-box .nav.nav-tabs .nav-link {
         padding: 12px 20px;

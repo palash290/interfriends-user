@@ -24,7 +24,8 @@ export class LoanService {
     total40month : string,
     provident : string,
     admin_risk : string,
-    loan_emi : string
+    loan_emi : string,
+    selectedIdFile: any
   ): any {
     const instituteData = new FormData();
     instituteData.append('user_id', user_id);
@@ -34,14 +35,16 @@ export class LoanService {
     instituteData.append('contact_number', contact_number);
     instituteData.append('loan_type', loan_type);
     instituteData.append('gurarantor', gurarantor);
-    instituteData.append('document_image', document_image);
+    // instituteData.append('document_image', document_image);
     instituteData.append('creditCardImage', creditCardImage);
     instituteData.append('pay_date', pay_date);
     instituteData.append('total_payment', total40month)
     instituteData.append('provident', provident)
     instituteData.append('admin_risk', admin_risk)
     instituteData.append('loan_emi', loan_emi)
-
+    if (selectedIdFile) {
+      instituteData.append('document_image', selectedIdFile);
+    }
     return this.http.post<{
       success: string;
       message: string;

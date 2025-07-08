@@ -20,10 +20,11 @@ export class HomeTermsComponent implements OnInit {
   ngOnInit(): void {
     this.termAndconditonService.getTermAndcondition().subscribe((response: any) => {
       if (response.success == 1) {
+
         this.termAndcondition = this.sanitizer.bypassSecurityTrustHtml(response.termsInfo);
       }
     });
   }
-  
+
 
 }

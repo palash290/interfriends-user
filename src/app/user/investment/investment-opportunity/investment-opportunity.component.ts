@@ -15,7 +15,7 @@ export class InvestmentOpportunityComponent implements OnInit {
   lists: Property[] = [];
   userId: string;
   groupId: string;
-  isLoading  = true;
+  isLoading = true;
 
   pageLimit: number;
   notEmptyPost = true;
@@ -51,40 +51,40 @@ export class InvestmentOpportunityComponent implements OnInit {
     this.pageLimit = 0;
     this.uerService.propertyList(
       this.pageLimit
-      ).subscribe((response: any) => {
-        this.isLoader = false;
-        this.isLoading = false;
-        this.spinner.hide();
-        if (response.lists.length === 0 ) {
-          this.notEmptyPost =  false;
-        }
+    ).subscribe((response: any) => {
+      this.isLoader = false;
+      this.isLoading = false;
+      this.spinner.hide();
+      if (response.lists.length === 0) {
+        this.notEmptyPost = false;
+      }
 
-        for (const value of response.lists) {
-          this.lists.push(value);
-        }
-        console.log(this.lists)
+      for (const value of response.lists) {
+        this.lists.push(value);
+      }
+      console.log(this.lists)
 
-        this.notscrolly = true;
-     });
+      this.notscrolly = true;
+    });
   }
 
 
   loadNextList() {
-      this.pageLimit += 8;
-      this.uerService.propertyList(
-        this.pageLimit
-        ).subscribe((response: any) => {
-          this.spinner.hide();
-          if (response.lists.length === 0 ) {
-            this.notEmptyPost =  false;
-          }
+    this.pageLimit += 8;
+    this.uerService.propertyList(
+      this.pageLimit
+    ).subscribe((response: any) => {
+      this.spinner.hide();
+      if (response.lists.length === 0) {
+        this.notEmptyPost = false;
+      }
 
-          for (const value of response.lists) {
-            this.lists.push(value);
-          }
+      for (const value of response.lists) {
+        this.lists.push(value);
+      }
 
-          this.notscrolly = true;
-      });
+      this.notscrolly = true;
+    });
   }
 
   onScroll() {
@@ -92,8 +92,8 @@ export class InvestmentOpportunityComponent implements OnInit {
       this.spinner.show();
       this.notscrolly = false;
       this.loadNextList();
-     }
-   }
+    }
+  }
 
   // list code end
 
@@ -106,7 +106,7 @@ export class InvestmentOpportunityComponent implements OnInit {
   }
 
   setShowImage(index: number, image: string) {
-      this.lists[index].show_property_image = image;
+    this.lists[index].show_property_image = image;
   }
 
 
@@ -114,5 +114,20 @@ export class InvestmentOpportunityComponent implements OnInit {
     this.selectedId = id;
     this.eachChange = Math.random().toString();
   }
+
+calculateProgressWidth(amount: any, mainAmount: any): string {
+  //debugger
+  const numericAmount = parseFloat(amount);
+  const numericMainAmount = parseFloat(mainAmount);
+
+  if (isNaN(numericMainAmount) || numericMainAmount === 0) {
+    return '0%';
+  }
+
+  const percentage = (numericAmount / numericMainAmount) * 100;
+  return percentage.toFixed(2) + '%';
+}
+
+
 
 }

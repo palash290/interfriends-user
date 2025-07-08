@@ -11,6 +11,8 @@ import { UserList } from 'src/app/model/userList.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { bannersAndmessagesService } from 'src/app/service/bannersAndmessages.service';
+import { Router } from '@angular/router';
+declare var $: any;
 export interface PhotosApi {
   albumId?: number;
   id?: number;
@@ -45,8 +47,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   avgAmountMiscellaneous: string;
   totalAmountInvestment: string;
   avgAmountSafeKeeping: string;
-  avgAmountCycle: string;
-  avgAmountCycleJNR: string;
+  avgAmountCycle: any;
+  avgAmountCycleJNR: any;
   avgAmountHelpToBuy: string;
   avgAmountLoan: string;
   avgAmountPf: string;
@@ -134,7 +136,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(
     public authService: AuthService,
     public userService: UserService,
-    private getbanners: bannersAndmessagesService
+    private getbanners: bannersAndmessagesService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -259,23 +262,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         this.userService
           .avgSaving(this.groupId, this.userId)
-          .subscribe((response: any) => {
-            this.avgAmountCycle = response.avgAmountCycle;
-            //debugger
-            this.savingData = response.lastSixTransactions;
-            this.overAllTotal =
-              this.overAllTotal + parseInt(this.avgAmountCycle);
-            this.isLoadingSaving = false;
+          .subscribe({
+            next: (response: any) => {
+              this.avgAmountCycle = response.avgAmountCycle;
+              this.savingData = response.lastSixTransactions;
+              this.overAllTotal += parseInt(this.avgAmountCycle);
+              this.isLoadingSaving = false;
+            },
+            error: (error: any) => {
+              console.error('Error fetching savings:', error);
+              this.avgAmountCycle = 0;
+              this.isLoadingSaving = false;
+            }
           });
+
         this.userService
           .avgSavingJNR(this.groupId, this.userId)
-          .subscribe((response: any) => {
-            this.avgAmountCycleJNR = response.avgAmountCycle;
-            this.savingJnrData = response.lastSixTransactions;
-            this.overAllTotal =
-              this.overAllTotal + parseInt(this.avgAmountCycleJNR);
-            this.isLoadingSavingJNR = false;
+          .subscribe({
+            next: (response: any) => {
+              this.avgAmountCycleJNR = response.avgAmountCycle;
+              this.savingJnrData = response.lastSixTransactions;
+              this.overAllTotal += parseInt(this.avgAmountCycleJNR);
+              this.isLoadingSavingJNR = false;
+            },
+            error: (error: any) => {
+              console.error('Error fetching JNR savings:', error);
+              this.avgAmountCycleJNR = 0;
+              this.isLoadingSavingJNR = false;
+            }
           });
+
 
         this.userService
           .avgSafeKeeping(this.groupId, this.userId)
@@ -351,6 +367,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       } else {
       }
     });
+
+
+    this.userService.getNotificationCount1().subscribe((response: any) => {
+      //this.isProperty = response?.isProperty;
+      if (response?.is_investment_arrived == '1') {
+        $('#new').modal('show');
+      }
+    });
+  }
+
+  closeModal() {
+    $('#new').modal('hide');
+  }
+
+  GoInvestment() {
+    $('#new').modal('hide');
+    this.route.navigateByUrl('/user/notificationList')
   }
 
   fetchBanners() {
@@ -395,6 +428,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   toggleShow() {
     this.showHiddenFields = !this.showHiddenFields;
   }
+
+  getTrustScoreColor(score: number): string {
+    if (score >= 0 && score <= 650) return 'red';
+    if (score >= 651 && score <= 700) return '#F86624';
+    if (score >= 701 && score <= 800) return '#666666';
+    if (score >= 801 && score <= 850) return '#B28D00';
+    if (score >= 851 && score <= 1200) return '#048227';
+    if (score >= 1201 && score <= 1300) return '#0460c5';
+    if (score >= 1601 && score <= 1650) return 'black';
+    return 'transparent'; // default
+  }
+
 
 
 }

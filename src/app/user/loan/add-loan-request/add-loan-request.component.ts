@@ -179,7 +179,7 @@ export class AddLoanRequestComponent implements OnInit {
     public loanService: LoanService,
     public authService: AuthService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
@@ -206,7 +206,7 @@ export class AddLoanRequestComponent implements OnInit {
         validators: [Validators.required],
       }),
       loan_type: new FormControl(null, { validators: [Validators.required] }),
-      gurarantor: new FormControl('', {validators: [Validators.required]}),
+      gurarantor: new FormControl('', { validators: [Validators.required] }),
       emi: new FormControl(null, {}),
       document_image: new FormControl(null, {}),
       pay_date: new FormControl(null, {}),
@@ -215,6 +215,14 @@ export class AddLoanRequestComponent implements OnInit {
       provident: new FormControl(null, {}),
       admin_risk: new FormControl(null, {}),
     });
+  }
+
+  selectedIdFile!: File;
+
+  onIdSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedIdFile = event.target.files[0];
+    }
   }
 
   ngOnChanges(changes: { [property: string]: SimpleChange }): void {
@@ -310,7 +318,8 @@ export class AddLoanRequestComponent implements OnInit {
         this.form.value.total40Months,
         this.form.value.provident,
         this.form.value.admin_risk,
-        this.form.value.emi
+        this.form.value.emi,
+        this.selectedIdFile
       )
       .subscribe((response: any) => {
         console.log(response);

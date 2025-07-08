@@ -2,25 +2,46 @@
     <h1 class="logo logo-auth">InterFriends</h1>
 </header> -->
 <header class="header-menu_1 header-auth text-center pb-4">
-    <a>
-        <img src="assets/img/logo.svg" alt="">
-    </a>
+    <div class="et_logo_200">
+        <a>
+            <img src="assets/img/interfriend_white.png" alt="">
+        </a>
+    </div>
 </header>
 <section class="auth-center-content">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="auth-card">
-                    <h3>Welcome !</h3>
-                    <p>Signup to your account on Interfriends.</p>
+                    <h3 class="text-center">Welcome !</h3>
+                    <p class="text-center">Signup to your account on Interfriends.</p>
                     <form class="auth-form ct_signup_scroll" [formGroup]="form" (submit)="onSave()">
                         <div class="row">
+
+                            <div class="form-group"
+                                [ngClass]="{'has-error': form.get('image')?.invalid && form.get('image')?.touched}">
+                                <label for="imgAdd" class="d-block" style="cursor: pointer;">
+                                    <input accept="image/*" type="file" id="imgAdd" class="d-none"
+                                        (change)="onFileSelected($event)" formControlName="image" />
+                                    <div class="et_profile_img_12">
+                                        <img [src]="previewImageAdd || 'https://creativethoughtsinfo.com/interfriendsApp/assets/img/np_pro.png'"
+                                            width="100" height="100" />
+                                    </div>
+                                    <span class="text-center d-block mt-2">upload or take a picture of yourself that matches your ID photo</span>
+                                </label>
+                                <span class="help-block d-block text-center"
+                                    *ngIf="form.get('image')?.invalid && form.get('image')?.touched">
+                                    Please select your image.
+                                </span>
+                            </div>
+
+
                             <div class="col-md-6">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': form.get('first_name').invalid && form.get('first_name').touched}">
                                     <label>First Name</label>
                                     <input type="text" class="form-control" placeholder="Enter first name"
-                                        formControlName="first_name" />
+                                        formControlName="first_name" disabled />
                                     <span class="help-block"
                                         *ngIf="form.get('first_name').invalid && form.get('first_name').touched">
                                         Please enter a first name.
@@ -32,7 +53,7 @@
                                     [ngClass]="{'has-error': form.get('last_name').invalid && form.get('last_name').touched}">
                                     <label>Last Name</label>
                                     <input type="text" class="form-control" placeholder="Enter last name"
-                                        formControlName="last_name" />
+                                        formControlName="last_name" disabled />
                                     <span class="help-block"
                                         *ngIf="form.get('last_name').invalid && form.get('last_name').touched">
                                         Please enter a last name.
@@ -40,11 +61,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group"
+                                    [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
                                     <label>Email</label>
                                     <div class="position-relative">
                                         <input type="email" formControlName="email" placeholder="Enter email address"
-                                            class="form-control">
+                                            class="form-control" disabled>
                                         <div class="icon">
                                             <img src="assets/images/mail.png" align="" alt="" title="">
                                         </div>
@@ -55,8 +77,9 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group fp-grp">
-                                    <label>Password</label>
+                                <div class="form-group fp-grp"
+                                    [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+                                    <label>Choose a Password</label>
                                     <input type="password" formControlName="password" placeholder="Enter password"
                                         class="form-control">
 
@@ -81,11 +104,10 @@
                             <div class="col-md-6">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': form.get('dob').invalid && form.get('dob').touched}">
-                                    <label>Date Of Birth</label>
+                                    <label>Date of Birth</label>
                                     <input type="date" data-date-format="Y-m-d" class="form-control"
                                         placeholder="Enter dob" formControlName="dob" />
-                                    <span class="help-block"
-                                        *ngIf="form.get('dob').invalid && form.get('dob').touched">
+                                    <span class="help-block" *ngIf="form.get('dob').invalid && form.get('dob').touched">
                                         Please enter a dob.
                                     </span>
                                 </div>
@@ -95,7 +117,7 @@
                                     [ngClass]="{'has-error': form.get('mobile_number').invalid && form.get('mobile_number').touched}">
                                     <label>Mobile Number</label>
                                     <input type="text" class="form-control" placeholder="Enter mobile number"
-                                        formControlName="mobile_number" />
+                                        formControlName="mobile_number" disabled />
                                     <span class="help-block"
                                         *ngIf="form.get('mobile_number').invalid && form.get('mobile_number').touched">
                                         Please enter a mobile number.
@@ -114,6 +136,20 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                    [ngClass]="{'has-error': form.get('kin_number').invalid && form.get('kin_number').touched}">
+                                    <label>Next of kin Contact Number</label>
+                                    <input type="text" class="form-control"
+                                        placeholder="Enter next of kin contact number" formControlName="kin_number" />
+                                    <span class="help-block"
+                                        *ngIf="form.get('kin_number').invalid && form.get('kin_number').touched">
+                                        Please enter a kin contact number.
+                                    </span>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': form.get('post_code').invalid && form.get('post_code').touched}">
@@ -126,10 +162,65 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <!-- <div class="col-md-6">
+                                <div class="form-group"
+                                    [ngClass]="{'has-error': form.get('country').invalid && form.get('country').touched}">
+                                    <label>Country</label>
+                                    <select #country name="country" id="country" (change)="onCountryChange($event)"
+                                        formControlName="country" class="form-control">
+                                        <option [value]="null">-- Select Your Country --</option>
+                                        <option *ngFor="let country of countries" [value]="country | json">
+                                            {{ country.name }}
+                                        </option>
+                                    </select>
+                                    <span class="help-block"
+                                        *ngIf="form.get('country').invalid && form.get('country').touched">
+                                        Please enter a country.
+                                    </span>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="col-md-6">
+                                <div class="form-group"
+                                    [ngClass]="{'has-error': form.get('state').invalid && form.get('state').touched}">
+                                    <label>State</label>
+                                    <select #state name="state" id="state" (change)="onStateChange($event)"
+                                        formControlName="state" class="form-control">
+                                        <option [value]="null">-- Select Your State --</option>
+                                        <option *ngFor="let state of states" [value]="state | json">
+                                            {{ state.name }}
+                                        </option>
+                                    </select>
+                                    <span class="help-block"
+                                        *ngIf="form.get('state').invalid && form.get('state').touched">
+                                        Please enter a state.
+                                    </span>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="col-md-6">
+                                <div class="form-group"
+                                    [ngClass]="{'has-error': form.get('city').invalid && form.get('city').touched}">
+                                    <label>City/State</label>
+                                    <select #city name="city" id="city" (change)="onCityChange($event)"
+                                        formControlName="city" class="form-control">
+                                        <option [value]="null">-- Select Your City --</option>
+                                        <option *ngFor="let city of cities" [value]="city | json">
+                                            {{ city.name }}
+                                        </option>
+                                    </select>
+                                    <span class="help-block"
+                                        *ngIf="form.get('city').invalid && form.get('city').touched">
+                                        Please enter a city.
+                                    </span>
+                                </div>
+                            </div> -->
+
                             <div class="col-md-6">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': form.get('city').invalid && form.get('city').touched}">
-                                    <label>City</label>
+                                    <label>City/State</label>
                                     <input type="text" class="form-control" placeholder="Enter city"
                                         formControlName="city" />
                                     <span class="help-block"
@@ -138,6 +229,7 @@
                                     </span>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': form.get('home_number').invalid && form.get('home_number').touched}">
@@ -186,15 +278,42 @@
                                     </span>
                                 </div>
                             </div>
+
+
                             <div class="col-md-6">
                                 <div class="form-group"
-                                    [ngClass]="{'has-error': form.get('kin_number').invalid && form.get('kin_number').touched}">
-                                    <label>Next of kin Contact Number</label>
-                                    <input type="text" class="form-control" placeholder="Enter kin contact number"
-                                        formControlName="kin_number" />
-                                    <span class="help-block"
-                                        *ngIf="form.get('kin_number').invalid && form.get('kin_number').touched">
-                                        Please enter a kin contact number.
+                                    [ngClass]="{'has-error': form.get('id_proof').invalid && form.get('id_proof').touched}">
+                                    <label>Id Proof</label>
+                                    <input accept="image/*" type="file" class="form-control"
+                                        (change)="onIdSelected($event)" formControlName="id_proof" />
+                                    <span class="ct_fs_14 d-block ct_fw_600 mt-1">ID should matche the name you have
+                                        already provided to us</span>
+                                    <span class="help-block d-block"
+                                        *ngIf="form.get('id_proof').invalid && form.get('id_proof').touched">
+                                        Please select id proof.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Employement Type</label>
+                                    <select class="form-control" formControlName="employement_type">
+                                        <option value=null>If employed | Employement Type</option>
+                                        <option value="1">Full Time</option>
+                                        <option value="2">Part Time</option>
+                                        <!-- <option value="Student">Student</option>
+                                        <option value="Unemployed">Unemployed</option> -->
+                                        <option value="3">Self-employed</option>
+                                        <option value="4">Other</option>
+                                    </select>
+                                    <div class="icon hide-caret"></div>
+                                    <!-- <div class="icon">
+                                        <img src="assets/images/caret.png" align="" alt="" title="">
+                                    </div> -->
+                                    <span class="error-form"
+                                        *ngIf="form.get('employement_type').invalid && form.get('employement_type').touched">
+                                        Please enter employement type.
                                     </span>
                                 </div>
                             </div>
@@ -203,7 +322,7 @@
                         </div>
 
                         <div class="text-right">
-                            <a routerLink="/" class="fp-link">Alreay have account Login?</a>
+                            <a routerLink="/login" class="fp-link">Already have account Login?</a>
                         </div>
                         <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center"
                             [disabled]="isLoading">

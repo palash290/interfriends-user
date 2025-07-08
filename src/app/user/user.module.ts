@@ -62,6 +62,7 @@ import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { DeclinePageComponent } from './decline-page/decline-page.component';
+import { CircleListComponent } from './circle-list/circle-list.component';
 
 
 
@@ -139,6 +140,7 @@ import { DeclinePageComponent } from './decline-page/decline-page.component';
   WelcomePageComponent,
   ApprovalPageComponent,
   DeclinePageComponent,
+  CircleListComponent,
   ],
   providers: [],
   exports: [],

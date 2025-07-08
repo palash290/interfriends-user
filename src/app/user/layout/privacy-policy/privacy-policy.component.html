@@ -1,23 +1,26 @@
-<div class="hold-transition sidebar-mini" [ngClass]="{'skin-blue': checkAdminType(),'skin-red-light': !checkAdminType()}">
-  <div class="wrapper">
+<div class="hold-transition sidebar-mini"
+    [ngClass]="{'skin-blue': checkAdminType(),'skin-red-light': !checkAdminType()}">
+    <div class="wrapper">
 
-   <app-header></app-header>
-    <!-- Left side column. contains the logo and sidebar -->
+        <app-header></app-header>
+        <!-- Left side column. contains the logo and sidebar -->
 
-    <!-- Content Wrapper. Contains page content -->
-    <section class="savings-box container">
-      <!-- Content Header (Page header) -->
-   
-        <h1 class="mt-2">
+        <!-- Content Wrapper. Contains page content -->
+        <section class="savings-box container">
+            <!-- Content Header (Page header) -->
+
+            <!-- <h1 class="mt-2">
           Privacy Policy
-        </h1>
-  
+        </h1> -->
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="row">
-          <!-- <div class="col-md-12" [innerHTML]="termAndcondition"></div> -->
-          <div>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-md-12" [innerHTML]="info"></div>
+
+                    <!-- <div>
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Introduction
               </h4>
   
@@ -26,11 +29,6 @@
                   your personal data when you visit our website www.Interfriends.com or use our application
                   (irrespectively of your location) and tell you about your privacy rights and how the law protects you.
               </p>
-              <!-- <p class="et_dark_blue_text et_fs_18">
-                  This privacy policy is provided in a layered format, so you can click through to the specifi c areas set
-                  out below. Alternatively, you can download a pdf version of the policy here: ???? Please also use the
-                  Glossary to understand the meaning of some of the terms used in this privacy policy.
-              </p> -->
   
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">1. Important information and who we are
                   Purpose of this privacy policy
@@ -51,7 +49,7 @@
                   are fully aware of how and why we are using your data. This privacy policy supplements other privacy
                   policies and is not intended to override them.</p>
   
-              <!-- Controller Section -->
+         
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Controller</h4>
   
               <p class="et_dark_blue_text et_fs_18">
@@ -64,7 +62,7 @@
                   privacy policy. If you have any questions about this privacy policy, including any requests to exercise
                   your legal rights, please contact us using the details set out below.
               </p>
-              <!-- Contact Details Section -->
+              
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Contact details</h4>
   
               <p class="et_dark_blue_text et_fs_18">
@@ -76,7 +74,7 @@
                   Hotline: 19686
               </p>
   
-              <!-- Changes to the Privacy Policy Section -->
+             
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Changes to the privacy policy and your duty to
                   inform us of changes</h4>
   
@@ -91,7 +89,7 @@
                   informed if your personal data changes during your relationship with us.
               </p>
   
-              <!-- Third-party Links Section -->
+             
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Third-party links</h4>
   
               <p class="et_dark_blue_text et_fs_18">
@@ -101,7 +99,7 @@
                   leave our website, we encourage you to read the privacy policy of every website you visit.
               </p>
   
-              <!-- Data We Collect About You Section -->
+              
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">2. The data we collect about you</h4>
   
               <p class="et_dark_blue_text et_fs_18">
@@ -160,7 +158,7 @@
                   collect any information about criminal convictions and offences.</p>
   
   
-              <!-- If You Fail to Provide Personal Data Section -->
+             
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">If you fail to provide personal data</h4>
   
               <p class="et_dark_blue_text et_fs_18">
@@ -171,7 +169,7 @@
                   time.
               </p>
   
-              <!-- How Is Your Personal Data Collected Section -->
+           
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">3. How is your personal data collected?</h4>
   
               <p class="et_dark_blue_text et_fs_18">
@@ -219,7 +217,7 @@
                   </li>
               </ul>
   
-              <!-- How We Use Your Personal Data Section -->
+             
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold mt-3">4. How we use your personal data</h4>
   
               <ul class="et_dark_blue_text et_fs_18">
@@ -240,8 +238,7 @@
                       text message. You have the right to withdraw consent to marketing at any time by contacting us.</li>
               </ul>
   
-  
-              <!-- Purposes for Which We Will Use Your Personal Data -->
+
               <div class="et_dark_blue_text et_fs_18">
                   <p><strong>Purposes for which we will use your personal data:</strong></p>
                   <p>We have set out below, in a table format, a description of all the ways we plan to use your personal
@@ -350,7 +347,6 @@
                                   business)</td>
                           </tr>
   
-                          <!-- You can continue adding more rows for other purposes -->
                       </tbody>
                   </table>
               </div>
@@ -403,7 +399,6 @@
               </p>
   
   
-              <!-- How We Use Your Personal Data Section -->
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold mt-3">5. Disclosures of your personal data</h4>
   
               <ul class="et_dark_blue_text et_fs_18">
@@ -460,7 +455,7 @@
   
   
   
-              <!-- How We Use Your Personal Data Section -->
+            
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold mt-3">8. Your legal rights</h4>
   
               <ul class="et_dark_blue_text et_fs_18">
@@ -517,9 +512,7 @@
   
               <p class="et_dark_blue_text et_fs_18">Comply with a legal obligation means processing your personal data
                   where it is necessary for compliance with a legal obligation that we are subject to.</p>
-  
-  
-              <!-- How We Use Your Personal Data Section -->
+
               <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold mt-3">THIRD PARTIES</h4>
   
               <ul class="et_dark_blue_text et_fs_18">
@@ -591,14 +584,17 @@
                   withdraw your consent, we may not be able to provide certain products or services to you. We will advise
                   you if this is the case at the time you withdraw your consent.</p>
   
-          </div>
-      </div>
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
-    </section>
-    <!-- /.content-wrapper -->
-    <app-footer></app-footer>
-  </div>
-  <!-- ./wrapper -->
-  </div>
+          </div> -->
+
+
+                </div>
+
+            </section>
+
+        </section>
+        <app-sub-menu></app-sub-menu>
+        <app-mobile-menu></app-mobile-menu>
+        <app-footer></app-footer>
+    </div>
+
+</div>

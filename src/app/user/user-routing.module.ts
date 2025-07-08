@@ -28,6 +28,7 @@ import { HelptobuyLayoutComponent } from './helptobuy-layout/helptobuy-layout.co
 import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/help2buy-loanlist.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
+import { CircleListComponent } from './circle-list/circle-list.component';
 
 
 
@@ -83,6 +84,11 @@ const routes: Routes = [
       {
         path: 'userProfile',
         component: UserProfileComponent,
+        canActivate: [AuthUserGuard]
+      },
+       {
+        path: 'circle-list',
+        component: CircleListComponent,
         canActivate: [AuthUserGuard]
       },
       {

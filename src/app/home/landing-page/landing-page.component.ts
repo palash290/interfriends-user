@@ -107,23 +107,7 @@ export class LandingPageComponent implements OnInit {
     },
   ];
 
-  customOptions = {
-    loop: true,
-    margin: 10,
-    autoHeight: true,
-    nav: true,
-    dots: true,
-    slideBy: 3,
-    navText: [
-      '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
-      '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
-    ],
-    responsive: {
-      0: { items: 1, slideBy: 1 },
-      600: { items: 2, slideBy: 2 },
-      1000: { items: 3, slideBy: 3 }
-    }
-  };
+
 
   customOptions1 = {
     loop: true,
@@ -288,8 +272,32 @@ One unique thing about Interfriends is the honesty and the transparency of the l
     nav: true,
     autoplay: true,
     autoplayTimeout: 5000,
-    autoplayHoverPause: true
+    autoplayHoverPause: true,
+    smartSpeed: 1000  // Adjust the speed (in milliseconds)
   };
+
+  customOptions = {
+    loop: true,
+    margin: 10,
+    autoHeight: true,
+    nav: true,
+    dots: true,
+    slideBy: 3,
+    navText: [
+      '<span class="custom-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
+      '<span class="custom-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
+    ],
+    responsive: {
+      0: { items: 1, slideBy: 1 },
+      600: { items: 2, slideBy: 2 },
+      1000: { items: 3, slideBy: 3 }
+    },
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: true,
+    smartSpeed: 3000  // Adjust the speed (in milliseconds)
+  };
+
 
 
 }

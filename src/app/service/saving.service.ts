@@ -7,10 +7,10 @@ import { environment } from '../../environments/environment'
 const API_URL = environment.apiUrl;
 const ADMIN_URL = environment.adminUrl;
 
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class SavingService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   userSingleCycle(
     group_id: string,
@@ -27,8 +27,8 @@ export class SavingService {
       message: string;
       groupCycleList: any
     }>(
-        API_URL + '/getuser_group_by_singlecycle', userData
-      );
+      API_URL + '/getuser_group_by_singlecycle', userData
+    );
   }
 
 
@@ -46,7 +46,7 @@ export class SavingService {
       lists: any;
     }>(
       API_URL + '/Admin/groupCycleAll_list_web', userData
-      );
+    );
   }
 
 
@@ -66,8 +66,28 @@ export class SavingService {
       payoutCycle: any;
     }>(
       API_URL + '/Admin/payoutDetail', userData
-      );
+    );
   }
+
+  safekeepingDetail(
+    group_id: string,
+    group_cycle_id: string,
+    user_id: string,
+  ): any {
+    const userData = new FormData();
+    userData.append('group_id', group_id);
+    userData.append('group_cycle_id', group_cycle_id);
+    userData.append('user_id', user_id);
+
+    return this.http.post<{
+      success: string;
+      message: string;
+      payoutCycle: any;
+    }>(
+      API_URL + '/Admin/safekeepingDetail', userData
+    );
+  }
+
 
 
 
@@ -75,7 +95,7 @@ export class SavingService {
     group_id: string,
     user_id: string,
     group_cycle_id: string,
-    type:string
+    type: string
   ): any {
     const userData = new FormData();
     userData.append('group_id', group_id);
@@ -90,7 +110,7 @@ export class SavingService {
       totalAvgAmount: string;
     }>(
       API_URL + '/cylcleAvg', userData
-      );
+    );
   }
 
   cylcleAvgPayout(
@@ -110,7 +130,7 @@ export class SavingService {
       totalAvgAmount: string;
     }>(
       API_URL + '/cylcleAvgPayout', userData
-      );
+    );
   }
 
 

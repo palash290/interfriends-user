@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule} from './app-routing.module';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AppRoutingModule } from './app-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -23,6 +23,7 @@ import { MessagingService } from './service/messaging.service';
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     }),
   ],
   providers: [],
+  //{ provide: LocationStrategy, useClass: PathLocationStrategy }
   bootstrap: [AppComponent]
 })
 export class AppModule { }

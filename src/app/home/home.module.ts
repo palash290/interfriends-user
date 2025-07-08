@@ -28,6 +28,7 @@ import { SharedFaqComponent } from './shared-faq/shared-faq.component';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { HomePrivacyComponent } from './home-privacy/home-privacy.component';
 import { HomeTermsComponent } from './home-terms/home-terms.component';
+import { UserSignupComponent } from './user-signup/user-signup.component';
 
 
 
@@ -65,7 +66,8 @@ import { HomeTermsComponent } from './home-terms/home-terms.component';
     SharedFaqComponent,
     HomeFooterComponent,
     HomePrivacyComponent,
-    HomeTermsComponent
+    HomeTermsComponent,
+    UserSignupComponent
   ],
   providers: [
   ],

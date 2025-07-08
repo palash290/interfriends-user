@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.0.0",
+  "homepage": "",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,6 +33,7 @@
     "angular2-multiselect-dropdown": "^5.0.4",
     "chart.js": "^2.9.3",
     "ckeditor4-angular": "^2.2.1",
+    "country-state-city": "^3.2.1",
     "firebase": "^8.2.9",
     "jquery": "^3.6.0",
     "ng-circle-progress": "1.5",

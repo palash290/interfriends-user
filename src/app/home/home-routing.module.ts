@@ -30,11 +30,11 @@ const routes: Routes = [
       //     component: HomePageComponent
       //  },
       {
-        path: 'home',
+        path: '',
         component: LandingPageComponent
       },
       {
-        path: '',
+        path: 'login',
         component: LoginComponent,
         canActivate: [AuthHomeGuard]
       },

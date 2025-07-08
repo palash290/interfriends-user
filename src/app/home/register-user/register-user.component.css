@@ -13,6 +13,12 @@
   .form-group.has-error .help-block {
     color: #dd4b39
 }
+/* .ct_fw_600{
+  font-weight: 600;
+} */
+.ct_fs_14{
+  font-size: 14px;
+}
 
 .header-menu_1 {
   /* position: fixed; */
@@ -44,4 +50,11 @@
 .et_outline_btn:hover{
   color: #fff;
 }
-
+.et_profile_img_12{
+  text-align: center;
+}
+.et_profile_img_12 img{
+  border-radius: 100px;
+  margin-inline: auto;
+  display: block;
+}

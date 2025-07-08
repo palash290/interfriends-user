@@ -1,4 +1,4 @@
-<header class="header-menu wow bounceInDown" data-wow-duration="1s">
+<header class="header-menu wow bounceInDown et_header_menu23" data-wow-duration="1s">
   <nav class="container navbar navbar-expand-xl d-flex align-items-center justify-content-between py-32 px-0"
     style="background: transparent">
     <div class="header-box">
@@ -7,18 +7,21 @@
           <img src="assets/images/newLogo.jpeg" alt="">
         </h1> -->
         <!-- <h1 class="logo">InterFriends</h1> -->
-         
-        <a>
-          <img src="assets/img/logo.svg" alt="">
+
+        <a data-toggle="modal" data-target="#logoutModal">
+          <img src="assets/img/interfriend_white.png" alt="">
         </a>
-        
+
       </a>
-      <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      <button class="navbar-toggler bg-white" type="button" (click)="onToggleMenu()"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa fa-bars"></i>
       </button>
     </div>
-    <div class="collapse navbar-collapse mt-xl-0 mt-4" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse mt-xl-0 mt-4" [ngClass]="showMenu ? 'show' : '' " id="navbarNavDropdown">
+      <div class="et_close_inner" (click)="onToggleMenu()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/user/dashboard">Dashboard</a>
@@ -61,7 +64,7 @@
             href="javascript:void(0)" (click)="onToggleMenu()">
             <img [src]="profileImage" class="img-fluid">
           </a>
-          <ul class="menu-show" [ngClass]="{'d-none': showMenu}" style="list-style: none;">
+          <ul class="menu-show" [ngClass]="{'d-none': !showMenu}" style="list-style: none;">
             <li>
               <a routerLink="/user/userProfile" class="d-flex">
                 <div class="menu-icon">
@@ -71,6 +74,17 @@
                 <div>Profile</div>
               </a>
             </li>
+
+            <li>
+              <a routerLink="/user/circle-list" class="d-flex">
+                <div class="menu-icon">
+                  <img src="assets/images/user-menu.png" class="dark-icon">
+                  <img src="assets/images/user-menu-hover.png" class="colored-icon">
+                </div>
+                <div>My Circle</div>
+              </a>
+            </li>
+
             <li>
               <a routerLink="/user/notificationList" class="d-flex">
                 <div class="menu-icon">

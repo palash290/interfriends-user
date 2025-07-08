@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ApprovalPageComponent } from './user/approval-page/approval-page.component';
 import { DeclinePageComponent } from './user/decline-page/decline-page.component';
 

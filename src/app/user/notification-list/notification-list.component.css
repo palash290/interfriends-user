@@ -7,7 +7,12 @@
   border-radius: 5px;
 }
 
-.view-btns-box a:hover, .view-btns-box a:focus{
+.view-btns-box a:hover,
+.view-btns-box a:focus {
   background-color: #03182c;
   border-color: #03182c;
+}
+
+.box-line-white {
+  padding-top: 24px !important;
 }

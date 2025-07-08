@@ -42,23 +42,22 @@ export class RecommendUserComponent implements OnInit {
         .filter((user: any) => user.user_id !== this.userId)
         .sort((a: any, b: any) => a.first_name.localeCompare(b.first_name));
     });
-    
+
 
     this.form = new FormGroup({
       // name: new FormControl(null, { validators: [Validators.required] }),
       firstName: new FormControl(null, { validators: [Validators.required] }),
       lastName: new FormControl(null, { validators: [Validators.required] }),
-      email: new FormControl(null, { validators: [Validators.required] }),
+      email: new FormControl(null, { validators: [Validators.required, Validators.email] }),
       mobile_number: new FormControl(null, { validators: [Validators.required] }),
       friend_employed: new FormControl(null, { validators: [Validators.required] }),
       employement_type: new FormControl(null, { validators: [Validators.required] }),
       know_this_person: new FormControl(null, { validators: [Validators.required] }),
       know_them_as_what: new FormControl(null, { validators: [Validators.required] }),
       recommending_this_person: new FormControl(null, { validators: [Validators.required] }),
-      recommend_user_by: new FormControl(null, { validators: [Validators.required] })
+      recommend_user_by: new FormControl('', { validators: [Validators.required] })
     });
   };
-
 
 
   onSave(): void {
@@ -66,6 +65,10 @@ export class RecommendUserComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
+    // if(this.form.value.recommend_user_by == 'null'){
+    //   return
+    // }
 
     this.isLoading = true;
 

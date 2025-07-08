@@ -89,3 +89,21 @@ mwl-gauge > .gauge > .value-text {
 .et_key_fact_slider .owl-next ,.et_key_fact_slider .owl-prev{
   background: #7b7b7b !important;
 }
+
+.et_header_menu23 {
+    position: sticky;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    animation: slideDown 0.35s ease-out;
+
+}
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

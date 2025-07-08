@@ -58,12 +58,12 @@ export class VerifyUserComponent implements OnInit {
 
     this.isLoading = true;
     this.userService.verifyUser(this.form.value.password, this.token).subscribe((response: any) => {
-      if (response.success  === '1') {
+      if (response.success  == '1') {
         this.toastr.success(response.message);
         this.router.navigate(['/']);
       } else {
         this.toastr.error(response.message);
-        this.router.navigate(['/']);
+        //this.router.navigate(['/']);
       }
     });
   }

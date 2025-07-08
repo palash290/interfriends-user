@@ -32,9 +32,9 @@ export class WelfareLoanComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.groupId = this.authService.getgroupId();
     this.loanService.  welfareList(this.userId, this.groupId).subscribe((response: any) => {
-        this.laonPending = response.listPending;
+        this.laonPending = response.listPending.reverse();
         this.laonComplete = response.listComplete;
-        this.laonActive = response.listActive;
+        this.laonActive = response.listActive.reverse();
         this.isLoading = false;
         this.avgAmount = response.avgAmount;
         this.avgComplete = response.avgComplete;

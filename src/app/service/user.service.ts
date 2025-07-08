@@ -555,7 +555,7 @@ export class UserService {
       success: string,
       message: string,
     }>(
-      API_URL + '/recommendUser010525', authData
+      API_URL + '/recommendUserProcess', authData
     );
   }
 
@@ -665,6 +665,22 @@ export class UserService {
     );
   }
 
+  circleList(
+    ofset: number,
+    userId: string
+  ): any {
+    const audioData = new FormData();
+    audioData.append('start', ofset.toString());
+    audioData.append('user_id', userId);
+    return this.http.post<{
+      success: string,
+      message: string,
+      lists: any
+    }>(
+      API_URL + '/getAllCircleUsers', audioData
+    );
+  }
+
 
   getNotificationCount(
   ): any {
@@ -677,6 +693,20 @@ export class UserService {
       count: number
     }>(
       API_URL + '/get_notification_count', audioData
+    );
+  }
+
+    getNotificationCount1(
+  ): any {
+    const audioData = new FormData();
+    let userId = this.authService.getUserId();
+    audioData.append('user_id', userId);
+    return this.http.post<{
+      success: string,
+      message: string,
+      count: number
+    }>(
+      API_URL + '/get_investment_notification_count', audioData
     );
   }
 
@@ -789,6 +819,72 @@ export class UserService {
       userinfo: any
     }>(
       API_URL + '/updateProfile', authData
+    );
+  }
+
+
+
+
+
+  getCycleTotalAmount(
+    user_id: string,
+    groupLifecycle_id: string,
+    group_id: string,
+  ): any {
+    const audioData = new FormData();
+    audioData.append('group_id', group_id);
+    audioData.append('groupLifecycle_id', groupLifecycle_id);
+    audioData.append('user_id', user_id);
+    return this.http.post<{
+      success: string,
+      message: string,
+      info: any
+    }>(
+      API_URL + '/Admin/getCycleTotalAmount', audioData
+    );
+  }
+
+  addPayout(
+    user_id: string,
+    group_cycle_id: string,
+    group_id: string,
+    pfNote: any
+  ): any {
+    const userData = new FormData();
+    userData.append('admin_id', '1');
+    userData.append('user_id', user_id);
+    userData.append('group_cycle_id', group_cycle_id);
+    userData.append('group_id', group_id);
+    userData.append('note', pfNote);
+    userData.append('requested_by', 'user');
+    return this.http.post<{
+      success: string;
+      message: string;
+    }>(
+      API_URL + '/Admin/addPayout', userData
+    );
+  }
+
+
+  addSafeKeeping(
+    user_id: string,
+    group_cycle_id: string,
+    group_id: string,
+    sfNote: any
+  ): any {
+    const userData = new FormData();
+    userData.append('user_id', user_id);
+    userData.append('group_cycle_id', group_cycle_id);
+    userData.append('group_id', group_id);
+    userData.append('admin_id', '1');
+    userData.append('requested_by', 'user');
+    userData.append('note', sfNote);
+
+    return this.http.post<{
+      success: string;
+      message: string;
+    }>(
+      API_URL + '/Admin/addSafeKeeping', userData
     );
   }
 

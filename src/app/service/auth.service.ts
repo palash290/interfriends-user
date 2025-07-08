@@ -177,7 +177,6 @@ export class AuthService {
   }
 
 
-
   private sveAuthData(token: string, userId: string, email: string, name: string, profile_image: string, profile_image_thumb: string, group_id: string): any {
     // localStorage.setItem('token_interFriendWeb', token);
     // localStorage.setItem('userId_interFriendWeb', userId);

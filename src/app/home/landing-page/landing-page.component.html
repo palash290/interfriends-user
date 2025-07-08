@@ -37,7 +37,7 @@
                                     <!-- Optional CTA -->
                                     <!--
                     <div class="text-center mt-4">
-                      <a routerLink="/" class="et_orange_btn et_fit_content mx-auto">Get Started</a>
+                      <a routerLink="/login" class="et_orange_btn et_fit_content mx-auto">Get Started</a>
                     </div>
                     -->
                                 </div>
@@ -229,7 +229,7 @@
                 </h4> -->
                 <ul class="et_list_style_disc mt-3 text-white">
                     <li>
-                        Interfriends is more than just a savings platform—it's a trusted Community-centred network.
+                        Interfriends is more than just a savings platform—it's a trusted community-centred network.
                     </li>
                     <li class="mt-2">Designed to help you achieve your financial goals with ease.</li>
                     <li class="mt-2">Ideal for future planning, handling unexpected expenses, or saving for major
@@ -477,28 +477,33 @@
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_1.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">2012</h3>
-                    <span class="et_badge w-100">Established</span>
+                    <span style="cursor: pointer;" class="et_badge w-100" data-toggle="modal"
+                        data-target="#established">Established</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_2.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">200+</h3>
-                    <span class="et_badge w-100">Unique Members</span>
+                    <span style="cursor: pointer;" class="et_badge w-100" data-toggle="modal"
+                        data-target="#unique_members">Unique Members</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_3.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">30+</h3>
-                    <span class="et_badge w-100">Active Savings Circles</span>
+                    <span style="cursor: pointer;" class="et_badge w-100" data-toggle="modal"
+                        data-target="#active_savings_circles">Active
+                        Savings Circles</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
                 <div class="et_project_counter_card">
                     <img src="assets/img/home/icon_4.png" alt="">
                     <h3 class="et_fs_34 text-white et_ff_Gilroy-SemiBold mt-3">£1M+ </h3>
-                    <span class="et_badge w-100">Total Rotated</span>
+                    <span style="cursor: pointer;" class="et_badge w-100" data-toggle="modal"
+                        data-target="#total_rotated">Total Rotated</span>
                 </div>
             </div>
 
@@ -612,7 +617,7 @@
                             <p class="text-ceter">
                                 If you are interested in joining Interfriends but have not yet been recommended, we
                                 invite you to express your interest by providing information about yourself. <a
-                                    routerLink="/home" data-toggle="modal" data-target="#viewModal223">Click
+                                    routerLink="/" data-toggle="modal" data-target="#viewModal223">Click
                                     here</a> to express interest
                             </p>
 
@@ -644,6 +649,86 @@
             <div class="modal-body text-secondary fs-5">
                 <app-new-user-info></app-new-user-info>
             </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="established" tabindex="-1" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <!-- <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5> -->
+                <button type="button" class="close ct_modal_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                Interfriends started in 2012 as a small group of friends and family to support each other with access to
+                bulk cash.
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="unique_members" tabindex="-1" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <!-- <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5> -->
+                <button type="button" class="close ct_modal_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                From a small group of nine, we have grown organically to over 200 closely connected members. Membership
+                is by recommendation only.
+            </div>
+
+            <!-- <button type="button" class="et_orange_btn et_outline_btn" data-dismiss="modal">Close</button> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="active_savings_circles" tabindex="-1"
+    aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <!-- <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5> -->
+                <button type="button" class="close ct_modal_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                To maintain the close connection between members, our circles are created with up to 25 members
+                who are closely connected.
+            </div>
+
+            <!-- <button type="button" class="et_orange_btn et_outline_btn" data-dismiss="modal">Close</button> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show ct_view_modal" style="z-index: 9999;" id="total_rotated" tabindex="-1" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow-lg border-0">
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <!-- <h5 class="modal-title fw-bold text-center text-center">Welcome to Interfriends</h5> -->
+                <button type="button" class="close ct_modal_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-secondary fs-5">
+                Since our formation, we have saved and circulated over £1m+ between us.
+            </div>
+
+            <!-- <button type="button" class="et_orange_btn et_outline_btn" data-dismiss="modal">Close</button> -->
         </div>
     </div>
 </div>
