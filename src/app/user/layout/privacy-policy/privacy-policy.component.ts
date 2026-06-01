@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService} from 'src/app/service/user.service';
+import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service'
 import { ToastrService } from 'ngx-toastr';
 
@@ -30,27 +30,27 @@ export class PrivacyPolicyComponent implements OnInit {
   }
 
 
-/*   onSave(): any {
-    if(this.info) {
-    } else {
-      this.toastr.error('Please enter info');
-      return;
-    }
+  // onSave(): any {
+  //   if (this.info) {
+  //   } else {
+  //     this.toastr.error('Please enter info');
+  //     return;
+  //   }
 
-    this.userService.addPrivacyPolicy(
-      this.info
-      ).subscribe((response: any) => {
-        this.isLoading = false;
-        if (response.success === '1') {
-          this.toastr.success(response.message);
-        } else {
-          this.toastr.error(response.message);
-        }
-    });
-  }
- */
+  //   this.userService.addPrivacyPolicy(
+  //     this.info
+  //   ).subscribe((response: any) => {
+  //     this.isLoading = false;
+  //     if (response.success === '1') {
+  //       this.toastr.success(response.message);
+  //     } else {
+  //       this.toastr.error(response.message);
+  //     }
+  //   });
+  // }
+
   checkAdminType() {
-    if(localStorage.getItem('admin_type_interFriendAdmin') === '2') {
+    if (localStorage.getItem('admin_type_interFriendAdmin') === '2') {
       return true;
     } else {
       return false;

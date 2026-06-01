@@ -11,7 +11,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
-import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 // firebase
@@ -19,11 +18,9 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import { MessagingService } from './service/messaging.service';
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [

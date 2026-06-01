@@ -5,8 +5,6 @@
             <img src="assets/img/interfriend_white.png" alt="">
         </a>
     </div>
-
-
 </header>
 
 <section class="auth-center-content">
@@ -20,12 +18,10 @@
                         <div class="form-group">
                             <div class="form-group fp-grp">
                                 <input type="text" formControlName="name" placeholder="Enter name" class="form-control">
-
                                 <span class="error-message"
                                     *ngIf="form.get('name').invalid && form.get('name').touched">Please
                                     Enter Name</span>
                             </div>
-
                             <input type="email" formControlName="email" placeholder="Enter email address"
                                 class="form-control">
 
@@ -33,7 +29,6 @@
                                 *ngIf="form.get('email').invalid && form.get('email').touched">Please Enter
                                 Email</span>
                         </div>
-
 
                         <!-- <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center"
                             [disabled]="isLoading">
@@ -78,16 +73,13 @@
 
                     If you're still having trouble logging in, contact the admin for assistance.
                 </p>
-
                 <p *ngIf="apiResponse?.message == 'approved'">
                     Please check your mail and complete regrestration process.
                 </p>
-
                 <p *ngIf="apiResponse?.message == 'pending_or_reject'">
                     Your request is either pending or rejected. Please contact the admin. <a
                         routerLink="/contact-us">Click here</a>.
                 </p>
-
                 <div class="d-flex justify-content-center gap-2 mt-4">
                     <button (click)="showModal = false" class="et_orange_btn et_outline_btn">Close</button>
 
@@ -99,7 +91,6 @@
     </div>
 </div>
 <!-- <div class="modal-backdrop fade show" *ngIf="showModal"></div> -->
-
 <div class="modal fade" style="z-index: 9999;" id="viewModal2233" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content p-4 rounded-4 shadow-lg border-0">
@@ -115,24 +106,20 @@
                     If you have already received a recommendation and a welcome email, please enter your email address
                     to proceed with the registration process.
                 </p>
-
                 <!-- <p>
                     If you are interested in joining Interfriends but haven’t yet received a recommendation, we invite
                     you to express your interest by providing information about yourself.
                 </p> -->
-
                 <p class="text-ceter">
                     If you are interested in joining Interfriends but have not yet been recommended, we
                     invite you to express your interest by providing information about yourself. <a routerLink="/"
                         data-toggle="modal" data-target="#viewModal22" data-dismiss="modal">Click
                         here</a> to express interest
                 </p>
-
                 <!-- <p>
                     <strong>Please provide:</strong> First Name, Last Name, Email, Country of Residence, Telephone
                     Number, Profession, and Type of Employment.
                 </p> -->
-
                 <p class="mb-4">
                     Thank you for your interest in joining. Our team will contact you shortly.
                 </p>

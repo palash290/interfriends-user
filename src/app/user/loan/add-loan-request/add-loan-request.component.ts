@@ -34,6 +34,7 @@ export class AddLoanRequestComponent implements OnInit {
   user: UserList;
   emi: number;
   unique_ID: string;
+
   payOutList: any = [
     {
       1: '6840.00',
@@ -70,6 +71,7 @@ export class AddLoanRequestComponent implements OnInit {
     { 1: '1440.00', 2: '2880.00', 3: '4320.00', 4: '5760.00', 5: '7200.00' },
     { 1: '20000.00', 2: '18400.00', 3: '16000.00', 4: '13600.00' },
   ];
+
   commonDataList: any = [
     {
       1: '855.00',
@@ -163,6 +165,7 @@ export class AddLoanRequestComponent implements OnInit {
     { 1: '50.00', 2: '100.00', 3: '150.00', 4: '200.00', 5: '250.00' },
     { 1: '625', 2: '575', 3: '500', 4: '425' },
   ];
+
   payOutElem: any = {};
   commonDataElem: any = {};
   totalPayElem: any = {};
@@ -215,6 +218,13 @@ export class AddLoanRequestComponent implements OnInit {
       provident: new FormControl(null, {}),
       admin_risk: new FormControl(null, {}),
     });
+
+    if (this.mainId == '2') {
+      this.form.get('document_image')?.setValidators([Validators.required]);
+    } else {
+      this.form.get('document_image')?.clearValidators();
+    }
+    this.form.get('document_image')?.updateValueAndValidity();
   }
 
   selectedIdFile!: File;
@@ -351,60 +361,57 @@ export class AddLoanRequestComponent implements OnInit {
     this.emi = 0;
   }
 
-  /*onInputAmount(event: any): void {
-    if(this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type) {
-      console.log('hellowwwwww');
-      if(this.form.value.loan_type === '2') {
-        let interest_payable = ((parseFloat(this.form.value.loan_amount)*8)/100);
-        let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
-        this.emi = total_payment/parseFloat(this.form.value.tenure);
-        this.emi = parseFloat(this.emi.toFixed(3));
-      } else {
-        let interest_payable = ((parseFloat(this.form.value.loan_amount)*10)/100);
-        let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
-        this.emi = total_payment/parseFloat(this.form.value.tenure);
-        this.emi = parseFloat(this.emi.toFixed(3));
-      }
+  // onInputAmount(event: any): void {
+  //   if (this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type) {
+  //     console.log('hellowwwwww');
+  //     if (this.form.value.loan_type === '2') {
+  //       let interest_payable = ((parseFloat(this.form.value.loan_amount) * 8) / 100);
+  //       let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
+  //       this.emi = total_payment / parseFloat(this.form.value.tenure);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     } else {
+  //       let interest_payable = ((parseFloat(this.form.value.loan_amount) * 10) / 100);
+  //       let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
+  //       this.emi = total_payment / parseFloat(this.form.value.tenure);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     }
+  //   }
+  // }
 
-    }
- }*/
+  // onInputAmount1(eventData: string): void {
+  //   if (this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type && eventData) {
+  //     console.log('hellowwwwww');
+  //     if (this.form.value.loan_type === '2') {
+  //       let interest_payable = ((parseFloat(eventData) * 8) / 100);
+  //       let total_payment = parseFloat(eventData) + interest_payable;
+  //       this.emi = total_payment / parseFloat(this.form.value.tenure);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     } else {
+  //       let interest_payable = ((parseFloat(eventData) * 10) / 100);
+  //       let total_payment = parseFloat(eventData) + interest_payable;
+  //       this.emi = total_payment / parseFloat(this.form.value.tenure);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     }
+  //   }
+  // }
 
-  /*onInputAmount1(eventData: string): void {
-    if(this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type && eventData) {
-      console.log('hellowwwwww');
-      if(this.form.value.loan_type === '2') {
-        let interest_payable = ((parseFloat(eventData)*8)/100);
-        let total_payment = parseFloat(eventData) + interest_payable;
-        this.emi = total_payment/parseFloat(this.form.value.tenure);
-        this.emi = parseFloat(this.emi.toFixed(3));
-        this.emi = parseFloat(this.emi.toFixed(3));
-      } else {
-        let interest_payable = ((parseFloat(eventData)*10)/100);
-        let total_payment = parseFloat(eventData) + interest_payable;
-        this.emi = total_payment/parseFloat(this.form.value.tenure);
-        this.emi = parseFloat(this.emi.toFixed(3));
-      }
-
-    }
- }*/
-
-  /*onTermChange1(eventData: string): void {
-  if(this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type) {
-    console.log('hellowwwwww');
-    if(this.form.value.loan_type === '2') {
-      let interest_payable = ((parseFloat(this.form.value.loan_amount)*8)/100);
-      let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
-      this.emi = total_payment/parseFloat(eventData);
-      this.emi = parseFloat(this.emi.toFixed(3));
-    } else {
-      let interest_payable = ((parseFloat(this.form.value.loan_amount)*10)/100);
-      let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
-      this.emi = total_payment/parseFloat(eventData);
-      this.emi = parseFloat(this.emi.toFixed(3));
-    }
-
-  }
-}*/
+  // onTermChange1(eventData: string): void {
+  //   if (this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type) {
+  //     console.log('hellowwwwww');
+  //     if (this.form.value.loan_type === '2') {
+  //       let interest_payable = ((parseFloat(this.form.value.loan_amount) * 8) / 100);
+  //       let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
+  //       this.emi = total_payment / parseFloat(eventData);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     } else {
+  //       let interest_payable = ((parseFloat(this.form.value.loan_amount) * 10) / 100);
+  //       let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
+  //       this.emi = total_payment / parseFloat(eventData);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     }
+  //   }
+  // }
 
   onTermChange(event: string) {
     this.tenure = event;
@@ -428,28 +435,29 @@ export class AddLoanRequestComponent implements OnInit {
     }
   }
 
-  /*onTermChange(eventData: string): void {
-  if(this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type) {
-    console.log('hellowwwwww');
+  // onTermChange(eventData: string): void {
+  //   if (this.form.value.loan_amount && this.form.value.tenure && this.form.value.loan_type) {
+  //     console.log('hellowwwwww');
 
-     let total_payment =parseFloat(this.form.value.loan_amount);
-     this.emi = total_payment/parseFloat(eventData);
-    if(this.form.value.loan_type === '2') {
-      let interest_payable = ((parseFloat(this.form.value.loan_amount)*8)/100);
-      let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
-      this.emi = total_payment/parseFloat(eventData);
-      this.emi = parseFloat(this.emi.toFixed(3));
-    } else {
-      let interest_payable = ((parseFloat(this.form.value.loan_amount)*10)/100);
-      let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
-      this.emi = total_payment/parseFloat(eventData);
-      this.emi = parseFloat(this.emi.toFixed(3));
-    }
-
-  }
-}*/
+  //     let total_payment = parseFloat(this.form.value.loan_amount);
+  //     this.emi = total_payment / parseFloat(eventData);
+  //     if (this.form.value.loan_type === '2') {
+  //       let interest_payable = ((parseFloat(this.form.value.loan_amount) * 8) / 100);
+  //       let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
+  //       this.emi = total_payment / parseFloat(eventData);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     } else {
+  //       let interest_payable = ((parseFloat(this.form.value.loan_amount) * 10) / 100);
+  //       let total_payment = parseFloat(this.form.value.loan_amount) + interest_payable;
+  //       this.emi = total_payment / parseFloat(eventData);
+  //       this.emi = parseFloat(this.emi.toFixed(3));
+  //     }
+  //   }
+  // }
 
   onSelectCategory() {
     this.mainId = this.form.value.loan_type;
   }
+
+
 }

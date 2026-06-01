@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TermandconditionService } from 'src/app/service/termandcondition.service';
-import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-home-terms',
