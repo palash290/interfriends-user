@@ -49,11 +49,16 @@ mwl-gauge {
   color: orange;
 }
 
-.ct_height_400 img {
+.ct_height_400 .ct_banner_media {
   height: 300px !important;
   object-fit: cover;
   max-width: 800px;
   margin: auto;
+}
+
+.ct_height_400 video.ct_banner_media {
+  display: block;
+  width: 100%;
 }
 
 .ct_height_400 {

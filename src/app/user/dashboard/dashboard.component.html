@@ -5,11 +5,20 @@
     <div class="col-sm-12 text-center mb-sm-0 mb-5 m-mb-0">
       <h3 class="main-hding">Hi, <span class="orange">{{this.name}}</span></h3>
       <!-- <h4 class="sub-para w-50 m-auto m-w-100"> We are INTERFRIENDS, a unique savings club with the vision to leverage the power of our collective effort in trust, to achieve what may be impossible individually</h4> -->
-      <owl-carousel-o [options]="customOptions" class="ct_height_400">
+      <owl-carousel-o #dashboardCarousel [options]="customOptions" class="ct_height_400">
 
         <ng-container *ngFor="let slide of apiData">
           <ng-template class="slide" carouselSlide [id]="slide.id">
-            <img *ngIf="slide.image != ''" [src]="slide.image" [alt]="slide.id">
+            <ng-container *ngIf="slide.image != ''">
+              <video *ngIf="isVideoMedia(slide.image); else bannerImage" class="ct_banner_media" controls playsinline
+                (play)="pauseCarousel(dashboardCarousel)" (pause)="playCarousel(dashboardCarousel)"
+                (ended)="playCarousel(dashboardCarousel)">
+                <source [src]="slide.image" [type]="getVideoType(slide.image)">
+              </video>
+              <ng-template #bannerImage>
+                <img class="ct_banner_media" [src]="slide.image" [alt]="slide.id">
+              </ng-template>
+            </ng-container>
             <h4 *ngIf="slide.title != ''" class="mt-4 ct_center_div">{{slide.title}}</h4>
           </ng-template>
         </ng-container>

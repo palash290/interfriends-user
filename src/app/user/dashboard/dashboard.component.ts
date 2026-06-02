@@ -17,8 +17,14 @@ export interface PhotosApi {
   albumId?: number;
   id?: number;
   title?: string;
+  image?: string;
   url?: string;
   thumbnailUrl?: string;
+}
+
+interface DashboardCarousel {
+  startPausing(): void;
+  startPlayML(): void;
 }
 
 @Component({
@@ -116,6 +122,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
+    autoplayTimeout: 10000,
     center: true,
     dots: false,
     autoHeight: true,
@@ -132,6 +139,33 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
     },
   };
+
+  isVideoMedia(mediaUrl: string): boolean {
+    return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(mediaUrl);
+  }
+
+  getVideoType(mediaUrl: string): string {
+    const extension = mediaUrl.split('?')[0].split('.').pop()?.toLowerCase();
+
+    switch (extension) {
+      case 'webm':
+        return 'video/webm';
+      case 'ogg':
+        return 'video/ogg';
+      case 'mov':
+        return 'video/quicktime';
+      default:
+        return 'video/mp4';
+    }
+  }
+
+  pauseCarousel(carousel: DashboardCarousel): void {
+    carousel.startPausing();
+  }
+
+  playCarousel(carousel: DashboardCarousel): void {
+    carousel.startPlayML();
+  }
 
   constructor(
     public authService: AuthService,
