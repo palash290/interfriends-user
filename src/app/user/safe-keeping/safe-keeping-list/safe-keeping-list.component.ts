@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SafeKeepingList } from 'src/app/model/safeKeeping.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SafeKeepingListComponent implements OnInit {
 
-  safeKeepingList: SafeKeepingList[]= [];
+  safeKeepingList: SafeKeepingList[] = [];
   safeKeepingAmount: any;
   isLoading = true;
   groupId: string;
@@ -30,7 +30,7 @@ export class SafeKeepingListComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.isLoading = true;
     this.userService.safeKeepingList(this.groupId, this.userId).subscribe((response: any) => {
-      this.safeKeepingList = response.safeKeepingList;
+      this.safeKeepingList = response.safeKeepingList.reverse();
       this.safeKeepingAmount = response.safeKeepingAmount;
       this.isLoading = false;
     });
@@ -40,8 +40,8 @@ export class SafeKeepingListComponent implements OnInit {
     this._location.back();
   }
 
-  showMsg(){
-    this.toastr.warning('You dont have enough balance!')
+  showMsg() {
+    this.toastr.warning('You dont have enough balance!');
   }
 
 }

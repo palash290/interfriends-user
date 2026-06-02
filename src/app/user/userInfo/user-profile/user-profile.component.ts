@@ -1,11 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
-import { AuthService} from '../../../service/auth.service';
-import { UserService} from '../../../service/user.service';
+import { AuthService } from '../../../service/auth.service';
+import { UserService } from '../../../service/user.service';
 import { UserList } from 'src/app/model/userList.model';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   isLoadingUpdate = false;
   form: FormGroup;
   userId: string;
-    user: UserList;
+  user: UserList;
   imagePreview = 'assets/img/default-user-icon.jpg';
 
   constructor(
@@ -47,35 +46,34 @@ export class UserProfileComponent implements OnInit {
       city: new FormControl(null, { validators: [Validators.required] }),
       employement_type: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, {}),
-      Uniqueid : new FormControl(null, { validators: [Validators.required] }),
+      Uniqueid: new FormControl(null, { validators: [Validators.required] }),
     });
 
 
     this.userService.getUserInfo(this.userId)
-          .subscribe((response: any) => {
-            this.user =  response.userinfo;
-            console.log("response", response)
-            this.form.patchValue({
-              first_name: this.user.first_name,
-              last_name: this.user.last_name,
-              email: this.user.email,
-              dob: this.user.dob,
-              mobile_number: this.user.mobile_number,
-              home_number: this.user.home_number,
-              emergency_number: this.user.emergency_number,
-              kin_name: this.user.kin_name,
-              kin_number: this.user.kin_number,
-              address_line_1: this.user.address_line_1,
-              address_line_2: this.user.address_line_2,
-              post_code: this.user.post_code,
-              city: this.user.city,
-              employement_type: this.user.employement_type,
-              Uniqueid : this.user.unique_id,
-
-            });
-            this.isLoading = false;
-            this.imagePreview = this.user.profile_image;
-          });
+      .subscribe((response: any) => {
+        this.user = response.userinfo;
+        console.log("response", response)
+        this.form.patchValue({
+          first_name: this.user.first_name,
+          last_name: this.user.last_name,
+          email: this.user.email,
+          dob: this.user.dob,
+          mobile_number: this.user.mobile_number,
+          home_number: this.user.home_number,
+          emergency_number: this.user.emergency_number,
+          kin_name: this.user.kin_name,
+          kin_number: this.user.kin_number,
+          address_line_1: this.user.address_line_1,
+          address_line_2: this.user.address_line_2,
+          post_code: this.user.post_code,
+          city: this.user.city,
+          employement_type: this.user.employement_type,
+          Uniqueid: this.user.unique_id
+        });
+        this.isLoading = false;
+        this.imagePreview = this.user.profile_image;
+      });
   }
 
   onImagePicked(event: Event): any {

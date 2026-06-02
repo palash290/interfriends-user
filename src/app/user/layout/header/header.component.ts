@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit {
     document.getElementById('logoutModal').click();
     this.toastr.success('You have been logged out successfully');
     this.userService.logout(this.userId).subscribe((response: any) => {
-
     });
     this.router.navigate(['/']);
   }
@@ -55,11 +54,6 @@ export class HeaderComponent implements OnInit {
   onToggleMenu() {
     return this.showMenu = !this.showMenu;
   }
-
-
-//   closeModal() {
-//   $('#new').modal('hide');
-// }
 
 
 }

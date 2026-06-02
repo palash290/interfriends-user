@@ -32,11 +32,8 @@ export class AppComponent implements OnInit {
     this.resetTimer();
   }
 
-
-  private inactivityTime = 2 * 60 * 1000; // 2 minute in milliseconds
+  private inactivityTime = 5 * 60 * 1000; // 2 minute in milliseconds
   private timeout: any;
-
-
 
   @HostListener('document:mousemove')
   @HostListener('document:keydown')

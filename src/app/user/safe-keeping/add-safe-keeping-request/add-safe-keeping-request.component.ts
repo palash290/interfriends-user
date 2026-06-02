@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -28,8 +28,8 @@ export class AddSafeKeepingRequestComponent implements OnInit {
     this.groupId = this.authService.getgroupId();
     this.form = new FormGroup({
       amount: new FormControl(null, { validators: [Validators.required] }),
-      date	: new FormControl(null, { validators: [Validators.required] }),
-      reason	: new FormControl(null, { validators: [Validators.required] })
+      date: new FormControl(null, { validators: [Validators.required] }),
+      reason: new FormControl(null, { validators: [Validators.required] })
     });
   }
 
@@ -42,22 +42,22 @@ export class AddSafeKeepingRequestComponent implements OnInit {
     this.isLoading = true;
 
     this.userService.requestSafeKeepingWithdral(
-        this.groupId,
-        this.userId,
-        this.form.value.amount,
-        this.form.value.date,
-        this.form.value.reason,
-        "Safe Keeping"
-      ).subscribe((response: any) => {
-        this.form.reset();
-        document.getElementById('closePopupRequest').click();
-        this.isLoading = false;
-        if (response.success === '1') {
-          this.toastr.success(response.message);
-        } else {
-          this.toastr.error(response.message);
-        }
-      });
+      this.groupId,
+      this.userId,
+      this.form.value.amount,
+      this.form.value.date,
+      this.form.value.reason,
+      "Safe Keeping"
+    ).subscribe((response: any) => {
+      this.form.reset();
+      document.getElementById('closePopupRequest').click();
+      this.isLoading = false;
+      if (response.success === '1') {
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.error(response.message);
+      }
+    });
   }
 
   onClose() {

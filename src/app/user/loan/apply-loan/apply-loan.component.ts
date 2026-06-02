@@ -14,8 +14,8 @@ export class ApplyLoanComponent implements OnInit {
   loanTypeText: string;
   textMessage: string;
 
-  constructor(private _location: Location) {}
-  ngOnInit(): void {}
+  constructor(private _location: Location) { }
+  ngOnInit(): void { }
 
   onSelectLoan(type: string) {
     this.loanType = type;
@@ -65,7 +65,7 @@ export class ApplyLoanComponent implements OnInit {
           '). To apply, check and clarify with the group Admin to confirm that you meet the minimum requirements before you proceed.' +
           '\nOnce accepted, monthly payments start immediately and payout starts after 12 months';
         break;
-        }
+    }
     this.eachChange = Math.random().toString();
     this.alertConfirmation();
   }
@@ -83,10 +83,10 @@ export class ApplyLoanComponent implements OnInit {
       cancelButtonText: 'No, let me think',
     }).then((result) => {
       if (result.value) {
-        /*Swal.fire('Removed!', 'Product removed successfully.', 'success');*/
+        //Swal.fire('Removed!', 'Product removed successfully.', 'success');
         document.getElementById('openModalButton').click();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        /*Swal.fire('Cancelled', 'Product still in our database.)', 'error');*/
+        // Swal.fire('Cancelled', 'Product still in our database.)', 'error');
         console.log('Do nothing');
       }
     });

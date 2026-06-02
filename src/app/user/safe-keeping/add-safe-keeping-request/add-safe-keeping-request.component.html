@@ -5,12 +5,13 @@
         <h5 class="modal-title" id="applyModalLabel">Request money from safe keeping</h5>
         <!-- <p class="para-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
       </div>
-      <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close" id="closePopupRequest" (click)="onClose()">
+      <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close" id="closePopupRequest"
+        (click)="onClose()">
         <img src="assets/images/close.png">
       </button>
     </div>
     <form class="theme-form" [formGroup]="form" (submit)="onSave()">
-    <div class="modal-body border-0 pb-0">
+      <div class="modal-body border-0 pb-0">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -47,12 +48,17 @@
             </div>
           </div>
         </div>
-    </div>
-    <div class="modal-footer justify-content-center border-0">
-      <button class="btn-cstm btn-blue mt-3 min-width-230" type="submit" [disabled]="isLoading">
-        <span>Apply</span>
-      </button>
-    </div>
-  </form>
+      </div>
+      <div class="modal-footer justify-content-center border-0">
+        <!-- <button class="btn-cstm btn-blue mt-3 min-width-230" type="submit" [disabled]="isLoading">
+          <span>Apply</span>
+        </button> -->
+
+        <button type="submit" [disabled]="isLoading" class="btn-cstm btn-blue mt-3 min-width-230">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          {{ isLoading ? '' : 'Apply' }}
+        </button>
+      </div>
+    </form>
   </div>
 </div>

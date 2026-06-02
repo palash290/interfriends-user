@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { GroupCycle } from '../../../model/groupCycle.model';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SavingService } from 'src/app/service/saving.service';
 import { Payout } from 'src/app/model/payout.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -74,7 +74,7 @@ export class PayoutPageComponent implements OnInit {
     this.savingService.safekeepingDetail(this.groupId, this.groupLifecycle_id, this.userId).subscribe((response: any) => {
       //debugger
       this.safekeepingCycleList = response.safekeepingCycle;
-      this.safeReqBy = response.safekeepingCycle[0].requested_by;
+      this.safeReqBy = response.safekeepingCycle[0]?.requested_by;
       this.safeStatus = response.safekeepingCycle[0].request_status;
       this.isLoading = false;
       this.isLoadingChangeCycle = false;

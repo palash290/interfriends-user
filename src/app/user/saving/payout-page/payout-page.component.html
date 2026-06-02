@@ -4,8 +4,8 @@
 
       <div class="d-flex align-items-center mb-4" style="gap:10px">
         <button type="button" class="btn bg-success float-right text-white ml-auto mr-3 px-5"
-          *ngIf=" lists?.length == 0 && safekeepingCycleList?.length == 0" data-toggle="modal" data-target="#payoutModal"
-          style="white-space: nowrap;" (click)="showPayoutModal()">
+          *ngIf=" lists?.length == 0 && safekeepingCycleList?.length == 0" data-toggle="modal"
+          data-target="#payoutModal" style="white-space: nowrap;" (click)="showPayoutModal()">
           <div class="fa fa-credit-card text-white mr-1"></div>
           Payout
         </button>
@@ -39,40 +39,31 @@
   </div>
   <div class="row mt-md-0 mt-4" *ngIf="lists?.length > 0 && !isLoading && !isLoadingChangeCycle">
     <div class=" ct_flex" *ngFor="let list of lists; let i = index">
-
       <div *ngIf="list.request_status == 2 && list.requested_by == 'user'; else pendingBlock">
-
         <div class="mt-5 d-block text-center">
           <h3 class="">Request Pending</h3>
         </div>
-
       </div>
-
       <ng-template #pendingBlock>
         <div class="box-line-white">
           <div class="">
             <img src="assets/images/money.png" class="img-fluid">
           </div>
-          <h4 class="main-hding">{{ list.payout_amount | currency: 'GBP': 'symbol' : '1.0-0' }}</h4>
+          <h4 class="main-hding">{{ list.payout_amount | currency: 'GBP': 'symbol' }}</h4>
           <p class="sub-para">{{ list.created_at }}</p>
           <div class="bg-payment">Fully Paid</div>
         </div>
-
       </ng-template>
-
       <div *ngIf="list.request_status == 2 && list.requested_by == 'user'; else pendingBlock1">
-
         <div class="bg-payment">
         </div>
-
       </div>
-
       <ng-template #pendingBlock1>
         <div class="box-line-white">
           <div class="">
             <img src="assets/images/money.png" class="img-fluid">
           </div>
-          <h4 class="main-hding">{{list.payout_pf_amount | currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+          <h4 class="main-hding">{{list.payout_pf_amount | currency:'GBP': 'symbol'}}</h4>
           <p class="sub-para">{{list.created_at}}</p>
           <div class="bg-payment">Provident deducted</div>
         </div>
@@ -80,58 +71,39 @@
     </div>
   </div>
 
-
-
-
-
-    <div class="row mt-md-0 mt-4" *ngIf="safekeepingCycleList?.length > 0 && !isLoading && !isLoadingChangeCycle">
+  <div class="row mt-md-0 mt-4" *ngIf="safekeepingCycleList?.length > 0 && !isLoading && !isLoadingChangeCycle">
     <div class=" ct_flex" *ngFor="let list of safekeepingCycleList; let i = index">
-
       <div *ngIf="list.request_status == 2 && list.requested_by == 'user'; else pendingBlock">
-
         <div class="mt-5 d-block text-center">
           <h3 class="">Request Pending</h3>
         </div>
-
       </div>
-
       <ng-template #pendingBlock>
         <div class="box-line-white">
           <div class="">
             <img src="assets/images/money.png" class="img-fluid">
           </div>
-          <h4 class="main-hding">{{ list.amount | currency: 'GBP': 'symbol' : '1.0-0' }}</h4>
+          <h4 class="main-hding">{{ list.amount | currency: 'GBP': 'symbol' }}</h4>
           <p class="sub-para">{{ list.created_at }}</p>
           <div class="bg-payment">Added to Safekeeping</div>
         </div>
-
       </ng-template>
-
       <div *ngIf="list.request_status == 2 && list.requested_by == 'user'; else pendingBlock1">
-
-        <div class="bg-payment">
-        </div>
-
+        <div class="bg-payment"></div>
       </div>
-
       <ng-template #pendingBlock1>
         <div class="box-line-white">
           <div class="">
             <img src="assets/images/money.png" class="img-fluid">
           </div>
-          <h4 class="main-hding">{{list.pf_amount | currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+          <h4 class="main-hding">{{list.pf_amount | currency:'GBP': 'symbol'}}</h4>
           <p class="sub-para">{{list.created_at}}</p>
           <div class="bg-payment">Provident deducted</div>
         </div>
       </ng-template>
     </div>
   </div>
-
 </div>
-
-
-
-
 
 <div class="mt-5 d-block text-center"
   *ngIf="lists?.length <= 0 && safekeepingCycleList?.length <= 0 && !isLoading && !isLoadingChangeCycle">
@@ -139,18 +111,6 @@
   <h3 class="">Expected Payout Date: {{totalInfo.expected_date | date: 'dd MMM
     yyyy'}}</h3>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- payout model popup start -->
 <div class="modal fade show" id="payoutModal" tabindex="-1" role="dialog" aria-labelledby="payoutModalLabel"
@@ -164,8 +124,8 @@
       </div>
       <div class="modal-body">
         <p>Confirm to make bulk payment to Member</p>
-        <p>transfer amount: £ {{totalInfo.amount}}</p>
-        <p>pf percent: {{totalInfo.pf_percent}} , pf amount: £ {{totalInfo.pf_amount}}</p>
+        <p>transfer amount: £ {{totalInfo?.amount}}</p>
+        <p>pf percent: {{totalInfo?.pf_percent}} , pf amount: £ {{totalInfo.pf_amount}}</p>
         <div class="form-group">
           <label><b>Note</b></label>
           <input type="text" [(ngModel)]="pfNote" placeholder="Enter Note" class="form-control">
