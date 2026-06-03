@@ -67,10 +67,6 @@ export class GetUserDetailComponent implements OnInit {
     this.isLoading = true;
     this.sharedService.postAPI('/checkRecommendedUser', authData).subscribe(
       (res: any) => {
-        // if(res.success == '0'){
-
-        // }
-        // debugger
         this.apiResponse = res;
         this.showModal = true;
         this.isLoading = false;

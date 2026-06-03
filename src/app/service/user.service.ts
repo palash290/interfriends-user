@@ -551,15 +551,8 @@ export class UserService {
     authData.append('know_them_as_what', know_them_as_what);
     authData.append('recommending_this_person', recommending_this_person);
     authData.append('refer_user_id', refer_user_id);
-    return this.http.post<{
-      success: string,
-      message: string,
-    }>(
-      API_URL + '/recommendUserProcess', authData
-    );
+    return this.http.post<{ success: string, message: string }>(API_URL + '/recommendUserProcess', authData);
   }
-
-
   contactUs(
     name: string,
     email: string,
@@ -696,7 +689,7 @@ export class UserService {
     );
   }
 
-    getNotificationCount1(
+  getNotificationCount1(
   ): any {
     const audioData = new FormData();
     let userId = this.authService.getUserId();
