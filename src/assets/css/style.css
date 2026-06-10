@@ -315,8 +315,8 @@ h3 {
 
 .modal-close {
     position: absolute;
-    right: -21px;
-    top: -15px;
+    right: 10px !important;
+    top: 10px !important;
 }
 
 .modal-close:focus {
@@ -494,7 +494,7 @@ footer.auth-footer .copyright {
     margin: 0;
 }
 
-.ct_ff_gilroy_bold{
+.ct_ff_gilroy_bold {
     font-family: 'gilroy-bold' !important;
 }
 
@@ -1684,24 +1684,26 @@ label.hidden-label {
         max-height: 290px;
         overflow-y: scroll;
     } */
-div#navbarNavDropdown {
-    position: fixed;
-    width: 100%;
-    max-width: 300px;
-    right: -100%;
-    padding: 50px 20px;
-    top: 0px;
-    margin-top: 0px !important;
-    border-radius: 0px;
-    height: 100vh;
-    overflow-y: auto;
-    transition: 0.4s ease all;
-   
-}
-div#navbarNavDropdown.show{
-    right: 0px;
-     display: block;
-}
+    div#navbarNavDropdown {
+        position: fixed;
+        width: 100%;
+        max-width: 300px;
+        right: -100%;
+        padding: 50px 20px;
+        top: 0px;
+        margin-top: 0px !important;
+        border-radius: 0px;
+        height: 100vh;
+        overflow-y: auto;
+        transition: 0.4s ease all;
+
+    }
+
+    div#navbarNavDropdown.show {
+        right: 0px;
+        display: block;
+    }
+
     .top-banner {
         margin-top: 110px;
     }
@@ -1794,11 +1796,10 @@ div#navbarNavDropdown.show{
     }
 
     .et_header_menu23 {
-  
-    height: 100px;
-    display: flex
-;
-}
+
+        height: 100px;
+        display: flex;
+    }
 
     .savings-box .nav.nav-tabs .nav-link {
         padding: 12px 20px;

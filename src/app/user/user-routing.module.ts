@@ -28,6 +28,7 @@ import { HelptobuyLayoutComponent } from './helptobuy-layout/helptobuy-layout.co
 import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/help2buy-loanlist.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CircleListComponent } from './circle-list/circle-list.component';
+import { MyRecommendationsComponent } from './my-recommendations/my-recommendations.component';
 
 
 
@@ -66,6 +67,11 @@ const routes: Routes = [
         canActivate: [AuthUserGuard]
       },
       {
+        path: 'my-recommendation',
+        component: MyRecommendationsComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
         path: 'JNRsavingDetail/:lifeCycleType',
         component: SavingDetailComponent,
         canActivate: [AuthUserGuard]
@@ -85,7 +91,7 @@ const routes: Routes = [
         component: UserProfileComponent,
         canActivate: [AuthUserGuard]
       },
-       {
+      {
         path: 'circle-list',
         component: CircleListComponent,
         canActivate: [AuthUserGuard]

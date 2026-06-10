@@ -58,7 +58,7 @@ export class CircleListComponent implements OnInit {
       // this.lists = response.users
       this.circleName = response.circleName;
        this.lists = response.users
-        .filter((user: any) => user.user_id !== this.userId)
+        // .filter((user: any) => user.user_id !== this.userId)
         .sort((a: any, b: any) => a.first_name.localeCompare(b.first_name));
 
       // if (response.lists.length === 0) {

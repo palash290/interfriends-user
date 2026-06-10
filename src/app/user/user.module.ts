@@ -63,6 +63,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { DeclinePageComponent } from './decline-page/decline-page.component';
 import { CircleListComponent } from './circle-list/circle-list.component';
+import { MyRecommendationsComponent } from './my-recommendations/my-recommendations.component';
 
 
 
@@ -141,6 +142,7 @@ import { CircleListComponent } from './circle-list/circle-list.component';
   ApprovalPageComponent,
   DeclinePageComponent,
   CircleListComponent,
+  MyRecommendationsComponent,
   ],
   providers: [],
   exports: [],

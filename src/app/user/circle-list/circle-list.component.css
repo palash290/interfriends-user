@@ -17,10 +17,23 @@
   padding-top: 24px !important;
 }
 
-.ct_after_line_none:after{
+.ct_after_line_none:after {
   display: none;
 }
 
-.ct_fs_20{
+.ct_fs_20 {
   font-size: 20px;
+}
+
+.ct_subrole_badge {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 12px;
+  width: fit-content;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: auto;
+  white-space: nowrap;
 }

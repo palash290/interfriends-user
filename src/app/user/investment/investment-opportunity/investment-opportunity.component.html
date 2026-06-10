@@ -12,8 +12,12 @@
       <div class="col-lg-12">
         <div class="box-line-white blue-line" *ngFor="let data of lists; let i = index">
           <div class="pr-wrapper-box">
-            <div class="pr-img-box">
+            <div class="pr-img-box position-relative">
               <img [src]="data.show_property_image">
+              <!-- <span class="ct_pr_status_badge">Closed</span> -->
+              <div class="cover-ribbon" *ngIf="data.is_closed == '1'">
+                <div class="cover-ribbon-inside">Closed</div>
+              </div>
             </div>
             <div class="pr-desc-box">
               <h4 class="main-hding">{{data.title}}</h4>
@@ -75,10 +79,15 @@
               </ul>
 
 
-              <a href="javascript(void);" (click)="onSelectId(data.id)" data-toggle="modal" data-target="#investModal"
-                class="btn-cstm btn-blue d-inline-block">
+              <a *ngIf="data.is_closed == '0'" href="javascript(void);" (click)="onSelectId(data.id)"
+                data-toggle="modal" data-target="#investModal" class="btn-cstm btn-blue d-inline-block">
                 <i class="fa fa-bank"></i> Invest
               </a>
+
+              <a *ngIf="data.is_closed == '1'" class="btn-cstm btn-blue d-inline-block">
+                <i class="fa fa-bank"></i> Invest
+              </a>
+
             </div>
           </div>
           <div class="show-more-images" *ngIf="!data.more_image_status" (click)="onShowImage(i, data.id)">Show More

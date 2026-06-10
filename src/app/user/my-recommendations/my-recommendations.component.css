@@ -1,0 +1,26 @@
+.ct_recommended_user table th {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    white-space: nowrap;
+    padding: 10px 15px;
+}
+
+.ct_recommended_user table td {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.ct_recommended_user .table-responsive {
+    border: 1px solid #e6e6e6
+}
+
+span.ct_resion_para_text {
+    width: 200px;
+    display: inline-block;
+    height: auto;
+    max-height: 150px;
+    overflow-y: auto;
+}

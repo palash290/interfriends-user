@@ -1,0 +1,291 @@
+<app-header></app-header>
+<a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
+    <img src="assets/images/back-btn.png" alt="back button" title="Back to previous view">
+</a>
+
+<div class="recommendations-page">
+    <div class="recommendations-page__glow recommendations-page__glow--one"></div>
+    <div class="recommendations-page__glow recommendations-page__glow--two"></div>
+
+    <div class="recommendations-shell">
+        <div class="recommendations-hero">
+            <div>
+                <p class="recommendations-kicker">My Recommendations</p>
+                <h1 class="recommendations-title">Recommendation tracker</h1>
+                <p class="recommendations-subtitle">
+                    Review every recommendation you submitted, track approval progress, and open each record in a clean
+                    card layout.
+                </p>
+            </div>
+
+            <div class="recommendations-stats" *ngIf="!isLoader">
+                <div class="stat-pill">
+                    <span class="stat-pill__label">Total</span>
+                    <strong class="stat-pill__value">{{ usersList.length }}</strong>
+                </div>
+                <!-- <div class="stat-pill">
+                    <span class="stat-pill__label">Approved</span>
+                    <strong class="stat-pill__value">{{ getCountByStatus('approved') }}</strong>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-pill__label">Pending</span>
+                    <strong class="stat-pill__value">{{ getCountByStatus('pending') }}</strong>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="loader-panel" *ngIf="isLoader">
+            <mat-spinner class="mx-auto"></mat-spinner>
+        </div>
+
+        <div class="ct_recommended_user">
+            <h4 class="mb-4">My Recommended Users List</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile Number</th>
+                            <!-- <th>Employed</th> -->
+                            <!-- <th>Known For</th> -->
+                            <!-- <th>Known As</th> -->
+                            <th>Reason</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usersList">
+                            <td>{{ user.id }}</td>
+                            <td><span class="text-nowrap">{{ user.first_name }} {{ user.last_name }}</span></td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.mobile_number }}</td>
+                            <!-- <td>{{ user.friend_employed }}</td> -->
+                            <!-- <td>{{ user.know_this_person }}</td> -->
+                            <!-- <td>{{ user.know_them_as_what }}</td> -->
+                            <td><span class="ct_resion_para_text">
+                                    {{ user.recommending_this_person }}
+                                </span></td>
+                            <td>
+                                <i (click)="loadInitList(user.id)" class="fa fa-eye" aria-hidden="true" data-toggle="modal"
+                                    data-target="#applyModalCC"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <ng-template #emptyState>
+            <div class="empty-state">
+                <div class="empty-state__icon">
+                    <i class="ti ti-inbox" aria-hidden="true"></i>
+                </div>
+                <h2>No recommendations yet</h2>
+                <p>Once you submit a recommendation, it will show up here with approval progress and reviewer details.
+                </p>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<!-- Modal Start-->
+<div class="modal fade" id="applyModalCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header border-0 justify-content-center">
+
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    <img src="assets/images/close.png">
+                </button>
+            </div>
+            <div class="modal-body border-0 pb-0">
+                <ng-container *ngIf="!isLoader">
+                    <ng-container *ngIf="recommendedUsersList.length > 0; else emptyState">
+                        <article class="recommendation-card bg-transparent p-0 shadow-none"
+                            *ngFor="let item of recommendedUsersList; trackBy: trackByRecommendationId">
+                            <div class="recommendation-card__header">
+                                <div class="recommendation-card__identity">
+                                    <div class="avatar avatar--candidate">
+                                        {{ getInitials(item?.first_name, item?.last_name) }}
+                                    </div>
+                                    <div>
+                                        <p class="card-kicker">Recommendation #{{ item?.id }}</p>
+                                        <h2 class="card-title">
+                                            {{ item?.first_name }} {{ item?.last_name }}
+                                        </h2>
+                                        <p class="card-subtitle">
+                                            Candidate details and approval trail
+                                        </p>
+                                    </div>
+                                </div>
+                                <span class="status-pill" [ngClass]="getStatusClass(item?.overall_status)">
+                                    <i class="ti" [ngClass]="getStatusIcon(item?.overall_status)"
+                                        aria-hidden="true"></i>
+                                    {{ item?.overall_status | titlecase }}
+                                </span>
+                            </div>
+                            <div class="card-grid">
+                                <section class="info-panel">
+                                    <div class="section-heading">
+                                        <p class="section-label">Candidate overview</p>
+                                        <span class="section-metric">{{ getApprovalStepCount(item) }} approvals</span>
+                                    </div>
+
+                                    <div class="field-list">
+                                        <div class="field-row">
+                                            <span class="field-label">
+                                                <i class="ti ti-mail" aria-hidden="true"></i>
+                                                Email
+                                            </span>
+                                            <span class="field-val field-val--accent">{{ item?.email || 'N/A' }}</span>
+                                        </div>
+
+                                        <div class="field-row">
+                                            <span class="field-label">
+                                                <i class="ti ti-phone" aria-hidden="true"></i>
+                                                Mobile
+                                            </span>
+                                            <span class="field-val">{{ item?.mobile_number || 'N/A' }}</span>
+                                        </div>
+
+                                        <div class="field-row">
+                                            <span class="field-label">
+                                                <i class="ti ti-briefcase" aria-hidden="true"></i>
+                                                Employed
+                                            </span>
+                                            <span class="field-val">{{ item?.friend_employed || 'N/A' }}</span>
+                                        </div>
+
+                                        <div class="field-row">
+                                            <span class="field-label">
+                                                <i class="ti ti-clock" aria-hidden="true"></i>
+                                                Known for
+                                            </span>
+                                            <span class="field-val">{{ item?.know_this_person || 'N/A' }}</span>
+                                        </div>
+
+                                        <div class="field-row">
+                                            <span class="field-label">
+                                                <i class="ti ti-users" aria-hidden="true"></i>
+                                                Known as
+                                            </span>
+                                            <span class="field-val">{{ item?.know_them_as_what || 'N/A' }}</span>
+                                        </div>
+
+                                        <div class="field-row field-row--last">
+                                            <span class="field-label">
+                                                <i class="ti ti-message" aria-hidden="true"></i>
+                                                Reason
+                                            </span>
+                                            <span class="field-val">{{ item?.recommending_this_person || 'N/A' }}</span>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="info-panel info-panel--soft">
+                                    <div class="section-heading">
+                                        <p class="section-label">Recommenders</p>
+                                        <span class="section-metric">2 contacts</span>
+                                    </div>
+
+                                    <div class="recommender-stack">
+                                        <div class="recommender-row"
+                                            *ngFor="let recommender of getRecommenders(item); let i = index; trackBy: trackByStepIndex">
+                                            <div class="avatar avatar--small"
+                                                [ngClass]="recommender.tone === 'teal' ? 'avatar--teal' : 'avatar--blue'">
+                                                {{ recommender.initials }}
+                                            </div>
+
+                                            <div class="recommender-copy">
+                                                <p class="recommender-label">{{ recommender.label }}</p>
+                                                <p class="recommender-name">{{ recommender.name }}</p>
+                                                <p class="recommender-email">{{ recommender.email }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="summary-strip">
+                                        <div>
+                                            <span class="summary-strip__label">Approval status</span>
+                                            <strong class="summary-strip__value">{{ item?.overall_status | titlecase
+                                                }}</strong>
+                                        </div>
+                                        <div>
+                                            <span class="summary-strip__label">Approval steps</span>
+                                            <strong class="summary-strip__value">{{ getApprovalStepCount(item)
+                                                }}</strong>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <section class="timeline-panel">
+                                <div class="section-heading">
+                                    <p class="section-label">Approval steps</p>
+                                    <span class="section-metric">Status</span>
+                                </div>
+
+                                <ng-container
+                                    *ngIf="item?.approval_steps && item.approval_steps.length > 0; else noSteps">
+                                    <div class="timeline-step"
+                                        *ngFor="let step of item.approval_steps; let last = last; trackBy: trackByStepIndex"
+                                        [class.timeline-step--last]="last">
+                                        <div class="timeline-step__marker">
+                                            <div class="timeline-step__icon"
+                                                [ngClass]="step.status === 'approved' ? 'timeline-step__icon--approved' : 'timeline-step__icon--pending'">
+                                                <i class="ti"
+                                                    [ngClass]="step.status === 'approved' ? 'ti-check' : 'ti-clock'"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div *ngIf="!last" class="timeline-step__line"></div>
+                                        </div>
+
+                                        <div class="timeline-step__body">
+                                            <div class="timeline-step__topline">
+                                                <p class="timeline-step__name">{{ step?.approver_name || 'Approver' }}
+                                                </p>
+                                                <span class="status-pill status-pill--compact"
+                                                    [ngClass]="getStatusClass(step?.status)">
+                                                    <i class="ti" [ngClass]="getStatusIcon(step?.status)"
+                                                        aria-hidden="true"></i>
+                                                    {{ step?.status | titlecase }}
+                                                </span>
+                                            </div>
+
+                                            <p class="timeline-step__meta">
+                                                {{ formatRole(step?.approver_role) }}
+                                                <ng-container *ngIf="step?.status === 'pending'">
+                                                    &middot; awaiting review
+                                                </ng-container>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+                                <ng-template #noSteps>
+                                    <div class="empty-inline">
+                                        <strong>No approval steps yet.</strong>
+                                        <span>This recommendation has not started its approval trail.</span>
+                                    </div>
+                                </ng-template>
+                            </section>
+                        </article>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <!-- <div class="modal-footer justify-content-center border-0">
+                <button class="btn-cstm btn-blue mt-3 min-width-230" data-dismiss="modal"
+                    aria-label="Close">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Modal end-->
+
+
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

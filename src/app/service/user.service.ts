@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 
 const API_URL = environment.apiUrl;
+const ADMIN_API_URL = environment.adminUrl;
 @Injectable({ providedIn: 'root' })
 
 export class UserService {
@@ -672,6 +674,14 @@ export class UserService {
     }>(
       API_URL + '/getAllCircleUsers', audioData
     );
+  }
+
+  viewRecommnedTracking(data: any): Observable<any> {
+    return this.http.post<any>(ADMIN_API_URL + '/recommendUserApprovalTracking', data);
+  }
+
+  getRecommnedUsers(data: any): Observable<any> {
+    return this.http.get<any>(API_URL + `/getMyRecommendedUsers/${data}`);
   }
 
 
