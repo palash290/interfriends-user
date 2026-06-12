@@ -11,9 +11,10 @@
           <ng-template class="slide" carouselSlide [id]="slide.id">
             <ng-container *ngIf="slide.image != ''">
               <video *ngIf="isVideoMedia(slide.image); else bannerImage" class="ct_banner_media" controls playsinline
-                (play)="pauseCarousel(dashboardCarousel)" (pause)="playCarousel(dashboardCarousel)"
+                preload="auto" loop (play)="pauseCarousel(dashboardCarousel)" (pause)="playCarousel(dashboardCarousel)"
                 (ended)="playCarousel(dashboardCarousel)">
                 <source [src]="slide.image" [type]="getVideoType(slide.image)">
+                Your browser does not support the video tag.
               </video>
               <ng-template #bannerImage>
                 <img class="ct_banner_media" [src]="slide.image" [alt]="slide.id">
