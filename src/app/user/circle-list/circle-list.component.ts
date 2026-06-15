@@ -57,18 +57,28 @@ export class CircleListComponent implements OnInit {
       // debugger
       // this.lists = response.users
       this.circleName = response.circleName;
-       this.lists = response.users
-        // .filter((user: any) => user.user_id !== this.userId)
-        .sort((a: any, b: any) => a.first_name.localeCompare(b.first_name));
+      //  this.lists = response.users
+      //   // .filter((user: any) => user.user_id !== this.userId)
+      //   .sort((a: any, b: any) => a.first_name.localeCompare(b.first_name));
 
-      // if (response.lists.length === 0) {
-      //   this.notEmptyPost = false;
-      // }
+      this.lists = response.users
+        .sort((a: any, b: any) => {
 
-      // for (const value of response.lists) {
-      //   this.lists.push(value);
-      // }
-      // console.log(this.lists)
+          const rolePriority: any = {
+            'Circle Lead & Deputy Circle Lead': 1,
+            'Circle Lead': 2,
+            'Deputy Circle Lead': 3
+          };
+
+          const priorityA = rolePriority[a.role] || 4;
+          const priorityB = rolePriority[b.role] || 4;
+
+          if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+          }
+
+          return a.first_name.localeCompare(b.first_name);
+        });
 
       this.notscrolly = true;
     });

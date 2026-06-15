@@ -9,18 +9,25 @@
 
         <ng-container *ngFor="let slide of apiData">
           <ng-template class="slide" carouselSlide [id]="slide.id">
-            <ng-container *ngIf="slide.image != ''">
-              <video *ngIf="isVideoMedia(slide.image); else bannerImage" class="ct_banner_media" controls playsinline
-                preload="auto" loop (play)="pauseCarousel(dashboardCarousel)" (pause)="playCarousel(dashboardCarousel)"
-                (ended)="playCarousel(dashboardCarousel)">
-                <source [src]="slide.image" [type]="getVideoType(slide.image)">
-                Your browser does not support the video tag.
-              </video>
-              <ng-template #bannerImage>
-                <img class="ct_banner_media" [src]="slide.image" [alt]="slide.id">
-              </ng-template>
-            </ng-container>
-            <h4 *ngIf="slide.title != ''" class="mt-4 ct_center_div">{{slide.title}}</h4>
+            <div class="dashboard-slide">
+              <ng-container *ngIf="slide.image != ''">
+                <div #videoContainer class="video-container">
+                  <video #video *ngIf="isVideoMedia(slide.image); else bannerImage" class="ct_banner_media" controls
+                    playsinline preload="auto" loop (play)="pauseCarousel(dashboardCarousel)"
+                    (pause)="playCarousel(dashboardCarousel)" (ended)="playCarousel(dashboardCarousel)">
+                    <source [src]="slide.image" [type]="getVideoType(slide.image)">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                <!-- <video #video [src]="videoUrl"></video> -->
+                <ng-template #bannerImage>
+                  <img class="ct_banner_media" [src]="slide.image" [alt]="slide.id">
+                </ng-template>
+              </ng-container>
+
+              <h4 *ngIf="slide.title != ''" class="ct_center_div dashboard-slide__caption">{{slide.title}}</h4>
+            </div>
           </ng-template>
         </ng-container>
 

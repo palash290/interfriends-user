@@ -2076,3 +2076,35 @@ button#closePopupLoanEmergencyRequest img {
         padding-block: 30px;
     }
 }
+
+
+
+/* .form-check-input:checked{
+      background-color: #F2994A !important;
+      border-color: #F2994A !important; 
+} */
+
+
+.ct_custom_switch .form-check-input:checked {
+    background-color: #F2994A !important;
+    border-color: #F2994A !important;
+}
+
+.ct_custom_switch .form-check-input:focus {
+    box-shadow: unset;
+}
+
+.ct_custom_switch.form-switch .form-check-input:focus {
+    background-image: url("../img/circle_dot.png");
+    border-color: rgba(71, 85, 105, 1);
+}
+
+.ct_custom_switch .form-check-input {
+    height: 20px;
+    width: 20px;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    border-color: #F2994A !important;
+}

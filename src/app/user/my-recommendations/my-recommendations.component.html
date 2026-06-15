@@ -44,29 +44,29 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <!-- <th>ID</th> -->
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Mobile Number</th>
+                            <!-- <th>Email</th> -->
+                            <!-- <th>Mobile Number</th> -->
                             <!-- <th>Employed</th> -->
                             <!-- <th>Known For</th> -->
                             <!-- <th>Known As</th> -->
-                            <th>Reason</th>
-                            <th>Action</th>
+                            <!-- <th>Reason</th> -->
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let user of usersList">
-                            <td>{{ user.id }}</td>
+                            <!-- <td>{{ user.id }}</td> -->
                             <td><span class="text-nowrap">{{ user.first_name }} {{ user.last_name }}</span></td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.mobile_number }}</td>
+                            <!-- <td>{{ user.email }}</td> -->
+                            <!-- <td>{{ user.mobile_number }}</td> -->
                             <!-- <td>{{ user.friend_employed }}</td> -->
                             <!-- <td>{{ user.know_this_person }}</td> -->
                             <!-- <td>{{ user.know_them_as_what }}</td> -->
-                            <td><span class="ct_resion_para_text">
+                            <!-- <td><span class="ct_resion_para_text">
                                     {{ user.recommending_this_person }}
-                                </span></td>
+                                </span></td> -->
                             <td>
                                 <i (click)="loadInitList(user.id)" class="fa fa-eye" aria-hidden="true" data-toggle="modal"
                                     data-target="#applyModalCC"></i>
