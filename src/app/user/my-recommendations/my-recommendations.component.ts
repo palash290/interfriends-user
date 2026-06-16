@@ -54,7 +54,7 @@ export class MyRecommendationsComponent implements OnInit {
     this.uerService.getRecommnedUsers(this.userId).subscribe((response: any) => {
       this.isLoader = false;
       this.isLoading = false;
-      this.usersList = response?.users;
+      this.usersList = response?.users.reverse();
     });
   }
 

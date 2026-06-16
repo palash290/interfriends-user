@@ -55,6 +55,7 @@ export class RegisterUserComponent implements OnInit {
         image: new FormControl(null, { validators: [Validators.required] }),
         id_proof: new FormControl(null, { validators: [Validators.required] }),
         employement_type: new FormControl(null, { validators: [Validators.required] }),
+        acceptTerms: new FormControl(false, { validators: [Validators.requiredTrue] })
       });
     }, 1000);
 
