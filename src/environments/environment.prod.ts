@@ -4,7 +4,7 @@ export const environment = {
   //apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
   apiUrl: 'https://www.interfriends.uk/backend/Api',
 
-  adminUrl: 'https://interfriends.uk/interfriendsApp/Api/Admin',
+  adminUrl: 'https://www.interfriends.uk/backend/Api/Admin',
   firebase: {
     apiKey: "AIzaSyAMUPRiRPReoYc17c8V9Tz2OigkMA-Q7gk",
     authDomain: "irate-web.firebaseapp.com",

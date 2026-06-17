@@ -173,15 +173,17 @@
 }
 
 .cover-ribbon .cover-ribbon-inside {
-  background: #EA4335;
+  background: #f00;
   color: #FFF;
   transform: rotate(-45deg);
   position: absolute;
-  left: -24px;
-  top: 15px;
-  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  left: -27px;
+  top: 23px;
+  padding: 6px;
   min-width: 130px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
 }

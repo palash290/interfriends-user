@@ -9,7 +9,7 @@ export const environment = {
   // apiUrl: 'https://www.interfriends.uk/backend/Api',
   apiUrl: 'http://192.168.1.48/interfriends_backend/Api',
 
-  // adminUrl: 'https://interfriends.uk/interfriendsApp/Api/Admin',
+  // adminUrl: 'https://www.interfriends.uk/backend/Api/Admin',
   adminUrl: 'http://192.168.1.48/interfriends_backend/Api/Admin',
 
   
