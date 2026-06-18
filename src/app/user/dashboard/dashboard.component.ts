@@ -33,8 +33,7 @@ interface Document extends HTMLDocument {
 }
 
 interface DashboardCarousel {
-  startPausing(): void;
-  startPlayML(): void;
+  next(): void;
 }
 
 @Component({
@@ -131,16 +130,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   limit: number = 10; // <==== Edit this number to limit API results
   customOptions: OwlOptions = {
     loop: true,
-    autoplay: true,
+    autoplay: false,
     autoplayTimeout: 10000,
-    autoplayHoverPause: true,
+    autoplayHoverPause: false,
     center: true,
     dots: false,
-    nav: true,
-    navText: [
-      '<span class="dashboard-carousel-nav dashboard-carousel-nav--prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>',
-      '<span class="dashboard-carousel-nav dashboard-carousel-nav--next"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>'
-    ],
+    nav: false,
     autoHeight: true,
     autoWidth: true,
     responsive: {
@@ -155,6 +150,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
     },
   };
+  public isVideoPlaying = false;
+  private activeStoryTimer: number | null = null;
+  private readonly imageStoryDurationMs = 5000;
 
   isVideoMedia(mediaUrl: string): boolean {
     return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(mediaUrl);
@@ -173,14 +171,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       default:
         return 'video/mp4';
     }
-  }
-
-  pauseCarousel(carousel: DashboardCarousel): void {
-    carousel.startPausing();
-  }
-
-  playCarousel(carousel: DashboardCarousel): void {
-    carousel.startPlayML();
   }
 
   constructor(
@@ -450,86 +440,120 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // )
   }
 
-  ngAfterViewInit() {
-    this.videoElement = this.video.nativeElement;
-    this.videoContainer.nativeElement.addEventListener('mousemove', () => {
-      this.displayControls();
-    });
-    this.document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        this.isFullScreen = false;
-      } else {
-        this.isFullScreen = true;
+  ngAfterViewInit() {}
+
+  onCarouselInitialized(): void {
+    this.activateCurrentStory();
+  }
+
+  onCarouselTranslated(): void {
+    this.activateCurrentStory();
+  }
+
+  onCarouselDragging(event: { dragging: boolean }): void {
+    if (event?.dragging) {
+      this.pauseCurrentStory();
+    }
+  }
+
+  onVideoEnded(): void {
+    this.isVideoPlaying = false;
+    this.clearActiveStoryTimer();
+
+    if (this.dashboardCarousel?.next) {
+      this.dashboardCarousel.next();
+    }
+  }
+
+  toggleVideoPlayback(): void {
+    const activeVideo = this.getActiveVideoElement();
+
+    if (!activeVideo) {
+      return;
+    }
+
+    if (activeVideo.paused) {
+      this.clearActiveStoryTimer();
+      this.playVideo(activeVideo, false);
+      return;
+    }
+
+    activeVideo.pause();
+    this.isVideoPlaying = false;
+  }
+
+  private getActiveVideoElement(): HTMLVideoElement | null {
+    const hostElement = this.dashboardCarouselHost?.nativeElement;
+
+    if (!hostElement) {
+      return null;
+    }
+
+    return hostElement.querySelector('.owl-item.active video') as HTMLVideoElement | null;
+  }
+
+  private activateCurrentStory(): void {
+    window.setTimeout(() => {
+      this.pauseCurrentStory(false);
+
+      const activeVideo = this.getActiveVideoElement();
+
+      if (activeVideo) {
+        activeVideo.currentTime = 0;
+        this.playVideo(activeVideo, true);
+        return;
       }
-    });
 
-    this.document.addEventListener('keyup', (event) => {
-      if (event.code === 'Space') {
-        this.playPause();
-      }
-      if (event.code === 'KeyM') {
-        this.toggleMute();
-      }
-      if (event.code === 'KeyF') {
-        this.toggleFullScreen();
-      }
-      this.displayControls();
-    });
+      this.isVideoPlaying = false;
+      this.activeStoryTimer = window.setTimeout(() => {
+        this.activeStoryTimer = null;
+        this.dashboardCarousel?.next?.();
+      }, this.imageStoryDurationMs);
+    }, 50);
+  }
 
-    this.videoElement.addEventListener('timeupdate', () => {
-      this.watchedProgress =
-        (this.videoElement.currentTime / this.videoElement.duration) * 100;
+  private pauseCurrentStory(clearTimer = true): void {
+    const hostElement = this.dashboardCarouselHost?.nativeElement;
 
-      const totalSecondsRemaining =
-        this.videoElement.duration - this.videoElement.currentTime;
-      const time = new Date();
-      time.setSeconds(totalSecondsRemaining);
-      let hours = null;
+    if (clearTimer) {
+      this.clearActiveStoryTimer();
+    }
 
-      if (totalSecondsRemaining >= 3600) {
-        hours = time.getHours().toString().padStart(2, '0');
-      }
+    if (hostElement) {
+      const videos = hostElement.querySelectorAll('video');
+      videos.forEach((video: HTMLVideoElement) => video.pause());
+    }
 
-      let minutes = time.getMinutes().toString().padStart(2, '0');
-      let seconds = time.getSeconds().toString().padStart(2, '0');
+    this.isVideoPlaying = false;
+  }
 
-      this.durationRemaining = `${hours ? hours + ':' : ''
-        }${minutes}:${seconds}`;
-    });
+  private clearActiveStoryTimer(): void {
+    if (this.activeStoryTimer !== null) {
+      window.clearTimeout(this.activeStoryTimer);
+      this.activeStoryTimer = null;
+    }
+  }
 
-    this.progressBar.nativeElement.addEventListener('click', (event: { pageX: number; }) => {
-      const progressBarEle = this.progressBar.nativeElement as HTMLElement;
-      const pos =
-        (event.pageX -
-          (progressBarEle.offsetLeft + progressBarEle.offsetLeft)) /
-        progressBarEle.offsetWidth;
-      this.videoElement.currentTime = pos * this.videoElement.duration;
-    });
-
-    this.videoElement.addEventListener('progress', () => {
-      var range = 0;
-      var bf = this.videoElement.buffered;
-      var time = this.videoElement.currentTime;
-      while (!(bf.start(range) <= time && time <= bf.end(range))) {
-        range += 1;
-      }
-      var loadStartPercentage = bf.start(range) / this.videoElement.duration;
-      var loadEndPercentage = bf.end(range) / this.videoElement.duration;
-      this.loadPercentage = loadEndPercentage * 100;
-    });
-
-    this.videoElement.addEventListener('waiting', (data) => {
-      this.isLoadingContent = true;
-      this.isPlaying = false;
-    });
-    this.videoElement.addEventListener('playing', (data) => {
-      this.isLoadingContent = false;
-      this.isPlaying = true;
-    });
-
-    this.videoElement.addEventListener('ended', (data) => {
-      this.isPlaying = false;
-    });
+  private playVideo(video: HTMLVideoElement, restartFromBeginning: boolean): void {
+    video.muted = false;
+    video.autoplay = true;
+    if (restartFromBeginning) {
+      video.currentTime = 0;
+    }
+    void video.play()
+      .then(() => {
+        this.isVideoPlaying = true;
+      })
+      .catch(() => {
+        video.muted = true;
+        void video.play()
+          .then(() => {
+            this.isVideoPlaying = true;
+          })
+          .catch(() => {
+            this.isVideoPlaying = false;
+          });
+      });
   }
 
   getClassOf(val: string) {
@@ -583,28 +607,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   public displayControllsOpacity = 0;
   public isPlaying = false;
   public isFullVolume = true;
@@ -615,84 +617,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public durationRemaining = '00:00';
   public controlsTimeout!: any;
 
-  @ViewChild('video') video!: ElementRef;
-  @ViewChild('videoContainer') videoContainer!: ElementRef;
-  @ViewChild('progressBar') progressBar!: ElementRef;
+  @ViewChild('dashboardCarousel') dashboardCarousel!: DashboardCarousel;
+  @ViewChild('dashboardCarousel', { read: ElementRef }) dashboardCarouselHost!: ElementRef<HTMLElement>;
   public videoElement!: HTMLVideoElement;
   @Input() videoUrl: string = '';
-  // constructor() { }
-
-
-
-
-  displayControls() {
-    this.displayControllsOpacity = 1;
-    document.body.style.cursor = 'initial';
-    if (this.controlsTimeout) {
-      clearTimeout(this.controlsTimeout);
-    }
-    this.controlsTimeout = setTimeout(() => {
-      if (this.isPlaying) {
-        this.displayControllsOpacity = 0;
-      } else {
-        this.displayControllsOpacity = 1;
-      }
-      document.body.style.cursor = 'none';
-    }, 5000);
-  }
-
-  playPause() {
-    if (this.videoElement.paused) {
-      this.videoElement.play();
-      this.isPlaying = true;
-    } else {
-      this.videoElement.pause();
-      this.isPlaying = false;
-    }
-  }
-
-  toggleMute() {
-    this.videoElement.muted = !this.videoElement.muted;
-    if (this.videoElement.muted) {
-      this.isFullVolume = false;
-    } else {
-      this.isFullVolume = true;
-    }
-  }
-
-  toggleFullScreen() {
-    if (
-      !document.fullscreenElement &&
-      !(document as Document).webkitFullscreenElement
-    ) {
-      this.openFullscreen();
-    } else {
-      this.closeFullscreen();
-    }
-  }
-
-  openFullscreen() {
-    if (this.videoContainer.nativeElement.requestFullscreen) {
-      this.videoContainer.nativeElement.requestFullscreen();
-    } else if (this.videoContainer.nativeElement.webkitRequestFullscreen) {
-      /* Safari */
-      this.videoContainer.nativeElement.webkitRequestFullscreen();
-    }
-  }
-
-  /* Close fullscreen */
-  closeFullscreen() {
-    if ((document as Document).exitFullscreen) {
-      (document as Document).exitFullscreen();
-    } else if ((document as Document).webkitExitFullscreen) {
-      /* Safari */
-      (document as Document).webkitExitFullscreen();
-    }
-  }
-
-  addTime(seconds: number = 10) {
-    this.videoElement.currentTime += seconds;
-  }
-
-
 }
