@@ -18,7 +18,7 @@ export class ContactInvestmentComponent implements OnInit, OnChanges {
   isLoading = false;
   userId: string;
   groupId: string;
-
+  private readonly positiveAmountPattern = /^(?=.*[1-9])(?:\d+|\d*\.\d+)$/;
 
   constructor(
     public userService: UserService,
@@ -30,7 +30,7 @@ export class ContactInvestmentComponent implements OnInit, OnChanges {
     this.userId = this.authService.getUserId();
     this.groupId = this.authService.getgroupId();
     this.form = new FormGroup({
-      amount: new FormControl(null, { validators: [Validators.required] }),
+      amount: new FormControl(null, { validators: [Validators.pattern(this.positiveAmountPattern)] }),
       phone_number	: new FormControl(null, { validators: [Validators.required] }),
       message	: new FormControl(null, { validators: [Validators.required] })
     });

@@ -7,10 +7,10 @@ export const environment = {
 
   // apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
   // apiUrl: 'https://www.interfriends.uk/backend/Api',
-  apiUrl: 'http://192.168.1.34/interfriends_backend/Api',
+  apiUrl: 'http://192.168.1.69/interfriends_backend/Api',
 
   // adminUrl: 'https://www.interfriends.uk/backend/Api/Admin',
-  adminUrl: 'http://192.168.1.34/interfriends_backend/Api/Admin',
+  adminUrl: 'http://192.168.1.69/interfriends_backend/Api/Admin',
 
   
   firebase: {
