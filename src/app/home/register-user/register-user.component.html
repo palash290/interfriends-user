@@ -287,6 +287,12 @@
                                     <label>Id Proof</label>
                                     <input accept="image/*" type="file" class="form-control"
                                         (change)="onIdSelected($event)" formControlName="id_proof" />
+                                    <div class="et_profile_img_123 mt-2">
+                                        <img [src]="previewIdImage || 'https://creativethoughtsinfo.com/interfriendsApp/assets/img/np_pro.png'"
+                                            width="100" height="100" />
+ </div>
+                                     
+                                   
                                     <span class="ct_fs_14 d-block ct_fw_600 mt-1">ID should match the name you have
                                         already provided to us</span>
                                     <span class="help-block d-block"

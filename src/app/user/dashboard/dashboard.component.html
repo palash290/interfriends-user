@@ -5,12 +5,8 @@
     <div class="col-sm-12 text-center mb-sm-0 mb-5 m-mb-0">
       <h3 class="main-hding">Hi, <span class="orange">{{this.name}}</span></h3>
       <!-- <h4 class="sub-para w-50 m-auto m-w-100"> We are INTERFRIENDS, a unique savings club with the vision to leverage the power of our collective effort in trust, to achieve what may be impossible individually</h4> -->
-      <owl-carousel-o
-        #dashboardCarousel
-        [options]="customOptions"
-        class="ct_height_400"
-        (initialized)="onCarouselInitialized()"
-        (translated)="onCarouselTranslated()"
+      <owl-carousel-o #dashboardCarousel [options]="customOptions" class="ct_height_400"
+        (initialized)="onCarouselInitialized()" (translated)="onCarouselTranslated()"
         (dragging)="onCarouselDragging($event)">
 
         <ng-container *ngFor="let slide of apiData">
@@ -18,15 +14,8 @@
             <div class="dashboard-slide">
               <ng-container *ngIf="slide.image != ''">
                 <div #videoContainer class="video-container">
-                  <video
-                    #slideVideo
-                    *ngIf="isVideoMedia(slide.image); else bannerImage"
-                    class="ct_banner_media"
-                    autoplay
-                    playsinline
-                    preload="auto"
-                    (ended)="onVideoEnded()"
-                    (play)="isVideoPlaying = true"
+                  <video #slideVideo *ngIf="isVideoMedia(slide.image); else bannerImage" class="ct_banner_media"
+                    autoplay playsinline preload="auto" (ended)="onVideoEnded()" (play)="isVideoPlaying = true"
                     (pause)="isVideoPlaying = false">
                     <source [src]="slide.image" [type]="getVideoType(slide.image)">
                     Your browser does not support the video tag.
@@ -69,9 +58,17 @@
         <div class="mr-4">
           <img src="assets/images/savings.png" class="img-fluid">
         </div>
+
         <div class="ct_flex_item_div">
-          <div class="">
-            <p class="sub-para">Savings</p>
+          <div style="flex:1">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings info"
+              (click)="openInfoModal('Savings', 'Savings shows your main savings balance and recent contribution activity.'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="position-relative">
+              <p class="sub-para mb-0">Savings</p>
+
+            </div>
             <h4 class="main-hding">
               <span *ngIf="!isLoadingSaving">{{avgAmountCycle | currency:'GBP': 'symbol' : '1.0-0'}}</span>
               <span *ngIf="isLoadingSaving">
@@ -79,7 +76,7 @@
               </span>
             </h4>
           </div>
-          <div>
+          <div style="cursor: pointer;">
             <h3 class="next-arrow-hm">
               <i class="fa fa-chevron-right"></i>
             </h3>
@@ -130,7 +127,15 @@
         </div>
         <div class="ct_flex_item_div">
           <div class="">
-            <p class="sub-para">Savings JNR</p>
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+              aria-label="Savings JNR info"
+              (click)="openInfoModal('Savings JNR', 'Savings JNR shows the junior savings balance and recent payment activity.'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="position-relative">
+              <p class="sub-para mb-0">Savings JNR</p>
+
+            </div>
             <h4 class="main-hding">
               <span *ngIf="!isLoadingSavingJNR">{{avgAmountCycleJNR| currency:'GBP': 'symbol' : '1.0-0'}}</span>
               <span *ngIf="isLoadingSavingJNR">
@@ -177,7 +182,15 @@
         </div>
         <div class="ct_flex_item_div">
           <div class="">
-            <p class="sub-para">Safekeeping</p>
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+              aria-label="Safekeeping info"
+              (click)="openInfoModal('Safekeeping', 'Safekeeping shows the funds reserved for secure holding in your account.'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="position-relative">
+              <p class="sub-para mb-0">Safekeeping</p>
+
+            </div>
             <h4 class="main-hding">
               <span *ngIf="!isLoading">{{avgAmountSafeKeeping | currency:'GBP': 'symbol' : '1.0-0'}}</span>
               <span *ngIf="isLoading">
@@ -220,7 +233,15 @@
         </div>
         <div class="ct_flex_item_div">
           <div class="">
-            <p class="sub-para">Provident</p>
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+              aria-label="Provident info"
+              (click)="openInfoModal('Provident', 'Provident shows the balance accumulated in your provident savings plan.'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="position-relative">
+              <p class="sub-para mb-0">Provident</p>
+
+            </div>
             <h4 class="main-hding">
               <span *ngIf="!isLoading">{{avgAmountPf| currency:'GBP': 'symbol' : '1.0-0'}}</span>
               <span *ngIf="isLoading">
@@ -261,7 +282,15 @@
         </div>
         <div class="ct_flex_item_div">
           <div class="">
-            <p class="sub-para">Investment</p>
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+              aria-label="Investment info"
+              (click)="openInfoModal('Investment', 'Investment shows your current investment total and related earnings.'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="position-relative">
+              <p class="sub-para mb-0">Investment</p>
+
+            </div>
             <h4 class="main-hding">
               <span *ngIf="!isLoading">{{totalAmountInvestment| currency:'GBP': 'symbol' : '1.0-0'}}</span>
               <span *ngIf="isLoading">
@@ -302,7 +331,15 @@
         </div>
         <div class="ct_flex_item_div">
           <div class="">
-            <p class="sub-para">Dividend</p>
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+              aria-label="Dividend info"
+              (click)="openInfoModal('Dividend', 'Dividend shows the returns paid back to you from eligible investments.'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="position-relative">
+              <p class="sub-para mb-0">Dividend</p>
+
+            </div>
             <h4 class="main-hding">
               <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span>
               <span *ngIf="isLoading">
@@ -344,7 +381,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Help to Buy</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Help to Buy info"
+                (click)="openInfoModal('Help to Buy', 'Help to Buy shows the amount set aside toward your property goal.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Help to Buy</p>
+
+              </div>
               <h4 class="main-hding">
                 <span *ngIf="!isLoadingSavingHelpToBuy">{{avgAmountHelpToBuy | currency:'GBP': 'symbol' :
                   '1.0-0'}}</span>
@@ -389,7 +434,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Assistance</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Assistance info"
+                (click)="openInfoModal('Assistance', 'Assistance shows the balance available for support or loan help.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Assistance</p>
+
+              </div>
               <h4 class="main-hding">
                 <span *ngIf="!isLoading">{{avgAmountLoan| currency:'GBP': 'symbol' : '1.0-0'}}</span>
                 <span *ngIf="isLoading">
@@ -434,7 +487,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Emergency Loans</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Emergency Loans info"
+                (click)="openInfoModal('Emergency Loans', 'Emergency Loans shows funds linked to urgent borrowing needs.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Emergency Loans</p>
+
+              </div>
               <h4 class="main-hding">
                 <!-- <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
                 <span *ngIf="!isLoading">{{avgAmountEmergencyLoan| currency:'GBP': 'symbol' : '1.0-0'}}</span>
@@ -478,7 +539,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Welfare</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Welfare info"
+                (click)="openInfoModal('Welfare', 'Welfare shows the support balance available for welfare-related payments.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Welfare</p>
+
+              </div>
               <h4 class="main-hding">
                 <span *ngIf="!isLoading">{{avgwelfare| currency:'GBP': 'symbol' : '1.0-0'}}</span>
                 <span *ngIf="isLoading">
@@ -520,7 +589,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Miscellaneous</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Miscellaneous info"
+                (click)="openInfoModal('Miscellaneous', 'Miscellaneous shows the combined balance for other account activity.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Miscellaneous</p>
+
+              </div>
 
               <h4 class="main-hding">
                 <!-- <span *ngIf="!isLoading">{{totalAmountDivided| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
@@ -603,7 +680,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Overall account balance</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Overall account balance info"
+                (click)="openInfoModal('Overall account balance', 'Overall account balance combines all visible account totals into one summary value.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Overall account balance</p>
+
+              </div>
               <h4 class="main-hding">
                 <span *ngIf="!isLoading">{{ overAllTotal | currency:'GBP': 'symbol' : '1.0-0' }}</span>
                 <span *ngIf="isLoading">
@@ -622,7 +707,15 @@
           </div>
           <div class="ct_flex_item_div">
             <div class="">
-              <p class="sub-para">Overall account balance</p>
+              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+                aria-label="Overall account balance info"
+                (click)="openInfoModal('Overall account balance', 'Overall account balance combines all visible account totals into one summary value.'); $event.preventDefault(); $event.stopPropagation()">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+              <div class="position-relative">
+                <p class="sub-para mb-0">Overall account balance</p>
+
+              </div>
               <h4 class="main-hding">
                 <span *ngIf="!isLoading">{{overAllTotal| currency:'GBP': 'symbol' : '1.0-0'}}</span>
                 <span *ngIf="isLoading">
@@ -642,6 +735,26 @@
   </span>
 
 </section>
+
+<div *ngIf="showInfoModal" class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ infoModalTitle }} Info</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeInfoModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">{{ infoModalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeInfoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showInfoModal" class="modal-backdrop fade show" (click)="closeInfoModal()"></div>
 <!-- <section class="container">
    <div class="row box-two d-flex align-items-start">
       <div class="col-md-6 mb-md-0 mb-5 mt-md-0 mt-5 text-center">

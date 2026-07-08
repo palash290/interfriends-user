@@ -406,3 +406,27 @@ span.ct_show_more_bold {
 .ct_icon_bg_2.remove {
   background-color: #ea423a;
 }
+
+
+.et_info_top_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+  border: 0;
+  box-shadow: none;
+}
+
+.et_info_top_icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.et_info_top_icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+}

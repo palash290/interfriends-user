@@ -17,6 +17,7 @@ export class RegisterUserComponent implements OnInit {
   form: FormGroup;
   token: string = '';
   recommend_id: any;
+  private readonly defaultProfileImage = 'https://creativethoughtsinfo.com/interfriendsApp/assets/img/np_pro.png';
 
   constructor(
     public authService: AuthService,
@@ -32,33 +33,31 @@ export class RegisterUserComponent implements OnInit {
     this.token = this.route.snapshot.queryParamMap.get('token') || '';
 
     this.recommend_id = this.route.snapshot.queryParamMap.get('recommend_id') || '';
+
+    this.form = new FormGroup({
+      first_name: new FormControl('', { validators: [Validators.required] }),
+      last_name: new FormControl('', { validators: [Validators.required] }),
+      email: new FormControl('', { validators: [Validators.required, Validators.email] }),
+      dob: new FormControl(null, { validators: [Validators.required] }),
+      password: new FormControl(null, { validators: [Validators.required] }),
+      mobile_number: new FormControl('', { validators: [Validators.required] }),
+      home_number: new FormControl('', { validators: [Validators.required] }),
+      emergency_number: new FormControl('', { validators: [Validators.required] }),
+      kin_name: new FormControl('', { validators: [Validators.required] }),
+      kin_number: new FormControl('', { validators: [Validators.required] }),
+      address_line_1: new FormControl('', { validators: [Validators.required] }),
+      address_line_2: new FormControl('', { validators: [Validators.required] }),
+      post_code: new FormControl('', { validators: [Validators.required] }),
+      //country: new FormControl(null, { validators: [Validators.required] }),
+      //state: new FormControl(null, { validators: [Validators.required] }),
+      city: new FormControl('', { validators: [Validators.required] }),
+      image: new FormControl(null, { validators: [Validators.required] }),
+      id_proof: new FormControl(null, { validators: [Validators.required] }),
+      employement_type: new FormControl(null, { validators: [Validators.required] }),
+      acceptTerms: new FormControl(false, { validators: [Validators.requiredTrue] })
+    });
+
     this.getUsers();
-
-    setTimeout(() => {
-      this.form = new FormGroup({
-        first_name: new FormControl(this.userData?.first_name, { validators: [Validators.required] }),
-        last_name: new FormControl(this.userData?.last_name, { validators: [Validators.required] }),
-        email: new FormControl(this.userData?.email, { validators: [Validators.required, Validators.email] }),
-        dob: new FormControl(null, { validators: [Validators.required] }),
-        password: new FormControl(null, { validators: [Validators.required] }),
-        mobile_number: new FormControl(this.userData?.mobile_number, { validators: [Validators.required] }),
-        home_number: new FormControl(null, { validators: [Validators.required] }),
-        emergency_number: new FormControl(null, { validators: [Validators.required] }),
-        kin_name: new FormControl(null, { validators: [Validators.required] }),
-        kin_number: new FormControl(null, { validators: [Validators.required] }),
-        address_line_1: new FormControl(null, { validators: [Validators.required] }),
-        address_line_2: new FormControl(null, { validators: [Validators.required] }),
-        post_code: new FormControl(null, { validators: [Validators.required] }),
-        //country: new FormControl(null, { validators: [Validators.required] }),
-        //state: new FormControl(null, { validators: [Validators.required] }),
-        city: new FormControl(null, { validators: [Validators.required] }),
-        image: new FormControl(null, { validators: [Validators.required] }),
-        id_proof: new FormControl(null, { validators: [Validators.required] }),
-        employement_type: new FormControl(null, { validators: [Validators.required] }),
-        acceptTerms: new FormControl(false, { validators: [Validators.requiredTrue] })
-      });
-    }, 1000);
-
 
   }
 
@@ -69,7 +68,25 @@ export class RegisterUserComponent implements OnInit {
       next: resp => {
         if (resp.success == "1") {
           this.userData = resp.users;
-          // this.previewImageAdd = resp.users.
+          const user = resp.users || {};
+          this.form.patchValue({
+            first_name: user.first_name || '',
+            last_name: user.last_name || '',
+            email: user.email || '',
+            dob: user.dob || null,
+            mobile_number: user.mobile_number || '',
+            home_number: user.home_number || '',
+            emergency_number: user.emergency_number || '',
+            kin_name: user.kin_name || '',
+            kin_number: user.kin_number || '',
+            address_line_1: user.address_line_1 || '',
+            address_line_2: user.address_line_2 || '',
+            post_code: user.post_code || '',
+            city: user.city || '',
+            employement_type: user.employement_type || null
+          });
+          this.previewImageAdd = user.profile_image;
+          this.previewIdImage = user.id_proof_image;
         }
       },
       error: error => {
@@ -98,6 +115,7 @@ export class RegisterUserComponent implements OnInit {
     this.form.markAllAsTouched();
     console.log(this.form.invalid);
     console.log(this.form.value.dob, 'dob');
+    const rawForm = this.form.getRawValue();
     const formData = new FormData();
 
     if (this.selectedFile) {
@@ -112,24 +130,24 @@ export class RegisterUserComponent implements OnInit {
     // formData.append('first_name', this.form.value.first_name)
     // formData.append('last_name', this.form.value.last_name)
     // formData.append('email', this.form.value.email)
-    formData.append('first_name', this.userData?.first_name)
-    formData.append('last_name', this.userData?.last_name)
-    formData.append('email', this.userData?.email)
-    formData.append('dob', this.form.value.dob)
-    formData.append('mobile_number', this.userData?.mobile_number)
-    formData.append('home_number', this.form.value.home_number)
-    formData.append('emergency_number', this.form.value.emergency_number)
-    formData.append('kin_name', this.form.value.kin_name)
-    formData.append('kin_number', this.form.value.kin_number)
-    formData.append('address_line_1', this.form.value.address_line_1)
-    formData.append('address_line_2', this.form.value.address_line_2)
-    formData.append('post_code', this.form.value.post_code)
+    formData.append('first_name', rawForm.first_name)
+    formData.append('last_name', rawForm.last_name)
+    formData.append('email', rawForm.email)
+    formData.append('dob', rawForm.dob)
+    formData.append('mobile_number', rawForm.mobile_number)
+    formData.append('home_number', rawForm.home_number)
+    formData.append('emergency_number', rawForm.emergency_number)
+    formData.append('kin_name', rawForm.kin_name)
+    formData.append('kin_number', rawForm.kin_number)
+    formData.append('address_line_1', rawForm.address_line_1)
+    formData.append('address_line_2', rawForm.address_line_2)
+    formData.append('post_code', rawForm.post_code)
     // formData.append('country', this.selectedCountry?.name)
     // formData.append('state', this.selectedState?.name)
     // formData.append('city', this.selectedCity?.name)
-    formData.append('city', this.form.value.city)
-    formData.append('password', this.form.value.password);
-    formData.append('employement_type', this.form.value.employement_type)
+    formData.append('city', rawForm.city)
+    formData.append('password', rawForm.password);
+    formData.append('employement_type', rawForm.employement_type)
 
     if (this.token) {
       formData.append('token', this.token);
@@ -196,18 +214,19 @@ export class RegisterUserComponent implements OnInit {
 
 
   selectedIdFile!: File;
+  previewIdImage: string | ArrayBuffer | null = null;
 
   onIdSelected(event: any) {
     if (event.target.files.length > 0) {
       this.selectedIdFile = event.target.files[0];
 
-      // const reader = new FileReader();
-      // reader.onload = () => {
+      const reader = new FileReader();
+      reader.onload = () => {
 
-      //   this.previewImageAdd = reader.result;
+        this.previewIdImage = reader.result;
 
-      // };
-      // reader.readAsDataURL(this.selectedIdFile);
+      };
+      reader.readAsDataURL(this.selectedIdFile);
     }
   }
 

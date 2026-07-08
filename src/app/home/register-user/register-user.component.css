@@ -1,22 +1,23 @@
-.ct_signup_scroll{
-    overflow-y: auto;
-    height: auto;
-    /* max-height: 500px; */
-    overflow-x: hidden;
-    padding-inline: 10px;
+.ct_signup_scroll {
+  overflow-y: auto;
+  height: auto;
+  /* max-height: 500px; */
+  overflow-x: hidden;
+  padding-inline: 10px;
 }
 
-  .auth-card{
-    max-width: 750px;
-  }
-
-  .form-group.has-error .help-block {
-    color: #dd4b39
+.auth-card {
+  max-width: 750px;
 }
+
+.form-group.has-error .help-block {
+  color: #dd4b39
+}
+
 /* .ct_fw_600{
   font-weight: 600;
 } */
-.ct_fs_14{
+.ct_fs_14 {
   font-size: 14px;
 }
 
@@ -29,32 +30,54 @@
   border-bottom: 1px solid #f4f4fc;
 }
 
-.header-menu img{
+.header-menu img {
   max-width: 121px;
   width: 100%;
   object-fit: contain;
 }
+
 .header-menu {
   position: absolute;
 }
-.et_orange_btn{
+
+.et_orange_btn {
   overflow: hidden;
 }
-.et_outline_btn{
+
+.et_outline_btn {
   background-color: transparent;
   color: #333;
 }
-.et_outline_btn:before{
+
+.et_outline_btn:before {
   background-color: #F2994A;
 }
-.et_outline_btn:hover{
+
+.et_outline_btn:hover {
   color: #fff;
 }
-.et_profile_img_12{
+
+.et_profile_img_12 {
   text-align: center;
 }
-.et_profile_img_12 img{
+
+.et_profile_img_12 img {
   border-radius: 100px;
   margin-inline: auto;
   display: block;
+}
+
+.et_profile_img_123 img {
+  /* border-radius: 100px; */
+
+  display: block;
+  border-radius: 5px;
+}
+
+.et_proff_main {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
 }

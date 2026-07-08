@@ -125,6 +125,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   avgWelfareData: any;
 
   showHiddenFields: boolean = false;
+  showInfoModal = false;
+  infoModalTitle = '';
+  infoModalMessage = '';
 
   apiData: PhotosApi;
   limit: number = 10; // <==== Edit this number to limit API results
@@ -420,6 +423,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   closeModal() {
     $('#new').modal('hide');
+  }
+
+  openInfoModal(title: string, message: string): void {
+    this.infoModalTitle = title;
+    this.infoModalMessage = message;
+    this.showInfoModal = true;
+  }
+
+  closeInfoModal(): void {
+    this.showInfoModal = false;
+    this.infoModalTitle = '';
+    this.infoModalMessage = '';
   }
 
   GoInvestment() {
