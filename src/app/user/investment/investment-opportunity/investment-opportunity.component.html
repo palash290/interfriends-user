@@ -39,7 +39,7 @@
               <p class="extra-para">{{data.long_description}}</p>
 
               <div class="progress mt-3">
-                <div class="progress-bar progress-bar-success ct_box_grey"
+                <div class="progress-bar progress-bar-success ct_box_red"
                   [ngStyle]="{'width': data.invest_percentage+'%'}"></div>
               </div>
 
@@ -54,7 +54,6 @@
                     </div>
                   </div> -->
 
-
                   <span>Funded: </span>
                   <!-- <strong>{{data.invest_amount | currency:'GBP': 'symbol' : '1.0-0'}}/{{data.main_amount | currency:'GBP': 'symbol' : '1.0-0'}}</strong> -->
                   <strong>{{data.invest_amount | currency:'GBP': 'symbol' : '1.0-0'}}</strong>
@@ -66,8 +65,9 @@
                 <li>
                   <!--<span class="inv-box box-grey"></span>-->
 
-                  <div class="progress mt-3">
+                  <div class="progress mt-3" style="background-color:#45bf67 !important">
                     <div class="progress-bar progress-bar-success ct_box_grey"
+                      style="background-color:#e9ecef !important"
                       [ngStyle]="{ 'width': calculateProgressWidth(data.main_amount - data.invest_amount, data.main_amount)}">
                     </div>
                   </div>

@@ -68,8 +68,8 @@
                                     {{ user.recommending_this_person }}
                                 </span></td> -->
                             <td>
-                                <i (click)="loadInitList(user.id)" class="fa fa-eye" aria-hidden="true" data-toggle="modal"
-                                    data-target="#applyModalCC"></i>
+                                <i (click)="loadInitList(user.id)" class="fa fa-eye" aria-hidden="true"
+                                    data-toggle="modal" data-target="#applyModalCC"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -106,7 +106,7 @@
                     <ng-container *ngIf="recommendedUsersList.length > 0; else emptyState">
                         <article class="recommendation-card bg-transparent p-0 shadow-none"
                             *ngFor="let item of recommendedUsersList; trackBy: trackByRecommendationId">
-                            <div class="recommendation-card__header">
+                            <div class="recommendation-card__header ">
                                 <div class="recommendation-card__identity">
                                     <div class="avatar avatar--candidate">
                                         {{ getInitials(item?.first_name, item?.last_name) }}
@@ -127,8 +127,8 @@
                                     {{ item?.overall_status | titlecase }}
                                 </span>
                             </div>
-                            <div class="card-grid">
-                                <section class="info-panel">
+                            <div class="">
+                                <!-- <section class="info-panel">
                                     <div class="section-heading">
                                         <p class="section-label">Candidate overview</p>
                                         <span class="section-metric">{{ getApprovalStepCount(item) }} approvals</span>
@@ -183,7 +183,7 @@
                                             <span class="field-val">{{ item?.recommending_this_person || 'N/A' }}</span>
                                         </div>
                                     </div>
-                                </section>
+                                </section> -->
 
                                 <section class="info-panel info-panel--soft">
                                     <div class="section-heading">
@@ -191,7 +191,7 @@
                                         <span class="section-metric">2 contacts</span>
                                     </div>
 
-                                    <div class="recommender-stack">
+                                    <div class="recommender-stack ct_grid_col_2_nwq">
                                         <div class="recommender-row"
                                             *ngFor="let recommender of getRecommenders(item); let i = index; trackBy: trackByStepIndex">
                                             <div class="avatar avatar--small"

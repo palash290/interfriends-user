@@ -130,6 +130,10 @@
   background-color: #aaa !important;
 }
 
+.ct_box_red {
+  background-color: #45bf67 !important;
+}
+
 @media only screen and (max-width: 992px) {
   .pr-wrapper-box {
     flex-direction: column-reverse;

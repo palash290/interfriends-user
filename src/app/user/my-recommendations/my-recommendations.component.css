@@ -24,3 +24,14 @@ span.ct_resion_para_text {
     max-height: 150px;
     overflow-y: auto;
 }
+
+.ct_grid_col_2_nwq {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 575px) {
+    .ct_grid_col_2_nwq {
+        grid-template-columns: 1fr;
+    }
+}

@@ -23,7 +23,7 @@ export class PfListComponent implements OnInit {
   filterStartDate: string;
   filterEndDate: string;
   isLoadingD = true;
-  groupTypeArray : string [] = ["", "Saving", "Saving JNR", "Help to Buy", "Welfare" ]
+  groupTypeArray : string [] = ["", "Savings", "Saving JNR", "Help to Buy", "Welfare" ]
   /*isLoadingChangeCycle = false;*/
 
 
