@@ -39,11 +39,9 @@
             Buy</a>
         </li>
 
-
         <li class="nav-item dropdown">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/user/miscellaneousList']">Miscellaneous</a>
         </li>
-
 
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/user/safeKeepingList">Safekeeping</a>
@@ -59,6 +57,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/user/investmentList">Property Investments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/all-services">All Services</a>
         </li>
         <li class="nav-item position-relative">
           <a class="nav-link profile-click" [ngClass]="{'have-notification': notificationCount > 0}"
@@ -93,6 +94,16 @@
                   <img src="assets/images/user-menu-hover.png" class="colored-icon">
                 </div>
                 <div>My Recommendations</div>
+              </a>
+            </li>
+
+            <li>
+              <a routerLink="/user/my-services" class="d-flex">
+                <div class="menu-icon">
+                  <img src="assets/images/user-menu.png" class="dark-icon">
+                  <img src="assets/images/user-menu-hover.png" class="colored-icon">
+                </div>
+                <div>My Services</div>
               </a>
             </li>
 

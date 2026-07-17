@@ -57,6 +57,12 @@ export class ApplyLoanComponent implements OnInit {
           '). To apply, check and clarify with the group Admin to confirm that you meet the minimum requirements before you proceed.' +
           '\nOnce accepted, monthly payments start immediately and payout starts after 40 months.T&C apply.';
         break;
+      case '7':
+        this.loanTypeText = 'Welfare';
+        this.textMessage =
+          'Not every member qualifies to be accepted for Interfriends Welfare. To apply, check and clarify with the group Admin to confirm that you meet the minimum requirements before you proceed.' +
+          '\nOnce accepted, monthly payments start immediately and payout starts after 40 months.T&C apply.';
+        break;
       default:
         this.loanTypeText = 'Other';
         this.textMessage =

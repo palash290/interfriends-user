@@ -3,53 +3,64 @@
   <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
 </a>
 <section class="top-space container">
-    <div class="row box-one">
-      <div class="col-md-12">
-        <h2 class="section-title">Apply</h2>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a  (click)="onSelectLoan('1')" class="blue-line-solid text-center">
-            <div class="img-box loan"></div>
-            <p class="md-title mt-4 mb-0">assistance</p>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a  (click)="onSelectLoan('2')"  class="blue-line-solid text-center">
-            <div class="img-box car-inc"></div>
-            <p class="md-title mt-4 mb-0">Help2Pay(Car Insurance)</p>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a href="javascript(void);" data-toggle="modal" data-target="#applyEmergencyModal" class="blue-line-solid text-center">
-          <div class="img-box investment"></div>
-            <p class="md-title mt-4 mb-0">emergency Help</p>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a (click)="onSelectLoan('3')"  class="blue-line-solid text-center">
-            <div class="img-box buy-car"></div>
-            <p class="md-title mt-4 mb-0">Help2Buy(Car)</p>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a  (click)="onSelectLoan('4')"  class="blue-line-solid text-center">
-          <div class="img-box cc"></div>
-            <p class="md-title mt-4 mb-0">Help2Pay(credit card)</p>
-        </a>
-      </div>
-      <!-- <div class="col-lg-4 col-sm-6">
+  <div class="row box-one">
+    <div class="col-md-12">
+      <h2 class="section-title">Apply</h2>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a (click)="onSelectLoan('1')" class="blue-line-solid text-center">
+        <div class="img-box loan"></div>
+        <p class="md-title mt-4 mb-0">assistance</p>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a (click)="onSelectLoan('2')" class="blue-line-solid text-center">
+        <div class="img-box car-inc"></div>
+        <p class="md-title mt-4 mb-0">Help2Pay(Car Insurance)</p>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a href="javascript(void);" data-toggle="modal" data-target="#applyEmergencyModal"
+        class="blue-line-solid text-center">
+        <div class="img-box investment"></div>
+        <p class="md-title mt-4 mb-0">emergency Help</p>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a (click)="onSelectLoan('3')" class="blue-line-solid text-center">
+        <div class="img-box buy-car"></div>
+        <p class="md-title mt-4 mb-0">Help2Buy(Car)</p>
+      </a>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+      <a (click)="onSelectLoan('4')" class="blue-line-solid text-center">
+        <div class="img-box cc"></div>
+        <p class="md-title mt-4 mb-0">Help2Pay(credit card)</p>
+      </a>
+    </div>
+    <!-- <div class="col-lg-4 col-sm-6">
         <a  (click)="onSelectLoan('5')"  class="blue-line-solid text-center">
             <div class="img-box mobile"></div>
             <p class="md-title mt-4 mb-0">Help2Buy(other)</p>
         </a>
       </div> -->
-      <div class="col-lg-4 col-sm-6">
-        <a  (click)="onSelectLoan('6')"  class="blue-line-solid text-center">
-            <div class="img-box home-loan"></div>
-            <p class="md-title mt-4 mb-0">Help2Buy(house)</p>
-        </a>
-      </div>
+    <div class="col-lg-4 col-sm-6">
+      <a (click)="onSelectLoan('6')" class="blue-line-solid text-center">
+        <div class="img-box home-loan"></div>
+        <p class="md-title mt-4 mb-0">Help2Buy(house)</p>
+      </a>
     </div>
+
+    <div class="col-lg-4 col-sm-6">
+      <!-- <a (click)="onSelectLoan('7')" class="blue-line-solid text-center"> -->
+      <a href="javascript(void);" data-toggle="modal" data-target="#applyWelfareModal"
+        class="blue-line-solid text-center">
+        <div class="img-box mobile"></div>
+        <p class="md-title mt-4 mb-0">Welfare</p>
+      </a>
+    </div>
+
+  </div>
 </section>
 <app-sub-menu></app-sub-menu>
 <app-mobile-menu></app-mobile-menu>
@@ -57,19 +68,29 @@
 <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#applyModal">Open Modal</button>
 
 <!-- Modal Start -->
-<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
-  <app-add-loan-request [loanType]= "loanType" [eachChange]= "eachChange"></app-add-loan-request>
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"
+  aria-hidden="true">
+  <app-add-loan-request [loanType]="loanType" [eachChange]="eachChange"></app-add-loan-request>
 </div>
 <!-- Modal end-->
 
 <!-- Modal Start-->
-<div class="modal fade" id="applyEmergencyModal" tabindex="-1" role="dialog" aria-labelledby="exampleEmergencyModalLabel" aria-hidden="true">
+<div class="modal fade" id="applyEmergencyModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleEmergencyModalLabel" aria-hidden="true">
   <app-emergency-loan-request></app-emergency-loan-request>
 </div>
 <!-- Modal end-->
 
- <!-- Modal Start-->
- <div class="modal fade" id="applyModalCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Start-->
+<div class="modal fade" id="applyWelfareModal" tabindex="-1" role="dialog" aria-labelledby="exampleEmergencyModalLabel"
+  aria-hidden="true">
+  <app-apply-welfare></app-apply-welfare>
+</div>
+<!-- Modal end-->
+
+<!-- Modal Start-->
+<div class="modal fade" id="applyModalCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header border-0 justify-content-center">
@@ -155,5 +176,3 @@
   </div>
 </div>
 <!-- Modal end-->
-
-

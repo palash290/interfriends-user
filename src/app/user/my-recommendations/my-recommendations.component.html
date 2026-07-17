@@ -21,7 +21,7 @@
             <div class="recommendations-stats" *ngIf="!isLoader">
                 <div class="stat-pill">
                     <span class="stat-pill__label">Total</span>
-                    <strong class="stat-pill__value">{{ usersList.length }}</strong>
+                    <strong class="stat-pill__value">{{ usersList?.length }}</strong>
                 </div>
                 <!-- <div class="stat-pill">
                     <span class="stat-pill__label">Approved</span>
@@ -103,7 +103,7 @@
             </div>
             <div class="modal-body border-0 pb-0">
                 <ng-container *ngIf="!isLoader">
-                    <ng-container *ngIf="recommendedUsersList.length > 0; else emptyState">
+                    <ng-container *ngIf="recommendedUsersList?.length > 0; else emptyState">
                         <article class="recommendation-card bg-transparent p-0 shadow-none"
                             *ngFor="let item of recommendedUsersList; trackBy: trackByRecommendationId">
                             <div class="recommendation-card__header ">
@@ -229,7 +229,7 @@
                                 </div>
 
                                 <ng-container
-                                    *ngIf="item?.approval_steps && item.approval_steps.length > 0; else noSteps">
+                                    *ngIf="item?.approval_steps && item.approval_steps?.length > 0; else noSteps">
                                     <div class="timeline-step"
                                         *ngFor="let step of item.approval_steps; let last = last; trackBy: trackByStepIndex"
                                         [class.timeline-step--last]="last">

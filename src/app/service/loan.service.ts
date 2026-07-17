@@ -5,10 +5,10 @@ import { environment } from '../../environments/environment'
 
 
 const API_URL = environment.apiUrl;
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class LoanService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   requestLoan(
     user_id: string,
@@ -19,12 +19,12 @@ export class LoanService {
     loan_type: string,
     gurarantor: string,
     document_image: string,
-    creditCardImage : string,
+    creditCardImage: string,
     pay_date: string,
-    total40month : string,
-    provident : string,
-    admin_risk : string,
-    loan_emi : string,
+    total40month: string,
+    provident: string,
+    admin_risk: string,
+    loan_emi: string,
     selectedIdFile: any
   ): any {
     const instituteData = new FormData();
@@ -49,8 +49,8 @@ export class LoanService {
       success: string;
       message: string;
     }>(
-        API_URL + '/request_loan', instituteData
-      );
+      API_URL + '/request_loan', instituteData
+    );
   }
 
 
@@ -74,15 +74,47 @@ export class LoanService {
       success: string;
       message: string;
     }>(
-        API_URL + '/addEmergencyLoan', instituteData
-      );
+      API_URL + '/addEmergencyLoan', instituteData
+    );
+  }
+
+  addWelfare(
+    user_id: string,
+    group_id: string,
+    loan_amount: string,
+    tenure: string,
+    total40month: string,
+    provident: string,
+    admin_risk: string,
+    loan_emi: string,
+    startDate: string,
+    gurarantor: string,
+  ): any {
+    const instituteData = new FormData();
+    instituteData.append('user_id', user_id);
+    instituteData.append('group_id', group_id);
+    instituteData.append('amount', loan_amount);
+    instituteData.append('month', tenure);
+    instituteData.append('total_payment', total40month)
+    instituteData.append('provident', provident)
+    instituteData.append('admin_risk', admin_risk)
+    instituteData.append('loan_emi', loan_emi)
+    instituteData.append('date', startDate)
+    instituteData.append('gurarantor', gurarantor);
+
+    return this.http.post<{
+      success: string;
+      message: string;
+    }>(
+      API_URL + '/addWelfare', instituteData
+    );
   }
 
   loanList(
     user_id: string,
     group_id: string,
     status: string,
-    loan_type : string
+    loan_type: string
   ): any {
     const instituteData = new FormData();
     instituteData.append('user_id', user_id);
@@ -99,8 +131,8 @@ export class LoanService {
       avgAmount: string;
       avgComplete: string
     }>(
-        API_URL + '/loanList', instituteData
-      );
+      API_URL + '/loanList', instituteData
+    );
   }
 
 
@@ -121,8 +153,8 @@ export class LoanService {
       avgAmount: string;
       avgComplete: string
     }>(
-        API_URL + '/welfareList', instituteData
-      );
+      API_URL + '/welfareList', instituteData
+    );
   }
 
 
@@ -143,8 +175,8 @@ export class LoanService {
       avgAmount: string;
       avgComplete: string;
     }>(
-        API_URL + '/emergencyLoanList', instituteData
-      );
+      API_URL + '/emergencyLoanList', instituteData
+    );
   }
 
 
@@ -163,8 +195,8 @@ export class LoanService {
       message: string;
       paymentList: any;
     }>(
-        API_URL + '/loanPaymentList', instituteData
-      );
+      API_URL + '/loanPaymentList', instituteData
+    );
   }
 
   all_loan_list(): any {
@@ -173,8 +205,8 @@ export class LoanService {
       message: string;
       loanList: any;
     }>(
-        API_URL + '/all_loan_list',
-      );
+      API_URL + '/all_loan_list',
+    );
   }
 
   help2BuyList(
@@ -190,8 +222,8 @@ export class LoanService {
       message: string;
       paymentList: any;
     }>(
-        API_URL + '/help2buylist', instituteData
-      );
+      API_URL + '/help2buylist', instituteData
+    );
   }
 
 

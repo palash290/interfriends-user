@@ -64,6 +64,9 @@ import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { DeclinePageComponent } from './decline-page/decline-page.component';
 import { CircleListComponent } from './circle-list/circle-list.component';
 import { MyRecommendationsComponent } from './my-recommendations/my-recommendations.component';
+import { ApplyWelfareComponent } from './apply-welfare/apply-welfare.component';
+import { MyServicesComponent } from './my-services/my-services.component';
+import { AllServicesComponent } from './all-services/all-services.component';
 
 
 
@@ -118,6 +121,7 @@ import { MyRecommendationsComponent } from './my-recommendations/my-recommendati
   AddSafeKeepingRequestComponent,
   EmergencyLoanListComponent,
   EmergencyLoanRequestComponent,
+  WelfareLoanComponent,
   RecommendUserComponent,
   InvestmentListComponent,
   InvestmentOpportunityComponent,
@@ -143,6 +147,9 @@ import { MyRecommendationsComponent } from './my-recommendations/my-recommendati
   DeclinePageComponent,
   CircleListComponent,
   MyRecommendationsComponent,
+  ApplyWelfareComponent,
+  MyServicesComponent,
+  AllServicesComponent,
   ],
   providers: [],
   exports: [],

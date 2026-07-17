@@ -29,6 +29,8 @@ import { Help2buyLoanlistComponent } from './helptobuy-layout/help2buy-loanlist/
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CircleListComponent } from './circle-list/circle-list.component';
 import { MyRecommendationsComponent } from './my-recommendations/my-recommendations.component';
+import { MyServicesComponent } from './my-services/my-services.component';
+import { AllServicesComponent } from './all-services/all-services.component';
 
 
 
@@ -69,6 +71,16 @@ const routes: Routes = [
       {
         path: 'my-recommendation',
         component: MyRecommendationsComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'my-services',
+        component: MyServicesComponent,
+        canActivate: [AuthUserGuard]
+      },
+      {
+        path: 'all-services',
+        component: AllServicesComponent,
         canActivate: [AuthUserGuard]
       },
       {

@@ -61,8 +61,8 @@
 
         <div class="ct_flex_item_div">
           <div style="flex:1">
-            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings info"
-              (click)="openInfoModal('Savings', 'Savings shows your main savings balance and recent contribution activity.'); $event.preventDefault(); $event.stopPropagation()">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings Info"
+              (click)="openInfoModal('Savings', 'This shows your total monthly savings balance to date, including savings from the current cycle.'); $event.preventDefault(); $event.stopPropagation()">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </button>
             <div class="position-relative">
@@ -129,7 +129,7 @@
           <div class="">
             <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
               aria-label="Savings JNR info"
-              (click)="openInfoModal('Savings JNR', 'Savings JNR shows the junior savings balance and recent payment activity.'); $event.preventDefault(); $event.stopPropagation()">
+              (click)="openInfoModal('Savings JNR', 'From January to December, members save a small amount each month and receive their payout at the end of the year to help with Christmas expenses. This can ease the pressure of Christmas shopping. You can request to join at the start of the January cycle, or occasionally mid-cycle. All payouts are made in December.'); $event.preventDefault(); $event.stopPropagation()">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </button>
             <div class="position-relative">
@@ -184,7 +184,7 @@
           <div class="">
             <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
               aria-label="Safekeeping info"
-              (click)="openInfoModal('Safekeeping', 'Safekeeping shows the funds reserved for secure holding in your account.'); $event.preventDefault(); $event.stopPropagation()">
+              (click)="openInfoModal('Safekeeping', 'Members can choose to have their payout held safely until they need it. This balance shows the funds kept in safekeeping, and you may request all or part of the amount at any time. This option is useful if you prefer not to hold the money yourself to avoid spending it unnecessarily.'); $event.preventDefault(); $event.stopPropagation()">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </button>
             <div class="position-relative">
@@ -235,7 +235,7 @@
           <div class="">
             <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
               aria-label="Provident info"
-              (click)="openInfoModal('Provident', 'Provident shows the balance accumulated in your provident savings plan.'); $event.preventDefault(); $event.stopPropagation()">
+              (click)="openInfoModal('Provident', 'In line with our policy, 10% of your savings is set aside in your Provident pot. This amount is returned in full if you leave Interfriends. Your Provident balance also reflects your commitment to Interfriends’ vision, helps determine your access to other products, and supports risk management.'); $event.preventDefault(); $event.stopPropagation()">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </button>
             <div class="position-relative">
@@ -284,7 +284,7 @@
           <div class="">
             <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
               aria-label="Investment info"
-              (click)="openInfoModal('Investment', 'Investment shows your current investment total and related earnings.'); $event.preventDefault(); $event.stopPropagation()">
+              (click)="openInfoModal('Investment', 'Members can invest in Interfriends, including its Co-operative, which serves as the organisation’s business arm.'); $event.preventDefault(); $event.stopPropagation()">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </button>
             <div class="position-relative">
@@ -333,7 +333,7 @@
           <div class="">
             <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
               aria-label="Dividend info"
-              (click)="openInfoModal('Dividend', 'Dividend shows the returns paid back to you from eligible investments.'); $event.preventDefault(); $event.stopPropagation()">
+              (click)="openInfoModal('Dividend', 'Interfriends is a community-focused co-operative that believes in shared prosperity. Profits from our business ventures are shared with members based on their Provident or Investment balances.'); $event.preventDefault(); $event.stopPropagation()">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </button>
             <div class="position-relative">
@@ -383,7 +383,7 @@
             <div class="">
               <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
                 aria-label="Help to Buy info"
-                (click)="openInfoModal('Help to Buy', 'Help to Buy shows the amount set aside toward your property goal.'); $event.preventDefault(); $event.stopPropagation()">
+                (click)="openInfoModal('Help to Buy', 'If Interfriends helps you buy something, including a home, or pays for something on your behalf, the balance will be shown here.'); $event.preventDefault(); $event.stopPropagation()">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
               <div class="position-relative">
@@ -436,7 +436,7 @@
             <div class="">
               <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
                 aria-label="Assistance info"
-                (click)="openInfoModal('Assistance', 'Assistance shows the balance available for support or loan help.'); $event.preventDefault(); $event.stopPropagation()">
+                (click)="openInfoModal('Assistance', 'If you receive additional support from Interfriends, any outstanding balance will be shown here.'); $event.preventDefault(); $event.stopPropagation()">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
               <div class="position-relative">
@@ -489,7 +489,7 @@
             <div class="">
               <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
                 aria-label="Emergency Loans info"
-                (click)="openInfoModal('Emergency Loans', 'Emergency Loans shows funds linked to urgent borrowing needs.'); $event.preventDefault(); $event.stopPropagation()">
+                (click)="openInfoModal('Emergency Loans', 'Members may request emergency assistance of up to £500 or £1,000 during the cycle, depending on their Trust Score. All emergency funds must be repaid in full within 30 days of receipt. This reflects our commitment to supporting members in times of emergency.'); $event.preventDefault(); $event.stopPropagation()">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
               <div class="position-relative">
@@ -541,7 +541,7 @@
             <div class="">
               <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
                 aria-label="Welfare info"
-                (click)="openInfoModal('Welfare', 'Welfare shows the support balance available for welfare-related payments.'); $event.preventDefault(); $event.stopPropagation()">
+                (click)="openInfoModal('Welfare', 'This scheme provides support to members during bereavement and helps with hospital expenses for parents, siblings, and close relatives.'); $event.preventDefault(); $event.stopPropagation()">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
               <div class="position-relative">
@@ -591,7 +591,7 @@
             <div class="">
               <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
                 aria-label="Miscellaneous info"
-                (click)="openInfoModal('Miscellaneous', 'Miscellaneous shows the combined balance for other account activity.'); $event.preventDefault(); $event.stopPropagation()">
+                (click)="openInfoModal('Miscellaneous', 'This includes any Interfriends products you have that are not listed above. Tap here to see a breakdown of your miscellaneous products.'); $event.preventDefault(); $event.stopPropagation()">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
               <div class="position-relative">
@@ -682,7 +682,7 @@
             <div class="">
               <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
                 aria-label="Overall account balance info"
-                (click)="openInfoModal('Overall account balance', 'Overall account balance combines all visible account totals into one summary value.'); $event.preventDefault(); $event.stopPropagation()">
+                (click)="openInfoModal('Overall account balance', ' This important figure shows your current overall standing with Interfriends. It combines all your account balances and indicates how much you owe or have with us at any given time.'); $event.preventDefault(); $event.stopPropagation()">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
               <div class="position-relative">
@@ -790,7 +790,7 @@
     <h2 class="section-title" style="font-size: 28px !important;">Last 6 Payments</h2>
   </div> -->
   <div class="row justify-content-center mt-3 mb-5">
-    <div class="col-xl-5 col-lg-6 mb-2">
+    <div class="col-xl-5 col-lg-6 mb-2 ">
       <!-- <div class="ct_icon_list d-block w-100 h-100 py-3 d-grid place-content-center"
         style="padding: 6px; background-color: var(--orange);color: #fff;">
         <h4 class="mb-0 txt-center ct_fs_24 text-center">Your circle</h4>
@@ -802,6 +802,17 @@
     'background-color': getTrustScoreColor(averageTrustScore),
     'color': '#fff'
   }">
+        <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+          aria-label="Overall account balance info" style=" right: 30px;">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </button> -->
+
+        <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+          aria-label="My Circle Trust Score info" (click)="openInfoModal('My Circle Trust Score', 'Each member belongs to a Circle of closely connected friends and family. This score shows the average Trust Score of all members in your Circle and gives insight into how the Circle is managing its relationship with Interfriends.
+'); $event.preventDefault(); $event.stopPropagation()" style=" right: 30px;">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </button>
+
         <h4 class="mb-0 txt-center ct_fs_24 text-center">My Circle</h4>
         <p class="text-center ct_score_fs_18">
           <span class="ct_ff_gilroy_bold" style="font-size: 25px;">{{ averageTrustScore | number: '1.0-0' }}</span>
@@ -816,7 +827,19 @@
 <section class="container">
   <div class="row box-two d-flex align-items-start justify-content-around">
     <div class="col-md-4 mb-md-0 mb-5 mt-md-0 mt-5 text-center">
+
       <div class="meter-credit-score-wrap">
+        /* <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white"
+          aria-label="Overall account balance info" style=" right: 20px; top: 20px;">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </button> */
+
+        <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white"
+          aria-label="Your Interfriends Trust Score" (click)="openInfoModal('Your Interfriends Trust Score', 'We review each member’s payment habits and related account information to understand how they manage their Interfriends accounts. Your Trust Score may increase or decrease based on this activity and is used to support certain decisions about you.
+'); $event.preventDefault(); $event.stopPropagation()" style=" right: 20px; top: 20px;">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </button>
+
         <h3 class="main-hding mb-0 mt-2 text-white">Your Interfriends <br>Trust Score</h3>
         <mwl-gauge [max]="1650" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [color]="creditScoreColor"
           [value]="total_credit_score" [animated]="true" [animationDuration]="1" [showValue]="name">

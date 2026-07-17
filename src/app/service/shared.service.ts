@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const API_URL = environment.apiUrl;
+const API_URL_Admin = environment.adminUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,14 @@ export class SharedService {
       'Content-Type': 'application/x-www-form-urlencoded',
     })
     return this.http.post(API_URL + url, data)
+  }
+
+    postAPIAdmin(url: any, data: any): Observable<any> {
+    // const authToken = localStorage.getItem('lifeMToken')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    })
+    return this.http.post(API_URL_Admin + url, data)
   }
 
 }

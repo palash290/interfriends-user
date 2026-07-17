@@ -1,0 +1,152 @@
+<app-header></app-header>
+
+<div class="recommendations-page">
+    <div class="recommendations-page__glow recommendations-page__glow--one"></div>
+    <div class="recommendations-page__glow recommendations-page__glow--two"></div>
+
+    <div class="recommendations-shell">
+        <div class="loader-panel" *ngIf="isLoader">
+            <mat-spinner class="mx-auto"></mat-spinner>
+        </div>
+
+        <ng-container *ngIf="!isLoader">
+            <div class="ct_recommended_user" *ngIf="serviceList.length > 0; else emptyState">
+                <h4 class="mb-4">All Services</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <!-- <th>Status</th> -->
+                                <!-- <th>Created At</th> -->
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let service of serviceList">
+                                <td>
+                                    <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
+                                </td>
+                                <td>{{ service.first_name || '-' }}</td>
+                                <td>{{ service.user_email || '-' }}</td>
+                                <!-- <td>
+                                    <span class="badge"
+                                        [ngClass]="service.service_status === '1' ? 'bg-success' : 'bg-secondary'">
+                                        {{ service.service_status === '1' ? 'Active' : 'Inactive' }}
+                                    </span>
+                                </td> -->
+                                <!-- <td>{{ service.created_at | date: 'dd MMM yyyy' }}</td> -->
+                                <td>
+                                    <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
+                                        data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <ng-template #emptyState>
+                <div class="empty-state">
+                    <div class="empty-state__icon">
+                        <i class="ti ti-inbox" aria-hidden="true"></i>
+                    </div>
+                    <h2>No services yet</h2>
+                    <p>When services are added for this account, they will appear here with their category, status, and
+                        creation date.</p>
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+</div>
+
+<div class="modal fade" id="serviceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="serviceDetailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3" *ngIf="selectedService; else noServiceSelected">
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Service Name</label>
+                            <p>{{ selectedService.service_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Category Name</label>
+                            <p>{{ selectedService.category_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Sub Category Name</label>
+                            <p>{{ selectedService.subcategory_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Price</label>
+                            <p>{{ selectedService.price || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Mobile</label>
+                            <p>{{ selectedService.mobile || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Email</label>
+                            <p>{{ selectedService.email || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="detail-card">
+                            <label>Service Description</label>
+                            <p class="mb-0">{{ selectedService.service_description || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="detail-card">
+                            <label>Provided Description</label>
+                            <p class="mb-0">{{ selectedService.provider_description || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Website</label>
+                            <p>{{ selectedService.website || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Location</label>
+                            <p>{{ selectedService.location || '-' }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-template #noServiceSelected>
+                    <p class="mb-0 text-muted">No service selected.</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>

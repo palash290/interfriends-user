@@ -684,6 +684,10 @@ export class UserService {
     return this.http.get<any>(API_URL + `/getMyRecommendedUsers/${data}`);
   }
 
+  getUserServices(data: any): Observable<any> {
+    return this.http.post<any>(API_URL + `/getMyAllServices`, data);
+  }
+
 
   getNotificationCount(
   ): any {

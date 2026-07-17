@@ -1,0 +1,344 @@
+<app-header></app-header>
+
+<div class="recommendations-page">
+    <div class="recommendations-page__glow recommendations-page__glow--one"></div>
+    <div class="recommendations-page__glow recommendations-page__glow--two"></div>
+
+    <div class="recommendations-shell">
+        <div class="loader-panel" *ngIf="isLoader">
+            <mat-spinner class="mx-auto"></mat-spinner>
+        </div>
+
+        <ng-container *ngIf="!isLoader">
+            <div class="ct_recommended_user" *ngIf="serviceList.length > 0; else emptyState">
+                <h4 class="mb-4">My Services</h4>
+
+                <span class="breadcrumb">
+                    <button type="button" class="btn bg-maroon" data-toggle="modal" data-target="#exampleModal"
+                        (click)="onOpenCreate()">
+                        Add
+                    </button>
+                </span>
+
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Category</th>
+                                <th>Subcategory</th>
+                                <th>Status</th>
+                                <th>Approval Status</th>
+                                <th>Created At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let service of serviceList">
+                                <td>
+                                    <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
+                                </td>
+                                <td>{{ service.category_name || '-' }}</td>
+                                <td>{{ service.subcategory_name || '-' }}</td>
+                                <td>
+                                    <span class="badge"
+                                        [ngClass]="service.service_status === '1' ? 'bg-success' : 'bg-secondary'">
+                                        {{ service.service_status === '1' ? 'Active' : 'Inactive' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge" [ngClass]="{
+                                    'bg-warning text-dark': service.approval_status === '0',
+                                    'bg-success': service.approval_status === '1',
+                                    'bg-danger': service.approval_status === '2'
+                                        }">
+                                        {{
+                                        service.approval_status === '0' ? 'Pending' :
+                                        service.approval_status === '1' ? 'Approved' :
+                                        service.approval_status === '2' ? 'Rejected' :
+                                        'Unknown'
+                                        }}
+                                    </span>
+                                </td>
+                                <td>{{ service.created_at | date: 'dd MMM yyyy' }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary margin" data-toggle="modal"
+                                        data-target="#exampleModal" (click)="onEdit(service)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+
+                                    <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
+                                        data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <ng-template #emptyState>
+                <div class="empty-state">
+                    <div class="empty-state__icon">
+                        <i class="ti ti-inbox" aria-hidden="true"></i>
+                    </div>
+                    <h2>No services yet</h2>
+                    <p>When services are added for this account, they will appear here with their category, status, and
+                        creation date.</p>
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+</div>
+
+<div class="modal fade" id="serviceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="serviceDetailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3" *ngIf="selectedService; else noServiceSelected">
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Service Name</label>
+                            <p>{{ selectedService.service_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Category Name</label>
+                            <p>{{ selectedService.category_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Sub Category Name</label>
+                            <p>{{ selectedService.subcategory_name }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Price</label>
+                            <p>{{ selectedService.price || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Mobile</label>
+                            <p>{{ selectedService.mobile || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Email</label>
+                            <p>{{ selectedService.email || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="detail-card">
+                            <label>Service Description</label>
+                            <p class="mb-0">{{ selectedService.service_description || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="detail-card">
+                            <label>Provided Description</label>
+                            <p class="mb-0">{{ selectedService.provider_description || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Website</label>
+                            <p>{{ selectedService.website || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Location</label>
+                            <p>{{ selectedService.location || '-' }}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Latitude</label>
+                            <p>{{ selectedService.latitude || '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Longitude</label>
+                            <p>{{ selectedService.longitude || '-' }}</p>
+                        </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Created At</label>
+                            <p>{{ selectedService.created_at || '-' }}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="detail-card">
+                            <label>Updated At</label>
+                            <p>{{ selectedService.updated_at || '-' }}</p>
+                        </div>
+                    </div> -->
+                </div>
+
+                <ng-template #noServiceSelected>
+                    <p class="mb-0 text-muted">No service selected.</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+
+<div class="modal fade" id="exampleModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" *ngIf="mode === 'create'">Add Service</h5>
+                <h5 class="modal-title" *ngIf="mode === 'update'">Update Service</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePopup"
+                    (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form role="form" [formGroup]="form" (submit)="onSave()">
+                <div class="box-body" *ngIf="isLoadingForm">
+                    <mat-spinner class="mx-auto"></mat-spinner>
+                </div>
+
+                <div class="modal-body" *ngIf="!isLoadingForm">
+                    <div class="box-body">
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('service_id').invalid  && form.get('service_id').touched}">
+                            <label>Service</label>
+                            <select class="form-control" formControlName="service_id">
+                                <option value="">Select service</option>
+                                <option *ngFor="let service of serviceOptions" [value]="service.id">
+                                    {{ service.service_name || service.name || ('Service #' + service.id) }}
+                                </option>
+                            </select>
+                            <span class="help-block"
+                                *ngIf="form.get('service_id').invalid  && form.get('service_id').touched">
+                                Please select a service.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('price').invalid  && form.get('price').touched}">
+                            <label>Price</label>
+                            <input type="number" class="form-control" placeholder="Enter price"
+                                formControlName="price" />
+                            <span class="help-block" *ngIf="form.get('price').invalid  && form.get('price').touched">
+                                Please enter a price.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('description').invalid  && form.get('description').touched}">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter description"
+                                formControlName="description"></textarea>
+                            <span class="help-block"
+                                *ngIf="form.get('description').invalid  && form.get('description').touched">
+                                Please enter a description.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('mobile').invalid  && form.get('mobile').touched}">
+                            <label>Mobile</label>
+                            <input type="text" class="form-control" placeholder="Enter mobile number"
+                                formControlName="mobile" />
+                            <span class="help-block" *ngIf="form.get('mobile').invalid  && form.get('mobile').touched">
+                                Please enter a mobile number.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('email').invalid  && form.get('email').touched}">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Enter email"
+                                formControlName="email" />
+                            <span class="help-block" *ngIf="form.get('email').invalid  && form.get('email').touched">
+                                Please enter a valid email.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('website').invalid  && form.get('website').touched}">
+                            <label>Website</label>
+                            <input type="url" class="form-control" placeholder="Enter website URL"
+                                formControlName="website" />
+                            <span class="help-block"
+                                *ngIf="form.get('website').invalid  && form.get('website').touched">
+                                Please enter a website.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('location').invalid  && form.get('location').touched}">
+                            <label>Location</label>
+                            <input type="text" class="form-control" placeholder="Enter location"
+                                formControlName="location" />
+                            <span class="help-block"
+                                *ngIf="form.get('location').invalid  && form.get('location').touched">
+                                Please enter a location.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('latitude').invalid  && form.get('latitude').touched}">
+                            <label>Latitude</label>
+                            <input type="text" class="form-control" placeholder="Enter latitude"
+                                formControlName="latitude" />
+                            <span class="help-block"
+                                *ngIf="form.get('latitude').invalid  && form.get('latitude').touched">
+                                Please enter latitude.
+                            </span>
+                        </div>
+
+                        <div class="form-group"
+                            [ngClass]="{'has-error': form.get('longitude').invalid  && form.get('longitude').touched}">
+                            <label>Longitude</label>
+                            <input type="text" class="form-control" placeholder="Enter longitude"
+                                formControlName="longitude" />
+                            <span class="help-block"
+                                *ngIf="form.get('longitude').invalid  && form.get('longitude').touched">
+                                Please enter longitude.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal"
+                        (click)="closeModal()">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary" [disabled]="isLoadingForm">
+                        <span *ngIf="!isLoadingForm">
+                            <span *ngIf="mode === 'create'">Add</span>
+                            <span *ngIf="mode === 'update'">Update</span>
+                        </span>
+                        <span *ngIf="isLoadingForm">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
