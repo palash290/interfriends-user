@@ -11,14 +11,14 @@
 
         <ng-container *ngIf="!isLoader">
             <div class="ct_recommended_user" *ngIf="serviceList.length > 0; else emptyState">
-                <h4 class="mb-4">My Services</h4>
-
-                <span class="breadcrumb">
-                    <button type="button" class="btn bg-maroon" data-toggle="modal" data-target="#exampleModal"
-                        (click)="onOpenCreate()">
+                <div class="d-flex align-items-center justify-content-between mb-4" style=gap:20px>
+                    <h4 class="mb-0">My Business Directories</h4>
+                    <button type="button" class="btn-cstm btn-orange py-2 px-5" data-toggle="modal"
+                        data-target="#exampleModal" (click)="onOpenCreate()">
                         Add
                     </button>
-                </span>
+                </div>
+
 
                 <div class="table-responsive">
                     <table class="table table-striped align-middle">
@@ -62,12 +62,12 @@
                                 </td>
                                 <td>{{ service.created_at | date: 'dd MMM yyyy' }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary margin" data-toggle="modal"
+                                    <a type="button" class="service-view-btn " data-toggle="modal"
                                         data-target="#exampleModal" (click)="onEdit(service)">
                                         <i class="fa fa-edit"></i>
-                                    </button>
+                                    </a>
 
-                                    <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
+                                    <a href="javascript:void(0);" class="service-view-btn ml-2" data-toggle="modal"
                                         data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
@@ -122,12 +122,12 @@
                             <p>{{ selectedService.subcategory_name }}</p>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="detail-card">
                             <label>Price</label>
                             <p>{{ selectedService.price || '-' }}</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-6">
                         <div class="detail-card">
                             <label>Mobile</label>
@@ -182,6 +182,19 @@
                             <p>{{ selectedService.created_at || '-' }}</p>
                         </div>
                     </div>
+                    <div class="col-12" *ngIf="selectedServiceImages.length > 0">
+                        <div class="detail-card">
+                            <label>Images</label>
+                            <div class="service-image-grid mt-2">
+                                <div class="service-image-card"
+                                    *ngFor="let image of selectedServiceImages; let i = index">
+                                    <img *ngIf="image.url" [src]="image.url" alt="Service image"
+                                        class="service-image-card__img">
+                                    <!-- <div class="service-image-card__name">{{ image.name }}</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- <div class="col-md-6">
                         <div class="detail-card">
                             <label>Updated At</label>
@@ -215,11 +228,11 @@
             </div>
 
             <form role="form" [formGroup]="form" (submit)="onSave()">
-                <div class="box-body" *ngIf="isLoadingForm">
+                <!-- <div class="box-body" *ngIf="isLoadingForm">
                     <mat-spinner class="mx-auto"></mat-spinner>
-                </div>
+                </div> -->
 
-                <div class="modal-body" *ngIf="!isLoadingForm">
+                <div class="modal-body">
                     <div class="box-body">
                         <div class="form-group"
                             [ngClass]="{'has-error': form.get('service_id').invalid  && form.get('service_id').touched}">
@@ -236,7 +249,7 @@
                             </span>
                         </div>
 
-                        <div class="form-group"
+                        <!-- <div class="form-group"
                             [ngClass]="{'has-error': form.get('price').invalid  && form.get('price').touched}">
                             <label>Price</label>
                             <input type="number" class="form-control" placeholder="Enter price"
@@ -244,7 +257,7 @@
                             <span class="help-block" *ngIf="form.get('price').invalid  && form.get('price').touched">
                                 Please enter a price.
                             </span>
-                        </div>
+                        </div> -->
 
                         <div class="form-group"
                             [ngClass]="{'has-error': form.get('description').invalid  && form.get('description').touched}">
@@ -299,7 +312,47 @@
                             </span>
                         </div>
 
-                        <div class="form-group"
+                        <div class="form-group">
+                            <label>Images</label>
+                            <input type="file" class="form-control" accept="image/*" multiple
+                                (change)="onImagesSelected($event)" />
+                            <small class="form-text text-muted">
+                                Upload up to 5 images total. Current: {{ getCurrentImageCount() }}/{{ maxImages }}.
+                            </small>
+                            <div class="text-danger mt-1" *ngIf="imageError">{{ imageError }}</div>
+
+                            <div class="mt-3" *ngIf="existingImages.length > 0">
+                                <label class="d-block mb-2">Existing Images</label>
+                                <div class="service-image-grid">
+                                    <div class="service-image-card" *ngFor="let image of existingImages; let i = index">
+                                        <button type="button" class="service-image-card__remove"
+                                            (click)="removeExistingImage(image)" aria-label="Remove existing image">
+                                            ×
+                                        </button>
+                                        <img *ngIf="image.url" [src]="image.url" alt="Service image"
+                                            class="service-image-card__img">
+                                        <div class="service-image-card__name">{{ image.name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3" *ngIf="selectedImages.length > 0">
+                                <label class="d-block mb-2">New Images</label>
+                                <div class="service-image-grid">
+                                    <div class="service-image-card" *ngFor="let image of selectedImages; let i = index">
+                                        <button type="button" class="service-image-card__remove"
+                                            (click)="removeNewImage(i)" aria-label="Remove new image">
+                                            ×
+                                        </button>
+                                        <img [src]="image.previewUrl" [alt]="image.file.name"
+                                            class="service-image-card__img">
+                                        <div class="service-image-card__name">{{ image.file.name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group"
                             [ngClass]="{'has-error': form.get('latitude').invalid  && form.get('latitude').touched}">
                             <label>Latitude</label>
                             <input type="text" class="form-control" placeholder="Enter latitude"
@@ -319,7 +372,7 @@
                                 *ngIf="form.get('longitude').invalid  && form.get('longitude').touched">
                                 Please enter longitude.
                             </span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

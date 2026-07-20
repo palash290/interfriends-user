@@ -16,6 +16,7 @@ export class AllServicesComponent implements OnInit {
   isLoader = true;
   serviceList: any[] = [];
   selectedService: any = null;
+  selectedServiceImages: Array<{ id: string | number | null; name: string; url: string }> = [];
 
 
   constructor(public authService: AuthService,
@@ -47,8 +48,39 @@ export class AllServicesComponent implements OnInit {
       });
   }
 
-    viewServiceDetails(service: any) {
+  private buildExistingImages(service: any): Array<{ id: string | number | null; name: string; url: string }> {
+    const candidates = [
+      service?.images,
+      service?.service_images,
+      service?.user_service_images,
+      service?.image_list,
+      service?.images_data
+    ];
+
+    const source = candidates.find((value) => Array.isArray(value)) || [];
+
+    return source
+      .map((item: any, index: number) => {
+        if (typeof item === 'string') {
+          return {
+            id: null,
+            name: `Image ${index + 1}`,
+            url: item
+          };
+        }
+
+        return {
+          id: item?.id ?? item?.image_id ?? item?.user_service_image_id ?? null,
+          name: item?.name ?? item?.image_name ?? item?.file_name ?? `Image ${index + 1}`,
+          url: item?.url ?? item?.image_url ?? item?.path ?? item?.image ?? ''
+        };
+      })
+      .filter((image: any) => image.url || image.name);
+  }
+
+  viewServiceDetails(service: any) {
     this.selectedService = service;
+    this.selectedServiceImages = this.buildExistingImages(service);
   }
 
 

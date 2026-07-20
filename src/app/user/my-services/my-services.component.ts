@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { finalize } from 'rxjs/operators';
@@ -18,14 +19,21 @@ export class MyServicesComponent implements OnInit {
   serviceList: any[] = [];
   serviceOptions: any[] = [];
   selectedService: any = null;
+  selectedServiceImages: Array<{ id: string | number | null; name: string; url: string }> = [];
   form: FormGroup;
   mode = 'create';
   selectedServiceId = '';
+  selectedImages: Array<{ file: File; previewUrl: any }> = [];
+  existingImages: Array<{ id: string | number | null; name: string; url: string }> = [];
+  removedImageIds: Array<string | number> = [];
+  imageError = '';
+  readonly maxImages = 5;
 
   constructor(
     public authService: AuthService,
     public sharedService: SharedService,
     private toastr: ToastrService,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -39,15 +47,142 @@ export class MyServicesComponent implements OnInit {
   initForm(): void {
     this.form = new FormGroup({
       service_id: new FormControl('', { validators: [Validators.required] }),
-      price: new FormControl('', { validators: [Validators.required] }),
+      // price: new FormControl('', { validators: [Validators.required] }),
       description: new FormControl(null, { validators: [Validators.required] }),
       mobile: new FormControl('', { validators: [Validators.required] }),
       email: new FormControl('', { validators: [Validators.required, Validators.email] }),
       website: new FormControl('', { validators: [Validators.required] }),
       location: new FormControl('', { validators: [Validators.required] }),
-      latitude: new FormControl('', { validators: [Validators.required] }),
-      longitude: new FormControl('', { validators: [Validators.required] })
+      latitude: new FormControl('0.0000'),
+      longitude: new FormControl('0.0000')
     });
+  }
+
+  private resetImageState(): void {
+    this.selectedImages.forEach((image) => URL.revokeObjectURL(image.previewUrl));
+    this.selectedImages = [];
+    this.existingImages = [];
+    this.removedImageIds = [];
+    this.imageError = '';
+  }
+
+  private setServiceControlState(): void {
+    const serviceControl = this.form?.get('service_id');
+    if (!serviceControl) {
+      return;
+    }
+
+    if (this.mode === 'update') {
+      serviceControl.disable({ emitEvent: false });
+      serviceControl.clearValidators();
+    } else {
+      serviceControl.enable({ emitEvent: false });
+      serviceControl.setValidators([Validators.required]);
+    }
+
+    serviceControl.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private getActiveExistingImageCount(): number {
+    return this.existingImages.length;
+  }
+
+  getCurrentImageCount(): number {
+    return this.getActiveExistingImageCount() + this.selectedImages.length;
+  }
+
+  private buildExistingImages(service: any): Array<{ id: string | number | null; name: string; url: string }> {
+    const candidates = [
+      service?.images,
+      service?.service_images,
+      service?.user_service_images,
+      service?.image_list,
+      service?.images_data
+    ];
+
+    const source = candidates.find((value) => Array.isArray(value)) || [];
+
+    return source
+      .map((item: any, index: number) => {
+        if (typeof item === 'string') {
+          return {
+            id: null,
+            name: `Image ${index + 1}`,
+            url: item
+          };
+        }
+
+        return {
+          id: item?.id ?? item?.image_id ?? item?.user_service_image_id ?? null,
+          name: item?.name ?? item?.image_name ?? item?.file_name ?? `Image ${index + 1}`,
+          url: item?.url ?? item?.image_url ?? item?.path ?? item?.image ?? ''
+        };
+      })
+      .filter((image: any) => image.url || image.name);
+  }
+
+  private readFileAsDataUrl(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ''));
+      reader.onerror = () => reject(new Error('Unable to read image file.'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  private async buildPreviewUrl(file: File): Promise<SafeUrl> {
+    const dataUrl = await this.readFileAsDataUrl(file);
+    return this.sanitizer.bypassSecurityTrustUrl(dataUrl);
+  }
+
+  async onImagesSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const files = Array.from(input.files || []);
+
+    this.imageError = '';
+
+    if (!files.length) {
+      return;
+    }
+
+    const validFiles = files.filter((file) => file.type.startsWith('image/'));
+    if (validFiles.length !== files.length) {
+      this.imageError = 'Only image files are allowed.';
+    }
+
+    const remainingSlots = this.maxImages - this.getCurrentImageCount();
+    if (remainingSlots <= 0) {
+      this.imageError = `You can upload up to ${this.maxImages} images.`;
+      input.value = '';
+      return;
+    }
+
+    const acceptedFiles = validFiles.slice(0, remainingSlots);
+    if (validFiles.length > remainingSlots) {
+      this.imageError = `You can upload only ${remainingSlots} more image${remainingSlots === 1 ? '' : 's'}.`;
+    }
+
+    const selectedWithPreview = await Promise.all(acceptedFiles.map(async (file) => ({
+      file,
+      previewUrl: await this.buildPreviewUrl(file)
+    })));
+    this.selectedImages = [...this.selectedImages, ...selectedWithPreview];
+    input.value = '';
+  }
+
+  removeNewImage(index: number): void {
+    this.selectedImages.splice(index, 1);
+    this.selectedImages = [...this.selectedImages];
+    this.imageError = '';
+  }
+
+  removeExistingImage(image: { id: string | number | null }): void {
+    if (image?.id !== null && image?.id !== undefined) {
+      this.removedImageIds = [...this.removedImageIds, image.id];
+    }
+
+    this.existingImages = this.existingImages.filter((current) => current !== image);
+    this.imageError = '';
   }
 
   loadServiceOptions(): void {
@@ -83,14 +218,16 @@ export class MyServicesComponent implements OnInit {
 
   viewServiceDetails(service: any) {
     this.selectedService = service;
+    this.selectedServiceImages = this.buildExistingImages(service);
   }
 
   onOpenCreate(): void {
     this.mode = 'create';
     this.selectedServiceId = '';
+    this.resetImageState();
     this.form.reset({
       service_id: '',
-      price: '',
+      // price: '',
       description: '',
       mobile: '',
       email: '',
@@ -99,12 +236,14 @@ export class MyServicesComponent implements OnInit {
       latitude: '',
       longitude: ''
     });
+    this.setServiceControlState();
   }
 
   closeModal(): void {
+    this.resetImageState();
     this.form.reset({
       service_id: '',
-      price: '',
+      // price: '',
       description: '',
       mobile: '',
       email: '',
@@ -115,6 +254,7 @@ export class MyServicesComponent implements OnInit {
     });
     this.mode = 'create';
     this.selectedServiceId = '';
+    this.setServiceControlState();
     const closeButton = document.getElementById('closePopup');
     if (closeButton) {
       closeButton.click();
@@ -130,48 +270,69 @@ export class MyServicesComponent implements OnInit {
       return;
     }
 
+    if (this.getCurrentImageCount() > this.maxImages) {
+      this.toastr.error(`You can upload up to ${this.maxImages} images.`);
+      return;
+    }
+
     this.isLoadingForm = true;
 
     const serviceData = new FormData();
-    // if (this.mode === 'update') {
-    //   serviceData.append('user_service_id', this.selectedServiceId);
-    // }
-    serviceData.set('user_id', this.userId);
+
     if (this.mode === 'update') {
-      serviceData.append('user_service_id', this.selectedServiceId);
+      serviceData.set('user_service_id', String(this.selectedServiceId));
+
+      if (this.removedImageIds.length > 0) {
+        serviceData.set('delete_image_ids', this.removedImageIds.join(','));
+      }
     } else {
-      serviceData.set('service_id', this.form.value.service_id);
+      serviceData.set('user_id', String(this.userId));
+      serviceData.set('service_id', String(this.form.value.service_id));
     }
-    // serviceData.append('service_id', this.form.value.service_id);
-    serviceData.append('price', this.form.value.price);
-    serviceData.append('description', this.form.value.description);
-    serviceData.append('mobile', this.form.value.mobile);
-    serviceData.append('email', this.form.value.email);
-    serviceData.append('website', this.form.value.website);
-    serviceData.append('location', this.form.value.location);
-    serviceData.append('latitude', this.form.value.latitude);
-    serviceData.append('longitude', this.form.value.longitude);
 
-    const endpoint = this.mode === 'update' ? '/updateUserService' : '/createService';
+    serviceData.set('description', this.form.value.description);
+    serviceData.set('mobile', this.form.value.mobile);
+    serviceData.set('email', this.form.value.email);
+    serviceData.set('website', this.form.value.website);
+    serviceData.set('location', this.form.value.location);
 
-    this.sharedService.postAPI(endpoint, serviceData).subscribe((response: any) => {
-      this.isLoadingForm = false;
-      if (response?.success === '1') {
-        this.toastr.success(response.message);
-        this.closeModal();
-        this.getList();
-      } else {
-        this.toastr.error(response?.message || 'Unable to add service');
+    this.selectedImages.forEach(image => {
+      serviceData.append('images[]', image.file, image.file.name);
+    });
+
+    const endpoint =
+      this.mode === 'update'
+        ? '/updateUserService'
+        : '/createService';
+
+    this.sharedService.postAPI(endpoint, serviceData).subscribe({
+      next: (response: any) => {
+        this.isLoadingForm = false;
+
+        if (response?.success === '1') {
+          this.toastr.success(response.message);
+          this.closeModal();
+          this.getList();
+        } else {
+          this.toastr.error(response?.message || 'Unable to save service');
+        }
+      },
+      error: (error) => {
+        this.isLoadingForm = false;
+        console.error(error);
+        this.toastr.error('Something went wrong. Please try again.');
       }
     });
   }
 
   onEdit(service: any): void {
     this.mode = 'update';
-    this.selectedServiceId = service?.user_service_id || '';
+    this.selectedServiceId = service?.user_service_id || service?.id || '';
+    this.resetImageState();
+    this.existingImages = this.buildExistingImages(service);
     this.form.patchValue({
       service_id: service?.service_id || '',
-      price: service?.price || '',
+      // price: service?.price || '',
       description: service?.description || service?.provider_description || '',
       mobile: service?.mobile || '',
       email: service?.email || '',
@@ -180,6 +341,7 @@ export class MyServicesComponent implements OnInit {
       latitude: service?.latitude || '',
       longitude: service?.longitude || ''
     });
+    this.setServiceControlState();
   }
 
 

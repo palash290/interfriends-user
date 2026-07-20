@@ -11,7 +11,7 @@
 
         <ng-container *ngIf="!isLoader">
             <div class="ct_recommended_user" *ngIf="serviceList.length > 0; else emptyState">
-                <h4 class="mb-4">All Services</h4>
+                <h4 class="mb-4">All Business Directory</h4>
 
                 <div class="table-responsive">
                     <table class="table table-striped align-middle">
@@ -30,7 +30,12 @@
                                 <td>
                                     <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
                                 </td>
-                                <td>{{ service.first_name || '-' }}</td>
+                                <td class="d-flex align-items-center">
+                                    <a class="nav-link profile-click have-notification mr-2">
+                                        <img [src]="service.profile_image_thumb" class="img-fluid">
+                                    </a>
+                                    {{ service.first_name || '-' }}
+                                </td>
                                 <td>{{ service.user_email || '-' }}</td>
                                 <!-- <td>
                                     <span class="badge"
@@ -137,6 +142,21 @@
                             <p>{{ selectedService.location || '-' }}</p>
                         </div>
                     </div>
+
+                    <div class="col-12" *ngIf="selectedServiceImages.length > 0">
+                        <div class="detail-card">
+                            <label>Images</label>
+                            <div class="service-image-grid mt-2">
+                                <div class="service-image-card"
+                                    *ngFor="let image of selectedServiceImages; let i = index">
+                                    <img *ngIf="image.url" [src]="image.url" alt="Service image"
+                                        class="service-image-card__img">
+                                    <!-- <div class="service-image-card__name">{{ image.name }}</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <ng-template #noServiceSelected>
