@@ -189,11 +189,20 @@ export class MyServicesComponent implements OnInit {
     const serviceData = new FormData();
     this.sharedService.postAPIAdmin('/serviceList', serviceData).subscribe((response: any) => {
       const services = response?.services || response?.serviceList || response?.lists || response?.data || [];
-      this.serviceOptions = Array.isArray(services)
+      // this.serviceOptions = Array.isArray(services)
+      //   ? services
+      //   : services
+      //     ? [services]
+      //     : [];
+
+          const serviceArray = Array.isArray(services)
         ? services
         : services
           ? [services]
           : [];
+
+      // Remove services with status == 0
+      this.serviceOptions = serviceArray.filter(service => service.status != 0);
     });
   }
 
@@ -330,6 +339,7 @@ export class MyServicesComponent implements OnInit {
     this.selectedServiceId = service?.user_service_id || service?.id || '';
     this.resetImageState();
     this.existingImages = this.buildExistingImages(service);
+    debugger
     this.form.patchValue({
       service_id: service?.service_id || '',
       // price: service?.price || '',

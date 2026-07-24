@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
@@ -16,7 +17,13 @@ export class AllServicesComponent implements OnInit {
   isLoader = true;
   serviceList: any[] = [];
   selectedService: any = null;
+  totalServices = 0;
+  servicesPerPage = 10;
+  currentPage = 0;
   selectedServiceImages: Array<{ id: string | number | null; name: string; url: string }> = [];
+  previewImageUrl = '';
+  previewImageName = '';
+
 
 
   constructor(public authService: AuthService,
@@ -29,10 +36,17 @@ export class AllServicesComponent implements OnInit {
     this.getList();
   }
 
-  getList() {
+  getList(showLoader = true) {
+    if (showLoader) {
+      this.isLoader = true;
+    }
+    const start = (this.servicesPerPage * this.currentPage).toString();
     const formUrlData = new FormData();
-    formUrlData.set('user_id', this.userId);
-    this.isLoader = true;
+    formUrlData.append('start', start);
+    formUrlData.append('user_id', this.userId);
+    formUrlData.append('search', this.search);
+
+    // this.isLoader = true;
     this.sharedService.postAPI('/getAllServices', formUrlData)
       .pipe(finalize(() => {
         this.isLoader = false;
@@ -45,7 +59,24 @@ export class AllServicesComponent implements OnInit {
           : services
             ? [services]
             : [];
+
+        this.totalServices = response?.totalCount;
+
       });
+  }
+
+  search = '';
+
+  onSearchChange(): void {
+    this.currentPage = 0;
+    this.getList(false);
+  }
+
+  onChangedPage(pageData: PageEvent): any {
+    // this.isLoadingPage = true;
+    this.currentPage = pageData.pageIndex;
+    this.servicesPerPage = pageData.pageSize;
+    this.getList();
   }
 
   private buildExistingImages(service: any): Array<{ id: string | number | null; name: string; url: string }> {
@@ -81,6 +112,16 @@ export class AllServicesComponent implements OnInit {
   viewServiceDetails(service: any) {
     this.selectedService = service;
     this.selectedServiceImages = this.buildExistingImages(service);
+  }
+
+  openImagePreview(image: { url: string; name?: string }): void {
+    this.previewImageUrl = image?.url || '';
+    this.previewImageName = image?.name || 'Service image';
+  }
+
+  closeImagePreview(): void {
+    this.previewImageUrl = '';
+    this.previewImageName = '';
   }
 
 

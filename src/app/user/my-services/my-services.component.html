@@ -27,9 +27,9 @@
                                 <th>Service</th>
                                 <th>Category</th>
                                 <th>Subcategory</th>
-                                <th>Status</th>
+                                <!-- <th>Status</th> -->
                                 <th>Approval Status</th>
-                                <th>Created At</th>
+                                <th>Created On</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,12 +40,12 @@
                                 </td>
                                 <td>{{ service.category_name || '-' }}</td>
                                 <td>{{ service.subcategory_name || '-' }}</td>
-                                <td>
+                                <!-- <td>
                                     <span class="badge"
                                         [ngClass]="service.service_status === '1' ? 'bg-success' : 'bg-secondary'">
                                         {{ service.service_status === '1' ? 'Active' : 'Inactive' }}
                                     </span>
-                                </td>
+                                </td> -->
                                 <td>
                                     <span class="badge" [ngClass]="{
                                     'bg-warning text-dark': service.approval_status === '0',
@@ -83,8 +83,8 @@
                     <div class="empty-state__icon">
                         <i class="ti ti-inbox" aria-hidden="true"></i>
                     </div>
-                    <h2>No services yet</h2>
-                    <p>When services are added for this account, they will appear here with their category, status, and
+                    <h2>No Business Directory yet</h2>
+                    <p>When a Business Directory is added for this account, they will appear here with their category, status, and
                         creation date.</p>
                 </div>
             </ng-template>
@@ -178,7 +178,7 @@
                     </div> -->
                     <div class="col-md-6">
                         <div class="detail-card">
-                            <label>Created At</label>
+                            <label>Created On</label>
                             <p>{{ selectedService.created_at || '-' }}</p>
                         </div>
                     </div>
@@ -397,8 +397,8 @@
 </div>
 
 <a routerLink="/user/all-services" class="business-directory-fab" aria-label="Business Directory">
-  <span class="business-directory-fab__icon">
-    <i class="fa fa-briefcase" aria-hidden="true"></i>
-  </span>
-  <span class="business-directory-fab__text">Business Directory</span>
+    <span class="business-directory-fab__icon">
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+    </span>
+    <span class="business-directory-fab__text">Business Directory</span>
 </a>

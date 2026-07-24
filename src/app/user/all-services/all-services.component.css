@@ -17,21 +17,16 @@
   transform: translateY(-1px);
 }
 
-.detail-card {
-  padding: 0.9rem 1rem;
-  border: 1px solid #e6ebf2;
-  border-radius: 0.85rem;
-  background: #fafcff;
-}
+
 
 .detail-card label {
   display: block;
   margin-bottom: 0.25rem;
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #6b7280;
+
+
 }
 
 .detail-card p {
@@ -67,6 +62,15 @@
   background: #fff;
   padding: 0.55rem;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.service-image-card__preview-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .service-image-card__img {
@@ -107,4 +111,237 @@
 
 .service-image-card__remove:hover {
   background: #ef4444;
+}
+
+.image-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1060;
+  background: rgba(8, 15, 29, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.image-preview-modal__content {
+  position: relative;
+  max-width: min(92vw, 860px);
+  max-height: 88vh;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.image-preview-modal__img {
+  display: block;
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  background: #f3f6fb;
+}
+
+.image-preview-modal__name {
+  margin: 0;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+}
+
+.image-preview-modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.image-preview-modal__close:hover {
+  background: #ef4444;
+}
+
+
+
+
+
+/* new css */
+
+
+
+
+.pro-card {
+  /* background: #fff; */
+  border: 1px solid #092c4c;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 2px rgba(20, 20, 43, 0.04);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+
+
+.avatar-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #eef0f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+.pro-name {
+  font-size: 20px !important;
+  font-weight: 600;
+
+  margin: 0 0 4px 0;
+  color: #092c4c;
+}
+
+.rating-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.stars {
+  color: #092c4c;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.rating-score {
+  font-weight: 700;
+  color: #000;
+}
+
+.review-count {
+  color: #000;
+  font-weight: 500;
+}
+
+.active-line {
+  font-size: 16px;
+  color: #000;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.active-line strong {
+  color: #000;
+  font-weight: 600;
+}
+
+.check-badge a {
+
+
+  color: #092c4c;
+
+
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.empty-state {
+  background-image: url(../../../assets/img/green_cloud.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  min-height: auto;
+  height: 300px;
+  display: flex;
+  background-size: 100% 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 50px;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+@media screen and (max-width:767px) {
+  .empty-state h2 {
+    font-size: 20px !important;
+  }
+
+  .empty-state p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .pro-card {
+    padding: 14px;
+  }
+
+}
+
+.ct_fs_16 {
+  font-size: 16px !important;
+}
+
+.ct_fs_18 {
+  font-size: 18px !important;
+}
+
+.ct_fs_20 {
+  font-size: 20px !important;
+}
+
+.ct_fs_12 {
+  font-size: 12px !important;
+}
+
+.ct_fw_300 {
+  font-weight: 300 !important;
+}
+
+
+
+
+
+.category-text{
+    font-size:14px;
+    color:#6c757d;
+    margin-bottom:8px;
+}
+
+.category{
+    color:#0d6efd;
+    font-weight:600;
+}
+
+.subcategory{
+    color:#6c757d;
+    font-weight:500;
 }
