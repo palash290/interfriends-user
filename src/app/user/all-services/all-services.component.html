@@ -33,20 +33,44 @@
 
                                     <h3 class="pro-name">{{service?.service_name}}</h3>
 
-                                        <p class="category-text mb-2">
-        <span class="category">{{service?.category_name}}</span>
-        <i class="fa fa-angle-right mx-1"></i>
-        <span class="subcategory">{{service?.subcategory_name}}</span>
-    </p>
+                                    <p class="category-text mb-2">
+                                        <span class="category">{{service?.category_name}}</span>
+                                        <i class="fa fa-angle-right mx-1"></i>
+                                        <span class="subcategory">{{service?.subcategory_name}}</span>
+                                    </p>
 
-                                    <p class="mb-0"><i class="fa fa-envelope me-1" aria-hidden="true"></i>
-                                        john@gmail.com</p>
-                                    <p class="mb-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i>
-                                        913456789876</p>
-                                    <p class="mb-0"><i class="fa fa-globe mr-1" aria-hidden="true"></i>
-                                        www.abc.com</p>
+                                    <p class="mb-0">
+                                        <i class="fa fa-envelope me-1" aria-hidden="true"></i>
+                                        <ng-container *ngIf="service?.email; else noEmail">
+                                            <a [href]="'mailto:' + service.email">
+                                                {{ service.email }}
+                                            </a>
+                                        </ng-container>
+                                        <ng-template #noEmail>-</ng-template>
+                                    </p>
 
-                                        <!-- <h6>{{service?.category_name}}</h6>
+                                    <p class="mb-0">
+                                        <i class="fa fa-phone me-1" aria-hidden="true"></i>
+                                        <ng-container *ngIf="service?.mobile; else noMobile">
+                                            <a [href]="'tel:' + service.mobile">
+                                                {{ service.mobile }}
+                                            </a>
+                                        </ng-container>
+                                        <ng-template #noMobile>-</ng-template>
+                                    </p>
+
+                                    <p class="mb-0">
+                                        <i class="fa fa-globe me-1" aria-hidden="true"></i>
+                                        <ng-container *ngIf="service?.website; else noWebsite">
+                                            <a [href]="service.website.startsWith('http') ? service.website : 'https://' + service.website"
+                                                target="_blank" rel="noopener noreferrer">
+                                                {{ service.website }}
+                                            </a>
+                                        </ng-container>
+                                        <ng-template #noWebsite>-</ng-template>
+                                    </p>
+
+                                    <!-- <h6>{{service?.category_name}}</h6>
                                         <h6>{{service?.subcategory_name}}</h6> -->
 
                                     <div class="rating-line mt-3">
@@ -62,8 +86,6 @@
                                             {{service?.location}}</strong></div>
                                 </div>
                             </div>
-
-
                             <div> <span class="check-badge ms-2">
                                     <a href="javascript:void(0);" class="" data-toggle="modal"
                                         data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
@@ -73,44 +95,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- new design end -->
-
-
-                <!-- <div class="table-responsive">
-                    <table class="table table-striped align-middle">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Name</th>
-                                <th>Email</th>
-
-                                <th>View</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let service of serviceList">
-
-                                <td>
-                                    <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
-                                </td>
-                                <td class="d-flex align-items-center">
-                                    <a class="nav-link profile-click have-notification mr-2">
-                                        <img [src]="service.profile_image_thumb" class="img-fluid">
-                                    </a>
-                                    {{ service.first_name || '-' }}
-                                </td>
-                                <td>{{ service.user_email || '-' }}</td>
-
-                                <td>
-                                    <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
-                                        data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
 
                 <mat-paginator [length]="totalServices" [pageSize]="servicesPerPage" [pageIndex]="currentPage"
                     (page)="onChangedPage($event)" *ngIf="serviceList?.length > 0"></mat-paginator>
@@ -124,7 +108,6 @@
                     and
                     creation date.</p>
             </div>
-
 
         </ng-container>
     </div>
@@ -145,10 +128,51 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <img [src]="selectedService?.profile_image_thumb"
-                        style="width: 100px; height: 100px; border-radius: 50%;">
-
                     <div *ngIf="selectedService; else noServiceSelected">
+                        <div class="detail-card detail-card--company mb-3 justify-content-center">
+                            <div>
+                                <div class="detail-card__avatar-group justify-content-center">
+                                    <div class="company-logo-preview" style="width: 100px;height: 100px;">
+                                        <img *ngIf="selectedService?.company_logo; else profileImagePlaceholder"
+                                            [src]="selectedService.company_logo" alt="Profile image"
+                                            class="company-logo-preview__img">
+                                        <ng-template #profileImagePlaceholder>
+                                            <span class="company-logo-preview__placeholder">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </span>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <h5 class="ct_fs_18 mt-2 text-center">{{ selectedService.company_name || '-' }}</h5>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5 class="ct_fs_18 mt-2">Profile</h5>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="company-logo-preview">
+                                            <img *ngIf="getCompanyLogoUrl(selectedService); else companyLogoPlaceholder"
+                                                [src]="getCompanyLogoUrl(selectedService)" alt="Company logo"
+                                                class="company-logo-preview__img">
+                                            <ng-template #companyLogoPlaceholder>
+                                                <span class="company-logo-preview__placeholder">
+                                                    <i class="fa fa-image" aria-hidden="true"></i>
+                                                </span>
+                                            </ng-template>
+                                        </div>
+                                        <div class="company-details">
+                                            <h5 class="ct_fs_18 mb-1">{{ selectedService.first_name || '-' }}
+                                                {{selectedService.last_name || '-'}}</h5>
+                                            <!-- <p class="mb-0 text-muted">Profile image and company logo</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <h5 class="ct_fs_18 mt-2">{{ selectedService.service_name }}</h5>
                         <div class="row">
                             <div class="col-lg-6">
@@ -209,9 +233,7 @@
                                 <div class="service-image-grid mt-2">
                                     <div class="service-image-card"
                                         *ngFor="let image of selectedServiceImages; let i = index">
-                                        <button type="button"
-                                            class="service-image-card__preview-btn"
-                                            *ngIf="image.url"
+                                        <button type="button" class="service-image-card__preview-btn" *ngIf="image.url"
                                             (click)="openImagePreview(image)">
                                             <img [src]="image.url" alt="Service image" class="service-image-card__img">
                                         </button>

@@ -16,7 +16,6 @@ export class CircleListComponent implements OnInit {
   userId: string;
   groupId: string;
   isLoading = true;
-
   pageLimit: number;
   notEmptyPost = true;
   notscrolly = true;

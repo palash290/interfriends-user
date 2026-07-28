@@ -104,6 +104,24 @@
             </div>
             <div class="modal-body">
                 <div class="row g-3" *ngIf="selectedService; else noServiceSelected">
+                    <div class="col-12">
+                        <div class="detail-card d-flex align-items-center gap-3">
+                            <div class="company-logo-picker__preview company-logo-picker__preview--small">
+                                <img *ngIf="selectedService?.company_logo_url || selectedService?.company_logo_thumb || selectedService?.company_logo || selectedService?.logo_url || selectedService?.logo; else viewLogoPlaceholder"
+                                    [src]="selectedService?.company_logo_url || selectedService?.company_logo_thumb || selectedService?.company_logo || selectedService?.logo_url || selectedService?.logo"
+                                    alt="Company logo" class="company-logo-picker__image">
+                                <ng-template #viewLogoPlaceholder>
+                                    <span class="company-logo-picker__placeholder">
+                                        <i class="fa fa-image" aria-hidden="true"></i>
+                                    </span>
+                                </ng-template>
+                            </div>
+                            <div>
+                                <label>Company Name</label>
+                                <p>{{ selectedService.company_name || '-' }}</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="detail-card">
                             <label>Service Name</label>
@@ -234,6 +252,37 @@
 
                 <div class="modal-body">
                     <div class="box-body">
+                        <div class="company-logo-picker">
+                            <div class="company-logo-picker__preview" role="button" tabindex="0"
+                                aria-label="Upload company logo"
+                                (click)="triggerCompanyLogoPicker(companyLogoInput)"
+                                (keydown.enter)="triggerCompanyLogoPicker(companyLogoInput)"
+                                (keydown.space)="$event.preventDefault(); triggerCompanyLogoPicker(companyLogoInput)">
+                                <img *ngIf="companyLogoPreviewUrl; else companyLogoPlaceholder"
+                                    [src]="companyLogoPreviewUrl" alt="Company logo preview"
+                                    class="company-logo-picker__image">
+                                <ng-template #companyLogoPlaceholder>
+                                    <span class="company-logo-picker__placeholder">
+                                        <i class="fa fa-image" aria-hidden="true"></i>
+                                    </span>
+                                </ng-template>
+                            </div>
+                            <div class="company-logo-picker__content">
+                                <label class="d-block mb-2">Company Logo</label>
+                                <input #companyLogoInput type="file" class="d-none" accept="image/*"
+                                    (change)="onCompanyLogoSelected($event)" />
+                                <small class="form-text text-muted">
+                                    Click the circle to upload or change the logo.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" class="form-control" placeholder="Enter company name"
+                                formControlName="company_name" />
+                        </div>
+
                         <div class="form-group"
                             [ngClass]="{'has-error': form.get('service_id').invalid  && form.get('service_id').touched}">
                             <label>Service</label>
@@ -295,10 +344,10 @@
                             <label>Website</label>
                             <input type="url" class="form-control" placeholder="Enter website URL"
                                 formControlName="website" />
-                            <span class="help-block"
+                            <!-- <span class="help-block"
                                 *ngIf="form.get('website').invalid  && form.get('website').touched">
                                 Please enter a website.
-                            </span>
+                            </span> -->
                         </div>
 
                         <div class="form-group"

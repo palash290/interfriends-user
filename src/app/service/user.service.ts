@@ -661,8 +661,8 @@ export class UserService {
   }
 
   circleList(
-    ofset: number,
-    userId: string
+    ofset: any,
+    userId: any
   ): any {
     const audioData = new FormData();
     audioData.append('start', ofset.toString());

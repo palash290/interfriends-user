@@ -56,7 +56,7 @@ export class ApplyWelfareComponent implements OnInit {
       loan_amount: new FormControl('', { validators: [Validators.required] }),
       tenure: new FormControl('', { validators: [Validators.required] }),
       emi: new FormControl(null, {}),
-      pay_date: new FormControl(null, { validators: [Validators.required] }),
+      pay_date: new FormControl(null, {}),
       adminrisk: new FormControl(null, {}),
       total40Months: new FormControl(null, {}),
       provident: new FormControl(null, {}),
@@ -89,6 +89,8 @@ export class ApplyWelfareComponent implements OnInit {
 
 
   onSave(): void {
+    // document.getElementById('closePopupWelfareRequest').click();
+    // return;
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
@@ -99,7 +101,7 @@ export class ApplyWelfareComponent implements OnInit {
     this.loanService.addWelfare(
       this.userId,
       this.groupId,
-      this.form.value.emi,
+      this.form.value.loan_amount,
       this.form.value.tenure,
       this.form.value.total40Months,
       this.form.value.provident,
@@ -108,14 +110,14 @@ export class ApplyWelfareComponent implements OnInit {
       this.form.value.pay_date,
       this.form.value.gurarantor
     ).subscribe((response: any) => {
-      this.form.reset();
-      document.getElementById('closePopupLoanEmergencyRequest').click();
+
       this.isLoading = false;
 
-
-      if (response.success === '1') {
+      if (response.success == '1') {
         this.valueChange.emit('add');
+        this.form.reset();
         this.toastr.success(response.message);
+        document.getElementById('closePopupWelfareRequest').click();
       } else {
         this.toastr.error(response.message);
       }

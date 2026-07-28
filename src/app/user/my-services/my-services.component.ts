@@ -26,6 +26,8 @@ export class MyServicesComponent implements OnInit {
   selectedImages: Array<{ file: File; previewUrl: any }> = [];
   existingImages: Array<{ id: string | number | null; name: string; url: string }> = [];
   removedImageIds: Array<string | number> = [];
+  companyLogoFile: File | null = null;
+  companyLogoPreviewUrl = '';
   imageError = '';
   readonly maxImages = 5;
 
@@ -48,10 +50,11 @@ export class MyServicesComponent implements OnInit {
     this.form = new FormGroup({
       service_id: new FormControl('', { validators: [Validators.required] }),
       // price: new FormControl('', { validators: [Validators.required] }),
+      company_name: new FormControl(''),
       description: new FormControl(null, { validators: [Validators.required] }),
       mobile: new FormControl('', { validators: [Validators.required] }),
       email: new FormControl('', { validators: [Validators.required, Validators.email] }),
-      website: new FormControl('', { validators: [Validators.required] }),
+      website: new FormControl('', {}),
       location: new FormControl('', { validators: [Validators.required] }),
       latitude: new FormControl('0.0000'),
       longitude: new FormControl('0.0000')
@@ -63,6 +66,8 @@ export class MyServicesComponent implements OnInit {
     this.selectedImages = [];
     this.existingImages = [];
     this.removedImageIds = [];
+    this.companyLogoFile = null;
+    this.companyLogoPreviewUrl = '';
     this.imageError = '';
   }
 
@@ -121,6 +126,17 @@ export class MyServicesComponent implements OnInit {
       .filter((image: any) => image.url || image.name);
   }
 
+  private getCompanyLogoUrl(service: any): string {
+    return (
+      service?.company_logo_url ||
+      service?.company_logo_thumb ||
+      service?.company_logo ||
+      service?.logo_url ||
+      service?.logo ||
+      ''
+    );
+  }
+
   private readFileAsDataUrl(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -133,6 +149,34 @@ export class MyServicesComponent implements OnInit {
   private async buildPreviewUrl(file: File): Promise<SafeUrl> {
     const dataUrl = await this.readFileAsDataUrl(file);
     return this.sanitizer.bypassSecurityTrustUrl(dataUrl);
+  }
+
+  private async setCompanyLogoPreview(file: File): Promise<void> {
+    const dataUrl = await this.readFileAsDataUrl(file);
+    this.companyLogoPreviewUrl = dataUrl;
+  }
+
+  onCompanyLogoSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0] || null;
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      this.toastr.error('Please select an image file for the company logo.');
+      input.value = '';
+      return;
+    }
+
+    this.companyLogoFile = file;
+    this.setCompanyLogoPreview(file);
+    input.value = '';
+  }
+
+  triggerCompanyLogoPicker(fileInput: HTMLInputElement): void {
+    fileInput.click();
   }
 
   async onImagesSelected(event: Event): Promise<void> {
@@ -195,7 +239,7 @@ export class MyServicesComponent implements OnInit {
       //     ? [services]
       //     : [];
 
-          const serviceArray = Array.isArray(services)
+      const serviceArray = Array.isArray(services)
         ? services
         : services
           ? [services]
@@ -237,6 +281,7 @@ export class MyServicesComponent implements OnInit {
     this.form.reset({
       service_id: '',
       // price: '',
+      company_name: '',
       description: '',
       mobile: '',
       email: '',
@@ -253,6 +298,7 @@ export class MyServicesComponent implements OnInit {
     this.form.reset({
       service_id: '',
       // price: '',
+      company_name: '',
       description: '',
       mobile: '',
       email: '',
@@ -300,10 +346,15 @@ export class MyServicesComponent implements OnInit {
     }
 
     serviceData.set('description', this.form.value.description);
+    serviceData.set('company_name', this.form.value.company_name || '');
     serviceData.set('mobile', this.form.value.mobile);
     serviceData.set('email', this.form.value.email);
     serviceData.set('website', this.form.value.website);
     serviceData.set('location', this.form.value.location);
+
+    if (this.companyLogoFile) {
+      serviceData.set('company_logo', this.companyLogoFile, this.companyLogoFile.name);
+    }
 
     this.selectedImages.forEach(image => {
       serviceData.append('images[]', image.file, image.file.name);
@@ -339,10 +390,11 @@ export class MyServicesComponent implements OnInit {
     this.selectedServiceId = service?.user_service_id || service?.id || '';
     this.resetImageState();
     this.existingImages = this.buildExistingImages(service);
-    debugger
+    this.companyLogoPreviewUrl = this.getCompanyLogoUrl(service);
     this.form.patchValue({
       service_id: service?.service_id || '',
       // price: service?.price || '',
+      company_name: service?.company_name || '',
       description: service?.description || service?.provider_description || '',
       mobile: service?.mobile || '',
       email: service?.email || '',

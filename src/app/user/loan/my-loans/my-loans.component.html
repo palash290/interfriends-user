@@ -130,7 +130,7 @@
                                        <div class="row">
                                           <div class="col-6 left-box">
                                              <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
-                                             <p class="sub-para">{{item.created_at}}</p>
+                                             <p class="sub-para">{{item.emi_date}}</p>
                                           </div>
                                           <div class="col-6 right-box">
                                              <div class="d-flex align-items-center">
@@ -164,7 +164,7 @@
                      </div>
                      <div class=" mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
                         <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops!No Data Found</h1>
+                        <h1 class="">Oops! No Data Found</h1>
                      </div>
                   </div>
                   <div class="col-lg-12" *ngIf="status === '2'">
@@ -242,7 +242,7 @@
                                        <div class="row">
                                           <div class="col-6 left-box">
                                              <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
-                                             <p class="sub-para">{{item.created_at}}</p>
+                                             <p class="sub-para">{{item.emi_date}}</p>
                                           </div>
                                           <div class="col-6 right-box">
                                              <div class="d-flex align-items-center">
@@ -257,7 +257,7 @@
                                                 *ngIf="item.status == '2'">Paid Late</span>
                                              <span style="color: #E20000; font-weight: 900;"
                                                 *ngIf="item.status == '3'">Missed Payment Deadline</span> -->
-                                                
+
                                              <!-- <p class="sub-para">
                                            <span class="extra-para mr-2">Remaning Amount </span> €60,000
                                         </p> -->
@@ -278,7 +278,7 @@
                      </div>
                      <div class=" mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
                         <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops!No Data Found</h1>
+                        <h1 class="">Oops! No Data Found</h1>
                      </div>
                   </div>
                   <div class="col-lg-12" *ngIf="status === '3'">
@@ -334,7 +334,7 @@
                      </div>
                      <div class=" mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
                         <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops!No Data Found</h1>
+                        <h1 class="">Oops! No Data Found</h1>
                      </div>
                   </div>
                </div>
@@ -348,8 +348,8 @@
 <app-footer></app-footer>
 
 <a routerLink="/user/all-services" class="business-directory-fab" aria-label="Business Directory">
-  <span class="business-directory-fab__icon">
-    <i class="fa fa-briefcase" aria-hidden="true"></i>
-  </span>
-  <span class="business-directory-fab__text">Business Directory</span>
+   <span class="business-directory-fab__icon">
+      <i class="fa fa-briefcase" aria-hidden="true"></i>
+   </span>
+   <span class="business-directory-fab__text">Business Directory</span>
 </a>

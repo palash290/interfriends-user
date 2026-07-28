@@ -109,6 +109,13 @@ export class AllServicesComponent implements OnInit {
       .filter((image: any) => image.url || image.name);
   }
 
+  getCompanyLogoUrl(service: any): string {
+    return (
+      service?.profile_image_thumb ||
+      ''
+    );
+  }
+
   viewServiceDetails(service: any) {
     this.selectedService = service;
     this.selectedServiceImages = this.buildExistingImages(service);

@@ -8,15 +8,18 @@
          <div class="inner-box">
             <h6 class="extra-hding">Welfare Account</h6>
             <h2 class="main-hding">
-               <span *ngIf="!isLoading">
-                  <span *ngIf="status == '1'" class="ct_textcolor">{{avgComplete| currency:'GBP': 'symbol' :
+               <!-- <span *ngIf="!isLoading">
+                  <span *ngIf="status == '1'" class="ct_textcolor">{{avgComplete | currency:'GBP': 'symbol' :
                      '1.0-0'}}</span>
-                  <span *ngIf="status == '2'">{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+                  <span *ngIf="status == '2'">{{avgComplete | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+               </span> -->
+               <span *ngIf="!isLoading">
+                  <span class="ct_textcolor">{{avgComplete | currency:'GBP': 'symbol' :
+                     '1.0-0'}}</span>
                </span>
                <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
             </h2>
             <p class="sub-para m-0">Balance</p>
-
          </div>
       </div>
    </div>
@@ -24,6 +27,15 @@
 <section class="savings-box container">
    <div class="row">
       <div class="col-md-12">
+
+         <div class="d-flex align-items-center mb-4" style="gap:10px" *ngIf="canShowClaimWelfare()">
+            <button type="button" class="btn bg-success float-right text-white ml-auto mr-3 px-5"
+               (click)="showPayoutModal()" style="white-space: nowrap;">
+               <div class="fa fa-credit-card text-white mr-1"></div>
+               Claim Welfare
+            </button>
+         </div>
+
          <h2 class="section-title mb-5">Your Welfare Loans</h2>
          <ul class="nav nav-tabs bg-blue" id="myTab">
             <li class="nav-item">
@@ -65,7 +77,7 @@
                                              </div>
                                              <div class="col-lg-6 col-sm-12 col-6">
                                                 <h6 class="loan-sm-text">Start Date</h6>
-                                                <h5 class="loan-hl-text">{{data.date}}</h5>
+                                                <h5 class="loan-hl-text">{{data.start_date}}</h5>
                                              </div>
                                           </div>
                                        </div>
@@ -121,8 +133,11 @@
                                        *ngFor="let item of data.payment_list; let it = index">
                                        <div class="row">
                                           <div class="col-6 left-box">
-                                             <h4 class="main-hding mt-0">{{data.payment_list.length - it}} Payment</h4>
-                                             <p class="sub-para">{{item.created_at}}</p>
+                                             <!-- <h4 class="main-hding mt-0">{{data.payment_list.length - it}} Payment</h4> -->
+                                             <h4 class="main-hding mt-0">
+                                                {{ it + 1 }} Payment
+                                             </h4>
+                                             <p class="sub-para">{{item.emi_date}}</p>
                                           </div>
                                           <div class="col-6 right-box">
                                              <div class="d-flex align-items-center">
@@ -143,14 +158,13 @@
                                  <div *ngIf="data.payment_list_status === true">
                                     <mat-spinner class="mx-auto"></mat-spinner>
                                  </div>
-
                               </div>
                            </div>
                         </div>
                      </div>
                      <div class=" mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
                         <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops!No Data Found</h1>
+                        <h1 class="">Oops! No Data Found</h1>
                      </div>
                   </div>
                   <div class="col-lg-12" *ngIf="status === '2'">
@@ -243,7 +257,7 @@
                      </div>
                      <div class=" mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
                         <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops!No Data Found</h1>
+                        <h1 class="">Oops! No Data Found</h1>
                      </div>
                   </div>
                   <div class="col-lg-12" *ngIf="status === '3'">
@@ -262,7 +276,7 @@
                                        </div>
                                        <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
                                           <h6 class="loan-sm-text">Application Date</h6>
-                                          <h5 class="loan-hl-text">{{data.date}}</h5>
+                                          <h5 class="loan-hl-text">{{data.created_at}}</h5>
                                        </div>
                                     </div>
                                  </div>
@@ -270,7 +284,8 @@
                                     <div class="row">
                                        <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
                                           <h6 class="loan-sm-text">Loan Amt</h6>
-                                          <h5 class="loan-hl-text">{{data.amount | currency:'GBP': 'symbol' : '1.0-0'}}
+                                          <h5 class="loan-hl-text">{{data.loan_amount | currency:'GBP': 'symbol' :
+                                             '1.0-0'}}
                                           </h5>
                                        </div>
                                        <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
@@ -294,7 +309,7 @@
                      </div>
                      <div class=" mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
                         <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops!No Data Found</h1>
+                        <h1 class="">Oops! No Data Found</h1>
                      </div>
                   </div>
                </div>
@@ -306,3 +321,122 @@
 <app-sub-menu></app-sub-menu>
 <app-mobile-menu></app-mobile-menu>
 <app-footer></app-footer>
+
+
+
+
+
+<!-- payout model popup start -->
+<div class="modal fade show" id="payoutModal" tabindex="-1" role="dialog" aria-labelledby="payoutModalLabel"
+   aria-hidden="true" [ngStyle]="{'display':displayClaim}">
+   <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+               <span aria-hidden="true">×</span>
+            </button>
+         </div>
+         <form #claimForm="ngForm" (ngSubmit)="onClaim(claimForm)">
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="seconder1_user_id"><b>Seconder 1</b></label>
+                  <select id="seconder1_user_id" name="seconder1_user_id" class="form-control" required
+                     [(ngModel)]="claimFormData.seconder1_user_id" (ngModelChange)="onSeconder1Change($event)"
+                     #seconder1="ngModel">
+                     <option value="">Select Seconder 1</option>
+                     <option *ngFor="let item of circleUsers" [ngValue]="item.user_id">
+                        {{ item.first_name }} {{ item.last_name }}
+                     </option>
+                  </select>
+                  <small class="text-danger" *ngIf="seconder1.invalid && (seconder1.touched || claimForm.submitted)">
+                     Seconder 1 is required.
+                  </small>
+               </div>
+
+               <div class="form-group">
+                  <label for="seconder2_user_id"><b>Seconder 2</b></label>
+                  <select id="seconder2_user_id" name="seconder2_user_id" class="form-control"
+                     [(ngModel)]="claimFormData.seconder2_user_id" #seconder2="ngModel">
+                     <option value="">Select Seconder 2</option>
+                     <option *ngFor="let item of getFilteredSeconder2Users()" [ngValue]="item.user_id">
+                        {{ item.first_name }} {{ item.last_name }}
+                     </option>
+                  </select>
+                  <!-- <small class="text-danger" *ngIf="seconder2.invalid && (seconder2.touched || claimForm.submitted)">
+                     Seconder 2 is required.
+                  </small> -->
+               </div>
+
+               <div class="form-group">
+                  <label for="beneficiary"><b>Beneficiary</b></label>
+                  <select id="beneficiary" name="beneficiary" class="form-control" required
+                     [(ngModel)]="claimFormData.beneficiary" #beneficiary="ngModel">
+                     <option value="">Select Beneficiary</option>
+                     <option value="Mother">Mother</option>
+                     <option value="Father">Father</option>
+                     <option value="Sibling">Sibling</option>
+                     <option value="Child">Child</option>
+                     <option value="Close Relation">Close Relation</option>
+                     <option value="Other">Other</option>
+                  </select>
+                  <small class="text-danger"
+                     *ngIf="beneficiary.invalid && (beneficiary.touched || claimForm.submitted)">
+                     Beneficiary is required.
+                  </small>
+               </div>
+
+               <div class="form-group">
+                  <label for="payout_amount"><b>Payout Amount</b></label>
+                  <input id="payout_amount" type="text" class="form-control" [value]="payout_amount" disabled>
+               </div>
+
+               <div class="form-group">
+                  <label for="claim_reason"><b>Claim Reason</b></label>
+                  <select id="claim_reason" name="claim_reason" class="form-control" required
+                     [(ngModel)]="claimFormData.claim_reason" #claimReason="ngModel">
+                     <option value="">Select Claim Reason</option>
+                     <option value="Bereavement ">Bereavement</option>
+                     <option value="Medical Bills">Medical Bills</option>
+                     <option value="Other">Other</option>
+                  </select>
+                  <small class="text-danger"
+                     *ngIf="claimReason.invalid && (claimReason.touched || claimForm.submitted)">
+                     Claim Reason is required.
+                  </small>
+               </div>
+
+               <!-- <div class="form-group">
+                  <label for="claim_reason"><b>Claim Reason</b></label>
+                  <input id="claim_reason" type="text" name="claim_reason" placeholder="Enter claim reason"
+                     class="form-control" required [(ngModel)]="claimFormData.claim_reason"
+                     #claimReason="ngModel">
+                  <small class="text-danger" *ngIf="claimReason.invalid && (claimReason.touched || claimForm.submitted)">
+                     Claim reason is required.
+                  </small>
+               </div> -->
+            </div>
+            <div class="modal-footer">
+
+               <button class="btn btn-primary" type="submit"
+                  [disabled]="claimForm.invalid || claimFormData.seconder1_user_id === claimFormData.seconder2_user_id || isLoadingBtn">
+
+                  <span *ngIf="!isLoadingBtn">Confirm</span>
+                  <span *ngIf="isLoadingBtn">
+                     <i class="fa fa-refresh fa-spin me-1"></i> Processing...
+                  </span>
+
+               </button>
+
+               <!-- <button class="btn btn-primary" type="submit"
+                  [disabled]="claimForm.invalid || claimFormData.seconder1_user_id === claimFormData.seconder2_user_id">
+                  Confirm
+               </button> -->
+               <button class="btn btn-secondary" type="button" data-dismiss="modal" id="closepayout"
+                  (click)="onClose(claimForm)">Close</button>
+
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- payout model popup end -->

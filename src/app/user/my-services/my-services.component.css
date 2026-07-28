@@ -40,6 +40,69 @@
   word-break: break-word;
 }
 
+.company-logo-picker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e6ebf2;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+}
+
+.company-logo-picker__preview {
+  flex: 0 0 auto;
+  width: 4.75rem;
+  height: 4.75rem;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid #dbe4f0;
+  background: #f3f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.company-logo-picker__preview--small {
+  width: 4rem;
+  height: 4rem;
+}
+
+.company-logo-picker__preview:hover {
+  transform: translateY(-1px);
+  border-color: #b9c8da;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.company-logo-picker__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.company-logo-picker__placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #94a3b8;
+  font-size: 1.45rem;
+}
+
+.company-logo-picker__content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.d-none {
+  display: none !important;
+}
+
 .service-image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -96,6 +159,10 @@
 }
 
 @media (max-width: 768px) {
+  .company-logo-picker {
+    align-items: flex-start;
+  }
+
   .service-view-btn {
     width: 2rem;
     height: 2rem;
