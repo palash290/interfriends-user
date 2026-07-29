@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     public userService: UserService,
     private router: Router,
     private toastr: ToastrService,
+    private elementRef: ElementRef,
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +54,18 @@ export class HeaderComponent implements OnInit {
 
   onToggleMenu() {
     return this.showMenu = !this.showMenu;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.showMenu) {
+      return;
+    }
+
+    const target = event.target as Node;
+    if (!this.elementRef.nativeElement.contains(target)) {
+      this.showMenu = false;
+    }
   }
 
 

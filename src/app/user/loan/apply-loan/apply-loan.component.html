@@ -50,10 +50,9 @@
         <p class="md-title mt-4 mb-0">Help2Buy(house)</p>
       </a>
     </div>
-
+    <!-- href="javascript(void);" data-toggle="modal" data-target="#applyWelfareModal" -->
     <div class="col-lg-4 col-sm-6">
-      <a href="javascript(void);" data-toggle="modal" data-target="#applyWelfareModal"
-        class="blue-line-solid text-center">
+      <a (click)="onSelectLoan('7')" class="blue-line-solid text-center">
         <div class="img-box mobile"></div>
         <p class="md-title mt-4 mb-0">Welfare</p>
       </a>
@@ -73,6 +72,8 @@
 </a>
 
 <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#applyModal">Open Modal</button>
+
+<button id="openModalButton7" [hidden]="true" data-toggle="modal" data-target="#applyWelfareModal">Open Modal</button>
 
 <!-- Modal Start -->
 <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"

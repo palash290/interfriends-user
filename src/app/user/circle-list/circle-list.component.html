@@ -41,7 +41,9 @@
                                     <div *ngIf="data.role !== 'Member'" class="">
                                         <span class="mb-0 ct_subrole_badge text-white"
                                             style="background-color: #092c4b;">
-                                            {{ data.role }}
+                                            <a [href]="'mailto:' + data.email">
+                                                {{ data.role }}
+                                            </a>
                                         </span>
                                     </div>
                                 </div>
@@ -67,10 +69,10 @@
 <app-footer></app-footer>
 
 <a routerLink="/user/all-services" class="business-directory-fab" aria-label="Business Directory">
-  <span class="business-directory-fab__icon">
-    <i class="fa fa-briefcase" aria-hidden="true"></i>
-  </span>
-  <span class="business-directory-fab__text">Business Directory</span>
+    <span class="business-directory-fab__icon">
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+    </span>
+    <span class="business-directory-fab__text">Business Directory</span>
 </a>
 
 <!-- Img -->

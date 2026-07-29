@@ -55,14 +55,15 @@ export class ApplyLoanComponent implements OnInit {
           'Not every member qualifies to be accepted for Interfriends Help2Buy (' +
           this.loanTypeText +
           '). To apply, check and clarify with the group Admin to confirm that you meet the minimum requirements before you proceed.' +
-          '\nOnce accepted, monthly payments start immediately and payout starts after 40 months.T&C apply.';
+          '\nOnce accepted, monthly payments start immediately and payout starts after 40 months. T&C apply.';
         break;
       case '7':
         this.loanTypeText = 'Welfare';
         this.textMessage =
           'Not every member qualifies to be accepted for Interfriends Welfare. To apply, check and clarify with the group Admin to confirm that you meet the minimum requirements before you proceed.' +
-          '\nOnce accepted, monthly payments start immediately and payout starts after 40 months.T&C apply.';
+          '\nOnce accepted, monthly payments start immediately and payout starts after 24 months. T&C apply.';
         break;
+      // href="javascript(void);" data-toggle="modal" data-target="#applyWelfareModal"
       default:
         this.loanTypeText = 'Other';
         this.textMessage =
@@ -74,6 +75,9 @@ export class ApplyLoanComponent implements OnInit {
     }
     this.eachChange = Math.random().toString();
     this.alertConfirmation();
+    if (type == '7') {
+      this.alertConfirmation7();
+    }
   }
 
   backClicked() {
@@ -97,4 +101,24 @@ export class ApplyLoanComponent implements OnInit {
       }
     });
   }
+
+  alertConfirmation7() {
+    Swal.fire({
+      title: 'PLEASE NOTE:',
+      text: this.textMessage,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think',
+    }).then((result) => {
+      if (result.value) {
+        //Swal.fire('Removed!', 'Product removed successfully.', 'success');
+        document.getElementById('openModalButton7').click();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Swal.fire('Cancelled', 'Product still in our database.)', 'error');
+        console.log('Do nothing');
+      }
+    });
+  }
+
+
 }

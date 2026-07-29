@@ -283,7 +283,7 @@
                                  <div class="col-sm-6">
                                     <div class="row">
                                        <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                                          <h6 class="loan-sm-text">Loan Amt</h6>
+                                          <h6 class="loan-sm-text">Claim Amt</h6>
                                           <h5 class="loan-hl-text">{{data.loan_amount | currency:'GBP': 'symbol' :
                                              '1.0-0'}}
                                           </h5>
@@ -339,7 +339,7 @@
          <form #claimForm="ngForm" (ngSubmit)="onClaim(claimForm)">
             <div class="modal-body">
                <div class="form-group">
-                  <label for="seconder1_user_id"><b>Seconder 1</b></label>
+                  <label for="seconder1_user_id"><b>Select your Witness 1</b></label>
                   <select id="seconder1_user_id" name="seconder1_user_id" class="form-control" required
                      [(ngModel)]="claimFormData.seconder1_user_id" (ngModelChange)="onSeconder1Change($event)"
                      #seconder1="ngModel">
@@ -354,7 +354,7 @@
                </div>
 
                <div class="form-group">
-                  <label for="seconder2_user_id"><b>Seconder 2</b></label>
+                  <label for="seconder2_user_id"><b>Select your Witness 2</b></label>
                   <select id="seconder2_user_id" name="seconder2_user_id" class="form-control"
                      [(ngModel)]="claimFormData.seconder2_user_id" #seconder2="ngModel">
                      <option value="">Select Seconder 2</option>
@@ -362,13 +362,10 @@
                         {{ item.first_name }} {{ item.last_name }}
                      </option>
                   </select>
-                  <!-- <small class="text-danger" *ngIf="seconder2.invalid && (seconder2.touched || claimForm.submitted)">
-                     Seconder 2 is required.
-                  </small> -->
                </div>
 
                <div class="form-group">
-                  <label for="beneficiary"><b>Beneficiary</b></label>
+                  <label for="beneficiary"><b>Relationship to the claimant</b></label>
                   <select id="beneficiary" name="beneficiary" class="form-control" required
                      [(ngModel)]="claimFormData.beneficiary" #beneficiary="ngModel">
                      <option value="">Select Beneficiary</option>
@@ -385,6 +382,17 @@
                   </small>
                </div>
 
+               <div class="form-group" *ngIf="claimFormData.beneficiary === 'Other'">
+                  <label for="beneficiary_other"><b>Beneficiary Name</b></label>
+                  <input id="beneficiary_other" type="text" name="beneficiary_other" class="form-control"
+                     placeholder="Enter beneficiary name" required [(ngModel)]="claimFormData.beneficiary_other"
+                     #beneficiaryOther="ngModel">
+                  <small class="text-danger"
+                     *ngIf="beneficiaryOther.invalid && (beneficiaryOther.touched || claimForm.submitted)">
+                     Beneficiary name is required.
+                  </small>
+               </div>
+
                <div class="form-group">
                   <label for="payout_amount"><b>Payout Amount</b></label>
                   <input id="payout_amount" type="text" class="form-control" [value]="payout_amount" disabled>
@@ -395,13 +403,24 @@
                   <select id="claim_reason" name="claim_reason" class="form-control" required
                      [(ngModel)]="claimFormData.claim_reason" #claimReason="ngModel">
                      <option value="">Select Claim Reason</option>
-                     <option value="Bereavement ">Bereavement</option>
+                     <option value="Bereavement">Bereavement</option>
                      <option value="Medical Bills">Medical Bills</option>
                      <option value="Other">Other</option>
                   </select>
                   <small class="text-danger"
                      *ngIf="claimReason.invalid && (claimReason.touched || claimForm.submitted)">
                      Claim Reason is required.
+                  </small>
+               </div>
+
+               <div class="form-group" *ngIf="claimFormData.claim_reason === 'Other'">
+                  <label for="claim_reason_other"><b>Claim Reason</b></label>
+                  <input id="claim_reason_other" type="text" name="claim_reason_other" class="form-control"
+                     placeholder="Enter claim reason" required [(ngModel)]="claimFormData.claim_reason_other"
+                     #claimReasonOther="ngModel">
+                  <small class="text-danger"
+                     *ngIf="claimReasonOther.invalid && (claimReasonOther.touched || claimForm.submitted)">
+                     Claim reason is required.
                   </small>
                </div>
 

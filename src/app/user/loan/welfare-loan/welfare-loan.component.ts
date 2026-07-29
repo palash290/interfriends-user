@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/service/shared.service';
 import { UserService } from 'src/app/service/user.service';
 import { NgForm } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
 
 
 @Component({
@@ -34,7 +35,9 @@ export class WelfareLoanComponent implements OnInit {
     seconder1_user_id: '',
     seconder2_user_id: '',
     beneficiary: '',
-    claim_reason: ''
+    beneficiary_other: '',
+    claim_reason: '',
+    claim_reason_other: ''
   };
 
   constructor(
@@ -49,17 +52,43 @@ export class WelfareLoanComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
     this.groupId = this.authService.getgroupId();
-    this.loanService.welfareList(this.userId, this.groupId).subscribe((response: any) => {
-      this.laonPending = response.listPending.reverse();
-      this.laonComplete = response.listComplete;
-      this.laonActive = response.listActive.reverse();
-      this.welfare_loan_id = response.listActive[0].id;
-      this.payout_amount = response.listActive[0].loan_amount;
-      this.group_id = response.listActive[0].group_id;
-      this.isLoading = false;
-      this.avgAmount = response.avgAmount;
-      this.avgComplete = response.avgComplete;
-    });
+    this.isLoading = true;
+    this.loanService.welfareList(this.userId, this.groupId)
+      .pipe(finalize(() => {
+        this.isLoading = false;
+      }))
+      .subscribe({
+        next: (response: any) => {
+          this.laonPending = (response?.listPending || []).reverse();
+          this.laonComplete = response?.listComplete || [];
+          this.laonActive = (response?.listActive || []).reverse();
+          this.avgAmount = response?.avgAmount ?? 0;
+          this.avgComplete = response?.avgComplete ?? 0;
+
+          const activeLoan = this.laonActive[0];
+          if (activeLoan) {
+            this.welfare_loan_id = activeLoan.id;
+            this.payout_amount = activeLoan.loan_amount;
+            this.group_id = activeLoan.group_id;
+          } else {
+            this.welfare_loan_id = null;
+            this.payout_amount = null;
+            this.group_id = null;
+          }
+        },
+        error: (error: any) => {
+          console.error('Welfare list load error:', error);
+          this.laonPending = [];
+          this.laonComplete = [];
+          this.laonActive = [];
+          this.avgAmount = 0;
+          this.avgComplete = 0;
+          this.welfare_loan_id = null;
+          this.payout_amount = null;
+          this.group_id = null;
+          this.toastr.error('Unable to load welfare loans. Please try again.');
+        }
+      });
     this.circleList();
   }
 
@@ -119,7 +148,9 @@ export class WelfareLoanComponent implements OnInit {
       seconder1_user_id: '',
       seconder2_user_id: '',
       beneficiary: '',
-      claim_reason: ''
+      beneficiary_other: '',
+      claim_reason: '',
+      claim_reason_other: ''
     };
   }
 
@@ -132,7 +163,9 @@ export class WelfareLoanComponent implements OnInit {
       seconder1_user_id: '',
       seconder2_user_id: '',
       beneficiary: '',
-      claim_reason: ''
+      beneficiary_other: '',
+      claim_reason: '',
+      claim_reason_other: ''
     };
   }
 
@@ -162,8 +195,16 @@ export class WelfareLoanComponent implements OnInit {
       welfare_loan_id: this.welfare_loan_id,
       user_id: this.userId,
       payout_amount: this.payout_amount,
+      // claim_reason: this.claimFormData.claim_reason === 'Other'
+      //   ? this.claimFormData.claim_reason_other
+      //   : this.claimFormData.claim_reason,
+      // beneficiary: this.claimFormData.beneficiary === 'Other'
+      //   ? this.claimFormData.beneficiary_other
+      //   : this.claimFormData.beneficiary,
       claim_reason: this.claimFormData.claim_reason,
       beneficiary: this.claimFormData.beneficiary,
+      claim_reason_other: this.claimFormData.claim_reason_other,
+      beneficiary_other: this.claimFormData.beneficiary_other,
       seconder1_user_id: this.claimFormData.seconder1_user_id,
       seconder2_user_id: this.claimFormData.seconder2_user_id,
       group_id: this.group_id

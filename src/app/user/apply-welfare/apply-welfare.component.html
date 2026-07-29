@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header border-0 justify-content-center">
             <div>
-                <h5 class="modal-title" id="applyModalLabel">Apply for Welfare</h5>
+                <h5 class="modal-title" id="applyModalLabel">Application Form</h5>
                 <!-- <p class="para-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
             </div>
             <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close"
@@ -19,7 +19,7 @@
                             <!--<input type="text" formControlName="loan_amount" placeholder="Enter Loan Amount" class="form-control"   *ngIf="mainId === '1'" (input)="onInputAmount1($event.target.value) ">-->
                             <select class="form-control" formControlName="loan_amount"
                                 (input)="onInputAmount($event.target.value)">
-                                <option value="" disabled>Payout Amount</option>
+                                <option value="" disabled>Select Claim Payout</option>
                                 <option *ngFor="let item of payOutElem | keyvalue" value="{{ item.value }}">
                                     {{ item.value }}
                                 </option>
@@ -44,11 +44,11 @@
                             </div>
                         </div> -->
                         <div class="col-lg-6 col-md-6 col-sm-12">
-                            <label class="label-walfare">Tenure</label>
+                            <label class="label-walfare">Term</label>
                             <div class="form-group">
                                 <div class=" ct_language_euro">
                                     <select class="form-control" formControlName="tenure">
-                                        <option value="">Select Tenure</option>
+                                        <option value="">Select Term</option>
                                         <option *ngFor="let item of tenureElem" [value]="item">
                                             {{ item }} months
                                         </option>
@@ -56,7 +56,7 @@
                                 </div>
                                 <span class="error-form"
                                     *ngIf="form.get('tenure').invalid && form.get('tenure').touched">
-                                    Please select a tenure.
+                                    Please select a term.
                                 </span>
                             </div>
                         </div>
@@ -106,10 +106,10 @@
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
-                            <label class="label-walfare">Gurarantor</label>
+                            <label class="label-walfare">Witness</label>
                             <div class="form-group">
                                 <select class="form-control" formControlName="gurarantor">
-                                    <option value=''>Select Gurarantor</option>
+                                    <option value=''>Select Witness</option>
                                     <option [value]="data.user_id" *ngFor="let data of userList">{{data.first_name+'
                                         '+data.last_name}}</option>
                                 </select>
@@ -119,7 +119,7 @@
                                 </div>
                                 <span class="error-form"
                                     *ngIf="form.get('gurarantor').invalid && form.get('gurarantor').touched">
-                                    Please select a gurarantor.
+                                    Please select a witness.
                                 </span>
                             </div>
                         </div>
