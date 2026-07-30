@@ -4,96 +4,152 @@
     <div class="col-md-12">
       <h2 class="section-title">Help to Buy Options</h2>
       <div class="row">
-      <div class="col-lg-4 col-sm-6">
-        <a [routerLink]="['/user/help2buyloanlist', '2']" class="box-line-white h-120 dark-line d-flex align-items-center">
-          <div class="mr-4">
-            <img src="assets/images/savings.png" class="img-fluid">
-          </div>
-          <div class="">
-            <p class="sub-para">Help2 Pay<br>  (Car Insurance)</p>
-            <h4 class="main-hding">
-              <span *ngIf="helpToBuyCarInsurance != '0' " >-{{helpToBuyCarInsurance | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="helpToBuyCarInsurance == '0' "  >{{helpToBuyCarInsurance | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="loading">
-                <i class="fa fa-refresh fa-spin" ></i>
-              </span>
-            </h4>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a [routerLink]="['/user/help2buyloanlist', '3']" class="box-line-white h-120 dark-line d-flex align-items-center">
-          <div class="mr-4">
-            <img src="assets/images/savings.png" class="img-fluid">
-          </div>
-          <div class="">
-            <p class="sub-para">Help2 Buy<br>(Car)</p>
-            <h4 class="main-hding">
+        <div class="col-lg-4 col-sm-6">
+          <a [routerLink]="['/user/help2buyloanlist', '2']"
+            class="box-line-white h-120 dark-line d-flex align-items-center">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+              aria-label="Help to Pay (Car Insurance)" (click)="openInfoModal('Help to Pay (Car Insurance)', 'Interfriends is a co-operative ecosystem focused on circulating and promoting shared prosperity. Depending on your standing in the community, you may be able to have your car insurance paid in full upfront, then repay Interfriends monthly. This can help you avoid the interest charged when paying your insurance company in monthly instalments.
+'); $event.preventDefault(); $event.stopPropagation()">
+              <!-- (click)="openInfoModal('Help to Pay (Car Insurance)', 'This shows your total monthly savings balance to date, including savings from the current cycle.'); $event.preventDefault(); $event.stopPropagation()" -->
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="mr-4">
+              <img src="assets/images/savings.png" class="img-fluid">
+            </div>
+            <div class="">
+              <p class="sub-para">Help2 Pay<br> (Car Insurance)</p>
+              <h4 class="main-hding">
+                <span *ngIf="helpToBuyCarInsurance != '0' ">-{{helpToBuyCarInsurance | currency:'GBP': 'symbol' :
+                  '1.0-0'}}</span>
+                <span *ngIf="helpToBuyCarInsurance == '0' ">{{helpToBuyCarInsurance | currency:'GBP': 'symbol' :
+                  '1.0-0'}}</span>
+                <span *ngIf="loading">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </span>
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
 
-              <span *ngIf="helpToBuycar != '0' "  >-{{helpToBuycar | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span  *ngIf="helpToBuycar == '0' "  >{{helpToBuycar | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="loading">
-                <i class="fa fa-refresh fa-spin" ></i>
-              </span>
-            </h4>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a [routerLink]="['/user/help2buyloanlist', '4']" class="box-line-white h-120 dark-line d-flex align-items-center">
-          <div class="mr-4">
-            <img src="assets/images/savings.png" class="img-fluid">
-          </div>
-          <div class="">
-            <p class="sub-para">Help2 pay<br>(Credit Card)</p>
-            <h4 class="main-hding">
-              <span *ngIf="helpToBuyCreditCard != '0' " >-{{helpToBuyCreditCard | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="helpToBuyCreditCard == '0' "  >{{helpToBuyCreditCard | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="loading">
-                <i class="fa fa-refresh fa-spin" ></i>
-              </span>
-            </h4>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a [routerLink]="['/user/help2buyloanlist', '5']" class="box-line-white h-120 dark-line d-flex align-items-center">
-          <div class="mr-4">
-            <img src="assets/images/savings.png" class="img-fluid">
-          </div>
-          <div class="">
-            <p class="sub-para">Help2 Pay<br>(Other)</p>
-            <h4 class="main-hding">
-              <span *ngIf="helpToBuyOther != '0' ">-{{helpToBuyOther | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span  *ngIf="helpToBuyOther == '0' " >{{helpToBuyOther | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="loading">
-                <i class="fa fa-refresh fa-spin" ></i>
-              </span>
-            </h4>
-          </div>
-        </a>
-      </div>
-       <div class="col-lg-4 col-sm-6">
-        <a [routerLink]="['/user/help2buyloanlist', '6']" class="box-line-white h-120 dark-line d-flex align-items-center">
-          <div class="mr-4">
-            <img src="assets/images/savings.png" class="img-fluid">
-          </div>
-          <div class="">
-            <p class="sub-para">Help2 Buy<br>(Property)</p>
-            <h4 class="main-hding">
-              <span *ngIf="helpToBuyProperty != '0' " >-{{helpToBuyProperty | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="helpToBuyProperty == '0' " >{{helpToBuyProperty | currency:'GBP': 'symbol' : '1.0-0'}}</span>
-              <span *ngIf="loading">
-                <i class="fa fa-refresh fa-spin" ></i>
-              </span>
-            </h4>
-          </div>
-        </a>
+          <a [routerLink]="['/user/help2buyloanlist', '3']"
+            class="box-line-white h-120 dark-line d-flex align-items-center position-relative">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings Info"
+              (click)="openInfoModal('Help to Pay (Car)', 'This product supports members who want to use our co-operative vision to help purchase a car. Interfriends may provide an agreed amount towards the vehicle, which you then repay monthly. To qualify, you usually need to apply for the scheme and be accepted for at least six months before requesting support'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="mr-4">
+              <img src="assets/images/savings.png" class="img-fluid">
+            </div>
+            <div class="">
+              <p class="sub-para">Help2 Buy<br>(Car)</p>
+              <h4 class="main-hding">
+                <span *ngIf="helpToBuycar != '0' ">-{{helpToBuycar | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+                <span *ngIf="helpToBuycar == '0' ">{{helpToBuycar | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+                <span *ngIf="loading">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </span>
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a [routerLink]="['/user/help2buyloanlist', '4']"
+            class="box-line-white h-120 dark-line d-flex align-items-center">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings Info"
+              (click)="openInfoModal('Help to Pay (Credit Card)', 'We understand that saving can be difficult while carrying credit card debt and paying high interest. Where possible, Interfriends may help members clear outstanding credit card balances, then repay Interfriends monthly over time. This support is intended to ease members’ financial burden.
+'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="mr-4">
+              <img src="assets/images/savings.png" class="img-fluid">
+            </div>
+            <div class="">
+              <p class="sub-para">Help2 pay<br>(Credit Card)</p>
+              <h4 class="main-hding">
+                <span *ngIf="helpToBuyCreditCard != '0' ">-{{helpToBuyCreditCard | currency:'GBP': 'symbol' :
+                  '1.0-0'}}</span>
+                <span *ngIf="helpToBuyCreditCard == '0' ">{{helpToBuyCreditCard | currency:'GBP': 'symbol' :
+                  '1.0-0'}}</span>
+                <span *ngIf="loading">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </span>
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a [routerLink]="['/user/help2buyloanlist', '5']"
+            class="box-line-white h-120 dark-line d-flex align-items-center">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings Info"
+              (click)="openInfoModal('Help to Pay (Other)', 'In addition to car purchases, credit card repayments, and car insurance payments, Interfriends may occasionally support members with other eligible costs and allow them time to repay.
+'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="mr-4">
+              <img src="assets/images/savings.png" class="img-fluid">
+            </div>
+            <div class="">
+              <p class="sub-para">Help2 Pay<br>(Other)</p>
+              <h4 class="main-hding">
+                <span *ngIf="helpToBuyOther != '0' ">-{{helpToBuyOther | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+                <span *ngIf="helpToBuyOther == '0' ">{{helpToBuyOther | currency:'GBP': 'symbol' : '1.0-0'}}</span>
+                <span *ngIf="loading">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </span>
+              </h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a [routerLink]="['/user/help2buyloanlist', '6']"
+            class="box-line-white h-120 dark-line d-flex align-items-center">
+            <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark" aria-label="Savings Info"
+              (click)="openInfoModal('Help to Pay (Property)', 'As a co-operative, we aim to help members own their homes. Through the Help2Buy scheme, members can raise funds towards a house deposit. Terms and conditions apply
+'); $event.preventDefault(); $event.stopPropagation()">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
+            <div class="mr-4">
+              <img src="assets/images/savings.png" class="img-fluid">
+            </div>
+            <div class="">
+              <p class="sub-para">Help2 Buy<br>(Property)</p>
+              <h4 class="main-hding">
+                <span *ngIf="helpToBuyProperty != '0' ">-{{helpToBuyProperty | currency:'GBP': 'symbol' :
+                  '1.0-0'}}</span>
+                <span *ngIf="helpToBuyProperty == '0' ">{{helpToBuyProperty | currency:'GBP': 'symbol' :
+                  '1.0-0'}}</span>
+                <span *ngIf="loading">
+                  <i class="fa fa-refresh fa-spin"></i>
+                </span>
+              </h4>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+<app-sub-menu></app-sub-menu>
+<app-mobile-menu></app-mobile-menu>
+<app-footer></app-footer>
+
+<div *ngIf="showInfoModal" class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ infoModalTitle }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeInfoModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">{{ infoModalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeInfoModal()">Close</button>
+      </div>
     </div>
-   </div>
-  </section>
-  <app-sub-menu></app-sub-menu>
-  <app-mobile-menu></app-mobile-menu>
-  <app-footer></app-footer>
+  </div>
+</div>
+<div *ngIf="showInfoModal" class="modal-backdrop fade show" (click)="closeInfoModal()"></div>

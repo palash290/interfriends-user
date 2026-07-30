@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./payout-page.component.css']
 })
 export class PayoutPageComponent implements OnInit {
+
   @Output() lifecycleUpdateId = new EventEmitter();
   lists: Payout[] = [];
   isLoading = true;
@@ -26,6 +27,7 @@ export class PayoutPageComponent implements OnInit {
   filterStartDate: string;
   filterEndDate: string;
   isLoadingChangeCycle = false;
+  activeId: any;
 
   constructor(
     public userService: UserService,
@@ -36,6 +38,7 @@ export class PayoutPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.activeId = localStorage.getItem('lifeCycleType_interFriendWeb');
     this.groupId = this.authService.getgroupId();
     this.userId = this.authService.getUserId();
     this.savingService.groupCycleAll_list(
@@ -170,6 +173,22 @@ export class PayoutPageComponent implements OnInit {
       this.toastr.warning('You dont have enough balance!')
     }
 
+  }
+
+  showInfoModal = false;
+  infoModalTitle = '';
+  infoModalMessage = '';
+
+  openInfoModal(title: string, message: string): void {
+    this.infoModalTitle = title;
+    this.infoModalMessage = message;
+    this.showInfoModal = true;
+  }
+
+  closeInfoModal(): void {
+    this.showInfoModal = false;
+    this.infoModalTitle = '';
+    this.infoModalMessage = '';
   }
 
 

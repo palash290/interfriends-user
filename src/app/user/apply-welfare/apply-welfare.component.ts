@@ -37,6 +37,8 @@ export class ApplyWelfareComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.groupId = this.authService.getgroupId();
 
+    // this.unique_ID = localStorage.getItem('userUniqueId')
+
     this.userService.allUserList(this.groupId).subscribe((response: any) => {
       this.userList = response.userList;
     });
@@ -61,7 +63,7 @@ export class ApplyWelfareComponent implements OnInit {
       total40Months: new FormControl(null, {}),
       provident: new FormControl(null, {}),
       admin_risk: new FormControl(null, {}),
-      gurarantor: new FormControl('', { validators: [Validators.required] })
+      // gurarantor: new FormControl('', { validators: [Validators.required] })
     });
   }
 
@@ -108,7 +110,8 @@ export class ApplyWelfareComponent implements OnInit {
       this.form.value.admin_risk,
       this.form.value.emi,
       this.form.value.pay_date,
-      this.form.value.gurarantor
+      // this.form.value.gurarantor,
+      this.unique_ID
     ).subscribe((response: any) => {
 
       this.isLoading = false;
@@ -127,9 +130,9 @@ export class ApplyWelfareComponent implements OnInit {
   onClose() {
     // this.form.reset();
 
-    this.form.patchValue({
-      gurarantor: ''
-    });
+    // this.form.patchValue({
+    //   gurarantor: ''
+    // });
   }
 
 

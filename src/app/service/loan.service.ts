@@ -88,7 +88,8 @@ export class LoanService {
     admin_risk: string,
     loan_emi: string,
     startDate: string,
-    gurarantor: string,
+    // gurarantor: string,
+    unique_ID: any
   ): any {
     const instituteData = new FormData();
     instituteData.append('user_id', user_id);
@@ -101,6 +102,7 @@ export class LoanService {
     // instituteData.append('loan_emi', loan_emi)
     // instituteData.append('start_date', startDate)
     // instituteData.append('gurarantor', gurarantor);
+    instituteData.append('contact_number', unique_ID);
 
     return this.http.post<{
       success: string;

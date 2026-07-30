@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  OnDestroy,
   OnInit,
   ViewChild,
   ElementRef,
@@ -41,7 +42,7 @@ interface DashboardCarousel {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('selectElem') el: ElementRef;
   userDetail: UserList;
   name: string;
@@ -156,6 +157,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public isVideoPlaying = false;
   private activeStoryTimer: number | null = null;
   private readonly imageStoryDurationMs = 5000;
+  private carouselVisibilityObserver: IntersectionObserver | null = null;
+  private isCarouselVisible = true;
+  private isPageVisible = true;
 
   isVideoMedia(mediaUrl: string): boolean {
     return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(mediaUrl);
@@ -455,14 +459,64 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // )
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.setupCarouselVisibilityTracking();
+    this.handleCarouselVisibilityChange();
+  }
 
-  onCarouselInitialized(): void {
+  ngOnDestroy(): void {
+    this.clearActiveStoryTimer();
+    this.pauseCurrentStory(false);
+
+    if (this.carouselVisibilityObserver) {
+      this.carouselVisibilityObserver.disconnect();
+      this.carouselVisibilityObserver = null;
+    }
+
+    this.document.removeEventListener('visibilitychange', this.onDocumentVisibilityChange);
+  }
+
+  private setupCarouselVisibilityTracking(): void {
+    const carouselHost = this.dashboardCarouselHost?.nativeElement;
+
+    if (!carouselHost || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
+    this.carouselVisibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        this.isCarouselVisible = !!entry?.isIntersecting;
+        this.handleCarouselVisibilityChange();
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    this.carouselVisibilityObserver.observe(carouselHost);
+    this.document.addEventListener('visibilitychange', this.onDocumentVisibilityChange);
+  }
+
+  private onDocumentVisibilityChange = (): void => {
+    this.isPageVisible = !this.document.hidden;
+    this.handleCarouselVisibilityChange();
+  };
+
+  private handleCarouselVisibilityChange(): void {
+    if (!this.isPageVisible || !this.isCarouselVisible) {
+      this.pauseCurrentStory();
+      return;
+    }
+
     this.activateCurrentStory();
   }
 
+  onCarouselInitialized(): void {
+    this.handleCarouselVisibilityChange();
+  }
+
   onCarouselTranslated(): void {
-    this.activateCurrentStory();
+    this.handleCarouselVisibilityChange();
   }
 
   onCarouselDragging(event: { dragging: boolean }): void {

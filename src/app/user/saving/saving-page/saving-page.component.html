@@ -27,12 +27,37 @@
   </div>
   <div class="col-xl-4 mt-md-5 mt-md-4 mt-3"
     *ngIf="(!isLoading && this.cycleList.length > 0 && lists.length > 0) || (!isLoading && callFromPF)">
-    <div class="d-flex align-items-center gap-1" >
+    <div class="d-flex align-items-center gap-1">
       <h5 class="main-hding">Select Savings Cycle</h5>
-      <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
-        aria-label="Emergency Loans info">
+      <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+        aria-label="Emergency Loans info"
+        (click)="openInfoModal('Select Savings Cycle (Savings)', 'Select a savings cycle to view your records and balance for that cycle in the summary box above.'); $event.preventDefault(); $event.stopPropagation()">
+        <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+      </button> -->
+      <!-- Group 1 -->
+      <button *ngIf="activeId == 1" type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+        aria-label="Emergency Loans info" (click)="openInfoModal(
+      'Select Savings Cycle (Savings)',
+      'Select a savings cycle to view your records and balance for that cycle in the summary box above.'
+    );
+    $event.preventDefault();
+    $event.stopPropagation()">
         <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
       </button>
+
+      <!-- Group 2 -->
+      <button *ngIf="activeId == 2" type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+        aria-label="Emergency Loans info" (click)="openInfoModal(
+      'Select Savings Cycle (Savings) - JNR',
+      'Select a savings cycle to view your JNR savings records and balance for that cycle. The savings balance at the top shows whether your account is in credit or debit.'
+    );
+    $event.preventDefault();
+    $event.stopPropagation()">
+        <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+      </button>
+
+      <!-- Group 3 -->
+      <!-- Nothing will be shown because there is no button for groupId == 3 -->
     </div>
 
     <div class="position-relative">
@@ -73,12 +98,22 @@
     list.status === '4' ? 'yellow-line' : '',
     list.status === '3' ? 'red-line' : ''
     ]">
-      <div class="">
-        <img src="assets/images/money.png" class="img-fluid">
+
+      <div class="d-flex justify-content-between gap-1">
+
+        <div *ngIf="list.status == '1'" style="color: #666;">Pending</div>
+        <div *ngIf="list.status == '2'" style="color: #048227;">Paid On Time</div>
+        <div *ngIf="list.status == '3'" style="color: #dc3545;">Missed Payment</div>
+        <div *ngIf="list.status == '4'" style="color: #eaad00;">Paid Late</div>
+
+        <div class="">
+          <img src="assets/images/money.png" class="img-fluid">
+        </div>
+        <div> <span class="">{{list?.month}}</span></div>
       </div>
       <h4 class="main-hding">{{list?.amount | currency:'GBP': 'symbol'}}</h4>
       <p class="sub-para">{{list?.date | date: 'dd MMM yyyy'}}</p>
-      <span class="loan-month">{{list?.month}}</span>
+
     </div>
   </div>
 </div>
@@ -144,3 +179,24 @@
   </div>
 </div>
 <!-- payout model popup end -->
+
+
+<div *ngIf="showInfoModal" class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ infoModalTitle }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeInfoModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">{{ infoModalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeInfoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showInfoModal" class="modal-backdrop fade show" (click)="closeInfoModal()"></div>

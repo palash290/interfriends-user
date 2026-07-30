@@ -1,6 +1,6 @@
 <div class="tab-pane fade show active" id="savings">
   <div class="row">
-    <div class="col-lg-6 ml-auto   mt-sm-5 mt-3" *ngIf="!isLoading && this.cycleList?.length > 0">
+    <div class="col-lg-6 ml-auto mt-sm-5 mt-3" *ngIf="!isLoading && this.cycleList?.length > 0">
 
       <div class="d-flex align-items-center mb-4 flex-wrap" style="gap:10px">
         <button type="button" class="btn bg-success float-right text-white   px-4"
@@ -19,10 +19,28 @@
       <div>
         <div class="d-flex align-items-center gap-1">
           <h5 class="main-hding">Select Savings Cycle</h5>
-          <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
-            aria-label="Emergency Loans info">
+
+          <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+            aria-label="Emergency Loans info" (click)="openInfoModal('Select Saving cycle (Payout)', 'Select a savings cycle to view your payout details, cycle balance, total payout received, and the amount set aside as Provident. The dashboard also shows the payment date and time.
+You can use the Payout Request or Safekeeping Request buttons to request payout or move your funds into safekeeping
+'); $event.preventDefault(); $event.stopPropagation()">
+            <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+          </button> -->
+
+          <button *ngIf="activeId != 3" type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+            aria-label="Payout info" (click)="openInfoModal(
+    activeId == 1
+      ? 'Select Savings Cycle (Payout)'
+      : 'Select Savings Cycle (Payout) - JNR',
+    activeId == 1
+      ? 'Select a savings cycle to view your payout details, cycle balance, total payout received, and the amount set aside as Provident. The dashboard also shows the payment date and time. You can use the Payout Request or Safekeeping Request buttons to request payout or move your funds into safekeeping.'
+      : 'Select a savings cycle to view your JNR payout details, cycle balance, total payout received, and the amount set aside as Provident. The dashboard also shows the payment date and time. You can use the Payout Request or Safekeeping Request buttons to request payout or move your funds into safekeeping. For JNR and Christmas savings, payouts are made once at the end of the year for all members.'
+  );
+  $event.preventDefault();
+  $event.stopPropagation()">
             <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
           </button>
+
         </div>
         <div class="position-relative">
           <div ngbDropdown class="d-inline-block w-100">
@@ -175,3 +193,25 @@
   </div>
 </div>
 <!-- payout model popup end -->
+
+
+
+<div *ngIf="showInfoModal" class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ infoModalTitle }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeInfoModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">{{ infoModalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeInfoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showInfoModal" class="modal-backdrop fade show" (click)="closeInfoModal()"></div>

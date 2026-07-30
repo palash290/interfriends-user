@@ -27,7 +27,7 @@
 <section class="savings-box container">
    <div class="row">
       <div class="col-md-12">
-
+         <!-- *ngIf="canShowClaimWelfare()" -->
          <div class="d-flex align-items-center mb-4" style="gap:10px" *ngIf="canShowClaimWelfare()">
             <button type="button" class="btn bg-success float-right text-white ml-auto mr-3 px-5"
                (click)="showPayoutModal()" style="white-space: nowrap;">
@@ -63,10 +63,10 @@
                         <div class="panel panel-default" *ngFor="let data of laonActive; let i = index">
                            <div class="panel-heading" role="tab" id="headingOne">
                               <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
-                                 <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                    href="#collapse{{data.id}}" aria-expanded="true" aria-controls="collapseOne"
-                                    (click)="onAddHistory('1', i, data.id)">
-                                    <div class="row d-flex align-items-center position-relative">
+                                 <a class="position-relative" role="button" data-toggle="collapse"
+                                    data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
+                                    aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
+                                    <div class="row d-flex align-items-center ">
                                        <div class="col-sm-3 mb-sm-0 mb-4">
                                           <div class="row">
                                              <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
@@ -122,6 +122,9 @@
                                        </div>
                                        <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
                                     </div>
+                                    <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+                                       <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+                                    </button>
                                  </a>
                               </h4>
                            </div>
@@ -338,30 +341,31 @@
          </div>
          <form #claimForm="ngForm" (ngSubmit)="onClaim(claimForm)">
             <div class="modal-body">
+
                <div class="form-group">
-                  <label for="seconder1_user_id"><b>Select your Witness 1</b></label>
-                  <select id="seconder1_user_id" name="seconder1_user_id" class="form-control" required
-                     [(ngModel)]="claimFormData.seconder1_user_id" (ngModelChange)="onSeconder1Change($event)"
-                     #seconder1="ngModel">
-                     <option value="">Select Seconder 1</option>
-                     <option *ngFor="let item of circleUsers" [ngValue]="item.user_id">
-                        {{ item.first_name }} {{ item.last_name }}
-                     </option>
+                  <label for="claim_reason"><b>Claim Reason</b></label>
+                  <select id="claim_reason" name="claim_reason" class="form-control" required
+                     [(ngModel)]="claimFormData.claim_reason" #claimReason="ngModel">
+                     <option value="">Select Claim Reason</option>
+                     <option value="Bereavement">Bereavement</option>
+                     <option value="Medical Bills">Medical Bills</option>
+                     <option value="Other">Other</option>
                   </select>
-                  <small class="text-danger" *ngIf="seconder1.invalid && (seconder1.touched || claimForm.submitted)">
-                     Seconder 1 is required.
+                  <small class="text-danger"
+                     *ngIf="claimReason.invalid && (claimReason.touched || claimForm.submitted)">
+                     Claim Reason is required.
                   </small>
                </div>
 
-               <div class="form-group">
-                  <label for="seconder2_user_id"><b>Select your Witness 2</b></label>
-                  <select id="seconder2_user_id" name="seconder2_user_id" class="form-control"
-                     [(ngModel)]="claimFormData.seconder2_user_id" #seconder2="ngModel">
-                     <option value="">Select Seconder 2</option>
-                     <option *ngFor="let item of getFilteredSeconder2Users()" [ngValue]="item.user_id">
-                        {{ item.first_name }} {{ item.last_name }}
-                     </option>
-                  </select>
+               <div class="form-group" *ngIf="claimFormData.claim_reason === 'Other'">
+                  <label for="claim_reason_other"><b>Claim Reason</b></label>
+                  <input id="claim_reason_other" type="text" name="claim_reason_other" class="form-control"
+                     placeholder="Enter claim reason" required [(ngModel)]="claimFormData.claim_reason_other"
+                     #claimReasonOther="ngModel">
+                  <small class="text-danger"
+                     *ngIf="claimReasonOther.invalid && (claimReasonOther.touched || claimForm.submitted)">
+                     Claim reason is required.
+                  </small>
                </div>
 
                <div class="form-group">
@@ -394,35 +398,37 @@
                </div>
 
                <div class="form-group">
+                  <label for="seconder1_user_id"><b>Select your Witness 1</b></label>
+                  <select id="seconder1_user_id" name="seconder1_user_id" class="form-control" required
+                     [(ngModel)]="claimFormData.seconder1_user_id" (ngModelChange)="onSeconder1Change($event)"
+                     #seconder1="ngModel">
+                     <option value="">Select Seconder 1</option>
+                     <option *ngFor="let item of circleUsers" [ngValue]="item.user_id">
+                        {{ item.first_name }} {{ item.last_name }}
+                     </option>
+                  </select>
+                  <small class="text-danger" *ngIf="seconder1.invalid && (seconder1.touched || claimForm.submitted)">
+                     Seconder 1 is required.
+                  </small>
+               </div>
+
+               <div class="form-group">
+                  <label for="seconder2_user_id"><b>Select your Witness 2</b></label>
+                  <select id="seconder2_user_id" name="seconder2_user_id" class="form-control"
+                     [(ngModel)]="claimFormData.seconder2_user_id" #seconder2="ngModel">
+                     <option value="">Select Seconder 2</option>
+                     <option *ngFor="let item of getFilteredSeconder2Users()" [ngValue]="item.user_id">
+                        {{ item.first_name }} {{ item.last_name }}
+                     </option>
+                  </select>
+               </div>
+
+               <div class="form-group">
                   <label for="payout_amount"><b>Payout Amount</b></label>
                   <input id="payout_amount" type="text" class="form-control" [value]="payout_amount" disabled>
                </div>
 
-               <div class="form-group">
-                  <label for="claim_reason"><b>Claim Reason</b></label>
-                  <select id="claim_reason" name="claim_reason" class="form-control" required
-                     [(ngModel)]="claimFormData.claim_reason" #claimReason="ngModel">
-                     <option value="">Select Claim Reason</option>
-                     <option value="Bereavement">Bereavement</option>
-                     <option value="Medical Bills">Medical Bills</option>
-                     <option value="Other">Other</option>
-                  </select>
-                  <small class="text-danger"
-                     *ngIf="claimReason.invalid && (claimReason.touched || claimForm.submitted)">
-                     Claim Reason is required.
-                  </small>
-               </div>
 
-               <div class="form-group" *ngIf="claimFormData.claim_reason === 'Other'">
-                  <label for="claim_reason_other"><b>Claim Reason</b></label>
-                  <input id="claim_reason_other" type="text" name="claim_reason_other" class="form-control"
-                     placeholder="Enter claim reason" required [(ngModel)]="claimFormData.claim_reason_other"
-                     #claimReasonOther="ngModel">
-                  <small class="text-danger"
-                     *ngIf="claimReasonOther.invalid && (claimReasonOther.touched || claimForm.submitted)">
-                     Claim reason is required.
-                  </small>
-               </div>
 
                <!-- <div class="form-group">
                   <label for="claim_reason"><b>Claim Reason</b></label>

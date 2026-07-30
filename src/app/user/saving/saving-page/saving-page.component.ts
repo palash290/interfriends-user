@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./saving-page.component.css']
 })
 export class SavingPageComponent implements OnInit {
+
   @Output() lifecycleUpdateId = new EventEmitter();
   lists: userCycle[] = [];
   isLoading = true;
@@ -29,10 +30,7 @@ export class SavingPageComponent implements OnInit {
   lifeCycleEndDatePF: string;
   filterIdPF: string;
   callFromPF: string;
-
-
-
-
+  activeId: any;
 
 
   constructor(
@@ -46,6 +44,7 @@ export class SavingPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.groupId = this.authService.getgroupId();
+    this.activeId = localStorage.getItem('lifeCycleType_interFriendWeb');
     this.userId = this.authService.getUserId();
     this.callFromPF = localStorage.getItem('fromPF_interFriendWeb');
     if (this.callFromPF != '0') {
@@ -166,6 +165,22 @@ export class SavingPageComponent implements OnInit {
         document.getElementById('closesafekeeping').click();
         this.ngOnInit();
       })
+  }
+
+    showInfoModal = false;
+  infoModalTitle = '';
+  infoModalMessage = '';
+
+  openInfoModal(title: string, message: string): void {
+    this.infoModalTitle = title;
+    this.infoModalMessage = message;
+    this.showInfoModal = true;
+  }
+
+  closeInfoModal(): void {
+    this.showInfoModal = false;
+    this.infoModalTitle = '';
+    this.infoModalMessage = '';
   }
 
 
