@@ -167,7 +167,7 @@ export class SavingPageComponent implements OnInit {
       })
   }
 
-    showInfoModal = false;
+  showInfoModal = false;
   infoModalTitle = '';
   infoModalMessage = '';
 

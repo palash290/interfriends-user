@@ -39,3 +39,19 @@
         height: 100%;
     }
 }
+
+.modal-dialog-scrollable .modal-content {
+    overflow-y: auto !important;
+}
+
+.et_info_top_icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    background: transparent;
+    padding: 0;
+    line-height: 1;
+    /* transform: translateY(-50%); */
+    border: 0;
+    box-shadow: none;
+}

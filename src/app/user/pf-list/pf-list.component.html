@@ -34,7 +34,21 @@
     <mat-spinner class="mx-auto"></mat-spinner>
   </div>
   <div class="col-lg-4 offset-lg-8 col-sm-8 mt-sm-5 mt-3" *ngIf="(this.pfList.length > 0 && isLoadingD)">
-    <h5 class="main-hding">Select Provident Fund</h5>
+    <div class="d-flex align-items-center gap-2">
+      <h5 class="main-hding">Select Provident Fund</h5>
+
+      <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+        aria-label="Emergency Loans info" (click)="openInfoModal(
+      'Your Provident Fund',
+      'Select any savings cycle date to see how much you contributed to the Provident Fund for that cycle. The summary above shows your total Provident Fund accumulated to date.'
+    );
+    $event.preventDefault();
+    $event.stopPropagation()">
+
+        <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+      </button>
+    </div>
+
     <div class="position-relative">
       <div ngbDropdown class="d-inline-block w-100">
         <button class="select-custom select-custom-img select-arrow-no mt-2 text-left" id="dropdownBasic1"
@@ -85,3 +99,23 @@
   </span>
   <span class="business-directory-fab__text">Business Directory</span>
 </a>
+
+<div *ngIf="showInfoModal" class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ infoModalTitle }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeInfoModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">{{ infoModalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeInfoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showInfoModal" class="modal-backdrop fade show" (click)="closeInfoModal()"></div>

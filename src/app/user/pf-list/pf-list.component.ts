@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Pf } from 'src/app/model/pf.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { GroupCycle } from '../../model/groupCycle.model';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pf-list',
   templateUrl: './pf-list.component.html',
   styleUrls: ['./pf-list.component.css']
 })
 export class PfListComponent implements OnInit {
-  pfList: Pf[]= [];
-  pfListFiltered : Pf[] = [];
+  pfList: Pf[] = [];
+  pfListFiltered: Pf[] = [];
   pfAmount: string;
   pfInterest: string;
   isLoading = true;
@@ -23,7 +23,7 @@ export class PfListComponent implements OnInit {
   filterStartDate: string;
   filterEndDate: string;
   isLoadingD = true;
-  groupTypeArray : string [] = ["", "Savings", "Saving JNR", "Help to Buy", "Welfare" ]
+  groupTypeArray: string[] = ["", "Savings", "Saving JNR", "Help to Buy", "Welfare"]
   /*isLoadingChangeCycle = false;*/
 
 
@@ -46,7 +46,7 @@ export class PfListComponent implements OnInit {
       this.pfInterest = response.pf_interest;
       this.isLoading = false;
 
-      if(this.pfList.length > 0) {
+      if (this.pfList.length > 0) {
         this.filterStartDate = this.pfList[0].cycle_start_date;
         this.filterEndDate = this.pfList[0].cycle_end_date;
         this.main_Id = this.pfList[0].id;
@@ -54,7 +54,7 @@ export class PfListComponent implements OnInit {
       else {
         this.isLoadingD = false;
         /*this.isLoadingChangeCycle = false;*/
-     }
+      }
     });
   }
 
@@ -82,13 +82,28 @@ export class PfListComponent implements OnInit {
     this.loadData();
   }
 
-  linktoSavePage(filterStartDate : string ,filterEndDate : string, groupLifeCycleID : string)
-  {
-    localStorage.setItem('lifeCycleStart_interFriendWeb',filterStartDate);
+  linktoSavePage(filterStartDate: string, filterEndDate: string, groupLifeCycleID: string) {
+    localStorage.setItem('lifeCycleStart_interFriendWeb', filterStartDate);
     localStorage.setItem('lifeCycleEnd_interFriendWeb', filterEndDate);
     localStorage.setItem('lifeCycleID_interFriendWeb', groupLifeCycleID);
     this.router.navigate(['/user/PFsavingDetails', '1']);
-
   }
+
+  showInfoModal = false;
+  infoModalTitle = '';
+  infoModalMessage = '';
+
+  openInfoModal(title: string, message: string): void {
+    this.infoModalTitle = title;
+    this.infoModalMessage = message;
+    this.showInfoModal = true;
+  }
+
+  closeInfoModal(): void {
+    this.showInfoModal = false;
+    this.infoModalTitle = '';
+    this.infoModalMessage = '';
+  }
+
 
 }

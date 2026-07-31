@@ -50,9 +50,9 @@
                         <div class="panel panel-default" *ngFor="let data of laonActive; let i = index">
                            <div class="panel-heading" role="tab" id="headingOne">
                               <h4 class="panel-title box-line-white orange-line rounded-0 py-0 click-accordion">
-                                 <a class="d-block py-3" role="button" data-toggle="collapse" data-parent="#accordion"
-                                    href="#collapse{{data.id}}" aria-expanded="true" aria-controls="collapseOne"
-                                    (click)="onAddHistory('1', i, data.id)">
+                                 <a class="d-block py-3 position-relative" role="button" data-toggle="collapse"
+                                    data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
+                                    aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
                                     <div class="xt_grid_7">
                                        <div>
                                           <h6 class="loan-sm-text">Start Date</h6>
@@ -91,6 +91,11 @@
 
                                        <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
                                     </div>
+
+                                    <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+                                       <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+                                    </button>
+
                                  </a>
                               </h4>
                            </div>
@@ -140,9 +145,9 @@
                         <div class="panel panel-default" *ngFor="let data of laonComplete;let i = index">
                            <div class="panel-heading" role="tab" id="headingOne">
                               <h4 class="panel-title box-line-white orange-line rounded-0 py-0 click-accordion">
-                                 <a class="py-3 d-block" role="button" data-toggle="collapse" data-parent="#accordion"
-                                    href="#collapse{{data.id}}" aria-expanded="true" aria-controls="collapseOne"
-                                    (click)="onAddHistory('2', i, data.id)">
+                                 <a class="py-3 d-block position-relative" role="button" data-toggle="collapse"
+                                    data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
+                                    aria-controls="collapseOne" (click)="onAddHistory('2', i, data.id)">
                                     <div class="xt_grid_7">
                                        <div>
                                           <h6 class="loan-sm-text">Start Date</h6>
@@ -179,6 +184,9 @@
                                        </div>
 
                                     </div>
+                                    <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+                                       <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+                                    </button>
                                  </a>
                               </h4>
                            </div>

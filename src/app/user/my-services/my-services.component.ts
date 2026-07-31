@@ -334,8 +334,8 @@ export class MyServicesComponent implements OnInit {
 
     const serviceData = new FormData();
 
-    if (this.mode === 'update') {
-      serviceData.set('user_service_id', String(this.selectedServiceId));
+    if (this.mode == 'update') {
+      serviceData.set('user_service_id', this.selectedServiceId);
 
       if (this.removedImageIds.length > 0) {
         serviceData.set('delete_image_ids', this.removedImageIds.join(','));
@@ -387,7 +387,7 @@ export class MyServicesComponent implements OnInit {
 
   onEdit(service: any): void {
     this.mode = 'update';
-    this.selectedServiceId = service?.user_service_id || service?.id || '';
+    this.selectedServiceId = service?.user_service_id;
     this.resetImageState();
     this.existingImages = this.buildExistingImages(service);
     this.companyLogoPreviewUrl = this.getCompanyLogoUrl(service);
