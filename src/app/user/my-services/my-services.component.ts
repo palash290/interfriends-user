@@ -341,8 +341,8 @@ export class MyServicesComponent implements OnInit {
         serviceData.set('delete_image_ids', this.removedImageIds.join(','));
       }
     } else {
-      serviceData.set('user_id', String(this.userId));
-      serviceData.set('service_id', String(this.form.value.service_id));
+      serviceData.set('user_id', this.userId);
+      serviceData.set('service_id', this.form.value.service_id);
     }
 
     serviceData.set('description', this.form.value.description);
@@ -361,7 +361,7 @@ export class MyServicesComponent implements OnInit {
     });
 
     const endpoint =
-      this.mode === 'update'
+      this.mode == 'update'
         ? '/updateUserService'
         : '/createService';
 
@@ -386,6 +386,7 @@ export class MyServicesComponent implements OnInit {
   }
 
   onEdit(service: any): void {
+    // debugger
     this.mode = 'update';
     this.selectedServiceId = service?.user_service_id;
     this.resetImageState();

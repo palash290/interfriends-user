@@ -6,11 +6,11 @@ export const environment = {
   production: false,
 
   // apiUrl: 'https://www.creativethoughtsinfo.com/CT01/interfriends_admin/Api',
-  apiUrl: 'https://www.interfriends.uk/backend/Api',
-  // apiUrl: 'http://192.168.1.13/interfriends_backend/Api',
+  // apiUrl: 'https://www.interfriends.uk/backend/Api',
+  apiUrl: 'http://192.168.1.13/interfriends_backend/Api',
 
-  adminUrl: 'https://www.interfriends.uk/backend/Api/Admin',
-  // adminUrl: 'http://192.168.1.13/interfriends_backend/Api/Admin',
+  // adminUrl: 'https://www.interfriends.uk/backend/Api/Admin',
+  adminUrl: 'http://192.168.1.13/interfriends_backend/Api/Admin',
 
   
   firebase: {
