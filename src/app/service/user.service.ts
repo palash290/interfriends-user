@@ -559,6 +559,7 @@ export class UserService {
     name: string,
     email: string,
     mobile_number: string,
+    type: string,
     message: string,
   ): any {
     const authData = new FormData();
@@ -567,6 +568,7 @@ export class UserService {
     authData.append('name', name);
     authData.append('email', email);
     authData.append('mobile_number', mobile_number);
+    authData.append('type', type);
     authData.append('message', message);
     return this.http.post<{
       success: string,

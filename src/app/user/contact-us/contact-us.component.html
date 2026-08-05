@@ -16,7 +16,7 @@
               <div class="form-group">
                 <label class="form-label">Full Name</label>
                 <input type="text" formControlName="name" value="John" class="form-control"
-                placeholder="Enter first name">
+                  placeholder="Enter first name">
                 <div class="icon">
                   <img src="assets/images/user.png" align="" alt="" title="">
                 </div>
@@ -29,7 +29,7 @@
               <div class="form-group">
                 <label class="form-label">Email Address</label>
                 <input type="email" formControlName="email" value="john97@gmail.com" class="form-control"
-                placeholder="Enter your email">
+                  placeholder="Enter your email">
                 <div class="icon">
                   <img src="assets/images/mail.png" align="" alt="" title="">
                 </div>
@@ -41,16 +41,44 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="form-group">
                 <label class="form-label">Mobile Number</label>
-                <input type="number" formControlName="mobile_number" placeholder="Enter your mobile number" class="form-control">
+                <input type="number" formControlName="mobile_number" placeholder="Enter your mobile number"
+                  class="form-control">
                 <div class="icon">
                   <img src="assets/images/call-sm.png" align="" alt="" title="">
                 </div>
-                <span class="error-form"
-                  *ngIf="form.get('mobile_number').invalid && form.get('mobile_number').touched">
+                <span class="error-form" *ngIf="form.get('mobile_number').invalid && form.get('mobile_number').touched">
                   Please enter a mobile number.
                 </span>
               </div>
             </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label class="form-label">Help Type</label>
+                <select class="form-control" formControlName="type">
+                  <option value=''>Select Type</option>
+                  <option value="Emergency loan">Emergency loan</option>
+                  <option value="Savings">Savings</option>
+                  <option value="SavingsJNR">Savings JNR</option>
+                  <option value="Loan">Loan</option>
+                  <option value="Provident">Provident</option>
+                  <option value="General">General</option>
+                  <option value="Welfare">Welfare</option>
+                  <option value="Safekeeping">Safekeeping</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                  <option value="Investment">Investment</option>
+                  <option value="helptobuy">Help to Buy</option>
+                </select>
+                <div class="icon hide-caret"></div>
+                <div class="icon">
+                  <img src="assets/images/caret.png" align="" alt="" title="">
+                </div>
+                <span class="error-form" *ngIf="form.get('type').invalid && form.get('type').touched">
+                  Please enter a type.
+                </span>
+              </div>
+            </div>
+
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="form-group">
                 <label class="form-label">Message</label>

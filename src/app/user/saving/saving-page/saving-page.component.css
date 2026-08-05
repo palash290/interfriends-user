@@ -1,20 +1,49 @@
-.dropdown-toggle::after{
+.dropdown-toggle::after {
   display: none;
 }
-.dropdown-menu{
+
+.dropdown-menu {
   min-width: 100%;
 }
-@media screen and (max-width:1199px){
-  .ct_mt_0_mob
-{
-  margin-top: 0px !important;
+
+.h-fit-content {
+  height: fit-content;
 }
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+}
+
+.badge-pending {
+  background: #666666;
+}
+
+.badge-paid {
+  background: #048227;
+}
+
+.badge-missed {
+  background: #dc3545;
+}
+
+.badge-late {
+  background: #eaad00;
+}
+
+@media screen and (max-width:1199px) {
+  .ct_mt_0_mob {
+    margin-top: 0px !important;
+  }
 }
 
 @media screen and (max-width:767px) {
-  .ct_max_width_50{
-    max-width:50%;
+  .ct_max_width_50 {
+    max-width: 50%;
   }
 
 }
-

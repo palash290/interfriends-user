@@ -752,3 +752,13 @@ mwl-gauge>.gauge>.value-text {
         font-size: 0.72rem;
     }
 }
+
+
+
+
+.swal2-popup.swal2-modal.swal2-show {
+    position: fixed !important;
+    top: 40% !important;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+}

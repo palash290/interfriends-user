@@ -99,12 +99,12 @@
     list.status === '3' ? 'red-line' : ''
     ]">
 
-      <div class="d-flex justify-content-between gap-1">
+      <div class="d-flex justify-content-between gap-1 mt-2">
 
-        <div *ngIf="list.status == '1'" style="color: #666;">Pending</div>
-        <div *ngIf="list.status == '2'" style="color: #048227;">Paid On Time</div>
-        <div *ngIf="list.status == '3'" style="color: #dc3545;">Missed Payment</div>
-        <div *ngIf="list.status == '4'" style="color: #eaad00;">Paid Late</div>
+        <div *ngIf="list.status == '1'" class="status-badge badge-pending h-fit-content">Pending</div>
+        <div *ngIf="list.status == '2'" class="status-badge badge-paid h-fit-content">Paid On Time</div>
+        <div *ngIf="list.status == '3'" class="status-badge badge-missed h-fit-content">Missed Payment</div>
+        <div *ngIf="list.status == '4'" class="status-badge badge-late h-fit-content">Paid Late</div>
 
         <div class="">
           <img src="assets/images/money.png" class="img-fluid">

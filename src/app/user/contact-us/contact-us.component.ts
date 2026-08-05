@@ -32,6 +32,7 @@ export class ContactUsComponent implements OnInit {
       name: new FormControl(null, { validators: [Validators.required] }),
       email	: new FormControl(null, { validators: [Validators.required] }),
       mobile_number	: new FormControl(null, { validators: [Validators.required] }),
+      type: new FormControl('', { validators: [Validators.required] }),
       message	: new FormControl('', { validators: [Validators.required] }),
     });
   }
@@ -49,6 +50,7 @@ export class ContactUsComponent implements OnInit {
         this.form.value.name,
         this.form.value.email,
         this.form.value.mobile_number,
+        this.form.value.type,
         this.form.value.message
       ).subscribe((response: any) => {
         this.form.reset();
