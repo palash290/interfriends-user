@@ -49,6 +49,8 @@ export class MyServicesComponent implements OnInit {
   initForm(): void {
     this.form = new FormGroup({
       service_id: new FormControl('', { validators: [Validators.required] }),
+      category_name: new FormControl({ value: '', disabled: true }),
+      subcategory_name: new FormControl({ value: '', disabled: true }),
       // price: new FormControl('', { validators: [Validators.required] }),
       company_name: new FormControl(''),
       description: new FormControl(null, { validators: [Validators.required] }),
@@ -86,6 +88,15 @@ export class MyServicesComponent implements OnInit {
     }
 
     serviceControl.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private setServiceDetails(serviceId: any): void {
+    const selectedService = this.serviceOptions.find((service) => String(service?.id) === String(serviceId));
+
+    this.form?.patchValue({
+      category_name: selectedService?.category_name || '',
+      subcategory_name: selectedService?.subcategory_name || ''
+    }, { emitEvent: false });
   }
 
   private getActiveExistingImageCount(): number {
@@ -280,6 +291,8 @@ export class MyServicesComponent implements OnInit {
     this.resetImageState();
     this.form.reset({
       service_id: '',
+      category_name: '',
+      subcategory_name: '',
       // price: '',
       company_name: '',
       description: '',
@@ -297,6 +310,8 @@ export class MyServicesComponent implements OnInit {
     this.resetImageState();
     this.form.reset({
       service_id: '',
+      category_name: '',
+      subcategory_name: '',
       // price: '',
       company_name: '',
       description: '',
@@ -394,6 +409,8 @@ export class MyServicesComponent implements OnInit {
     this.companyLogoPreviewUrl = this.getCompanyLogoUrl(service);
     this.form.patchValue({
       service_id: service?.service_id || '',
+      category_name: service?.category_name || '',
+      subcategory_name: service?.subcategory_name || '',
       // price: service?.price || '',
       company_name: service?.company_name || '',
       description: service?.description || service?.provider_description || '',
@@ -405,6 +422,11 @@ export class MyServicesComponent implements OnInit {
       longitude: service?.longitude || ''
     });
     this.setServiceControlState();
+  }
+
+  onServiceChange(): void {
+    const serviceId = this.form?.get('service_id')?.value;
+    this.setServiceDetails(serviceId);
   }
 
 

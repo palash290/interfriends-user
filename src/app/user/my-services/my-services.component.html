@@ -285,7 +285,7 @@
                         <div class="form-group"
                             [ngClass]="{'has-error': form.get('service_id').invalid  && form.get('service_id').touched}">
                             <label>Service</label>
-                            <select class="form-control" formControlName="service_id">
+                            <select class="form-control" formControlName="service_id" (change)="onServiceChange()">
                                 <option value="">Select service</option>
                                 <option *ngFor="let service of serviceOptions" [value]="service.id">
                                     {{ service.service_name || service.name || ('Service #' + service.id) }}
@@ -295,6 +295,16 @@
                                 *ngIf="form.get('service_id').invalid  && form.get('service_id').touched">
                                 Please select a service.
                             </span>
+                        </div>
+
+                        <div class="form-group" *ngIf="form.get('service_id')?.value">
+                            <label>Category</label>
+                            <input type="text" class="form-control" formControlName="category_name" />
+                        </div>
+
+                        <div class="form-group" *ngIf="form.get('service_id')?.value">
+                            <label>Subcategory</label>
+                            <input type="text" class="form-control" formControlName="subcategory_name" />
                         </div>
 
                         <!-- <div class="form-group"
