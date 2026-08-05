@@ -1378,38 +1378,57 @@ input[type="file" i].form-control {
     background-size: cover;
     box-sizing: border-box;
     padding-left: 30px;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     filter: none;
+}
+
+.mobile-tab-bar li.list-inline-item a.list-inline-item-link span {
+    font-size: 12px;
+    color: #fff;
+    display: block;
+}
+
+
+.mobile-tab-bar li.list-inline-item.active a.list-inline-item-link span {
+    color: #092c4c;
 }
 
 .mobile-tab-bar li.list-inline-item.active.active-home a.list-inline-item-link img {
     background: url(../images/home-active.png) left top no-repeat;
+    background-size: contain;
 }
 
 .mobile-tab-bar li.list-inline-item.active.active-apply a.list-inline-item-link img {
-    background: url(../images/apply-active.png) left top no-repeat;
+    background: url(../images/recommend-active.png) left top no-repeat;
+    background-size: contain;
 }
 
 .mobile-tab-bar li.list-inline-item.active.active-help a.list-inline-item-link img {
     background: url(../images/help-active.png) left top no-repeat;
+    background-size: contain;
 }
 
 .mobile-tab-bar li.list-inline-item.active.active-recommend a.list-inline-item-link img {
-    background: url(../images/recommend-active.png) left top no-repeat;
+    background: url(../images/apply-active.png) left top no-repeat;
+    background-size: contain;
 }
 
 .mobile-tab-bar li.list-inline-item.active.active-contact a.list-inline-item-link img {
     background: url(../images/contact-active.png) left top no-repeat;
+    background-size: contain;
 }
 
 .mobile-tab-bar li.list-inline-item a img {
     filter: invert(1);
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
 }
 
 .mobile-tab-bar li.list-inline-item a.list-inline-item-link {
     display: block;
-    padding: 10px 0;
+    padding: 6px 0;
     border-radius: 7px;
     margin: 5px 2px;
 }
