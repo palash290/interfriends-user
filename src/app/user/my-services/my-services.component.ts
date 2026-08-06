@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/service/shared.service';
 import { finalize } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-my-services',
@@ -30,6 +31,11 @@ export class MyServicesComponent implements OnInit {
   companyLogoPreviewUrl = '';
   imageError = '';
   readonly maxImages = 5;
+  CountryISO = CountryISO;
+  SearchCountryField = SearchCountryField;
+  preferredCountries = [CountryISO.UnitedKingdom, CountryISO.India, CountryISO.UnitedStates];
+  mobileCountryISO = CountryISO.UnitedKingdom;
+  mobileCountryCode = '+44';
 
   constructor(
     public authService: AuthService,
@@ -55,6 +61,7 @@ export class MyServicesComponent implements OnInit {
       company_name: new FormControl(''),
       description: new FormControl(null, { validators: [Validators.required] }),
       mobile: new FormControl('', { validators: [Validators.required] }),
+      mobile_country_code: new FormControl(this.mobileCountryCode, { validators: [Validators.required] }),
       email: new FormControl('', { validators: [Validators.required, Validators.email] }),
       website: new FormControl('', {}),
       location: new FormControl('', { validators: [Validators.required] }),
@@ -97,6 +104,53 @@ export class MyServicesComponent implements OnInit {
       category_name: selectedService?.category_name || '',
       subcategory_name: selectedService?.subcategory_name || ''
     }, { emitEvent: false });
+  }
+
+  private normalizeDialCode(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value.startsWith('+') ? value : `+${value}`;
+    }
+
+    return value?.dialCode ? (String(value.dialCode).startsWith('+') ? String(value.dialCode) : `+${value.dialCode}`) : '';
+  }
+
+  private dialCodeToCountryISO(dialCode: string): CountryISO {
+    switch (this.normalizeDialCode(dialCode)) {
+      case '+91':
+        return CountryISO.India;
+      case '+44':
+        return CountryISO.UnitedKingdom;
+      case '+1':
+        return CountryISO.UnitedStates;
+      case '+61':
+        return CountryISO.Australia;
+      case '+27':
+        return CountryISO.SouthAfrica;
+      case '+971':
+        return CountryISO.UnitedArabEmirates;
+      case '+233':
+        return CountryISO.Ghana;
+      case '+33':
+        return CountryISO.France;
+      default:
+        return CountryISO.UnitedKingdom;
+    }
+  }
+
+  private normalizePhoneNumber(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    return value?.number;
   }
 
   private getActiveExistingImageCount(): number {
@@ -297,6 +351,7 @@ export class MyServicesComponent implements OnInit {
       company_name: '',
       description: '',
       mobile: '',
+      mobile_country_code: this.mobileCountryCode,
       email: '',
       website: '',
       location: '',
@@ -316,6 +371,7 @@ export class MyServicesComponent implements OnInit {
       company_name: '',
       description: '',
       mobile: '',
+      mobile_country_code: this.mobileCountryCode,
       email: '',
       website: '',
       location: '',
@@ -362,7 +418,8 @@ export class MyServicesComponent implements OnInit {
 
     serviceData.set('description', this.form.value.description);
     serviceData.set('company_name', this.form.value.company_name || '');
-    serviceData.set('mobile', this.form.value.mobile);
+    serviceData.set('mobile_country_code', this.form.value.mobile_country_code || this.mobileCountryCode);
+    serviceData.set('mobile', this.normalizePhoneNumber(this.form.value.mobile));
     serviceData.set('email', this.form.value.email);
     serviceData.set('website', this.form.value.website);
     serviceData.set('location', this.form.value.location);
@@ -415,18 +472,27 @@ export class MyServicesComponent implements OnInit {
       company_name: service?.company_name || '',
       description: service?.description || service?.provider_description || '',
       mobile: service?.mobile || '',
+      mobile_country_code: this.normalizeDialCode(service?.mobile_country_code || service?.country_code || service?.dial_code) || this.mobileCountryCode,
       email: service?.email || '',
       website: service?.website || '',
       location: service?.location || '',
       latitude: service?.latitude || '',
       longitude: service?.longitude || ''
     });
+    this.mobileCountryCode = this.normalizeDialCode(service?.mobile_country_code || service?.country_code || service?.dial_code) || this.mobileCountryCode;
+    this.mobileCountryISO = this.dialCodeToCountryISO(this.mobileCountryCode);
     this.setServiceControlState();
   }
 
   onServiceChange(): void {
     const serviceId = this.form?.get('service_id')?.value;
     this.setServiceDetails(serviceId);
+  }
+
+  onMobileCountryChange(country: any): void {
+    this.mobileCountryCode = this.normalizeDialCode(country) || this.mobileCountryCode;
+    this.mobileCountryISO = this.dialCodeToCountryISO(this.mobileCountryCode);
+    this.form.get('mobile_country_code')?.setValue(this.mobileCountryCode);
   }
 
 

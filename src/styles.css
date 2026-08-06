@@ -762,3 +762,36 @@ mwl-gauge>.gauge>.value-text {
     left: 50%;
     transform: translate(-50%, -50%) !important;
 }
+
+.profile-form-section ngx-intl-tel-input {
+    display: block;
+    width: 100%;
+}
+
+.profile-form-section .iti {
+    width: 100%;
+}
+
+.profile-form-section .iti input.form-control {
+    width: 100%;
+}
+
+
+
+
+ngx-intl-tel-input {
+  display: block;
+  width: 100%;
+}
+
+.iti {
+  width: 100%;
+}
+
+.iti input.form-control {
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}

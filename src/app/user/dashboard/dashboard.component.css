@@ -474,20 +474,4 @@ span.ct_show_more_bold {
   white-space: nowrap;
 }
 
-@media (max-width: 767px) {
-  .business-directory-fab {
-    right: 14px;
-    bottom: 76px;
-    padding: 0.55rem 0.72rem;
-    gap: 0.42rem;
-  }
 
-  .business-directory-fab__icon {
-    width: 1.65rem;
-    height: 1.65rem;
-  }
-
-  .business-directory-fab__text {
-    font-size: 0.72rem;
-  }
-}

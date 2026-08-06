@@ -4,8 +4,7 @@
             <div class="form-group"
                 [ngClass]="{'has-error': userForm.get('first_name').invalid && userForm.get('first_name').touched}">
                 <label>First Name</label>
-                <input type="text" class="form-control" placeholder="Enter first name"
-                    formControlName="first_name" />
+                <input type="text" class="form-control" placeholder="Enter first name" formControlName="first_name" />
                 <span class="help-block"
                     *ngIf="userForm.get('first_name').invalid && userForm.get('first_name').touched">
                     Please enter a first name.
@@ -17,10 +16,8 @@
             <div class="form-group"
                 [ngClass]="{'has-error': userForm.get('last_name').invalid && userForm.get('last_name').touched}">
                 <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Enter last name"
-                    formControlName="last_name" />
-                <span class="help-block"
-                    *ngIf="userForm.get('last_name').invalid && userForm.get('last_name').touched">
+                <input type="text" class="form-control" placeholder="Enter last name" formControlName="last_name" />
+                <span class="help-block" *ngIf="userForm.get('last_name').invalid && userForm.get('last_name').touched">
                     Please enter a last name.
                 </span>
             </div>
@@ -31,14 +28,13 @@
                 [ngClass]="{'has-error': userForm.get('email').invalid && userForm.get('email').touched}">
                 <label>Email</label>
                 <div class="position-relative">
-                    <input type="email" formControlName="email" placeholder="Enter email address"
-                        class="form-control">
+                    <input type="email" formControlName="email" placeholder="Enter email address" class="form-control">
                     <div class="icon">
                         <img src="assets/images/mail.png" align="" alt="" title="">
                     </div>
                 </div>
-                <span class="help-block"
-                    *ngIf="userForm.get('email').invalid && userForm.get('email').touched">Please Enter
+                <span class="help-block" *ngIf="userForm.get('email').invalid && userForm.get('email').touched">Please
+                    Enter
                     Email</span>
             </div>
         </div>
@@ -60,14 +56,20 @@
             <div class="form-group"
                 [ngClass]="{'has-error': userForm.get('mobile_number').invalid && userForm.get('mobile_number').touched}">
                 <label>Mobile Number</label>
-                <!-- <input type="text" class="form-control" placeholder="Enter mobile number"
-                    formControlName="mobile_number" /> -->
-                <input type="tel" maxlength="15" class="form-control et_grey_input"
-                    placeholder="Enter your number..." formControlName="mobile_number" />
-                <span class="help-block"
-                    *ngIf="userForm.get('mobile_number').invalid && userForm.get('mobile_number').touched">
-                    Please enter a mobile number.
-                </span>
+                <ngx-intl-tel-input formControlName="mobile_number" [cssClass]="'form-control et_grey_input'"
+                    [preferredCountries]="preferredCountries" [selectedCountryISO]="defaultCountryISO"
+                    [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false" [separateDialCode]="true" [phoneValidation]="false"
+                    inputId="mobile_number_phone" (countryChange)="onCountryChange($event)">
+                </ngx-intl-tel-input>
+                <input type="hidden" formControlName="country_code" />
+                <div>
+                    <span class="help-block"
+                        *ngIf="userForm.get('mobile_number').invalid && userForm.get('mobile_number').touched">
+                        Please enter a mobile number.
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -75,8 +77,7 @@
             <div class="form-group"
                 [ngClass]="{'has-error': userForm.get('profession').invalid && userForm.get('profession').touched}">
                 <label>Profession</label>
-                <input type="text" class="form-control" placeholder="Enter profession"
-                    formControlName="profession" />
+                <input type="text" class="form-control" placeholder="Enter profession" formControlName="profession" />
                 <span class="help-block"
                     *ngIf="userForm.get('profession').invalid && userForm.get('profession').touched">
                     Please enter a profession.
@@ -115,8 +116,7 @@
         </div>
     </div>
 
-    <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center"
-        [disabled]="isLoading">
+    <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center" [disabled]="isLoading">
         <span *ngIf="!isLoading">Submit</span>
         <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
         <button hidden type="button" class="et_orange_btn et_outline_btn" #closeModal1

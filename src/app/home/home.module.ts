@@ -20,6 +20,7 @@ import { HowWorkComponent } from './how-work/how-work.component';
 import { OurProductsComponent } from './our-products/our-products.component';
 import { FaqComponent } from './faq/faq.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { GetUserDetailComponent } from './get-user-detail/get-user-detail.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewUserInfoComponent } from './new-user-info/new-user-info.component';
@@ -42,7 +43,8 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    CarouselModule
+    CarouselModule,
+    NgxIntlTelInputModule
   ],
   declarations: [
     HomePageComponent,

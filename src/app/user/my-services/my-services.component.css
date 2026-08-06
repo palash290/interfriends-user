@@ -1,3 +1,16 @@
+.my-services-mobile-field ngx-intl-tel-input {
+  display: block;
+  width: 100%;
+}
+
+.my-services-mobile-field .iti {
+  width: 100%;
+}
+
+.my-services-mobile-field .iti input.form-control {
+  width: 100%;
+}
+
 .service-view-btn {
   display: inline-flex;
   align-items: center;

@@ -530,6 +530,7 @@ export class UserService {
     lastName: any,
     email: string,
     mobile_number: string,
+    country_code: string,
     friend_employed: string,
     employement_type: string,
     know_this_person: string,
@@ -547,6 +548,7 @@ export class UserService {
     authData.append('last_name', lastName);
     authData.append('email', email);
     authData.append('mobile_number', mobile_number);
+    authData.append('country_code', country_code);
     authData.append('friend_employed', friend_employed);
     authData.append('employement_type', employement_type);
     authData.append('know_this_person', know_this_person);
@@ -775,10 +777,14 @@ export class UserService {
     last_name: string,
     email: string,
     dob: string,
+    country_code: string,
     mobile_number: string,
+    home_country_code: string,
     home_number: string,
+    emergency_country_code: string,
     emergency_number: string,
     kin_name: string,
+    kin_country_code: string,
     kin_number: string,
     address_line_1: string,
     address_line_2: string,
@@ -793,10 +799,14 @@ export class UserService {
     userData.append('last_name', last_name);
     userData.append('email', email);
     userData.append('dob', dob);
+    userData.append('country_code', country_code);
     userData.append('mobile_number', mobile_number);
+    userData.append('home_country_code', home_country_code);
     userData.append('home_number', home_number);
+    userData.append('emergency_country_code', emergency_country_code);
     userData.append('emergency_number', emergency_number);
     userData.append('kin_name', kin_name);
+    userData.append('kin_country_code', kin_country_code);
     userData.append('kin_number', kin_number);
     userData.append('address_line_1', address_line_1);
     userData.append('address_line_2', address_line_2);

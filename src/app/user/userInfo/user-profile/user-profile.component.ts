@@ -5,6 +5,7 @@ import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
 import { UserList } from 'src/app/model/userList.model';
 import { Location } from '@angular/common';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,6 +20,17 @@ export class UserProfileComponent implements OnInit {
   userId: string;
   user: UserList;
   imagePreview = 'assets/img/default-user-icon.jpg';
+  CountryISO = CountryISO;
+  SearchCountryField = SearchCountryField;
+  preferredCountries = [CountryISO.UnitedKingdom, CountryISO.India, CountryISO.UnitedStates];
+  mobileCountryISO = CountryISO.UnitedKingdom;
+  homeCountryISO = CountryISO.UnitedKingdom;
+  emergencyCountryISO = CountryISO.UnitedKingdom;
+  kinCountryISO = CountryISO.UnitedKingdom;
+  countryCode = '+44';
+  emergencyCountryCode = '+44';
+  kinCountryCode = '+44';
+  homeCountryCode = '+44';
 
   constructor(
     public authService: AuthService,
@@ -71,6 +83,16 @@ export class UserProfileComponent implements OnInit {
           employement_type: this.user.employement_type,
           Uniqueid: this.user.unique_id
         });
+
+        this.countryCode = this.normalizeDialCode((this.user as any)?.country_code || (this.user as any)?.mobile_country_code) || this.countryCode;
+        this.homeCountryCode = this.normalizeDialCode((this.user as any)?.home_country_code) || this.homeCountryCode;
+        this.emergencyCountryCode = this.normalizeDialCode((this.user as any)?.emergency_country_code) || this.emergencyCountryCode;
+        this.kinCountryCode = this.normalizeDialCode((this.user as any)?.kin_country_code) || this.kinCountryCode;
+        this.mobileCountryISO = this.dialCodeToCountryISO(this.countryCode);
+        this.homeCountryISO = this.dialCodeToCountryISO(this.homeCountryCode);
+        this.emergencyCountryISO = this.dialCodeToCountryISO(this.emergencyCountryCode);
+        this.kinCountryISO = this.dialCodeToCountryISO(this.kinCountryCode);
+
         this.isLoading = false;
         this.imagePreview = this.user.profile_image;
       });
@@ -98,17 +120,27 @@ export class UserProfileComponent implements OnInit {
 
     this.isLoadingUpdate = true;
     console.log("out", this.isLoadingUpdate)
+
+    const mobileNumber = this.normalizePhoneNumber(this.form.value.mobile_number.number);
+    const homeNumber = this.normalizePhoneNumber(this.form.value.home_number.number);
+    const emergencyNumber = this.normalizePhoneNumber(this.form.value.emergency_number.number);
+    const kinNumber = this.normalizePhoneNumber(this.form.value.kin_number.number);
+
     this.userService.editUser(
       this.userId,
       this.form.value.first_name,
       this.form.value.last_name,
       this.form.value.email,
       this.form.value.dob,
-      this.form.value.mobile_number,
-      this.form.value.home_number,
-      this.form.value.emergency_number,
+      this.countryCode,
+      mobileNumber,
+      this.homeCountryCode,
+      homeNumber,
+      this.emergencyCountryCode,
+      emergencyNumber,
       this.form.value.kin_name,
-      this.form.value.kin_number,
+      this.kinCountryCode,
+      kinNumber,
       this.form.value.address_line_1,
       this.form.value.address_line_2,
       this.form.value.post_code,
@@ -126,6 +158,73 @@ export class UserProfileComponent implements OnInit {
         this.toastr.error(response.message);
       }
     });
+  }
+
+  private normalizePhoneNumber(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    return value?.e164Number || value?.internationalNumber || value?.nationalNumber || value?.number || '';
+  }
+
+  private normalizeDialCode(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value.startsWith('+') ? value : `+${value}`;
+    }
+
+    return value?.dialCode ? (String(value.dialCode).startsWith('+') ? String(value.dialCode) : `+${value.dialCode}`) : '';
+  }
+
+  private dialCodeToCountryISO(dialCode: string): CountryISO {
+    switch (this.normalizeDialCode(dialCode)) {
+      case '+91':
+        return CountryISO.India;
+      case '+44':
+        return CountryISO.UnitedKingdom;
+      case '+1':
+        return CountryISO.UnitedStates;
+      case '+61':
+        return CountryISO.Australia;
+      case '+27':
+        return CountryISO.SouthAfrica;
+      case '+971':
+        return CountryISO.UnitedArabEmirates;
+      case '+233':
+        return CountryISO.Ghana;
+      case '+33':
+        return CountryISO.France;
+      default:
+        return CountryISO.UnitedKingdom;
+    }
+  }
+
+  onMobileCountryChange(country: any): void {
+    this.countryCode = this.normalizeDialCode(country) || this.countryCode;
+    this.mobileCountryISO = this.dialCodeToCountryISO(this.countryCode);
+  }
+
+  onHomeCountryChange(country: any): void {
+    this.homeCountryCode = this.normalizeDialCode(country) || this.homeCountryCode;
+    this.homeCountryISO = this.dialCodeToCountryISO(this.homeCountryCode);
+  }
+
+  onEmergencyCountryChange(country: any): void {
+    this.emergencyCountryCode = this.normalizeDialCode(country) || this.emergencyCountryCode;
+    this.emergencyCountryISO = this.dialCodeToCountryISO(this.emergencyCountryCode);
+  }
+
+  onKinCountryChange(country: any): void {
+    this.kinCountryCode = this.normalizeDialCode(country) || this.kinCountryCode;
+    this.kinCountryISO = this.dialCodeToCountryISO(this.kinCountryCode);
   }
 
   backClicked() {

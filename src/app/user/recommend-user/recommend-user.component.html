@@ -53,13 +53,20 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
       <div class="form-group">
-        <input type="number" formControlName="mobile_number" placeholder="Friend's contact number" class="form-control">
-        <div class="icon">
-          <img src="assets/images/call-sm.png" align="" alt="" title="">
+        <ngx-intl-tel-input formControlName="mobile_number" [cssClass]="'form-control'"
+          [preferredCountries]="preferredCountries" [selectedCountryISO]="defaultCountryISO"
+          [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+          [separateDialCode]="true" [phoneValidation]="false" inputId="recommend_mobile_number_phone"
+          (countryChange)="onCountryChange($event)">
+        </ngx-intl-tel-input>
+        <input type="hidden" formControlName="country_code" />
+        <div>
+          <span class="error-form" *ngIf="form.get('mobile_number').invalid && form.get('mobile_number').touched">
+            Please enter a mobile number.
+          </span>
         </div>
-        <span class="error-form" *ngIf="form.get('mobile_number').invalid && form.get('mobile_number').touched">
-          Please enter a mobile number.
-        </span>
+
       </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -182,9 +189,9 @@
 <app-mobile-menu></app-mobile-menu>
 <app-footer></app-footer>
 
-<a routerLink="/user/all-services" class="business-directory-fab" aria-label="Business Directory">
+<a routerLink="/user/all-services" class="business-directory-fab" aria-label="Member Directory">
   <span class="business-directory-fab__icon">
     <i class="fa fa-briefcase" aria-hidden="true"></i>
   </span>
-  <span class="business-directory-fab__text">Business Directory</span>
+  <span class="business-directory-fab__text">Member Directory</span>
 </a>

@@ -43,7 +43,8 @@
                 <div class="icon">
                   <img src="assets/images/user.png" align="" alt="" title="">
                 </div>
-                <span class="help-block error-message" *ngIf="form.get('first_name').invalid && form.get('first_name').touched">
+                <span class="help-block error-message"
+                  *ngIf="form.get('first_name').invalid && form.get('first_name').touched">
                   Please enter a first name.
                 </span>
               </div>
@@ -55,7 +56,8 @@
                 <div class="icon">
                   <img src="assets/images/user.png" align="" alt="" title="">
                 </div>
-                <span class="help-block error-message" *ngIf="form.get('last_name').invalid && form.get('last_name').touched">
+                <span class="help-block error-message"
+                  *ngIf="form.get('last_name').invalid && form.get('last_name').touched">
                   Please enter a last name.
                 </span>
               </div>
@@ -96,11 +98,13 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="form-group">
                 <label class="form-label">Mobile Number</label>
-                <input type="number" name="" placeholder="Mobile number" class="form-control"
-                  formControlName="mobile_number">
-                <div class="icon">
-                  <img src="assets/images/call-sm.png" align="" alt="" title="">
-                </div>
+                <ngx-intl-tel-input formControlName="mobile_number" [cssClass]="'form-control'"
+                  [preferredCountries]="preferredCountries" [selectedCountryISO]="mobileCountryISO"
+                  [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [separateDialCode]="true" [phoneValidation]="false" inputId="mobile_number_phone"
+                  (countryChange)="onMobileCountryChange($event)">
+                </ngx-intl-tel-input>
                 <span class="help-block error-message"
                   *ngIf="form.get('mobile_number').invalid && form.get('mobile_number').touched">
                   Please enter a mobile number.
@@ -110,11 +114,15 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="form-group">
                 <label class="form-label">Home number</label>
-                <input type="number" placeholder="Home number" class="form-control" formControlName="home_number">
-                <div class="icon">
-                  <img src="assets/images/call-sm.png" align="" alt="" title="">
-                </div>
-                <span class="help-block error-message" *ngIf="form.get('home_number').invalid && form.get('home_number').touched">
+                <ngx-intl-tel-input formControlName="home_number" [cssClass]="'form-control'"
+                  [preferredCountries]="preferredCountries" [selectedCountryISO]="homeCountryISO"
+                  [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [separateDialCode]="true" [phoneValidation]="false" inputId="home_number_phone"
+                  (countryChange)="onHomeCountryChange($event)">
+                </ngx-intl-tel-input>
+                <span class="help-block error-message"
+                  *ngIf="form.get('home_number').invalid && form.get('home_number').touched">
                   Please enter a home number.
                 </span>
               </div>
@@ -122,11 +130,13 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="form-group">
                 <label class="form-label">Emergency number</label>
-                <input type="number" placeholder="Emergency number" class="form-control"
-                  formControlName="emergency_number">
-                <div class="icon">
-                  <img src="assets/images/call-sm.png" align="" alt="" title="">
-                </div>
+                <ngx-intl-tel-input formControlName="emergency_number" [cssClass]="'form-control'"
+                  [preferredCountries]="preferredCountries" [selectedCountryISO]="emergencyCountryISO"
+                  [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [separateDialCode]="true" [phoneValidation]="false" inputId="emergency_number_phone"
+                  (countryChange)="onEmergencyCountryChange($event)">
+                </ngx-intl-tel-input>
                 <span class="help-block error-message"
                   *ngIf="form.get('emergency_number').invalid && form.get('emergency_number').touched">
                   Please enter a emergency number.
@@ -140,7 +150,8 @@
                 <div class="icon">
                   <img src="assets/images/user.png" align="" alt="" title="">
                 </div>
-                <span class="help-block error-message" *ngIf="form.get('kin_name').invalid && form.get('kin_name').touched">
+                <span class="help-block error-message"
+                  *ngIf="form.get('kin_name').invalid && form.get('kin_name').touched">
                   Please enter a next of kin.
                 </span>
               </div>
@@ -148,12 +159,15 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="form-group">
                 <label class="form-label">Next of kin Contact Number</label>
-                <input type="number" name="" placeholder="Next of kin contact number" class="form-control"
-                  formControlName="kin_number">
-                <div class="icon">
-                  <img src="assets/images/call-sm.png" align="" alt="" title="">
-                </div>
-                <span class="help-block error-message" *ngIf="form.get('kin_number').invalid && form.get('kin_number').touched">
+                <ngx-intl-tel-input formControlName="kin_number" [cssClass]="'form-control'"
+                  [preferredCountries]="preferredCountries" [selectedCountryISO]="kinCountryISO"
+                  [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [separateDialCode]="true" [phoneValidation]="false" inputId="kin_number_phone"
+                  (countryChange)="onKinCountryChange($event)">
+                </ngx-intl-tel-input>
+                <span class="help-block error-message"
+                  *ngIf="form.get('kin_number').invalid && form.get('kin_number').touched">
                   Please enter a kin contact number.
                 </span>
               </div>
@@ -193,7 +207,8 @@
                 <div class="icon">
                   <img src="assets/images/home.png" align="" alt="" title="">
                 </div>
-                <span class="help-block error-message" *ngIf="form.get('post_code').invalid && form.get('post_code').touched">
+                <span class="help-block error-message"
+                  *ngIf="form.get('post_code').invalid && form.get('post_code').touched">
                   Please enter a post code.
                 </span>
               </div>
@@ -248,9 +263,9 @@
 <app-mobile-menu></app-mobile-menu>
 <app-footer></app-footer>
 
-<a routerLink="/user/all-services" class="business-directory-fab" aria-label="Business Directory">
+<a routerLink="/user/all-services" class="business-directory-fab" aria-label="Member Directory">
   <span class="business-directory-fab__icon">
     <i class="fa fa-briefcase" aria-hidden="true"></i>
   </span>
-  <span class="business-directory-fab__text">Business Directory</span>
+  <span class="business-directory-fab__text">Member Directory</span>
 </a>

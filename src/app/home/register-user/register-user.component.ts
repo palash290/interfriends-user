@@ -5,6 +5,7 @@ import { City, Country, State } from 'country-state-city';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-register-user',
@@ -18,6 +19,17 @@ export class RegisterUserComponent implements OnInit {
   token: string = '';
   recommend_id: any;
   private readonly defaultProfileImage = 'https://creativethoughtsinfo.com/interfriendsApp/assets/img/np_pro.png';
+  CountryISO = CountryISO;
+  SearchCountryField = SearchCountryField;
+  preferredCountries = [CountryISO.UnitedKingdom, CountryISO.India, CountryISO.UnitedStates];
+  mobileCountryISO = CountryISO.UnitedKingdom;
+  homeCountryISO = CountryISO.UnitedKingdom;
+  emergencyCountryISO = CountryISO.UnitedKingdom;
+  kinCountryISO = CountryISO.UnitedKingdom;
+  mobileCountryCode = '+44';
+  homeCountryCode = '+44';
+  emergencyCountryCode = '+44';
+  kinCountryCode = '+44';
 
   constructor(
     public authService: AuthService,
@@ -41,10 +53,14 @@ export class RegisterUserComponent implements OnInit {
       dob: new FormControl(null, { validators: [Validators.required] }),
       password: new FormControl(null, { validators: [Validators.required] }),
       mobile_number: new FormControl('', { validators: [Validators.required] }),
+      country_code: new FormControl(this.mobileCountryCode, { validators: [Validators.required] }),
       home_number: new FormControl('', { validators: [Validators.required] }),
+      home_country_code: new FormControl(this.homeCountryCode, { validators: [Validators.required] }),
       emergency_number: new FormControl('', { validators: [Validators.required] }),
+      emergency_country_code: new FormControl(this.emergencyCountryCode, { validators: [Validators.required] }),
       kin_name: new FormControl('', { validators: [Validators.required] }),
       kin_number: new FormControl('', { validators: [Validators.required] }),
+      kin_country_code: new FormControl(this.kinCountryCode, { validators: [Validators.required] }),
       address_line_1: new FormControl('', { validators: [Validators.required] }),
       address_line_2: new FormControl('', { validators: [Validators.required] }),
       post_code: new FormControl('', { validators: [Validators.required] }),
@@ -75,16 +91,28 @@ export class RegisterUserComponent implements OnInit {
             email: user.email || '',
             dob: user.dob || null,
             mobile_number: user.mobile_number || '',
+            country_code: this.normalizeDialCode(user.country_code || user.mobile_country_code) || this.mobileCountryCode,
             home_number: user.home_number || '',
+            home_country_code: this.normalizeDialCode(user.home_country_code) || this.homeCountryCode,
             emergency_number: user.emergency_number || '',
+            emergency_country_code: this.normalizeDialCode(user.emergency_country_code) || this.emergencyCountryCode,
             kin_name: user.kin_name || '',
             kin_number: user.kin_number || '',
+            kin_country_code: this.normalizeDialCode(user.kin_country_code) || this.kinCountryCode,
             address_line_1: user.address_line_1 || '',
             address_line_2: user.address_line_2 || '',
             post_code: user.post_code || '',
             city: user.city || '',
             employement_type: user.employement_type || null
           });
+          this.mobileCountryCode = this.normalizeDialCode(user.country_code || user.mobile_country_code) || this.mobileCountryCode;
+          this.homeCountryCode = this.normalizeDialCode(user.home_country_code) || this.homeCountryCode;
+          this.emergencyCountryCode = this.normalizeDialCode(user.emergency_country_code) || this.emergencyCountryCode;
+          this.kinCountryCode = this.normalizeDialCode(user.kin_country_code) || this.kinCountryCode;
+          this.mobileCountryISO = this.dialCodeToCountryISO(this.mobileCountryCode);
+          this.homeCountryISO = this.dialCodeToCountryISO(this.homeCountryCode);
+          this.emergencyCountryISO = this.dialCodeToCountryISO(this.emergencyCountryCode);
+          this.kinCountryISO = this.dialCodeToCountryISO(this.kinCountryCode);
           this.previewImageAdd = user.profile_image;
           this.previewIdImage = user.id_proof_image;
         }
@@ -134,11 +162,15 @@ export class RegisterUserComponent implements OnInit {
     formData.append('last_name', rawForm.last_name)
     formData.append('email', rawForm.email)
     formData.append('dob', rawForm.dob)
-    formData.append('mobile_number', rawForm.mobile_number)
-    formData.append('home_number', rawForm.home_number)
-    formData.append('emergency_number', rawForm.emergency_number)
+    formData.append('country_code', rawForm.country_code || this.mobileCountryCode)
+    formData.append('mobile_number', this.normalizePhoneNumber(rawForm.mobile_number.number))
+    formData.append('home_country_code', rawForm.home_country_code || this.homeCountryCode)
+    formData.append('home_number', this.normalizePhoneNumber(rawForm.home_number.number))
+    formData.append('emergency_country_code', rawForm.emergency_country_code || this.emergencyCountryCode)
+    formData.append('emergency_number', this.normalizePhoneNumber(rawForm.emergency_number.number))
     formData.append('kin_name', rawForm.kin_name)
-    formData.append('kin_number', rawForm.kin_number)
+    formData.append('kin_country_code', rawForm.kin_country_code || this.kinCountryCode)
+    formData.append('kin_number', this.normalizePhoneNumber(rawForm.kin_number.number))
     formData.append('address_line_1', rawForm.address_line_1)
     formData.append('address_line_2', rawForm.address_line_2)
     formData.append('post_code', rawForm.post_code)
@@ -295,6 +327,77 @@ export class RegisterUserComponent implements OnInit {
       case 'city':
         this.selectedCity = this.city.nativeElement.value = null;
         break;
+    }
+  }
+
+  onMobileCountryChange(country: any): void {
+    this.mobileCountryCode = this.normalizeDialCode(country) || this.mobileCountryCode;
+    this.mobileCountryISO = this.dialCodeToCountryISO(this.mobileCountryCode);
+    this.form.get('country_code')?.setValue(this.mobileCountryCode);
+  }
+
+  onHomeCountryChange(country: any): void {
+    this.homeCountryCode = this.normalizeDialCode(country) || this.homeCountryCode;
+    this.homeCountryISO = this.dialCodeToCountryISO(this.homeCountryCode);
+    this.form.get('home_country_code')?.setValue(this.homeCountryCode);
+  }
+
+  onEmergencyCountryChange(country: any): void {
+    this.emergencyCountryCode = this.normalizeDialCode(country) || this.emergencyCountryCode;
+    this.emergencyCountryISO = this.dialCodeToCountryISO(this.emergencyCountryCode);
+    this.form.get('emergency_country_code')?.setValue(this.emergencyCountryCode);
+  }
+
+  onKinCountryChange(country: any): void {
+    this.kinCountryCode = this.normalizeDialCode(country) || this.kinCountryCode;
+    this.kinCountryISO = this.dialCodeToCountryISO(this.kinCountryCode);
+    this.form.get('kin_country_code')?.setValue(this.kinCountryCode);
+  }
+
+  private normalizePhoneNumber(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    return value?.e164Number || value?.internationalNumber || value?.nationalNumber || value?.number || '';
+  }
+
+  private normalizeDialCode(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value.startsWith('+') ? value : `+${value}`;
+    }
+
+    return value?.dialCode ? (String(value.dialCode).startsWith('+') ? String(value.dialCode) : `+${value.dialCode}`) : '';
+  }
+
+  private dialCodeToCountryISO(dialCode: string): CountryISO {
+    switch (this.normalizeDialCode(dialCode)) {
+      case '+91':
+        return CountryISO.India;
+      case '+44':
+        return CountryISO.UnitedKingdom;
+      case '+1':
+        return CountryISO.UnitedStates;
+      case '+61':
+        return CountryISO.Australia;
+      case '+27':
+        return CountryISO.SouthAfrica;
+      case '+971':
+        return CountryISO.UnitedArabEmirates;
+      case '+233':
+        return CountryISO.Ghana;
+      case '+33':
+        return CountryISO.France;
+      default:
+        return CountryISO.UnitedKingdom;
     }
   }
 

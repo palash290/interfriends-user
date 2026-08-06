@@ -1,0 +1,16 @@
+ngx-intl-tel-input {
+  display: block;
+  width: 100%;
+}
+
+.iti {
+  width: 100%;
+}
+
+.iti input.form-control {
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}

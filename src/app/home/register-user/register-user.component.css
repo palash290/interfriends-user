@@ -81,3 +81,16 @@
   text-align: center;
   margin-top: 10px;
 }
+
+ngx-intl-tel-input {
+  display: block;
+  width: 100%;
+}
+
+.iti {
+  width: 100%;
+}
+
+.iti input.form-control {
+  width: 100%;
+}

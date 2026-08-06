@@ -54,6 +54,7 @@ import { ChangeUserPasswordComponent } from './change-user-password/change-user-
 import { MiscellaneousListComponent } from './miscellaneous/miscellaneous-list/miscellaneous-list.component';
 import { BlockUserComponent } from './block-user/block-user.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { TermandconditionComponent } from './termandcondition/termandcondition.component';
 import { PrivacyPolicyComponent } from './layout/privacy-policy/privacy-policy.component';
 import { WelfareLoanComponent } from './loan/welfare-loan/welfare-loan.component';
@@ -101,7 +102,8 @@ import { AllServicesComponent } from './all-services/all-services.component';
       "imageWidth": 99,
       "responsive": true}),
     ChartsModule,
-    GaugeModule.forRoot()
+    GaugeModule.forRoot(),
+    NgxIntlTelInputModule
   ],
   declarations: [
   DashboardComponent,

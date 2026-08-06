@@ -5,6 +5,7 @@ import { UserList } from 'src/app/model/userList.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import { Location } from '@angular/common';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-recommend-user',
@@ -17,6 +18,11 @@ export class RecommendUserComponent implements OnInit {
   isLoading = false;
   userId: string;
   groupId: string;
+  CountryISO = CountryISO;
+  SearchCountryField = SearchCountryField;
+  preferredCountries = [CountryISO.UnitedKingdom, CountryISO.India, CountryISO.UnitedStates];
+  defaultCountryISO = CountryISO.UnitedKingdom;
+  countryCode = '+44';
 
   constructor(
     public userService: UserService,
@@ -50,6 +56,7 @@ export class RecommendUserComponent implements OnInit {
       lastName: new FormControl(null, { validators: [Validators.required] }),
       email: new FormControl(null, { validators: [Validators.required, Validators.email] }),
       mobile_number: new FormControl(null, { validators: [Validators.required] }),
+      country_code: new FormControl(this.countryCode, { validators: [Validators.required] }),
       friend_employed: new FormControl(null, { validators: [Validators.required] }),
       employement_type: new FormControl(null, { validators: [Validators.required] }),
       know_this_person: new FormControl(null, { validators: [Validators.required] }),
@@ -77,7 +84,8 @@ export class RecommendUserComponent implements OnInit {
       this.form.value.firstName,
       this.form.value.lastName,
       this.form.value.email,
-      this.form.value.mobile_number,
+      this.normalizePhoneNumber(this.form.value.mobile_number),
+      this.form.value.country_code || this.countryCode,
       this.form.value.friend_employed,
       this.form.value.employement_type,
       this.form.value.know_this_person,
@@ -86,6 +94,8 @@ export class RecommendUserComponent implements OnInit {
       this.form.value.recommend_user_by
     ).subscribe((response: any) => {
       this.form.reset();
+      this.countryCode = '+44';
+      this.form.get('country_code')?.setValue(this.countryCode);
       this.isLoading = false;
       if (response.success === '1') {
         this.toastr.success(response.message);
@@ -94,6 +104,35 @@ export class RecommendUserComponent implements OnInit {
         this.toastr.error(response.message);
       }
     });
+  }
+
+  onCountryChange(country: any): void {
+    this.countryCode = this.normalizeDialCode(country) || this.countryCode;
+    this.form.get('country_code')?.setValue(this.countryCode);
+  }
+
+  private normalizePhoneNumber(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    return value?.e164Number || value?.internationalNumber || value?.nationalNumber || value?.number || '';
+  }
+
+  private normalizeDialCode(value: any): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value.startsWith('+') ? value : `+${value}`;
+    }
+
+    return value?.dialCode ? (String(value.dialCode).startsWith('+') ? String(value.dialCode) : `+${value.dialCode}`) : '';
   }
 
   backClicked() {
