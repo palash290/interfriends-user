@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+declare const require: any;
+const { PhoneNumberUtil } = require('google-libphonenumber');
 
 @Component({
   selector: 'app-register-user',
@@ -30,6 +32,7 @@ export class RegisterUserComponent implements OnInit {
   homeCountryCode = '+44';
   emergencyCountryCode = '+44';
   kinCountryCode = '+44';
+  private readonly phoneUtil = PhoneNumberUtil.getInstance();
 
   constructor(
     public authService: AuthService,
@@ -91,7 +94,7 @@ export class RegisterUserComponent implements OnInit {
             email: user.email || '',
             dob: user.dob || null,
             mobile_number: user.mobile_number || '',
-            country_code: this.normalizeDialCode(user.country_code || user.mobile_country_code) || this.mobileCountryCode,
+            country_code: this.normalizeDialCode(user.country_code) || this.mobileCountryCode,
             home_number: user.home_number || '',
             home_country_code: this.normalizeDialCode(user.home_country_code) || this.homeCountryCode,
             emergency_number: user.emergency_number || '',
@@ -105,7 +108,7 @@ export class RegisterUserComponent implements OnInit {
             city: user.city || '',
             employement_type: user.employement_type || null
           });
-          this.mobileCountryCode = this.normalizeDialCode(user.country_code || user.mobile_country_code) || this.mobileCountryCode;
+          this.mobileCountryCode = this.normalizeDialCode(user.country_code) || this.mobileCountryCode;
           this.homeCountryCode = this.normalizeDialCode(user.home_country_code) || this.homeCountryCode;
           this.emergencyCountryCode = this.normalizeDialCode(user.emergency_country_code) || this.emergencyCountryCode;
           this.kinCountryCode = this.normalizeDialCode(user.kin_country_code) || this.kinCountryCode;
@@ -378,27 +381,46 @@ export class RegisterUserComponent implements OnInit {
     return value?.dialCode ? (String(value.dialCode).startsWith('+') ? String(value.dialCode) : `+${value.dialCode}`) : '';
   }
 
-  private dialCodeToCountryISO(dialCode: string): CountryISO {
-    switch (this.normalizeDialCode(dialCode)) {
-      case '+91':
-        return CountryISO.India;
-      case '+44':
-        return CountryISO.UnitedKingdom;
-      case '+1':
-        return CountryISO.UnitedStates;
-      case '+61':
-        return CountryISO.Australia;
-      case '+27':
-        return CountryISO.SouthAfrica;
-      case '+971':
-        return CountryISO.UnitedArabEmirates;
-      case '+233':
-        return CountryISO.Ghana;
-      case '+33':
-        return CountryISO.France;
-      default:
-        return CountryISO.UnitedKingdom;
+  // private dialCodeToCountryISO(dialCode: string): CountryISO {
+  //   switch (this.normalizeDialCode(dialCode)) {
+  //     case '+91':
+  //       return CountryISO.India;
+  //     case '+44':
+  //       return CountryISO.UnitedKingdom;
+  //     case '+1':
+  //       return CountryISO.UnitedStates;
+  //     case '+61':
+  //       return CountryISO.Australia;
+  //     case '+27':
+  //       return CountryISO.SouthAfrica;
+  //     case '+971':
+  //       return CountryISO.UnitedArabEmirates;
+  //     case '+233':
+  //       return CountryISO.Ghana;
+  //     case '+33':
+  //       return CountryISO.France;
+  //     default:
+  //       return CountryISO.UnitedKingdom;
+  //   }
+  // }
+
+  private dialCodeToCountryISO(dialCode: string | undefined): CountryISO {
+    const code = (dialCode || '').replace(/[^0-9]/g, '');
+
+    if (!code) {
+      return CountryISO.UnitedKingdom;
     }
+
+    const regionCode = this.phoneUtil.getRegionCodeForCountryCode(Number(code));
+    if (!regionCode || regionCode === 'ZZ') {
+      return CountryISO.UnitedKingdom;
+    }
+
+    const matchedISO = Object.values(CountryISO).find(
+      (iso) => iso.toLowerCase() === regionCode.toLowerCase()
+    );
+
+    return (matchedISO as CountryISO) || CountryISO.UnitedKingdom;
   }
 
 

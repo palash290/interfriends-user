@@ -6,6 +6,8 @@ import { UserService } from '../../../service/user.service';
 import { UserList } from 'src/app/model/userList.model';
 import { Location } from '@angular/common';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+declare const require: any;
+const { PhoneNumberUtil } = require('google-libphonenumber');
 
 @Component({
   selector: 'app-user-profile',
@@ -31,6 +33,7 @@ export class UserProfileComponent implements OnInit {
   emergencyCountryCode = '+44';
   kinCountryCode = '+44';
   homeCountryCode = '+44';
+  private readonly phoneUtil = PhoneNumberUtil.getInstance();
 
   constructor(
     public authService: AuthService,
@@ -184,27 +187,46 @@ export class UserProfileComponent implements OnInit {
     return value?.dialCode ? (String(value.dialCode).startsWith('+') ? String(value.dialCode) : `+${value.dialCode}`) : '';
   }
 
-  private dialCodeToCountryISO(dialCode: string): CountryISO {
-    switch (this.normalizeDialCode(dialCode)) {
-      case '+91':
-        return CountryISO.India;
-      case '+44':
-        return CountryISO.UnitedKingdom;
-      case '+1':
-        return CountryISO.UnitedStates;
-      case '+61':
-        return CountryISO.Australia;
-      case '+27':
-        return CountryISO.SouthAfrica;
-      case '+971':
-        return CountryISO.UnitedArabEmirates;
-      case '+233':
-        return CountryISO.Ghana;
-      case '+33':
-        return CountryISO.France;
-      default:
-        return CountryISO.UnitedKingdom;
+  // private dialCodeToCountryISO(dialCode: string): CountryISO {
+  //   switch (this.normalizeDialCode(dialCode)) {
+  //     case '+91':
+  //       return CountryISO.India;
+  //     case '+44':
+  //       return CountryISO.UnitedKingdom;
+  //     case '+1':
+  //       return CountryISO.UnitedStates;
+  //     case '+61':
+  //       return CountryISO.Australia;
+  //     case '+27':
+  //       return CountryISO.SouthAfrica;
+  //     case '+971':
+  //       return CountryISO.UnitedArabEmirates;
+  //     case '+233':
+  //       return CountryISO.Ghana;
+  //     case '+33':
+  //       return CountryISO.France;
+  //     default:
+  //       return CountryISO.UnitedKingdom;
+  //   }
+  // }
+
+  private dialCodeToCountryISO(dialCode: string | undefined): CountryISO {
+    const code = (dialCode || '').replace(/[^0-9]/g, '');
+
+    if (!code) {
+      return CountryISO.UnitedKingdom;
     }
+
+    const regionCode = this.phoneUtil.getRegionCodeForCountryCode(Number(code));
+    if (!regionCode || regionCode === 'ZZ') {
+      return CountryISO.UnitedKingdom;
+    }
+
+    const matchedISO = Object.values(CountryISO).find(
+      (iso) => iso.toLowerCase() === regionCode.toLowerCase()
+    );
+
+    return (matchedISO as CountryISO) || CountryISO.UnitedKingdom;
   }
 
   onMobileCountryChange(country: any): void {

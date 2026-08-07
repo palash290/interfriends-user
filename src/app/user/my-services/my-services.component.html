@@ -12,7 +12,7 @@
         <ng-container *ngIf="!isLoader">
             <div class="ct_recommended_user" *ngIf="serviceList.length > 0; else emptyState">
                 <div class="d-flex align-items-center justify-content-between mb-4" style=gap:20px>
-                    <h4 class="mb-0">My Business Directories</h4>
+                    <h4 class="mb-0">My Directories</h4>
                     <button type="button" class="btn-cstm btn-orange py-2 px-5" data-toggle="modal"
                         data-target="#exampleModal" (click)="onOpenCreate()">
                         Add
@@ -338,7 +338,7 @@
                                 [selectFirstCountry]="false" [separateDialCode]="true" [phoneValidation]="false"
                                 inputId="my_services_mobile_phone" (countryChange)="onMobileCountryChange($event)">
                             </ngx-intl-tel-input>
-                            <input type="hidden" formControlName="mobile_country_code" />
+                            <input type="hidden" formControlName="country_code" />
                             <span class="help-block" *ngIf="form.get('mobile').invalid  && form.get('mobile').touched">
                                 Please enter a mobile number.
                             </span>

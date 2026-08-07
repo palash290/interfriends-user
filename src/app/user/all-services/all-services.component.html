@@ -39,7 +39,7 @@
                                         <span class="subcategory">{{service?.subcategory_name}}</span>
                                     </p>
 
-                                    <p class="mb-0">
+                                    <!-- <p class="mb-0">
                                         <i class="fa fa-envelope me-1" aria-hidden="true"></i>
                                         <ng-container *ngIf="service?.email; else noEmail">
                                             <a [href]="'mailto:' + service.email">
@@ -57,7 +57,7 @@
                                             </a>
                                         </ng-container>
                                         <ng-template #noMobile>-</ng-template>
-                                    </p>
+                                    </p> -->
 
                                     <p class="mb-0">
                                         <i class="fa fa-globe me-1" aria-hidden="true"></i>
@@ -162,11 +162,36 @@
                                                 </span>
                                             </ng-template>
                                         </div>
-                                        <div class="company-details">
-                                            <h5 class="ct_fs_18 mb-1">{{ selectedService.first_name || '-' }}
-                                                {{selectedService.last_name || '-'}}</h5>
-                                            <!-- <p class="mb-0 text-muted">Profile image and company logo</p> -->
+                                        <div>
+                                            <div class="company-details">
+                                                <h5 class="ct_fs_18 mb-1">{{ selectedService.first_name || '-' }}
+                                                    {{selectedService.last_name || '-'}}</h5>
+                                                <!-- <p class="mb-0 text-muted">Profile image and company logo</p> -->
+                                            </div>
+
+                                            <div class="rating-line mb-1 ">
+                                                <i class="fa fa-envelope me-1" aria-hidden="true"></i>
+                                                <ng-container *ngIf="selectedService?.email; else noEmail">
+                                                    <a class="text-dark text-underline"
+                                                        [href]="'mailto:' + selectedService.email">
+                                                        {{ selectedService.email }}
+                                                    </a>
+                                                </ng-container>
+                                                <ng-template #noEmail>-</ng-template>
+                                            </div>
+
+                                            <div class="rating-line mb-1 ">
+                                                <i class="fa fa-phone me-1" aria-hidden="true"></i>
+                                                <ng-container *ngIf="selectedService?.mobile; else noMobile">
+                                                    <a class="text-dark text-underline"
+                                                        [href]="'tel:' + selectedService.mobile">
+                                                        {{ selectedService.mobile }}
+                                                    </a>
+                                                </ng-container>
+                                                <ng-template #noMobile>-</ng-template>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
 
