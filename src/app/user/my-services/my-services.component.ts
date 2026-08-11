@@ -57,6 +57,7 @@ export class MyServicesComponent implements OnInit {
 
   initForm(): void {
     this.form = new FormGroup({
+      user_service_id: new FormControl(''),
       service_id: new FormControl('', { validators: [Validators.required] }),
       category_name: new FormControl({ value: '', disabled: true }),
       subcategory_name: new FormControl({ value: '', disabled: true }),
@@ -101,7 +102,7 @@ export class MyServicesComponent implements OnInit {
   }
 
   private setServiceDetails(serviceId: any): void {
-    const selectedService = this.serviceOptions.find((service) => String(service?.id) === String(serviceId));
+    const selectedService = this.serviceOptions.find((service) => String(service?.id) == String(serviceId));
 
     this.form?.patchValue({
       category_name: selectedService?.category_name || '',
@@ -195,7 +196,7 @@ export class MyServicesComponent implements OnInit {
 
     return source
       .map((item: any, index: number) => {
-        if (typeof item === 'string') {
+        if (typeof item == 'string') {
           return {
             id: null,
             name: `Image ${index + 1}`,
@@ -214,13 +215,17 @@ export class MyServicesComponent implements OnInit {
 
   private getCompanyLogoUrl(service: any): string {
     return (
+      service?.company_logo ||
       service?.company_logo_url ||
       service?.company_logo_thumb ||
-      service?.company_logo ||
       service?.logo_url ||
       service?.logo ||
       ''
     );
+  }
+
+  private pickFirstValue(...values: any[]): any {
+    return values.find((value) => value !== null && value !== undefined && value !== '');
   }
 
   private readFileAsDataUrl(file: File): Promise<string> {
@@ -230,6 +235,69 @@ export class MyServicesComponent implements OnInit {
       reader.onerror = () => reject(new Error('Unable to read image file.'));
       reader.readAsDataURL(file);
     });
+  }
+
+  private isHeicLikeFile(file: File): boolean {
+    const fileName = (file?.name || '').toLowerCase();
+    return (
+      file?.type === 'image/heic' ||
+      file?.type === 'image/heif' ||
+      fileName.endsWith('.heic') ||
+      fileName.endsWith('.heif')
+    );
+  }
+
+  private loadImage(src: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error('Unable to load image.'));
+      image.src = src;
+    });
+  }
+
+  private async convertImageToJpeg(file: File): Promise<File> {
+    const objectUrl = URL.createObjectURL(file);
+
+    try {
+      const image = await this.loadImage(objectUrl);
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth || image.width;
+      canvas.height = image.naturalHeight || image.height;
+
+      const context = canvas.getContext('2d');
+      if (!context) {
+        throw new Error('Unable to prepare image for upload.');
+      }
+
+      context.drawImage(image, 0, 0);
+
+      const blob = await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob((result) => resolve(result), 'image/jpeg', 0.92);
+      });
+
+      if (!blob) {
+        throw new Error('Unable to convert image for upload.');
+      }
+
+      const safeBaseName = (file.name || 'image').replace(/\.[^.]+$/, '');
+      return new File([blob], `${safeBaseName}.jpg`, { type: 'image/jpeg' });
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+    }
+  }
+
+  private async prepareUploadFile(file: File): Promise<File> {
+    if (!this.isHeicLikeFile(file)) {
+      return file;
+    }
+
+    try {
+      return await this.convertImageToJpeg(file);
+    } catch (error) {
+      console.error(error);
+      throw new Error('This image format is not supported on your device. Please select another image.');
+    }
   }
 
   private async buildPreviewUrl(file: File): Promise<SafeUrl> {
@@ -242,7 +310,7 @@ export class MyServicesComponent implements OnInit {
     this.companyLogoPreviewUrl = dataUrl;
   }
 
-  onCompanyLogoSelected(event: Event): void {
+  async onCompanyLogoSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0] || null;
 
@@ -256,8 +324,16 @@ export class MyServicesComponent implements OnInit {
       return;
     }
 
-    this.companyLogoFile = file;
-    this.setCompanyLogoPreview(file);
+    try {
+      const preparedFile = await this.prepareUploadFile(file);
+      this.companyLogoFile = preparedFile;
+      await this.setCompanyLogoPreview(preparedFile);
+    } catch (error) {
+      this.toastr.error(error instanceof Error ? error.message : 'Unable to process the company logo.');
+      this.companyLogoFile = null;
+      this.companyLogoPreviewUrl = '';
+    }
+
     input.value = '';
   }
 
@@ -292,10 +368,16 @@ export class MyServicesComponent implements OnInit {
       this.imageError = `You can upload only ${remainingSlots} more image${remainingSlots === 1 ? '' : 's'}.`;
     }
 
-    const selectedWithPreview = await Promise.all(acceptedFiles.map(async (file) => ({
-      file,
-      previewUrl: await this.buildPreviewUrl(file)
-    })));
+    const selectedWithPreview = await Promise.all(
+      acceptedFiles.map(async (file) => {
+        const preparedFile = await this.prepareUploadFile(file);
+        return {
+          file: preparedFile,
+          previewUrl: await this.buildPreviewUrl(preparedFile)
+        };
+      })
+    );
+
     this.selectedImages = [...this.selectedImages, ...selectedWithPreview];
     input.value = '';
   }
@@ -365,6 +447,7 @@ export class MyServicesComponent implements OnInit {
     this.selectedServiceId = '';
     this.resetImageState();
     this.form.reset({
+      user_service_id: '',
       service_id: '',
       category_name: '',
       subcategory_name: '',
@@ -385,6 +468,7 @@ export class MyServicesComponent implements OnInit {
   closeModal(): void {
     this.resetImageState();
     this.form.reset({
+      user_service_id: '',
       service_id: '',
       category_name: '',
       subcategory_name: '',
@@ -423,30 +507,38 @@ export class MyServicesComponent implements OnInit {
     }
 
     this.isLoadingForm = true;
+    const rawValue = this.form.getRawValue();
+    const userServiceId = String(rawValue.user_service_id || this.selectedServiceId || '').trim();
+
+    if (this.mode === 'update' && !userServiceId) {
+      this.isLoadingForm = false;
+      this.toastr.error('User Service ID is missing. Please reopen the edit form and try again.');
+      return;
+    }
 
     const serviceData = new FormData();
 
     if (this.mode == 'update') {
-      serviceData.set('user_service_id', this.selectedServiceId);
+      serviceData.append('user_service_id', userServiceId);
 
       if (this.removedImageIds.length > 0) {
-        serviceData.set('delete_image_ids', this.removedImageIds.join(','));
+        serviceData.append('delete_image_ids', this.removedImageIds.join(','));
       }
     } else {
-      serviceData.set('user_id', this.userId);
-      serviceData.set('service_id', this.form.value.service_id);
+      serviceData.append('user_id', this.userId);
+      serviceData.append('service_id', this.form.value.service_id);
     }
 
-    serviceData.set('description', this.form.value.description);
-    serviceData.set('company_name', this.form.value.company_name || '');
-    serviceData.set('country_code', this.form.value.country_code || this.mobileCountryCode);
-    serviceData.set('mobile', this.normalizePhoneNumber(this.form.value.mobile));
-    serviceData.set('email', this.form.value.email);
-    serviceData.set('website', this.form.value.website);
-    serviceData.set('location', this.form.value.location);
+    serviceData.append('description', rawValue.description);
+    serviceData.append('company_name', rawValue.company_name || '');
+    serviceData.append('country_code', rawValue.country_code || this.mobileCountryCode);
+    serviceData.append('mobile', this.normalizePhoneNumber(rawValue.mobile));
+    serviceData.append('email', rawValue.email);
+    serviceData.append('website', rawValue.website);
+    serviceData.append('location', rawValue.location);
 
     if (this.companyLogoFile) {
-      serviceData.set('company_logo', this.companyLogoFile, this.companyLogoFile.name);
+      serviceData.append('company_logo', this.companyLogoFile);
     }
 
     this.selectedImages.forEach(image => {
@@ -458,15 +550,17 @@ export class MyServicesComponent implements OnInit {
         ? '/updateUserService'
         : '/createService';
 
-    this.sharedService.postAPI(endpoint, serviceData).subscribe({
+    this.sharedService.postAPIFD(endpoint, serviceData).subscribe({
       next: (response: any) => {
         this.isLoadingForm = false;
 
-        if (response?.success === '1') {
+        if (response?.success == '1') {
           this.toastr.success(response.message);
           this.closeModal();
           this.getList();
-        } else {
+        }
+        else {
+          this.toastr.error(this.selectedServiceId);
           this.toastr.error(response?.message || 'Unable to save service');
         }
       },
@@ -478,30 +572,42 @@ export class MyServicesComponent implements OnInit {
     });
   }
 
+  
+
   onEdit(service: any): void {
-    // debugger
     this.mode = 'update';
-    this.selectedServiceId = service?.user_service_id;
+    this.selectedServiceId = String(service?.user_service_id || '');
     this.resetImageState();
     this.existingImages = this.buildExistingImages(service);
     this.companyLogoPreviewUrl = this.getCompanyLogoUrl(service);
+    const dialCode = this.normalizeDialCode(
+      this.pickFirstValue(service?.country_code, service?.dial_code, service?.mobile_country_code)
+    ) || this.mobileCountryCode;
     this.form.patchValue({
+      user_service_id: this.selectedServiceId,
       service_id: service?.service_id || '',
       category_name: service?.category_name || '',
       subcategory_name: service?.subcategory_name || '',
       // price: service?.price || '',
       company_name: service?.company_name || '',
-      description: service?.description || service?.provider_description || '',
+      description: this.pickFirstValue(
+        service?.description,
+        service?.provider_description,
+        service?.service_description
+      ) || '',
       mobile: service?.mobile || '',
-      country_code: this.normalizeDialCode(service?.country_code || service?.country_code || service?.dial_code) || this.mobileCountryCode,
+      country_code: dialCode,
       email: service?.email || '',
       website: service?.website || '',
       location: service?.location || '',
       latitude: service?.latitude || '',
       longitude: service?.longitude || ''
     });
-    this.mobileCountryCode = this.normalizeDialCode(service?.country_code || service?.country_code || service?.dial_code) || this.mobileCountryCode;
+    this.mobileCountryCode = dialCode;
     this.mobileCountryISO = this.dialCodeToCountryISO(this.mobileCountryCode);
+    if (service?.service_id) {
+      this.setServiceDetails(service.service_id);
+    }
     this.setServiceControlState();
   }
 
@@ -515,6 +621,222 @@ export class MyServicesComponent implements OnInit {
     this.mobileCountryISO = this.dialCodeToCountryISO(this.mobileCountryCode);
     this.form.get('country_code')?.setValue(this.mobileCountryCode);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+// onSave(): void {
+//   this.form.markAllAsTouched();
+
+//   if (this.form.invalid) {
+//     return;
+//   }
+
+//   if (this.getCurrentImageCount() > this.maxImages) {
+//     this.toastr.error(`You can upload up to ${this.maxImages} images.`);
+//     return;
+//   }
+
+//   this.isLoadingForm = true;
+
+//   const rawValue = this.form.getRawValue();
+
+//   const userServiceId = String(
+//     rawValue.user_service_id || this.selectedServiceId || ''
+//   ).trim();
+
+//   if (this.mode === 'update' && !userServiceId) {
+//     this.isLoadingForm = false;
+
+//     this.toastr.error(
+//       'User Service ID is missing. Please reopen the edit form and try again.'
+//     );
+
+//     return;
+//   }
+
+//   const serviceData = new FormData();
+
+//   // =========================
+//   // UPDATE / CREATE DATA
+//   // =========================
+
+//   if (this.mode === 'update') {
+//     serviceData.append('user_service_id', userServiceId);
+    
+
+//     if (this.removedImageIds.length > 0) {
+//       serviceData.append(
+//         'delete_image_ids',
+//         this.removedImageIds.join(',')
+//       );
+//     }
+//   } else {
+//     serviceData.append('user_id', this.userId);
+//     serviceData.append(
+//       'service_id',
+//       this.form.value.service_id
+//     );
+//   }
+
+//   // =========================
+//   // FORM DATA
+//   // =========================
+
+//   serviceData.append(
+//     'description',
+//     rawValue.description || ''
+//   );
+
+//   serviceData.append(
+//     'company_name',
+//     rawValue.company_name || ''
+//   );
+
+//   serviceData.append(
+//     'country_code',
+//     rawValue.country_code || this.mobileCountryCode || ''
+//   );
+
+//   serviceData.append(
+//     'mobile',
+//     this.normalizePhoneNumber(rawValue.mobile) || ''
+//   );
+
+//   serviceData.append(
+//     'email',
+//     rawValue.email || ''
+//   );
+
+//   serviceData.append(
+//     'website',
+//     rawValue.website || ''
+//   );
+
+//   serviceData.append(
+//     'location',
+//     rawValue.location || ''
+//   );
+
+//   // =========================
+//   // COMPANY LOGO
+//   // =========================
+
+//   if (this.companyLogoFile) {
+//     serviceData.append(
+//       'company_logo',
+//       this.companyLogoFile,
+//       this.companyLogoFile.name
+//     );
+//   }
+
+//   // =========================
+//   // MULTIPLE IMAGES
+//   // =========================
+
+//   this.selectedImages.forEach((image: any) => {
+//     if (image?.file) {
+//       serviceData.append(
+//         'images[]',
+//         image.file,
+//         image.file.name
+//       );
+//     }
+//   });
+
+//   const endpoint =
+//     this.mode === 'update'
+//       ? '/updateUserService'
+//       : '/createService';
+
+//   // =====================================================
+//   // IPHONE DEBUG
+//   // =====================================================
+
+//   const debugData: any = {
+//     mode: this.mode,
+//     endpoint: endpoint,
+//     selectedServiceId: this.selectedServiceId,
+//     userServiceId: userServiceId,
+//     isFormData: serviceData instanceof FormData,
+//     formData: {}
+//   };
+
+//   serviceData.forEach((value: any, key: string) => {
+
+//     if (value instanceof File) {
+//       debugData.formData[key] =
+//         `FILE => name: ${value.name}, type: ${value.type}, size: ${value.size}`;
+//     } else {
+//       debugData.formData[key] = value;
+//     }
+
+//   });
+
+//   // Show complete FormData on iPhone
+//   alert(
+//     'API DEBUG\n\n' +
+//     JSON.stringify(debugData, null, 2)
+//   );
+
+//   // =====================================================
+//   // API CALL
+//   // =====================================================
+
+//   this.sharedService.postAPIFD(
+//     endpoint,
+//     serviceData
+//   ).subscribe({
+
+//     next: (response: any) => {
+
+//       this.isLoadingForm = false;
+
+//       if (response?.success == '1') {
+
+//         this.toastr.success(
+//           response.message
+//         );
+
+//         this.closeModal();
+//         this.getList();
+
+//       } else {
+
+//         this.toastr.error(
+//           `Selected Service ID: ${this.selectedServiceId}`
+//         );
+
+//         this.toastr.error(
+//           response?.message ||
+//           'Unable to save service'
+//         );
+//       }
+//     },
+
+//     error: (error) => {
+
+//       this.isLoadingForm = false;
+
+//       console.error(
+//         'Update Service API Error:',
+//         error
+//       );
+
+//       this.toastr.error(
+//         'Something went wrong. Please try again.'
+//       );
+//     }
+//   });
+// }
 
 
 }

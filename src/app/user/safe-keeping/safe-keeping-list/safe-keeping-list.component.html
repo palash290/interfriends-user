@@ -5,14 +5,14 @@
 <section class="top-space container">
   <div class="row padd-t-b pb-0 d-flex align-items-center">
     <div class="col-lg-4 offset-lg-0 mb-lg-0 mb-5 d-md-block d-none">
-      <div class="d-flex align-items-center">
+      <!-- <div class="d-flex align-items-center">
         <div class="square-box bg-blue"></div>
         <h6 class="mb-0 text-show">Deposit</h6>
       </div>
       <div class="d-flex align-items-center mt-4">
         <div class="square-box bg-red"></div>
         <h6 class="mb-0 text-show">Withdrawals</h6>
-      </div>
+      </div> -->
     </div>
     <div class="col-lg-4 offset-lg-0 col-md-6 offset-md-3 saving-acc-box">
       <div class="inner-box">
@@ -34,14 +34,14 @@
         Money</a>
     </div>
     <div class="col-md-3 offset-md-3 mt-lg-0 mt-5 d-md-none d-block">
-      <div class="d-flex align-items-center">
+      <!-- <div class="d-flex align-items-center">
         <div class="square-box bg-blue"></div>
         <h6 class="mb-0 text-show">Credits</h6>
       </div>
       <div class="d-flex align-items-center mt-4">
         <div class="square-box bg-red"></div>
         <h6 class="mb-0 text-show">Withdrawals</h6>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
@@ -51,14 +51,22 @@
   <div class="row" *ngIf="isLoading">
     <mat-spinner class="mx-auto"></mat-spinner>
   </div>
+
   <div class="row" *ngIf="safeKeepingList.length > 0 && !isLoading">
     <div class="col-lg-4 col-sm-6" *ngFor="let list of safeKeepingList; let i = index">
-      <div class="box-line-white" [ngClass]="[
+      <div class="box-line-white position-relative" [ngClass]="[
           list.pyment_type === '2' ? 'blue-line' : '',
           list.pyment_type === '1' ? 'red-line' : ''
         ]">
-        <div class="">
-          <img src="assets/images/divided.png" class="img-fluid" />
+
+        <div class="d-flex justify-content-between gap-1 mt-2">
+          <div *ngIf="list.pyment_type == '1'" class="status-badge badge-pending h-fit-content">Withdrawals</div>
+          <div *ngIf="list.pyment_type == '2'" class="status-badge badge-paid h-fit-content">Credits</div>
+
+          <div class="">
+            <img src="assets/images/divided.png" class="img-fluid" style="width: 50px;"/>
+          </div>
+          <div> <span class="d-none">{{list?.month}}</span></div>
         </div>
         <h4 class="main-hding">{{ list.amount| currency:'GBP': 'symbol' : '1.0-0' }}</h4>
         <p class="sub-para">{{ list.created_at }}</p>

@@ -603,6 +603,22 @@ export class UserService {
 
 
 
+  dividendList(group_id: string, user_id: string, payment_status: string): any {
+    const authData = new FormData();
+    authData.append('group_id', group_id);
+    authData.append('user_id', user_id);
+    authData.append('payment_status', payment_status);
+
+    return this.http.post<{
+      success: string,
+      message: string,
+      lists: any,
+      totalAmount: string;
+    }>(
+      API_URL + '/myDividendList', authData
+    );
+  }
+
   investmentList(group_id: string, user_id: string, payment_status: string): any {
     const authData = new FormData();
     authData.append('group_id', group_id);
@@ -812,7 +828,10 @@ export class UserService {
     userData.append('address_line_2', address_line_2);
     userData.append('post_code', post_code);
     userData.append('city', city);
-    userData.append('image', image);
+    if (image) {
+      userData.append('image', image);
+    }
+    // userData.append('image', image);
     userData.append('employement_type', employement_type);
 
     return this.http.post<{
@@ -874,13 +893,29 @@ export class UserService {
     userData.append('user_id', user_id);
     userData.append('group_cycle_id', group_cycle_id);
     userData.append('group_id', group_id);
-    userData.append('note', pfNote);
+    userData.append('notes', pfNote);
     userData.append('requested_by', 'user');
     return this.http.post<{
       success: string;
       message: string;
     }>(
       API_URL + '/Admin/addPayout', userData
+    );
+  }
+
+  addPayoutDev(
+    user_id: string,
+    dividendId: string
+  ): any {
+    const userData = new FormData();
+    userData.append('user_id', user_id);
+
+    userData.append('dividend_user_id', dividendId);
+    return this.http.post<{
+      success: string;
+      message: string;
+    }>(
+      API_URL + '/requestDividendPayout', userData
     );
   }
 
@@ -903,7 +938,7 @@ export class UserService {
       success: string;
       message: string;
     }>(
-      API_URL + '/Admin/addSafeKeeping', userData
+      API_URL + '/Admin/addSafeKeeping123', userData
     );
   }
 

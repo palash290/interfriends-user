@@ -114,7 +114,6 @@ export class UserProfileComponent implements OnInit {
 
 
   onSave(): void {
-    console.log('save');
     this.form.markAllAsTouched();
 
     if (this.form.invalid) {
@@ -122,7 +121,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     this.isLoadingUpdate = true;
-    console.log("out", this.isLoadingUpdate)
+    // console.log("out", this.isLoadingUpdate);
 
     const mobileNumber = this.normalizePhoneNumber(this.form.value.mobile_number.number);
     const homeNumber = this.normalizePhoneNumber(this.form.value.home_number.number);

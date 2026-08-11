@@ -6,8 +6,8 @@ import { HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HomePageComponent } from './home-page/home-page.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { HeaderComponent } from './layout/header/header.component';
+// import { FooterComponent } from './layout/footer/footer.component';
+// import { HeaderComponent } from './layout/header/header.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -48,8 +48,8 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
   ],
   declarations: [
     HomePageComponent,
-    FooterComponent,
-    HeaderComponent,
+    // FooterComponent,
+    // HeaderComponent,
     LoginComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,

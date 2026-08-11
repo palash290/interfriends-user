@@ -1,4 +1,3 @@
-
 <app-header></app-header>
 <a routerLink="/user/investmentList" class="back_navigator">
   <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
@@ -9,46 +8,109 @@
       <div class="inner-box">
         <h6 class="extra-hding">Profit Account</h6>
         <h2 class="main-hding">
-          <span *ngIf="!isLoading">{{totalAmount| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+          <span *ngIf="!isLoading">{{totalAmount| currency:'GBP': 'symbol'}}</span>
           <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
         </h2>
-        <p class="sub-para m-0">Total dividend earned</p>
+        <p class="sub-para m-0">Total Dividend Earned</p>
       </div>
     </div>
+
+    <div class="d-flex align-items-center justify-content-end mb-4 flex-wrap" style="gap:10px">
+      <button type="button" class="btn bg-success float-right text-white   px-4" data-toggle="modal"
+        data-target="#payoutModal" style="white-space: nowrap;" (click)="showPayoutModal()">
+        <div class="fa fa-credit-card text-white mr-1"></div>
+        Payout Request
+      </button>
+    </div>
+
   </div>
 </section>
 
 <section class="savings-box container">
   <h2 class="section-title">Investment Dividend</h2>
   <div class="row" *ngIf="isLoading">
-    <mat-spinner  class="mx-auto"></mat-spinner>
+    <mat-spinner class="mx-auto"></mat-spinner>
   </div>
   <div class="row" *ngIf="lists.length > 0 && !isLoading">
     <div class="col-lg-4 col-sm-6" *ngFor="let data of lists; let i = index">
-      <div class="box-line-white blue-line">
-        <div class="">
-          <img src="assets/images/building.png" class="img-fluid">
+      <div class="box-line-white position-relative" [ngClass]="[
+    data.status === '1' ? 'green-line' : '',
+    data.status === '2' ? 'yellow-line' : '',
+    data.status === '4' ? 'grey-line' : '',
+    data.status === '3' ? 'red-line' : ''
+    ]">
+
+        <div class="d-flex justify-content-between gap-1 mt-2">
+          <div *ngIf="data.status == '1'" class="status-badge badge-paid h-fit-content et_badge_top">Paid</div>
+          <div *ngIf="data.status == '2'" class="status-badge badge-late h-fit-content et_badge_top">Pending</div>
+          <div class="mt-4 mx-auto">
+            <img src="assets/images/building.png" class="img-fluid">
+          </div>
+          <div> <span class=""></span></div>
         </div>
-        <h4 class="main-hding">{{data.amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
-        <p class="sub-para">{{data.created_at| date: 'dd MMM yyyy'}}</p>
+
+
+        <h4 class="main-hding">{{data.total_dividend| currency:'GBP': 'symbol'}}</h4>
+        <p class="sub-para">{{data.dividend_year}}</p>
         <p class="extra-para">{{data.description}}</p>
       </div>
     </div>
-    <div class="row" *ngIf="lists.length <= 0 && !isLoading">
-      <div *ngIf="isLoading">
-        <p>Data Not Found</p>
-      </div>
-    </div>
+
   </div>
 
-
-
+  <div class="row" *ngIf="!isLoading && lists.length === 0">
+    <div class="col-12 text-center">
+      <p>Data Not Found</p>
+    </div>
+  </div>
 
 </section>
 <app-sub-menu></app-sub-menu>
 <app-mobile-menu></app-mobile-menu>
 <app-footer></app-footer>
 
+<!-- payout model popup start -->
+<div class="modal fade show" id="payoutModal" tabindex="-1" role="dialog" aria-labelledby="payoutModalLabel"
+  aria-hidden="true" [ngStyle]="{'display':display1}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="dividendYearSelect"><b>Dividend Year</b></label>
+          <select id="dividendYearSelect" class="form-control" [(ngModel)]="selectedDividendYear"
+            name="selectedDividendYear" (change)="onDividendYearChange()" required>
+            <option value="">Select dividend year</option>
+            <option *ngFor="let item of dividendYearOptions" [value]="item.year">
+              {{ item.year }}
+            </option>
+          </select>
+        </div>
 
+        <div class="form-group" *ngIf="selectedDividend">
+          <label><b>Total Dividend</b></label>
+          <input type="text" class="form-control" [value]="selectedDividend.totalDividend | currency:'GBP':'symbol'"
+            readonly>
+        </div>
 
+        <p class="mb-0">Confirm to make bulk payment to Member?</p>
 
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" [disabled]="!selectedDividend || isPayoutLoading" (click)="onPayout()">
+          <span *ngIf="!isPayoutLoading">Confirm</span>
+          <span *ngIf="isPayoutLoading">
+            <i class="fa fa-refresh fa-spin"></i>
+          </span>
+        </button>
+        <button class="btn btn-secondary" type="button" data-dismiss="modal" id="closepayout"
+          (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- payout model popup end -->

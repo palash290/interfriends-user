@@ -66,65 +66,53 @@
                                  <a class="d-block py-3 position-relative" role="button" data-toggle="collapse"
                                     data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
                                     aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
-                                    <div class="row d-flex align-items-center">
-                                       <div class="col-sm-3 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Loan Type</h6>
-                                                <h5 class="loan-hl-text">
-                                                   <span>Welfare</span>
-                                                </h5>
-                                             </div>
-                                             <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Start Date</h6>
-                                                <h5 class="loan-hl-text">{{data.start_date}}</h5>
-                                             </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                       <div class="ct_grid_7">
+                                          <div>
+                                             <h6 class="loan-sm-text text-center">Loan Type</h6>
+                                             <h5 class="loan-hl-text text-center">
+                                                <span>Welfare</span>
+                                             </h5>
                                           </div>
-                                       </div>
-                                       <div class="col-sm-3 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Total to pay</h6>
-                                                <h5 class="ct_textcolor">{{data.total_payment | currency:'GBP': 'symbol'
-                                                   : '1.0-0'}}</h5>
-                                             </div>
-                                             <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Amt Paid</h6>
-                                                <h5 class="loan-hl-text">{{data.paid_amount | currency:'GBP': 'symbol' :
-                                                   '1.0-0'}}</h5>
-                                             </div>
+                                          <div>
+                                             <h6 class="loan-sm-text text-center">Start Date</h6>
+                                             <h5 class="loan-hl-text text-center">{{data.start_date}}</h5>
                                           </div>
-                                       </div>
-                                       <div class="col-sm-2 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-12 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Remaining Amt</h6>
-                                                <h5 class="ct_textcolor">{{data.total_payment - data.paid_amount |
-                                                   currency:'GBP': 'symbol' : '1.0-0'}}</h5>
-                                             </div>
-                                             <!-- <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Interest Rate</h6>
-                                                <h5 class="loan-hl-text">@{{data.interest_rate}}%</h5>
-                                             </div> -->
+                                          <div>
+                                             <h6 class="loan-sm-text text-center">Total to pay</h6>
+                                             <h5 class="ct_textcolor text-center">{{data.total_payment | currency:'GBP':
+                                                'symbol'
+                                                : '1.0-0'}}</h5>
                                           </div>
-                                       </div>
-                                       <div class="col-sm-3">
-                                          <div class="row">
-                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Loan ID</h6>
-                                                <h5 class="loan-hl-text">{{data.id}}</h5>
-                                             </div>
-                                             <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Term</h6>
-                                                <h5 class="loan-hl-text">{{data.tenure}} months</h5>
-                                             </div>
+                                          <div>
+                                             <h6 class="loan-sm-text text-center">Amt Paid</h6>
+                                             <h5 class="loan-hl-text text-center">{{data.paid_amount | currency:'GBP':
+                                                'symbol' :
+                                                '1.0-0'}}</h5>
                                           </div>
+                                          <div>
+                                             <h6 class="loan-sm-text text-center">Remaining Amt</h6>
+                                             <h5 class="ct_textcolor text-center">{{data.total_payment -
+                                                data.paid_amount |
+                                                currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                          </div>
+                                          <div>
+                                             <h6 class="loan-sm-text text-center">Term</h6>
+                                             <h5 class="loan-hl-text text-center">{{data.tenure}} months</h5>
+                                          </div>
+
+
+
+                                          <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
                                        </div>
-                                       <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
+                                       <button type="button"
+                                          class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+                                          <i class="fa fa-info-circle" aria-hidden="true"
+                                             style="padding-bottom:10px"></i>
+                                       </button>
+
                                     </div>
-                                    <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
-                                       <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
-                                    </button>
+
                                  </a>
                               </h4>
                            </div>
@@ -208,10 +196,10 @@
                                                 <h6 class="loan-sm-text">Status</h6>
                                                 <h5 class="loan-hl-text">Fully Paid</h5>
                                              </div>
-                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
+                                             <!-- <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
                                                 <h6 class="loan-sm-text">Loan ID</h6>
                                                 <h5 class="loan-hl-text">{{data.id}}</h5>
-                                             </div>
+                                             </div> -->
                                              <div class="col-lg-4 col-sm-12 col-12 mb-sm-0 mb-2">
                                                 <h6 class="loan-sm-text">Loan Term</h6>
                                                 <h5 class="loan-hl-text">{{data.month}} Months</h5>

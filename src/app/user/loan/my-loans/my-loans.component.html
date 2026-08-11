@@ -54,68 +54,49 @@
                                  <a class="position-relative" role="button" data-toggle="collapse"
                                     data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
                                     aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
-                                    <div class="row d-flex align-items-center position-relative">
-                                       <div class="col-sm-3 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Loan Type</h6>
-                                                <h5 class="loan-hl-text">
-                                                   <span *ngIf="data.loan_type === '1'">Simple Loan</span>
-                                                   <span *ngIf="data.loan_type === '2'">Help2 Buy</span>
-                                                   <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
-                                                   <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit
-                                                      Card</span>
-                                                   <span *ngIf="data.loan_type === '5'">Help Me Pay Something
-                                                      Else</span>
-                                                   <span *ngIf="data.loan_type === '6'">Help Me Raise My House
-                                                      Deposit</span>
-                                                </h5>
-                                             </div>
-                                             <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Start Date</h6>
-                                                <h5 class="loan-hl-text">{{data.start_date}}</h5>
-                                             </div>
-                                          </div>
+                                    <div class="ct_grid_6 position-relative">
+                                       <div>
+                                          <h6 class="loan-sm-text text-center">Loan Type</h6>
+                                          <h5 class="loan-hl-text text-center">
+                                             <span *ngIf="data.loan_type === '1'">Simple Loan</span>
+                                             <span *ngIf="data.loan_type === '2'">Help2 Buy</span>
+                                             <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
+                                             <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit
+                                                Card</span>
+                                             <span *ngIf="data.loan_type === '5'">Help Me Pay Something
+                                                Else</span>
+                                             <span *ngIf="data.loan_type === '6'">Help Me Raise My House
+                                                Deposit</span>
+                                          </h5>
                                        </div>
-                                       <div class="col-sm-3 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Total to pay</h6>
-                                                <h5 class="ct_textcolor">{{data.total_payment | currency:'GBP': 'symbol'
-                                                   : '1.0-0'}}</h5>
-                                             </div>
-                                             <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Amt Paid</h6>
-                                                <h5 class="loan-hl-text">{{data.paid_amount | currency:'GBP': 'symbol' :
-                                                   '1.0-0'}}</h5>
-                                             </div>
-                                          </div>
+                                       <div>
+                                          <h6 class="loan-sm-text text-center">Start Date</h6>
+                                          <h5 class="loan-hl-text text-center">{{data.start_date}}</h5>
                                        </div>
-                                       <div class="col-sm-2 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-12 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Remaining Amt</h6>
-                                                <h5 class="ct_textcolor">{{data.total_payment - data.paid_amount |
-                                                   currency:'GBP': 'symbol' : '1.0-0'}}</h5>
-                                             </div>
-                                             <!-- <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Interest Rate</h6>
-                                                <h5 class="loan-hl-text">@{{data.interest_rate}}%</h5>
-                                             </div> -->
-                                          </div>
+                                       <div>
+                                          <h6 class="loan-sm-text text-center">Total to pay</h6>
+                                          <h5 class="ct_textcolor text-center">{{data.total_payment | currency:'GBP':
+                                             'symbol'
+                                             : '1.0-0'}}</h5>
                                        </div>
-                                       <div class="col-sm-3">
-                                          <div class="row">
-                                             <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Loan ID</h6>
-                                                <h5 class="loan-hl-text">{{data.id}}</h5>
-                                             </div>
-                                             <div class="col-lg-6 col-sm-12 col-6">
-                                                <h6 class="loan-sm-text">Term</h6>
-                                                <h5 class="loan-hl-text">{{data.tenure}} months</h5>
-                                             </div>
-                                          </div>
+                                       <div>
+                                          <h6 class="loan-sm-text text-center">Amt Paid</h6>
+                                          <h5 class="loan-hl-text text-center">{{data.paid_amount | currency:'GBP':
+                                             'symbol' :
+                                             '1.0-0'}}</h5>
                                        </div>
+                                       <div>
+                                          <h6 class="loan-sm-text text-center">Remaining Amt</h6>
+                                          <h5 class="ct_textcolor text-center">{{data.total_payment - data.paid_amount |
+                                             currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                       </div>
+                                       <div>
+                                          <h6 class="loan-sm-text text-center">Term</h6>
+                                          <h5 class="loan-hl-text text-center">{{data.tenure}} months</h5>
+                                       </div>
+
+
+
                                        <!-- <img src="assets/images/caret-red.png" height="10px" width="10px" class="caret-open"> -->
                                     </div>
 
@@ -181,34 +162,30 @@
                                  <a class="position-relative" role="button" data-toggle="collapse"
                                     data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
                                     aria-controls="collapseOne" (click)="onAddHistory('2', i, data.id)">
-                                    <div class="row d-flex align-items-center position-relative">
-                                       <div class="col-sm-5 mb-sm-0 mb-4">
-                                          <div class="row">
-                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4">
-                                                <h6 class="loan-sm-text">Loan Type</h6>
-                                                <h5 class="loan-hl-text">
-                                                   <span *ngIf="data.loan_type === '1'">Simple Loan</span>
-                                                   <span *ngIf="data.loan_type === '2'">Car Insurance Loan</span>
-                                                   <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
-                                                   <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit
-                                                      Card</span>
-                                                   <span *ngIf="data.loan_type === '5'">Help Me Pay Something
-                                                      Else</span>
-                                                   <span *ngIf="data.loan_type === '6'">Help Me Raise My House
-                                                      Deposit</span>
-                                                </h5>
-                                             </div>
-                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                                <h6 class="loan-sm-text">Start Date</h6>
-                                                <h5 class="loan-hl-text">{{data.start_date}}</h5>
-                                             </div>
-                                             <div class="col-lg-4 col-sm-12 col-12 mb-sm-0 mb-2">
-                                                <h6 class="loan-sm-text">End Date</h6>
-                                                <h5 class="loan-hl-text">{{data.end_date}}</h5>
-                                             </div>
-                                          </div>
+                                    <div class="ct_grid_6 position-relative">
+                                       <div>
+                                          <h6 class="loan-sm-text">Loan Type</h6>
+                                          <h5 class="loan-hl-text">
+                                             <span *ngIf="data.loan_type === '1'">Simple Loan</span>
+                                             <span *ngIf="data.loan_type === '2'">Car Insurance Loan</span>
+                                             <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
+                                             <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit
+                                                Card</span>
+                                             <span *ngIf="data.loan_type === '5'">Help Me Pay Something
+                                                Else</span>
+                                             <span *ngIf="data.loan_type === '6'">Help Me Raise My House
+                                                Deposit</span>
+                                          </h5>
                                        </div>
-                                       <div class="col-sm-2 mb-sm-0 mb-4 center-box">
+                                       <div>
+                                          <h6 class="loan-sm-text">Start Date</h6>
+                                          <h5 class="loan-hl-text">{{data.start_date}}</h5>
+                                       </div>
+                                       <div>
+                                          <h6 class="loan-sm-text">End Date</h6>
+                                          <h5 class="loan-hl-text">{{data.end_date}}</h5>
+                                       </div>
+                                       <div class=" center-box">
                                           <div class="img-loan-head">
                                              <img src="assets/images/loans.png" class="img-fluid">
                                           </div>
@@ -217,21 +194,17 @@
                                              '1.0-0'}}</h4>
                                           <h4 class="loan-sm-text mt-2">@{{data.interest_rate}}%</h4>
                                        </div>
-                                       <div class="col-sm-5">
-                                          <div class="row">
-                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                                                <h6 class="loan-sm-text">Status</h6>
-                                                <h5 class="loan-hl-text">Fully Paid</h5>
-                                             </div>
-                                             <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
+                                       <div>
+                                          <h6 class="loan-sm-text">Status</h6>
+                                          <h5 class="loan-hl-text">Fully Paid</h5>
+                                       </div>
+                                       <!-- <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
                                                 <h6 class="loan-sm-text">Loan ID</h6>
                                                 <h5 class="loan-hl-text">{{data.id}}</h5>
-                                             </div>
-                                             <div class="col-lg-4 col-sm-12 col-12 mb-sm-0 mb-2">
-                                                <h6 class="loan-sm-text">Loan Term</h6>
-                                                <h5 class="loan-hl-text">{{data.tenure}} Months</h5>
-                                             </div>
-                                          </div>
+                                             </div> -->
+                                       <div>
+                                          <h6 class="loan-sm-text">Loan Term</h6>
+                                          <h5 class="loan-hl-text">{{data.tenure}} Months</h5>
                                        </div>
                                        <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
                                     </div>
@@ -296,47 +269,39 @@
                         <div class="box-line-white orange-line rounded-0 py-4 click-accordion"
                            *ngFor="let data of laonPending">
                            <div>
-                              <div class="row d-flex align-items-center pl-lg-5 pl-0">
-                                 <div class="col-sm-6 mb-sm-0 mb-4">
-                                    <div class="row">
-                                       <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4">
-                                          <h6 class="loan-sm-text">Loan Type</h6>
-                                          <h5 class="loan-hl-text">
-                                             <span *ngIf="data.loan_type === '1'">Simple Loan</span>
-                                             <span *ngIf="data.loan_type === '2'">Car Insurance Loan</span>
-                                             <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
-                                             <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit Card</span>
-                                             <span *ngIf="data.loan_type === '5'">Help Me Pay Something Else</span>
-                                             <span *ngIf="data.loan_type === '6'">Help Me Raise My House Deposit</span>
-                                          </h5>
-                                       </div>
-                                       <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                                          <h6 class="loan-sm-text">Application Date</h6>
-                                          <h5 class="loan-hl-text">{{data.created_at}}</h5>
-                                       </div>
-                                    </div>
+                              <div class="ct_grid_5 ">
+                                 <div>
+                                    <h6 class="loan-sm-text">Loan Type</h6>
+                                    <h5 class="loan-hl-text">
+                                       <span *ngIf="data.loan_type === '1'">Simple Loan</span>
+                                       <span *ngIf="data.loan_type === '2'">Car Insurance Loan</span>
+                                       <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
+                                       <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit Card</span>
+                                       <span *ngIf="data.loan_type === '5'">Help Me Pay Something Else</span>
+                                       <span *ngIf="data.loan_type === '6'">Help Me Raise My House Deposit</span>
+                                    </h5>
                                  </div>
-                                 <div class="col-sm-6">
-                                    <div class="row">
-                                       <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                                          <h6 class="loan-sm-text">Loan Amt</h6>
-                                          <h5 class="loan-hl-text">{{data.loan_amount | currency:'GBP': 'symbol' :
-                                             '1.0-0'}}</h5>
-                                       </div>
-                                       <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                                          <h6 class="loan-sm-text">Term</h6>
-                                          <h5 class="loan-hl-text">{{data.tenure}} Month</h5>
-                                       </div>
-                                       <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                                          <h6 class="loan-sm-text">Status</h6>
-                                          <h5 class="loan-hl-text text-danger">
-                                             <span *ngIf="data.status === '1'">Pending</span>
-                                             <span *ngIf="data.status === '4'">Accepted</span>
-                                             <span *ngIf="data.status === '3'">Declined</span>
-                                             <span *ngIf="data.status === '2'">Complete</span>
-                                          </h5>
-                                       </div>
-                                    </div>
+                                 <div>
+                                    <h6 class="loan-sm-text">Application Date</h6>
+                                    <h5 class="loan-hl-text">{{data.created_at}}</h5>
+                                 </div>
+                                 <div>
+                                    <h6 class="loan-sm-text">Loan Amt</h6>
+                                    <h5 class="loan-hl-text">{{data.loan_amount | currency:'GBP': 'symbol' :
+                                       '1.0-0'}}</h5>
+                                 </div>
+                                 <div>
+                                    <h6 class="loan-sm-text">Term</h6>
+                                    <h5 class="loan-hl-text">{{data.tenure}} Month</h5>
+                                 </div>
+                                 <div>
+                                    <h6 class="loan-sm-text">Status</h6>
+                                    <h5 class="loan-hl-text text-danger">
+                                       <span *ngIf="data.status === '1'">Pending</span>
+                                       <span *ngIf="data.status === '4'">Accepted</span>
+                                       <span *ngIf="data.status === '3'">Declined</span>
+                                       <span *ngIf="data.status === '2'">Complete</span>
+                                    </h5>
                                  </div>
                               </div>
                            </div>

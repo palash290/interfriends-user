@@ -53,10 +53,17 @@
     <!-- href="javascript(void);" data-toggle="modal" data-target="#applyWelfareModal" -->
     <div class="col-lg-4 col-sm-6">
       <a (click)="onSelectLoan('7')" class="blue-line-solid text-center">
-        <div class="img-box mobile"></div>
+        <div class="img-box welfare"></div>
         <p class="md-title mt-4 mb-0">Welfare</p>
       </a>
     </div>
+
+    <!-- <div class="col-lg-4 col-sm-6">
+      <a (click)="onSelectLoan('8')" class="blue-line-solid text-center">
+        <div class="img-box travel"></div>
+        <p class="md-title mt-4 mb-0">Travel</p>
+      </a>
+    </div> -->
 
   </div>
 </section>
@@ -74,6 +81,8 @@
 <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#applyModal">Open Modal</button>
 
 <button id="openModalButton7" [hidden]="true" data-toggle="modal" data-target="#applyWelfareModal">Open Modal</button>
+
+<button id="openModalButton8" [hidden]="true" data-toggle="modal" data-target="#applyTravelModal">Open Modal</button>
 
 <!-- Modal Start -->
 <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"
@@ -93,6 +102,13 @@
 <div class="modal fade" id="applyWelfareModal" tabindex="-1" role="dialog" aria-labelledby="exampleEmergencyModalLabel"
   aria-hidden="true">
   <app-apply-welfare></app-apply-welfare>
+</div>
+<!-- Modal end-->
+
+<!-- Modal Start-->
+<div class="modal fade" id="applyTravelModal" tabindex="-1" role="dialog" aria-labelledby="exampleEmergencyModalLabel"
+  aria-hidden="true">
+  <app-apply-travel></app-apply-travel>
 </div>
 <!-- Modal end-->
 

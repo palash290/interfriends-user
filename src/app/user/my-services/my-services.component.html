@@ -24,11 +24,11 @@
                         <thead>
                             <tr>
                                 <th>Service</th>
-                                <th>Category</th>
-                                <th>Subcategory</th>
+                                <th class="d_none_576">Category</th>
+                                <th class="d_none_576">Subcategory</th>
                                 <!-- <th>Status</th> -->
                                 <th>Approval Status</th>
-                                <th>Created On</th>
+                                <th class="d_none_576">Created On</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,8 +37,8 @@
                                 <td>
                                     <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
                                 </td>
-                                <td>{{ service.category_name || '-' }}</td>
-                                <td>{{ service.subcategory_name || '-' }}</td>
+                                <td class="d_none_576">{{ service.category_name || '-' }}</td>
+                                <td class="d_none_576">{{ service.subcategory_name || '-' }}</td>
                                 <!-- <td>
                                     <span class="badge"
                                         [ngClass]="service.service_status === '1' ? 'bg-success' : 'bg-secondary'">
@@ -59,17 +59,19 @@
                                         }}
                                     </span>
                                 </td>
-                                <td>{{ service.created_at | date: 'dd MMM yyyy' }}</td>
+                                <td class="d_none_576">{{ service.created_at | date: 'dd MMM yyyy' }}</td>
                                 <td>
-                                    <a type="button" class="service-view-btn " data-toggle="modal"
-                                        data-target="#exampleModal" (click)="onEdit(service)">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <a type="button" class="service-view-btn " data-toggle="modal"
+                                            data-target="#exampleModal" (click)="onEdit(service)">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
 
-                                    <a href="javascript:void(0);" class="service-view-btn ml-2" data-toggle="modal"
-                                        data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
+                                        <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
+                                            data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -83,7 +85,8 @@
                         <i class="ti ti-inbox" aria-hidden="true"></i>
                     </div>
                     <h2>No Member Directory yet</h2>
-                    <p>When a Member Directory is added for this account, they will appear here with their category, status, and
+                    <p>When a Member Directory is added for this account, they will appear here with their category,
+                        status, and
                         creation date.</p>
                 </div>
             </ng-template>
@@ -244,7 +247,7 @@
                 </button>
             </div>
 
-            <form role="form" [formGroup]="form" (submit)="onSave()">
+            <form role="form" [formGroup]="form" (ngSubmit)="onSave()">
                 <!-- <div class="box-body" *ngIf="isLoadingForm">
                     <mat-spinner class="mx-auto"></mat-spinner>
                 </div> -->
@@ -253,8 +256,7 @@
                     <div class="box-body">
                         <div class="company-logo-picker">
                             <div class="company-logo-picker__preview" role="button" tabindex="0"
-                                aria-label="Upload company logo"
-                                (click)="triggerCompanyLogoPicker(companyLogoInput)"
+                                aria-label="Upload company logo" (click)="triggerCompanyLogoPicker(companyLogoInput)"
                                 (keydown.enter)="triggerCompanyLogoPicker(companyLogoInput)"
                                 (keydown.space)="$event.preventDefault(); triggerCompanyLogoPicker(companyLogoInput)">
                                 <img *ngIf="companyLogoPreviewUrl; else companyLogoPlaceholder"
@@ -275,6 +277,8 @@
                                 </small>
                             </div>
                         </div>
+
+                        <input type="hidden" formControlName="user_service_id" />
 
                         <div class="form-group">
                             <label>Company Name</label>

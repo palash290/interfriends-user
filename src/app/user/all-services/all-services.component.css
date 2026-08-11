@@ -35,6 +35,10 @@
   word-break: break-word;
 }
 
+.pro-name {
+  word-break: break-word;
+}
+
 .detail-card--company {
   display: flex;
   align-items: center;
@@ -43,6 +47,7 @@
   border: 1px solid #e6ebf2;
   border-radius: 1rem;
   background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+  /* background: url(../../../assets/img/financial-community-app-banner.png) no-repeat; */
 }
 
 .detail-card__avatar-group {
@@ -380,18 +385,18 @@
 
 
 
-.category-text{
-    font-size:14px;
-    color:#6c757d;
-    margin-bottom:8px;
+.category-text {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 8px;
 }
 
-.category{
-    color:#252b35;
-    font-weight:600;
+.category {
+  color: #252b35;
+  font-weight: 600;
 }
 
-.subcategory{
-    color:#6c757d;
-    font-weight:500;
+.subcategory {
+  color: #6c757d;
+  font-weight: 500;
 }

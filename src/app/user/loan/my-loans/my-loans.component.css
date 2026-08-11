@@ -1,6 +1,6 @@
 .ct_textcolor {
-    color : red;
-    text-align:justify
+    color: red;
+    text-align: justify
 }
 
 .modal-dialog-scrollable .modal-content {
@@ -17,4 +17,34 @@
     /* transform: translateY(-50%); */
     border: 0;
     box-shadow: none;
+}
+
+.ct_grid_6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding-top: 15px;
+    gap: 20px;
+}
+
+.ct_grid_5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding-top: 15px;
+    gap: 20px;
+}
+
+@media screen and (max-width:991px) {
+
+    .ct_grid_6,
+    .ct_grid_5 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width:767px) {
+
+    .ct_grid_6,
+    .ct_grid_5 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

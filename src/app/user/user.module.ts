@@ -68,6 +68,7 @@ import { MyRecommendationsComponent } from './my-recommendations/my-recommendati
 import { ApplyWelfareComponent } from './apply-welfare/apply-welfare.component';
 import { MyServicesComponent } from './my-services/my-services.component';
 import { AllServicesComponent } from './all-services/all-services.component';
+import { ApplyTravelComponent } from './apply-travel/apply-travel.component';
 
 
 
@@ -152,6 +153,7 @@ import { AllServicesComponent } from './all-services/all-services.component';
   ApplyWelfareComponent,
   MyServicesComponent,
   AllServicesComponent,
+  ApplyTravelComponent,
   ],
   providers: [],
   exports: [],

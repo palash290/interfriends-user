@@ -106,8 +106,8 @@ export class PayoutPageComponent implements OnInit {
   display1: string = 'none';
   display2: string = 'none';
   totalInfo: any;
-  pfNote: any;
-  sfNote: any;
+  pfNote: any = '';
+  sfNote: any = '';
 
   showModal() {
     this.display2 = "block";
@@ -155,7 +155,7 @@ export class PayoutPageComponent implements OnInit {
 
 
   onSafekeeping() {
-    if (this.totalInfo?.amount > 0) {
+    // if (this.totalInfo?.amount > 0) {
       this.userService.addSafeKeeping(this.userId, this.groupLifecycle_id, this.groupId, this.sfNote)
         .subscribe((response: any) => {
           if (response.success === '1') {
@@ -169,9 +169,9 @@ export class PayoutPageComponent implements OnInit {
           document.getElementById('closesafekeeping').click();
           this.ngOnInit();
         })
-    } else {
-      this.toastr.warning('You dont have enough balance!')
-    }
+    // } else {
+    //   this.toastr.warning('You dont have enough balance!')
+    // }
 
   }
 

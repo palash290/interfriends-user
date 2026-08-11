@@ -85,10 +85,7 @@ export class SavingPageComponent implements OnInit {
       this.isLoadingChangeCycle = false;
       this.lifecycleUpdateId.emit(this.groupLifecycle_id);
     });
-
   }
-
-
 
   setCycle(cycleId: string, startDate: string, endDate: string) {
     this.groupLifecycle_id = cycleId;
@@ -110,8 +107,8 @@ export class SavingPageComponent implements OnInit {
   display1: string = 'none';
   display2: string = 'none';
   totalInfo: any;
-  pfNote: any;
-  sfNote: any;
+  pfNote: any = '';
+  sfNote: any = '';
 
   showModal() {
     this.display2 = "block";

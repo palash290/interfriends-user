@@ -282,6 +282,14 @@ h3 {
     background-image: url(../images/mobile.png);
 }
 
+.welfare {
+    background-image: url(../images/welfare_icon.png);
+}
+
+.travel {
+    background-image: url(../images/travel_icon.png);
+}
+
 .home-loan {
     background-image: url(../images/home-loan.png);
 }
@@ -1616,7 +1624,7 @@ label.hidden-label {
 }
 
 .score-details-box .sub-para {
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'gilroy-semibold';
 }
 

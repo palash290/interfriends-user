@@ -69,6 +69,16 @@ export class ApplyLoanComponent implements OnInit {
   `;
         break;
       // href="javascript(void);" data-toggle="modal" data-target="#applyWelfareModal"
+
+      case '8':
+        this.loanTypeText = 'Travel';
+        this.textMessage = `
+    Not every member qualifies to be accepted for Interfriends Travel. To apply, check and clarify with the group Admin to confirm that you meet the minimum requirements before you proceed.
+
+    <p>This scheme provides support to members for travel-related expenses. Terms and conditions apply.</p>
+  `;
+        break;
+
       default:
         this.loanTypeText = 'Other';
         this.textMessage =
@@ -82,6 +92,9 @@ export class ApplyLoanComponent implements OnInit {
     this.alertConfirmation();
     if (type == '7') {
       this.alertConfirmation7();
+    }
+    if (type == '8') {
+      this.alertConfirmation8();
     }
   }
 
@@ -114,6 +127,24 @@ export class ApplyLoanComponent implements OnInit {
       if (result.value) {
         //Swal.fire('Removed!', 'Product removed successfully.', 'success');
         document.getElementById('openModalButton7').click();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Swal.fire('Cancelled', 'Product still in our database.)', 'error');
+        console.log('Do nothing');
+      }
+    });
+  }
+
+  alertConfirmation8() {
+    Swal.fire({
+      title: 'PLEASE NOTE:',
+      html: this.textMessage,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think',
+    }).then((result) => {
+      if (result.value) {
+        //Swal.fire('Removed!', 'Product removed successfully.', 'success');
+        document.getElementById('openModalButton8').click();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Swal.fire('Cancelled', 'Product still in our database.)', 'error');
         console.log('Do nothing');

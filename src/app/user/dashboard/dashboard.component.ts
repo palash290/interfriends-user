@@ -317,6 +317,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
               this.overAllTotal += parseInt(this.avgAmountCycle);
               this.isLoadingSaving = false;
             },
+
             error: (error: any) => {
               console.error('Error fetching savings:', error);
               this.avgAmountCycle = 0;

@@ -15,7 +15,6 @@ export class SharedService {
   constructor(private http: HttpClient, private route: Router) { }
 
   getApi(url: any): Observable<any> {
-    // const authToken = localStorage.getItem('lifeMToken')
     // const headers = new HttpHeaders({
     //   'Content-Type': 'application/json',
     //   Authorization: `Bearer ${authToken}`
@@ -24,15 +23,17 @@ export class SharedService {
   }
 
   postAPI(url: any, data: any): Observable<any> {
-    // const authToken = localStorage.getItem('lifeMToken')
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
     return this.http.post(API_URL + url, data)
   }
 
-    postAPIAdmin(url: any, data: any): Observable<any> {
-    // const authToken = localStorage.getItem('lifeMToken')
+  postAPIFD(url: any, data: FormData): Observable<any> {
+    return this.http.post(API_URL + url, data)
+  }
+
+  postAPIAdmin(url: any, data: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     })

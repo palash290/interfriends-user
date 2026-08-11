@@ -13,3 +13,22 @@
     border: 0;
     box-shadow: none;
 }
+
+.ct_grid_7 {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    flex: 1;
+    gap: 15px
+}
+
+@media screen and (max-width:991px) {
+    .ct_grid_7 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width:575px) {
+    .ct_grid_7 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

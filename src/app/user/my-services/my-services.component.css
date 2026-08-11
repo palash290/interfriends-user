@@ -185,3 +185,10 @@
     grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
   }
 }
+
+
+@media screen and (max-width: 576px) {
+  .d_none_576 {
+    display: none !important;
+  }
+}

@@ -16,7 +16,7 @@
               <div class="form-group">
                 <label class="form-label">Full Name</label>
                 <input type="text" formControlName="name" value="John" class="form-control"
-                  placeholder="Enter first name">
+                  placeholder="Enter full name">
                 <div class="icon">
                   <img src="assets/images/user.png" align="" alt="" title="">
                 </div>
@@ -68,11 +68,12 @@
                   <option value="Miscellaneous">Miscellaneous</option>
                   <option value="Investment">Investment</option>
                   <option value="helptobuy">Help to Buy</option>
+                  <option value="Other">Other</option>
                 </select>
                 <div class="icon hide-caret"></div>
-                <div class="icon">
+                <!-- <div class="icon">
                   <img src="assets/images/caret.png" align="" alt="" title="">
-                </div>
+                </div> -->
                 <span class="error-form" *ngIf="form.get('type').invalid && form.get('type').touched">
                   Please enter a type.
                 </span>

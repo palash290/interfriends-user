@@ -1,13 +1,13 @@
 .xt_grid_7 {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     align-items: center;
     gap: 5px;
 }
 
 .xt_grid_col_5 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     gap: 5px;
 }

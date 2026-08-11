@@ -1,0 +1,158 @@
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header border-0 justify-content-center">
+            <div>
+                <h5 class="modal-title" id="applyModalLabel">Travel Form</h5>
+                <!-- <p class="para-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit Pellentesque dapibus interdum auctor. Donec gravida dolor at mollis fringilla elit quota lesmon.</p> -->
+            </div>
+            <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close"
+                id="closePopupWelfareRequest" (click)="onClose()">
+                <img src="assets/images/close.png">
+            </button>
+        </div>
+        <form class="theme-form" [formGroup]="form" (submit)="onSave()">
+            <div class="modal-body border-0 pb-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label class="label-walfare">Payout Amount</label>
+                            <!--<input type="text" formControlName="loan_amount" placeholder="Enter Loan Amount" class="form-control"   *ngIf="mainId === '1'" (input)="onInputAmount1($event.target.value) ">-->
+                            <select class="form-control" formControlName="loan_amount"
+                                (input)="onInputAmount($event.target.value)">
+                                <option value="" disabled>Select Claim Payout</option>
+                                <option *ngFor="let item of payOutElem | keyvalue" value="{{ item.value }}">
+                                    {{ item.value }}
+                                </option>
+                            </select>
+                            <span class="error-form"
+                                *ngIf="form.get('loan_amount').invalid && form.get('loan_amount').touched">
+                                Please select a payout amount.
+                            </span>
+                        </div>
+                        <!-- <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label>When do you require payment select date</label>
+                            <div class="form-group">
+                                <input type="date" formControlName="pay_date" placeholder="Enter Loan Amount"
+                                    class="form-control">
+                                <div class="icon">
+                                    <img src="assets/images/amt.png" align="" alt="" title="">
+                                </div>
+                                <span class="error-form"
+                                    *ngIf="form.get('pay_date').invalid && form.get('pay_date').touched">
+                                    Please enter a pay by.
+                                </span>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label class="label-walfare">Term</label>
+                            <div class="form-group">
+                                <div class=" ct_language_euro">
+                                    <select class="form-control" formControlName="tenure">
+                                        <option value="">Select Term</option>
+                                        <option *ngFor="let item of tenureElem" [value]="item">
+                                            {{ item }} months
+                                        </option>
+                                    </select>
+                                </div>
+                                <span class="error-form"
+                                    *ngIf="form.get('tenure').invalid && form.get('tenure').touched">
+                                    Please select a term.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <!-- <label class="hidden-label">&nbsp;</label> -->
+                                <label class="label-walfare">Total</label>
+                                <div class=" ct_language_euro">
+                                    <!-- <div class="ct_euro_sign">
+                                        <p class="mb-0">£</p>
+                                    </div> -->
+                                    <input type="text" formControlName="total40Months"
+                                        placeholder="Total Over 24 months" class="form-control"
+                                        [(ngModel)]="total40month" readonly="" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label class="hidden-label">&nbsp;</label>
+                            <label class="label-walfare">Provident</label>
+                            <div class="form-group">
+                                <div class=" ct_language_euro">
+                                    <div class="ct_euro_sign">
+                                        <!-- <div class="euro">
+                                            <p class="mb-0">£</p>
+                                        </div> -->
+                                    </div>
+                                    <input type="text" formControlName="provident" placeholder="Provident"
+                                        class="form-control" [(ngModel)]="provident" readonly="" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label class="hidden-label">&nbsp;</label>
+                            <label class="label-walfare">Admin/Risk</label>
+                            <div class="form-group">
+                                <div class=" ct_language_euro">
+                                    <!-- <div class="ct_euro_sign">
+                                        <p class="mb-0_2">£</p>
+                                    </div> -->
+                                    <input type="text" formControlName="admin_risk" placeholder="Admin/Risk"
+                                        class="form-control" [(ngModel)]="adminrisk" readonly="" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label class="label-walfare">Witness</label>
+                            <div class="form-group">
+                                <select class="form-control" formControlName="gurarantor">
+                                    <option value=''>Select Witness</option>
+                                    <option [value]="data.user_id" *ngFor="let data of userList">{{data.first_name+'
+                                        '+data.last_name}}</option>
+                                </select>
+                                <div class="icon hide-caret"></div>
+                                <div class="icon">
+                                    <img src="assets/images/caret.png" align="" alt="" title="">
+                                </div>
+                                <span class="error-form"
+                                    *ngIf="form.get('gurarantor').invalid && form.get('gurarantor').touched">
+                                    Please select a witness.
+                                </span>
+                            </div>
+                        </div> -->
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label>Estimated monthly payment</label>
+                            <div class="form-group">
+                                <div class=" ct_language_euro">
+                                    <!-- <div class="ct_euro_sign">
+                                        <p class="mb-0_2">£</p>
+                                    </div> -->
+                                    <input type="text" formControlName="emi" class="form-control"
+                                        [(ngModel)]="monthlypayment" readonly=""
+                                        placeholder="Estimated monthly payment" />
+                                    <div class="icon">
+                                        <img src="assets/img/amt.png" align="" alt="" title="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center border-0">
+                <!-- <button class="btn-cstm btn-blue mt-3 min-width-230" type="submit" [disabled]="isLoading">
+                    <span>Apply</span>
+                </button> -->
+                <button type="submit" class="btn-cstm btn-blue mt-3 min-width-230" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Submit</span>
+                    <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
