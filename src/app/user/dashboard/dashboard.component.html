@@ -840,18 +840,35 @@
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </button>
 
-        <h3 class="main-hding mb-0 mt-2 text-white">Your Interfriends <br>Trust Score</h3>
+        <h3 class="main-hding mb-0 mt-2 text-white">My Interfriends <br>Trust Score</h3>
         <mwl-gauge [max]="1650" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [color]="creditScoreColor"
           [value]="total_credit_score" [animated]="true" [animationDuration]="1" [showValue]="name">
         </mwl-gauge>
 
-        <h4 class="mb-0 txt-center text-white ct_fs_20 text-center">My Circle</h4>
-     <p class="text-center ct_fs_16 text-white">
-  <span class="ct_ff_gilroy_bold score" style="font-size: 25px;">
-    {{ averageTrustScore | number: '1.0-0' }}
-  </span>
-  <span>(Average Trust Score)</span>
-</p>
+
+      </div>
+
+      <div class="ct_icon_list d-block w-100 h-100 py-3 position-relative d-grid place-content-center mt-3" [ngStyle]="{
+    'padding': '6px',
+    'background-color': 'red',
+    'color': '#fff'
+  }">
+        <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+          aria-label="Overall account balance info" style=" right: 30px;">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </button> -->
+
+        <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
+          aria-label="My Circle Trust Score info" (click)="openInfoModal('My Circle Trust Score', 'Each member belongs to a Circle of closely connected friends and family. This score shows the average Trust Score of all members in your Circle and gives insight into how the Circle is managing its relationship with Interfriends.
+'); $event.preventDefault(); $event.stopPropagation()" style=" right: 30px;">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </button>
+
+        <h4 class="mb-0 txt-center ct_fs_24 text-center">My Circle</h4>
+        <p class="text-center ct_score_fs_18">
+          <span class="ct_ff_gilroy_bold" style="font-size: 25px;">{{ averageTrustScore | number: '1.0-0' }}</span>
+          (Average Trust Score)
+        </p>
       </div>
       <!-- <span *ngIf="!isLoading">£{{avgAmountLoan| currency:'GBP': 'symbol' : '1.0-0'}}</span> -->
       <span *ngIf="isLoading">

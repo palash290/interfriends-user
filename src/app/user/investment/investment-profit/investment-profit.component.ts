@@ -13,16 +13,20 @@ import { finalize } from 'rxjs/operators';
 export class InvestmentProfitComponent implements OnInit {
 
   lists: InvestmentList[] = [];
-  dividendYearOptions: Array<{ id: string; year: string; totalDividend: string }> = [];
+  dividendYearOptions: Array<{ id: string; year: string; dividend_type_name: string; totalDividend: string }> = [];
   userId: string;
   groupId: string;
   isLoading = true;
   totalAmount: string;
   display1: string = 'none';
+  display2: string = 'none';
   dividendId: any;
   selectedDividendYear = '';
   selectedDividend: { id: string; year: string; totalDividend: string } | null = null;
   isPayoutLoading = false;
+  selectedSafeDividendYear = '';
+  selectedSafeDividend: { id: string; year: string; dividend_type_name: string; totalDividend: string } | null = null;
+  isSafekeepingLoading = false;
 
   constructor(
     public userService: UserService,
@@ -38,24 +42,19 @@ export class InvestmentProfitComponent implements OnInit {
       this.userId,
       '1'
     ).subscribe((response: any) => {
-      // this.lists = response.lists || [];
-      // this.dividendYearOptions = this.lists.map((item: any) => ({
-      //   id: String(item?.id || ''),
-      //   year: String(item?.dividend_year || ''),
-      //   totalDividend: String(item?.total_dividend || '0.00')
-      // }));
-      // this.totalAmount = response.summary.total_dividend;
-      // this.isLoading = false;
       this.lists = response.lists || [];
+
+      // this.years = response.years || [];
 
       this.dividendYearOptions = this.lists
         .filter((item: any) => String(item?.status) !== '1')
         .map((item: any) => ({
           id: String(item?.id || ''),
           year: String(item?.dividend_year || ''),
+          dividend_type_name: String(item?.dividend_type_name || ''),
           totalDividend: String(item?.total_dividend || '0.00')
         }));
-
+      console.log(this.dividendYearOptions);
       this.totalAmount = response.summary.balance_amount;
       this.isLoading = false;
     });
@@ -68,15 +67,31 @@ export class InvestmentProfitComponent implements OnInit {
     this.dividendId = '';
   }
 
+  showSafekeepingModal() {
+    this.display2 = "block";
+    this.selectedSafeDividendYear = '';
+    this.selectedSafeDividend = null;
+    this.dividendId = '';
+  }
+
   onClose() {
     this.display1 = "none";
+    this.display2 = "none";
   }
 
   onDividendYearChange(): void {
     this.selectedDividend = this.dividendYearOptions.find(
-      (item) => item.year === this.selectedDividendYear
+      (item) => item.id == this.selectedDividendYear
     ) || null;
     this.dividendId = this.selectedDividend?.id || '';
+    console.log(this.selectedDividend);
+  }
+
+  onSafeDividendYearChange(): void {
+    this.selectedSafeDividend = this.dividendYearOptions.find(
+      (item) => item.id == this.selectedSafeDividendYear
+    ) || null;
+    this.dividendId = this.selectedSafeDividend?.id || '';
   }
 
   onPayout() {
@@ -87,7 +102,7 @@ export class InvestmentProfitComponent implements OnInit {
 
     this.isPayoutLoading = true;
 
-    this.userService.addPayoutDev(this.userId, this.selectedDividend.id)
+    this.userService.addPayoutDividend(this.userId, this.selectedDividend.id)
       .pipe(finalize(() => {
         this.isPayoutLoading = false;
       }))
@@ -101,6 +116,29 @@ export class InvestmentProfitComponent implements OnInit {
         this.ngOnInit();
       });
 
+  }
+
+  onSafekeepingRequest() {
+    if (!this.selectedSafeDividend) {
+      this.toastr.error('Please select a dividend year.');
+      return;
+    }
+
+    this.isSafekeepingLoading = true;
+
+    this.userService.addDividendSafekeeping(this.userId, this.selectedSafeDividend.id)
+      .pipe(finalize(() => {
+        this.isSafekeepingLoading = false;
+      }))
+      .subscribe((response: any) => {
+        if (response.success === '1') {
+          this.toastr.success(response.message);
+          document.getElementById('closesafekeeping')?.click();
+        } else {
+          this.toastr.error(response.message);
+        }
+        this.ngOnInit();
+      });
   }
 
 }

@@ -16,47 +16,103 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-end mb-4 flex-wrap" style="gap:10px">
-      <button type="button" class="btn bg-success float-right text-white   px-4" data-toggle="modal"
+      <button type="button" class="btn bg-success float-right text-white px-4" data-toggle="modal"
         data-target="#payoutModal" style="white-space: nowrap;" (click)="showPayoutModal()">
         <div class="fa fa-credit-card text-white mr-1"></div>
         Payout Request
       </button>
     </div>
 
+    <!-- <div class="d-flex align-items-center justify-content-end mt-4 flex-wrap" style="gap:10px">
+      <button type="button" class="btn bg-success float-right text-white px-4" data-toggle="modal"
+        data-target="#payoutModal" style="white-space: nowrap;" (click)="showPayoutModal()">
+        <div class="fa fa-credit-card text-white mr-1"></div>
+        Payout Request
+      </button>
+      <button type="button" class="btn bg-primary float-right  text-white  px-4" style="white-space: nowrap;"
+        data-toggle="modal" data-target="#safekeepingModal" (click)="showSafekeepingModal()">
+        <div class="fa fa-shield text-white mr-1"></div>
+        Safe Keeping Request
+      </button>
+    </div> -->
+
   </div>
 </section>
 
 <section class="savings-box container">
   <h2 class="section-title">Investment Dividend</h2>
+
   <div class="row" *ngIf="isLoading">
     <mat-spinner class="mx-auto"></mat-spinner>
   </div>
-  <div class="row" *ngIf="lists.length > 0 && !isLoading">
-    <div class="col-lg-4 col-sm-6" *ngFor="let data of lists; let i = index">
-      <div class="box-line-white position-relative" [ngClass]="[
-    data.status === '1' ? 'green-line' : '',
-    data.status === '2' ? 'yellow-line' : '',
-    data.status === '4' ? 'grey-line' : '',
-    data.status === '3' ? 'red-line' : ''
-    ]">
 
-        <div class="d-flex justify-content-between gap-1 mt-2">
-          <div *ngIf="data.status == '1'" class="status-badge badge-paid h-fit-content et_badge_top">Paid</div>
-          <div *ngIf="data.status == '2'" class="status-badge badge-late h-fit-content et_badge_top">Pending</div>
-          <div class="mt-4 mx-auto">
-            <img src="assets/images/building.png" class="img-fluid">
+  <div class="row" *ngIf="lists.length > 0 && !isLoading">
+    <div class="col-12" *ngFor="let data of lists; let i = index">
+      <div class="investment-card box-line-white rounded-0 py-4 click-accordion orange-line">
+        <div class="investment-card__grid">
+          <div>
+            <h6 class="investment-sm-text">Dividend Year</h6>
+            <h5 class="investment-hl-text">{{ data.dividend_year || '-' }}</h5>
           </div>
-          <div> <span class=""></span></div>
+          <div>
+            <h6 class="investment-sm-text">Type</h6>
+            <h5 class="investment-hl-text">{{ data.dividend_type_name || '-' }}</h5>
+          </div>
+          <div *ngIf="data.dividend_type_name === 'Provident'">
+            <h6 class="investment-sm-text">Provident Balance</h6>
+            <h5 class="investment-hl-text">
+              {{ data.provident_balance | currency:'GBP':'symbol':'1.0-0' }}
+            </h5>
+          </div>
+          <div *ngIf="data.dividend_type_name === 'Investment'">
+            <h6 class="investment-sm-text">Investment Balance</h6>
+            <h5 class="investment-hl-text">
+              {{ data.investment_balance | currency:'GBP':'symbol':'1.0-0' }}
+            </h5>
+          </div>
+
+          <div>
+            <h6 class="investment-sm-text">Total Dividend</h6>
+            <h5 class="investment-hl-text investment-hl-text--danger">
+              {{ data.total_dividend | currency:'GBP':'symbol':'1.0-0' }}
+            </h5>
+          </div>
+
+          <div *ngIf="data.dividend_type_name === 'Provident'">
+            <h6 class="investment-sm-text">Paid Amount</h6>
+            <h5 class="investment-hl-text investment-hl-text--danger">
+              {{ data.paid_amount | currency:'GBP':'symbol':'1.0-0' }}
+            </h5>
+          </div>
+          <div *ngIf="data.dividend_type_name === 'Investment'">
+            <h6 class="investment-sm-text">Paid Amount</h6>
+            <h5 class="investment-hl-text investment-hl-text--danger">
+              {{ data.paid_amount | currency:'GBP':'symbol':'1.0-0' }}
+            </h5>
+          </div>
+
+          <div>
+            <h6 class="investment-sm-text">Status</h6>
+            <h5 class="investment-hl-text">
+              <span *ngIf="data.status == '1'" class="investment-status investment-status--paid">Paid</span>
+              <span *ngIf="data.status == '2'" class="investment-status investment-status--pending">Pending</span>
+              <span *ngIf="data.status != '1' && data.status != '2'"
+                class="investment-status investment-status--neutral">
+                {{ data.status_name || 'Unknown' }}
+              </span>
+            </h5>
+          </div>
         </div>
 
-
-        <h4 class="main-hding">{{data.total_dividend| currency:'GBP': 'symbol'}}</h4>
-        <p class="sub-para">{{data.dividend_year}}</p>
-        <p class="extra-para">{{data.description}}</p>
+        <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+          <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+        </button> -->
       </div>
-    </div>
 
+      <!-- <div class="investment-card-note" *ngIf="data.description">{{ data.description }}</div> -->
+    </div>
   </div>
+
 
   <div class="row" *ngIf="!isLoading && lists.length === 0">
     <div class="col-12 text-center">
@@ -76,7 +132,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="onClose()">
-          <span aria-hidden="true">×</span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -85,8 +141,8 @@
           <select id="dividendYearSelect" class="form-control" [(ngModel)]="selectedDividendYear"
             name="selectedDividendYear" (change)="onDividendYearChange()" required>
             <option value="">Select dividend year</option>
-            <option *ngFor="let item of dividendYearOptions" [value]="item.year">
-              {{ item.year }}
+            <option *ngFor="let item of dividendYearOptions" [value]="item.id">
+              {{ item.year }} ({{ item.dividend_type_name }})
             </option>
           </select>
         </div>
@@ -114,3 +170,50 @@
   </div>
 </div>
 <!-- payout model popup end -->
+
+<!-- safekeeping model popup start -->
+<div class="modal fade show" id="safekeepingModal" tabindex="-1" role="dialog" aria-labelledby="safekeepingModalLabel"
+  aria-hidden="true" [ngStyle]="{'display':display2}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="safeDividendYearSelect"><b>Dividend Year</b></label>
+          <select id="safeDividendYearSelect" class="form-control" [(ngModel)]="selectedSafeDividendYear"
+            name="selectedSafeDividendYear" (change)="onSafeDividendYearChange()" required>
+            <option value="">Select dividend year</option>
+            <option *ngFor="let item of dividendYearOptions" [value]="item.id">
+              {{ item.year }} ({{ item.dividend_type_name }})
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="selectedSafeDividend">
+          <label><b>Total Dividend</b></label>
+          <input type="text" class="form-control" [value]="selectedSafeDividend.totalDividend | currency:'GBP':'symbol'"
+            readonly>
+        </div>
+
+        <p class="mb-0">Confirm to request safekeeping for this dividend?</p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" [disabled]="!selectedSafeDividend || isSafekeepingLoading"
+          (click)="onSafekeepingRequest()">
+          <span *ngIf="!isSafekeepingLoading">Confirm</span>
+          <span *ngIf="isSafekeepingLoading">
+            <i class="fa fa-refresh fa-spin"></i>
+          </span>
+        </button>
+        <button class="btn btn-secondary" type="button" data-dismiss="modal" id="closesafekeeping"
+          (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- safekeeping model popup end -->

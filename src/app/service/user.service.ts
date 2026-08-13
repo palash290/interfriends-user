@@ -903,7 +903,7 @@ export class UserService {
     );
   }
 
-  addPayoutDev(
+  addPayoutDividend(
     user_id: string,
     dividendId: string
   ): any {
@@ -916,6 +916,21 @@ export class UserService {
       message: string;
     }>(
       API_URL + '/requestDividendPayout', userData
+    );
+  }
+
+  addDividendSafekeeping(
+    user_id: string,
+    dividendId: string
+  ): any {
+    const userData = new FormData();
+    userData.append('user_id', user_id);
+    userData.append('dividend_user_id', dividendId);
+    return this.http.post<{
+      success: string;
+      message: string;
+    }>(
+      API_URL + '/requestDividendSafekeeping', userData
     );
   }
 
@@ -938,7 +953,7 @@ export class UserService {
       success: string;
       message: string;
     }>(
-      API_URL + '/Admin/addSafeKeeping123', userData
+      API_URL + '/Admin/addSafeKeeping', userData
     );
   }
 

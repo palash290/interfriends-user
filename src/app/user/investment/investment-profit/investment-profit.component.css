@@ -35,11 +35,72 @@
   background: #eaad00;
 }
 
-.et_badge_top {
+.investment-card {
+  background: #0b3558;
+  color: #fff;
+  border: 1px dashed #ff9f43;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.investment-card__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 20px;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.investment-sm-text {
+  color: #ff9f43;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.investment-hl-text {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 0;
+  word-break: break-word;
+}
+
+.investment-hl-text--danger {
+  color: #ff1b1b;
+}
+
+.investment-status {
+  font-weight: 700;
+}
+
+.investment-status--paid {
+  color: #ffffff;
+}
+
+.investment-status--pending {
+  color: #f9c74f;
+}
+
+.investment-status--neutral {
+  color: #ffffff;
+}
+
+.investment-card-note {
+  color: #666;
+  font-size: 14px;
+  margin: -12px 0 24px;
+  padding-left: 12px;
+}
+
+.et_info_top_icon {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  z-index: 1;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 @media screen and (max-width:1199px) {
@@ -48,9 +109,22 @@
   }
 }
 
+@media screen and (max-width:991px) {
+  .investment-card__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media screen and (max-width:767px) {
   .ct_max_width_50 {
     max-width: 50%;
   }
 
+  .investment-card__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .investment-sm-text {
+    font-size: 14px;
+  }
 }
