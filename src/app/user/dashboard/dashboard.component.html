@@ -829,10 +829,10 @@
     <div class="col-md-4 mb-md-0 mb-5 mt-md-0 mt-5 text-center">
 
       <div class="meter-credit-score-wrap">
-        /* <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white"
+        <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white"
           aria-label="Overall account balance info" style=" right: 20px; top: 20px;">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
-        </button> */
+        </button> -->
 
         <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white"
           aria-label="Your Interfriends Trust Score" (click)="openInfoModal('Your Interfriends Trust Score', 'We review each member’s payment habits and related account information to understand how they manage their Interfriends accounts. Your Trust Score may increase or decrease based on this activity and is used to support certain decisions about you.
@@ -845,6 +845,8 @@
           [value]="total_credit_score" [animated]="true" [animationDuration]="1" [showValue]="name">
         </mwl-gauge>
 
+        <h5 class="mb-2" style="text-align: center;text-transform: capitalize;" [ngStyle]="{'color': creditScoreColor}">
+          {{this.creditScoreTxt}}</h5>
 
       </div>
 
@@ -874,8 +876,8 @@
       <span *ngIf="isLoading">
         <i class="fa fa-refresh fa-spin"></i>
       </span>
-      <h5 class="mt-4" style="text-align: center;text-transform: capitalize;" [ngStyle]="{'color': creditScoreColor}">
-        {{this.creditScoreTxt}}</h5>
+      <!-- <h5 class="mt-4" style="text-align: center;text-transform: capitalize;" [ngStyle]="{'color': creditScoreColor}">
+        {{this.creditScoreTxt}}</h5> -->
       <h6 class="mt-2 member-since" *ngIf="!isLoadingUser">Member Since: {{userDetail.created_at | date: 'd MMM, y'}}
       </h6>
 
