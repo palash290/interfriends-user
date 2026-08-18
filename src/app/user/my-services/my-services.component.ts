@@ -75,7 +75,13 @@ export class MyServicesComponent implements OnInit {
   }
 
   private resetImageState(): void {
-    this.selectedImages.forEach((image) => URL.revokeObjectURL(image.previewUrl));
+    this.selectedImages.forEach((image) => {
+      if (typeof image?.previewUrl === 'string' && image.previewUrl.startsWith('blob:')) {
+        try {
+          URL.revokeObjectURL(image.previewUrl);
+        } catch (_) {}
+      }
+    });
     this.selectedImages = [];
     this.existingImages = [];
     this.removedImageIds = [];
@@ -229,75 +235,98 @@ export class MyServicesComponent implements OnInit {
   }
 
   private readFileAsDataUrl(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = () => resolve(String(reader.result || ''));
-      reader.onerror = () => reject(new Error('Unable to read image file.'));
+      reader.onerror = () => resolve('');
       reader.readAsDataURL(file);
     });
   }
 
-  private isHeicLikeFile(file: File): boolean {
-    const fileName = (file?.name || '').toLowerCase();
+  private isImageFile(file: File): boolean {
+    if (!file) {
+      return false;
+    }
+    const fileName = (file.name || '').toLowerCase();
     return (
-      file?.type === 'image/heic' ||
-      file?.type === 'image/heif' ||
-      fileName.endsWith('.heic') ||
-      fileName.endsWith('.heif')
+      (file.type && file.type.startsWith('image/')) ||
+      /\.(jpe?g|png|gif|webp|heic|heif|bmp|jfif)$/i.test(fileName)
     );
   }
 
-  private loadImage(src: string): Promise<HTMLImageElement> {
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.onload = () => resolve(image);
-      image.onerror = () => reject(new Error('Unable to load image.'));
-      image.src = src;
-    });
-  }
-
-  private async convertImageToJpeg(file: File): Promise<File> {
-    const objectUrl = URL.createObjectURL(file);
-
-    try {
-      const image = await this.loadImage(objectUrl);
-      const canvas = document.createElement('canvas');
-      canvas.width = image.naturalWidth || image.width;
-      canvas.height = image.naturalHeight || image.height;
-
-      const context = canvas.getContext('2d');
-      if (!context) {
-        throw new Error('Unable to prepare image for upload.');
-      }
-
-      context.drawImage(image, 0, 0);
-
-      const blob = await new Promise<Blob | null>((resolve) => {
-        canvas.toBlob((result) => resolve(result), 'image/jpeg', 0.92);
-      });
-
-      if (!blob) {
-        throw new Error('Unable to convert image for upload.');
-      }
-
-      const safeBaseName = (file.name || 'image').replace(/\.[^.]+$/, '');
-      return new File([blob], `${safeBaseName}.jpg`, { type: 'image/jpeg' });
-    } finally {
-      URL.revokeObjectURL(objectUrl);
-    }
-  }
-
   private async prepareUploadFile(file: File): Promise<File> {
-    if (!this.isHeicLikeFile(file)) {
+    if (!file) {
       return file;
     }
 
-    try {
-      return await this.convertImageToJpeg(file);
-    } catch (error) {
-      console.error(error);
-      throw new Error('This image format is not supported on your device. Please select another image.');
-    }
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            const maxDimension = 1920;
+            let width = img.naturalWidth || img.width;
+            let height = img.naturalHeight || img.height;
+
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const context = canvas.getContext('2d');
+            if (!context) {
+              resolve(file);
+              return;
+            }
+
+            context.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+              (blob) => {
+                if (!blob) {
+                  resolve(file);
+                  return;
+                }
+                const safeBaseName = (file.name || 'image')
+                  .replace(/\.[^.]+$/, '')
+                  .replace(/[^a-zA-Z0-9_-]/g, '_');
+                try {
+                  const prepared = new File([blob], `${safeBaseName}.jpg`, { type: 'image/jpeg' });
+                  resolve(prepared);
+                } catch (_) {
+                  const blobFile = blob as any;
+                  blobFile.name = `${safeBaseName}.jpg`;
+                  blobFile.lastModified = Date.now();
+                  resolve(blobFile);
+                }
+              },
+              'image/jpeg',
+              0.85
+            );
+          } catch (err) {
+            console.warn('Canvas conversion failed, fallback to original file', err);
+            resolve(file);
+          }
+        };
+        img.onerror = (err) => {
+          console.warn('Image element failed to load, fallback to original file', err);
+          resolve(file);
+        };
+        img.src = e.target.result;
+      };
+      reader.onerror = () => resolve(file);
+      reader.readAsDataURL(file);
+    });
   }
 
   private async buildPreviewUrl(file: File): Promise<SafeUrl> {
@@ -318,8 +347,8 @@ export class MyServicesComponent implements OnInit {
       return;
     }
 
-    if (!file.type.startsWith('image/')) {
-      this.toastr.error('Please select an image file for the company logo.');
+    if (!this.isImageFile(file)) {
+      this.toastr.error('Please select a valid image file for the company logo.');
       input.value = '';
       return;
     }
@@ -329,9 +358,9 @@ export class MyServicesComponent implements OnInit {
       this.companyLogoFile = preparedFile;
       await this.setCompanyLogoPreview(preparedFile);
     } catch (error) {
-      this.toastr.error(error instanceof Error ? error.message : 'Unable to process the company logo.');
-      this.companyLogoFile = null;
-      this.companyLogoPreviewUrl = '';
+      console.warn('Company logo processing warning:', error);
+      this.companyLogoFile = file;
+      await this.setCompanyLogoPreview(file);
     }
 
     input.value = '';
@@ -351,7 +380,7 @@ export class MyServicesComponent implements OnInit {
       return;
     }
 
-    const validFiles = files.filter((file) => file.type.startsWith('image/'));
+    const validFiles = files.filter((file) => this.isImageFile(file));
     if (validFiles.length !== files.length) {
       this.imageError = 'Only image files are allowed.';
     }
@@ -401,12 +430,6 @@ export class MyServicesComponent implements OnInit {
     const serviceData = new FormData();
     this.sharedService.postAPIAdmin('/serviceList', serviceData).subscribe((response: any) => {
       const services = response?.services || response?.serviceList || response?.lists || response?.data || [];
-      // this.serviceOptions = Array.isArray(services)
-      //   ? services
-      //   : services
-      //     ? [services]
-      //     : [];
-
       const serviceArray = Array.isArray(services)
         ? services
         : services
@@ -520,29 +543,33 @@ export class MyServicesComponent implements OnInit {
 
     if (this.mode == 'update') {
       serviceData.append('user_service_id', userServiceId);
+      serviceData.append('service_id', String(rawValue.service_id || '').trim());
+      serviceData.append('user_id', String(this.userId || '').trim());
 
       if (this.removedImageIds.length > 0) {
         serviceData.append('delete_image_ids', this.removedImageIds.join(','));
       }
     } else {
       serviceData.append('user_id', this.userId);
-      serviceData.append('service_id', this.form.value.service_id);
+      serviceData.append('service_id', String(rawValue.service_id || this.form.value.service_id || '').trim());
     }
 
-    serviceData.append('description', rawValue.description);
+    serviceData.append('description', rawValue.description || '');
     serviceData.append('company_name', rawValue.company_name || '');
     serviceData.append('country_code', rawValue.country_code || this.mobileCountryCode);
     serviceData.append('mobile', this.normalizePhoneNumber(rawValue.mobile));
-    serviceData.append('email', rawValue.email);
-    serviceData.append('website', rawValue.website);
-    serviceData.append('location', rawValue.location);
+    serviceData.append('email', rawValue.email || '');
+    serviceData.append('website', rawValue.website || '');
+    serviceData.append('location', rawValue.location || '');
 
     if (this.companyLogoFile) {
-      serviceData.append('company_logo', this.companyLogoFile);
+      serviceData.append('company_logo', this.companyLogoFile, this.companyLogoFile.name);
     }
 
     this.selectedImages.forEach(image => {
-      serviceData.append('images[]', image.file, image.file.name);
+      if (image?.file) {
+        serviceData.append('images[]', image.file, image.file.name);
+      }
     });
 
     const endpoint =
@@ -560,7 +587,6 @@ export class MyServicesComponent implements OnInit {
           this.getList();
         }
         else {
-          this.toastr.error(this.selectedServiceId);
           this.toastr.error(response?.message || 'Unable to save service');
         }
       },
@@ -571,8 +597,6 @@ export class MyServicesComponent implements OnInit {
       }
     });
   }
-
-  
 
   onEdit(service: any): void {
     this.mode = 'update';
@@ -622,221 +646,5 @@ export class MyServicesComponent implements OnInit {
     this.form.get('country_code')?.setValue(this.mobileCountryCode);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-// onSave(): void {
-//   this.form.markAllAsTouched();
-
-//   if (this.form.invalid) {
-//     return;
-//   }
-
-//   if (this.getCurrentImageCount() > this.maxImages) {
-//     this.toastr.error(`You can upload up to ${this.maxImages} images.`);
-//     return;
-//   }
-
-//   this.isLoadingForm = true;
-
-//   const rawValue = this.form.getRawValue();
-
-//   const userServiceId = String(
-//     rawValue.user_service_id || this.selectedServiceId || ''
-//   ).trim();
-
-//   if (this.mode === 'update' && !userServiceId) {
-//     this.isLoadingForm = false;
-
-//     this.toastr.error(
-//       'User Service ID is missing. Please reopen the edit form and try again.'
-//     );
-
-//     return;
-//   }
-
-//   const serviceData = new FormData();
-
-//   // =========================
-//   // UPDATE / CREATE DATA
-//   // =========================
-
-//   if (this.mode === 'update') {
-//     serviceData.append('user_service_id', userServiceId);
-    
-
-//     if (this.removedImageIds.length > 0) {
-//       serviceData.append(
-//         'delete_image_ids',
-//         this.removedImageIds.join(',')
-//       );
-//     }
-//   } else {
-//     serviceData.append('user_id', this.userId);
-//     serviceData.append(
-//       'service_id',
-//       this.form.value.service_id
-//     );
-//   }
-
-//   // =========================
-//   // FORM DATA
-//   // =========================
-
-//   serviceData.append(
-//     'description',
-//     rawValue.description || ''
-//   );
-
-//   serviceData.append(
-//     'company_name',
-//     rawValue.company_name || ''
-//   );
-
-//   serviceData.append(
-//     'country_code',
-//     rawValue.country_code || this.mobileCountryCode || ''
-//   );
-
-//   serviceData.append(
-//     'mobile',
-//     this.normalizePhoneNumber(rawValue.mobile) || ''
-//   );
-
-//   serviceData.append(
-//     'email',
-//     rawValue.email || ''
-//   );
-
-//   serviceData.append(
-//     'website',
-//     rawValue.website || ''
-//   );
-
-//   serviceData.append(
-//     'location',
-//     rawValue.location || ''
-//   );
-
-//   // =========================
-//   // COMPANY LOGO
-//   // =========================
-
-//   if (this.companyLogoFile) {
-//     serviceData.append(
-//       'company_logo',
-//       this.companyLogoFile,
-//       this.companyLogoFile.name
-//     );
-//   }
-
-//   // =========================
-//   // MULTIPLE IMAGES
-//   // =========================
-
-//   this.selectedImages.forEach((image: any) => {
-//     if (image?.file) {
-//       serviceData.append(
-//         'images[]',
-//         image.file,
-//         image.file.name
-//       );
-//     }
-//   });
-
-//   const endpoint =
-//     this.mode === 'update'
-//       ? '/updateUserService'
-//       : '/createService';
-
-//   // =====================================================
-//   // IPHONE DEBUG
-//   // =====================================================
-
-//   const debugData: any = {
-//     mode: this.mode,
-//     endpoint: endpoint,
-//     selectedServiceId: this.selectedServiceId,
-//     userServiceId: userServiceId,
-//     isFormData: serviceData instanceof FormData,
-//     formData: {}
-//   };
-
-//   serviceData.forEach((value: any, key: string) => {
-
-//     if (value instanceof File) {
-//       debugData.formData[key] =
-//         `FILE => name: ${value.name}, type: ${value.type}, size: ${value.size}`;
-//     } else {
-//       debugData.formData[key] = value;
-//     }
-
-//   });
-
-//   // Show complete FormData on iPhone
-//   alert(
-//     'API DEBUG\n\n' +
-//     JSON.stringify(debugData, null, 2)
-//   );
-
-//   // =====================================================
-//   // API CALL
-//   // =====================================================
-
-//   this.sharedService.postAPIFD(
-//     endpoint,
-//     serviceData
-//   ).subscribe({
-
-//     next: (response: any) => {
-
-//       this.isLoadingForm = false;
-
-//       if (response?.success == '1') {
-
-//         this.toastr.success(
-//           response.message
-//         );
-
-//         this.closeModal();
-//         this.getList();
-
-//       } else {
-
-//         this.toastr.error(
-//           `Selected Service ID: ${this.selectedServiceId}`
-//         );
-
-//         this.toastr.error(
-//           response?.message ||
-//           'Unable to save service'
-//         );
-//       }
-//     },
-
-//     error: (error) => {
-
-//       this.isLoadingForm = false;
-
-//       console.error(
-//         'Update Service API Error:',
-//         error
-//       );
-
-//       this.toastr.error(
-//         'Something went wrong. Please try again.'
-//       );
-//     }
-//   });
-// }
-
-
 }
+

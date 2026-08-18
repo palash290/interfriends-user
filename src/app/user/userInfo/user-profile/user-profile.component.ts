@@ -101,8 +101,117 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
-  onImagePicked(event: Event): any {
-    const file = (event.target as HTMLInputElement).files[0];
+  // onImagePicked(event: Event): any {
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   this.form.patchValue({ image: file });
+  //   this.form.get('image').updateValueAndValidity();
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     this.imagePreview = reader.result as string;
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
+
+  private isImageFile(file: File): boolean {
+    if (!file) {
+      return false;
+    }
+    const fileName = (file.name || '').toLowerCase();
+    return (
+      (file.type && file.type.startsWith('image/')) ||
+      /\.(jpe?g|png|gif|webp|heic|heif|bmp|jfif)$/i.test(fileName)
+    );
+  }
+
+  private async prepareUploadFile(file: File): Promise<File> {
+    if (!file) {
+      return file;
+    }
+
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            const maxDimension = 1600;
+            let width = img.naturalWidth || img.width;
+            let height = img.naturalHeight || img.height;
+
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const context = canvas.getContext('2d');
+            if (!context) {
+              resolve(file);
+              return;
+            }
+
+            context.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+              (blob) => {
+                if (!blob) {
+                  resolve(file);
+                  return;
+                }
+                const safeBaseName = (file.name || 'profile_image')
+                  .replace(/\.[^.]+$/, '')
+                  .replace(/[^a-zA-Z0-9_-]/g, '_');
+                try {
+                  const prepared = new File([blob], `${safeBaseName}.jpg`, { type: 'image/jpeg' });
+                  resolve(prepared);
+                } catch (_) {
+                  const blobFile = blob as any;
+                  blobFile.name = `${safeBaseName}.jpg`;
+                  blobFile.lastModified = Date.now();
+                  resolve(blobFile);
+                }
+              },
+              'image/jpeg',
+              0.85
+            );
+          } catch (err) {
+            console.warn('Canvas conversion failed, fallback to original file', err);
+            resolve(file);
+          }
+        };
+        img.onerror = (err) => {
+          console.warn('Image element failed to load, fallback to original file', err);
+          resolve(file);
+        };
+        img.src = e.target.result;
+      };
+      reader.onerror = () => resolve(file);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async onImagePicked(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const rawFile = input.files?.[0];
+    if (!rawFile) {
+      return;
+    }
+
+    if (!this.isImageFile(rawFile)) {
+      this.toastr.error('Please select a valid image file.');
+      input.value = '';
+      return;
+    }
+
+    const file = await this.prepareUploadFile(rawFile);
     this.form.patchValue({ image: file });
     this.form.get('image').updateValueAndValidity();
     const reader = new FileReader();

@@ -30,7 +30,7 @@
               <figure class="position-relative overflow-hidden main-img-profile my-0" (click)="filePicker.click()">
                 <img [src]="imagePreview" alt=""
                   class="rounded-circle border h-100 w-100 rounded-circle border img-fluid" style="object-fit: cover;">
-                <input type="file" class="d-none" accept="image/*" (change)="onImagePicked($event)" #filePicker>
+                <input type="file" class="d-none" accept="image/jpeg,image/png,image/jpg,image/webp,image/*" (change)="onImagePicked($event)" #filePicker>
                 <div class="position-absolute rounded-circle bg-white border img-button-profile">
                   <i class="fa fa-camera font-size-14"></i>
                 </div>

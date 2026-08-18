@@ -755,6 +755,7 @@
   </div>
 </div>
 <div *ngIf="showInfoModal" class="modal-backdrop fade show" (click)="closeInfoModal()"></div>
+
 <!-- <section class="container">
    <div class="row box-two d-flex align-items-start">
       <div class="col-md-6 mb-md-0 mb-5 mt-md-0 mt-5 text-center">
@@ -785,12 +786,14 @@
       </div>
     </div>
 </section> -->
+
 <section class="container mb-3" *ngIf="transactionData.length > 0">
   <!-- <div class="col-md-12">
     <h2 class="section-title" style="font-size: 28px !important;">Last 6 Payments</h2>
   </div> -->
   <div class="row justify-content-center mt-3 mb-5">
     <div class="col-xl-5 col-lg-6 mb-2 ">
+
       <!-- <div class="ct_icon_list d-block w-100 h-100 py-3 d-grid place-content-center"
         style="padding: 6px; background-color: var(--orange);color: #fff;">
         <h4 class="mb-0 txt-center ct_fs_24 text-center">Your circle</h4>
@@ -802,14 +805,14 @@
     'background-color': getTrustScoreColor(averageTrustScore),
     'color': '#fff'
   }">
+
         <!-- <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
           aria-label="Overall account balance info" style=" right: 30px;">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </button> -->
 
         <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
-          aria-label="My Circle Trust Score info" (click)="openInfoModal('My Circle Trust Score', 'Each member belongs to a Circle of closely connected friends and family. This score shows the average Trust Score of all members in your Circle and gives insight into how the Circle is managing its relationship with Interfriends.
-'); $event.preventDefault(); $event.stopPropagation()" style=" right: 30px;">
+          aria-label="My Circle Trust Score info" (click)="openInfoModal('My Circle Trust Score', 'Each member belongs to a Circle of closely connected friends and family. This score shows the average Trust Score of all members in your Circle and gives insight into how the Circle is managing its relationship with Interfriends.'); $event.preventDefault(); $event.stopPropagation()" style=" right: 30px;">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </button>
 
@@ -835,8 +838,7 @@
         </button> -->
 
         <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white"
-          aria-label="Your Interfriends Trust Score" (click)="openInfoModal('Your Interfriends Trust Score', 'We review each member’s payment habits and related account information to understand how they manage their Interfriends accounts. Your Trust Score may increase or decrease based on this activity and is used to support certain decisions about you.
-'); $event.preventDefault(); $event.stopPropagation()" style=" right: 20px; top: 20px;">
+          aria-label="Your Interfriends Trust Score" (click)="openInfoModal('Your Interfriends Trust Score', 'We review each member’s payment habits and related account information to understand how they manage their Interfriends accounts. Your Trust Score may increase or decrease based on this activity and is used to support certain decisions about you.'); $event.preventDefault(); $event.stopPropagation()" style=" right: 20px; top: 20px;">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </button>
 
@@ -861,8 +863,7 @@
         </button> -->
 
         <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-dark"
-          aria-label="My Circle Trust Score info" (click)="openInfoModal('My Circle Trust Score', 'Each member belongs to a Circle of closely connected friends and family. This score shows the average Trust Score of all members in your Circle and gives insight into how the Circle is managing its relationship with Interfriends.
-'); $event.preventDefault(); $event.stopPropagation()" style=" right: 30px;">
+          aria-label="My Circle Trust Score info" (click)="openInfoModal('My Circle Trust Score', 'Each member belongs to a Circle of closely connected friends and family. This score shows the average Trust Score of all members in your Circle and gives insight into how the Circle is managing its relationship with Interfriends.'); $event.preventDefault(); $event.stopPropagation()" style=" right: 30px;">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
         </button>
 

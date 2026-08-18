@@ -270,7 +270,8 @@
                             </div>
                             <div class="company-logo-picker__content">
                                 <label class="d-block mb-2">Company Logo</label>
-                                <input #companyLogoInput type="file" class="d-none" accept="image/*"
+                                <input #companyLogoInput type="file" class="d-none"
+                                    accept="image/jpeg,image/png,image/jpg,image/webp,image/*"
                                     (change)="onCompanyLogoSelected($event)" />
                                 <small class="form-text text-muted">
                                     Click the circle to upload or change the logo.
@@ -382,7 +383,8 @@
 
                         <div class="form-group">
                             <label>Images</label>
-                            <input type="file" class="form-control" accept="image/*" multiple
+                            <input type="file" class="form-control"
+                                accept="image/jpeg,image/png,image/jpg,image/webp,image/*" multiple
                                 (change)="onImagesSelected($event)" />
                             <small class="form-text text-muted">
                                 Upload up to 5 images total. Current: {{ getCurrentImageCount() }}/{{ maxImages }}.
