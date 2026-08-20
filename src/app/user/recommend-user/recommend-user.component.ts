@@ -84,7 +84,7 @@ export class RecommendUserComponent implements OnInit {
       this.form.value.firstName,
       this.form.value.lastName,
       this.form.value.email,
-      this.normalizePhoneNumber(this.form.value.mobile_number),
+      this.normalizePhoneNumber(this.form.value.mobile_number.number),
       this.form.value.country_code || this.countryCode,
       this.form.value.friend_employed,
       this.form.value.employement_type,
@@ -93,12 +93,13 @@ export class RecommendUserComponent implements OnInit {
       this.form.value.recommending_this_person,
       this.form.value.recommend_user_by
     ).subscribe((response: any) => {
-      this.form.reset();
       this.countryCode = '+44';
       this.form.get('country_code')?.setValue(this.countryCode);
       this.isLoading = false;
-      if (response.success === '1') {
+      if (response.success == '1') {
         this.toastr.success(response.message);
+        this.form.reset();
+
         //console.log(this.form.get('recommend_user_by').value); // Should log ''
       } else {
         this.toastr.error(response.message);

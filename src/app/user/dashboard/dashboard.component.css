@@ -488,4 +488,8 @@ span.ct_show_more_bold {
   font-size: 16px;
 }
 
-
+@media screen and (max-width: 767px) {
+  .text-md-center {
+    text-align: center !important;
+  }
+}
