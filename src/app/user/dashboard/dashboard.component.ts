@@ -7,7 +7,8 @@ import {
   ElementRef,
   Input,
   Inject,
-  DOCUMENT
+  DOCUMENT,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -42,6 +43,7 @@ interface DashboardCarousel {
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {

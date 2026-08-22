@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import { NotificationList } from 'src/app/model/notificationList.model';
 import { UserService } from 'src/app/service/user.service';
@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
     selector: 'app-circle-list',
     templateUrl: './circle-list.component.html',
     styleUrls: ['./circle-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CircleListComponent implements OnInit {

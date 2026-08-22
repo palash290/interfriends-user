@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -150,7 +150,7 @@ import { ApplyTravelComponent } from './apply-travel/apply-travel.component';
         }),
         NgChartsModule,
         GaugeModule.forRoot(),
-        NgxIntlTelInputModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        NgxIntlTelInputModule], providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())] })
 
 
 export class UserModule { }

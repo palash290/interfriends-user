@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
 
@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
     selector: 'app-apply-loan',
     templateUrl: './apply-loan.component.html',
     styleUrls: ['./apply-loan.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ApplyLoanComponent implements OnInit {

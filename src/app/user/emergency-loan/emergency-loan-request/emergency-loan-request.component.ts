@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/service/user.service';
     selector: 'app-emergency-loan-request',
     templateUrl: './emergency-loan-request.component.html',
     styleUrls: ['./emergency-loan-request.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EmergencyLoanRequestComponent implements OnInit {

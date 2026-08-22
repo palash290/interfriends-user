@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { UserService} from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,7 @@ import { Router} from '@angular/router';
     selector: 'app-verify-user',
     templateUrl: './verify-user.component.html',
     styleUrls: ['./verify-user.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class VerifyUserComponent implements OnInit {

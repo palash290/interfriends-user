@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserList } from 'src/app/model/userList.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -7,6 +7,7 @@ import { UserService } from 'src/app/service/user.service';
     selector: 'app-welcome-page',
     templateUrl: './welcome-page.component.html',
     styleUrls: ['./welcome-page.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WelcomePageComponent implements OnInit {

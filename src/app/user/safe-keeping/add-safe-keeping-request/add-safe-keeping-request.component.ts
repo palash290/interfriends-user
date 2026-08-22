@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
@@ -8,6 +8,7 @@ import { UserService } from 'src/app/service/user.service';
     selector: 'app-add-safe-keeping-request',
     templateUrl: './add-safe-keeping-request.component.html',
     styleUrls: ['./add-safe-keeping-request.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AddSafeKeepingRequestComponent implements OnInit {

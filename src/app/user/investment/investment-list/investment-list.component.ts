@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { InvestmentList } from 'src/app/model/investmentList.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
     selector: 'app-investment-list',
     templateUrl: './investment-list.component.html',
     styleUrls: ['./investment-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InvestmentListComponent implements OnInit {

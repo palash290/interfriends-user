@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,6 +9,7 @@ import {Location} from '@angular/common';
     selector: 'app-notification-list',
     templateUrl: './notification-list.component.html',
     styleUrls: ['./notification-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NotificationListComponent implements OnInit {

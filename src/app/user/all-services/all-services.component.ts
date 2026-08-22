@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/service/shared.service';
     selector: 'app-all-services',
     templateUrl: './all-services.component.html',
     styleUrls: ['./all-services.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AllServicesComponent implements OnInit {

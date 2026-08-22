@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Pf } from 'src/app/model/pf.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
     selector: 'app-pf-list',
     templateUrl: './pf-list.component.html',
     styleUrls: ['./pf-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PfListComponent implements OnInit {

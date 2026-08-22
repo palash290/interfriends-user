@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
@@ -13,6 +13,7 @@ const { PhoneNumberUtil } = require('google-libphonenumber');
     selector: 'app-my-services',
     templateUrl: './my-services.component.html',
     styleUrls: ['./my-services.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MyServicesComponent implements OnInit {

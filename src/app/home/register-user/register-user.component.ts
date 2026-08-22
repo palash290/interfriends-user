@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, VERSION, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, VERSION, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { City, Country, State } from 'country-state-city';
@@ -13,6 +13,7 @@ const { PhoneNumberUtil } = require('google-libphonenumber');
     selector: 'app-register-user',
     templateUrl: './register-user.component.html',
     styleUrls: ['./register-user.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RegisterUserComponent implements OnInit {

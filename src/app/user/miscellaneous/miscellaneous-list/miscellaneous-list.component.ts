@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import {Location} from '@angular/common';
 import { Miscellaneous } from 'src/app/model/miscellaneous.model';
@@ -8,6 +8,7 @@ import { MiscellaneousService } from 'src/app/service/miscellaneous.service';
     selector: 'app-miscellaneous-list',
     templateUrl: './miscellaneous-list.component.html',
     styleUrls: ['./miscellaneous-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MiscellaneousListComponent implements OnInit {

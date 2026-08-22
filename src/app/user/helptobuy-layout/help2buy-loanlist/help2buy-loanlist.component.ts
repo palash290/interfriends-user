@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Loan } from 'src/app/model/loan.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoanService } from 'src/app/service/loan.service';
@@ -9,6 +9,7 @@ import { ActivatedRoute, ParamMap} from '@angular/router'
     selector: 'app-help2buy-loanlist',
     templateUrl: './help2buy-loanlist.component.html',
     styleUrls: ['./help2buy-loanlist.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class Help2buyLoanlistComponent implements OnInit {

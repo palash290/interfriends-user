@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-image-magnify-page',
     templateUrl: './image-magnify-page.component.html',
     styleUrls: ['./image-magnify-page.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ImageMagnifyPageComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { GroupCycle } from '../../../model/groupCycle.model';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/service/auth.service';
     selector: 'app-saving-page',
     templateUrl: './saving-page.component.html',
     styleUrls: ['./saving-page.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SavingPageComponent implements OnInit {

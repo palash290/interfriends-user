@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SafeKeepingList } from 'src/app/model/safeKeeping.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
     selector: 'app-safe-keeping-list',
     templateUrl: './safe-keeping-list.component.html',
     styleUrls: ['./safe-keeping-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SafeKeepingListComponent implements OnInit {

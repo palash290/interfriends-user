@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
@@ -11,6 +11,7 @@ import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
     selector: 'app-recommend-user',
     templateUrl: './recommend-user.component.html',
     styleUrls: ['./recommend-user.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RecommendUserComponent implements OnInit {

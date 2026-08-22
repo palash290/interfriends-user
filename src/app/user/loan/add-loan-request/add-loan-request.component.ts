@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   SimpleChange,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -17,6 +18,7 @@ import { UserService } from 'src/app/service/user.service';
     selector: 'app-add-loan-request',
     templateUrl: './add-loan-request.component.html',
     styleUrls: ['./add-loan-request.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AddLoanRequestComponent implements OnInit {

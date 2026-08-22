@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 import { Location } from '@angular/common';
@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
     selector: 'app-my-recommendations',
     templateUrl: './my-recommendations.component.html',
     styleUrls: ['./my-recommendations.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MyRecommendationsComponent implements OnInit {

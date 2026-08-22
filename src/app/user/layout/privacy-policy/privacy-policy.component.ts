@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service'
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
     selector: 'app-privacy-policy',
     templateUrl: './privacy-policy.component.html',
     styleUrls: ['./privacy-policy.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PrivacyPolicyComponent implements OnInit {

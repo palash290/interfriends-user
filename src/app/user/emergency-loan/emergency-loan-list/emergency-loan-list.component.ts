@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EmergencyLoan } from 'src/app/model/emergencyLoan.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoanService } from 'src/app/service/loan.service';
@@ -9,6 +9,7 @@ import {Location} from '@angular/common';
     selector: 'app-emergency-loan-list',
     templateUrl: './emergency-loan-list.component.html',
     styleUrls: ['./emergency-loan-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EmergencyLoanListComponent implements OnInit {

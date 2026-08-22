@@ -29,7 +29,7 @@
                           <a class="nav-link profile-click have-notification mt-0"
                             href="javascript:void(0)">
                             <div (click)="showImg(data.profile_image)">
-                              <img [src]="data?.profile_image ? data?.profile_image : 'assets/img/np_pro.png'"
+                              <img [src]="data?.profile_image ? $safeNavigationMigration(data?.profile_image) : 'assets/img/np_pro.png'"
                                 class="img-fluid">
                             </div>
                           </a>

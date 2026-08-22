@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { InvestmentList } from 'src/app/model/investmentList.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -9,6 +9,7 @@ import { finalize } from 'rxjs/operators';
     selector: 'app-investment-profit',
     templateUrl: './investment-profit.component.html',
     styleUrls: ['./investment-profit.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InvestmentProfitComponent implements OnInit {

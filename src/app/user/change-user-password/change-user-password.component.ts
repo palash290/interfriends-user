@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
     selector: 'app-change-user-password',
     templateUrl: './change-user-password.component.html',
     styleUrls: ['./change-user-password.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ChangeUserPasswordComponent implements OnInit {

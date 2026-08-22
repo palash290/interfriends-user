@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { GroupCycle } from '../../../model/groupCycle.model';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
     selector: 'app-payout-page',
     templateUrl: './payout-page.component.html',
     styleUrls: ['./payout-page.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PayoutPageComponent implements OnInit {

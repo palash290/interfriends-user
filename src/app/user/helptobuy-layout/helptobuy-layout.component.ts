@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoanService } from 'src/app/service/loan.service';
@@ -7,6 +7,7 @@ import { LoanService } from 'src/app/service/loan.service';
     selector: 'app-helptobuy-layout',
     templateUrl: './helptobuy-layout.component.html',
     styleUrls: ['./helptobuy-layout.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HelptobuyLayoutComponent implements OnInit {

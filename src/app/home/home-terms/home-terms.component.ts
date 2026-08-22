@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TermandconditionService } from 'src/app/service/termandcondition.service';
 
@@ -6,6 +6,7 @@ import { TermandconditionService } from 'src/app/service/termandcondition.servic
     selector: 'app-home-terms',
     templateUrl: './home-terms.component.html',
     styleUrls: ['./home-terms.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HomeTermsComponent implements OnInit {

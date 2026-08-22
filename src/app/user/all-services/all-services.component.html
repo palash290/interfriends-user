@@ -30,7 +30,7 @@
               <div class="pro-card d-flex justify-content-between align-items-start gap-3">
                 <div class=" d-flex">
                   <div class="avatar-wrap me-3">
-                    <img [src]="service?.profile_image_thumb" class="img-fluid">
+                    <img [src]="$safeNavigationMigration(service?.profile_image_thumb)" class="img-fluid">
                   </div>
                   <div class="flex-grow-1">
                     <h3 class="pro-name">{{service?.service_name}}</h3>

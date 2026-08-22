@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Loan } from 'src/app/model/loan.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoanService } from 'src/app/service/loan.service';
@@ -14,6 +14,7 @@ import { finalize } from 'rxjs/operators';
     selector: 'app-welfare-loan',
     templateUrl: './welfare-loan.component.html',
     styleUrls: ['./welfare-loan.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WelfareLoanComponent implements OnInit {

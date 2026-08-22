@@ -106,7 +106,7 @@
                 <div class="recommendation-card__header ">
                   <div class="recommendation-card__identity">
                     <div class="avatar avatar--candidate">
-                      {{ getInitials(item?.first_name, item?.last_name) }}
+                      {{ getInitials($safeNavigationMigration(item?.first_name), $safeNavigationMigration(item?.last_name)) }}
                     </div>
                     <div>
                       <p class="card-kicker">Recommendation #{{ item?.id }}</p>
@@ -118,10 +118,10 @@
                       </p>
                     </div>
                   </div>
-                  <span class="status-pill" [ngClass]="getStatusClass(item?.overall_status)">
-                    <i class="ti" [ngClass]="getStatusIcon(item?.overall_status)"
+                  <span class="status-pill" [ngClass]="getStatusClass($safeNavigationMigration(item?.overall_status))">
+                    <i class="ti" [ngClass]="getStatusIcon($safeNavigationMigration(item?.overall_status))"
                     aria-hidden="true"></i>
-                    {{ item?.overall_status | titlecase }}
+                    {{ $safeNavigationMigration(item?.overall_status) | titlecase }}
                   </span>
                 </div>
                 <div class="">
@@ -199,7 +199,7 @@
                   <div class="summary-strip">
                     <div>
                       <span class="summary-strip__label">Approval status</span>
-                      <strong class="summary-strip__value">{{ item?.overall_status | titlecase
+                      <strong class="summary-strip__value">{{ $safeNavigationMigration(item?.overall_status) | titlecase
                       }}</strong>
                     </div>
                     <div>
@@ -235,14 +235,14 @@
                           <p class="timeline-step__name">{{ step?.approver_name || 'Approver' }}
                           </p>
                           <span class="status-pill status-pill--compact"
-                            [ngClass]="getStatusClass(step?.status)">
-                            <i class="ti" [ngClass]="getStatusIcon(step?.status)"
+                            [ngClass]="getStatusClass($safeNavigationMigration(step?.status))">
+                            <i class="ti" [ngClass]="getStatusIcon($safeNavigationMigration(step?.status))"
                             aria-hidden="true"></i>
-                            {{ step?.status | titlecase }}
+                            {{ $safeNavigationMigration(step?.status) | titlecase }}
                           </span>
                         </div>
                         <p class="timeline-step__meta">
-                          {{ formatRole(step?.approver_role) }}
+                          {{ formatRole($safeNavigationMigration(step?.approver_role)) }}
                           @if (step?.status === 'pending') {
                             &middot; awaiting review
                           }

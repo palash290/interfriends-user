@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/service/user.service';
     selector: 'app-apply-welfare',
     templateUrl: './apply-welfare.component.html',
     styleUrls: ['./apply-welfare.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ApplyWelfareComponent implements OnInit {

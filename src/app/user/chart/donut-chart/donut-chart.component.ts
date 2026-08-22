@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ChartType } from 'chart.js';
 import { UserService} from '../../../service/user.service';
 
@@ -6,6 +6,7 @@ import { UserService} from '../../../service/user.service';
     selector: 'app-donut-chart',
     templateUrl: './donut-chart.component.html',
     styleUrls: ['./donut-chart.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DonutChartComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Property } from 'src/app/model/property.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
     selector: 'app-investment-opportunity',
     templateUrl: './investment-opportunity.component.html',
     styleUrls: ['./investment-opportunity.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InvestmentOpportunityComponent implements OnInit {

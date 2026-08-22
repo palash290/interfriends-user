@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Loan } from 'src/app/model/loan.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoanService } from 'src/app/service/loan.service';
@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
     selector: 'app-my-loans',
     templateUrl: './my-loans.component.html',
     styleUrls: ['./my-loans.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MyLoansComponent implements OnInit {

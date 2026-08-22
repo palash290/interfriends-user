@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { SavingService } from 'src/app/service/saving.service';
 import { ActivatedRoute, ParamMap} from '@angular/router';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/service/user.service';
     selector: 'app-saving-detail',
     templateUrl: './saving-detail.component.html',
     styleUrls: ['./saving-detail.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SavingDetailComponent implements OnInit {
