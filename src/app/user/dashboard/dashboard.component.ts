@@ -7,6 +7,7 @@ import {
   ElementRef,
   Input,
   Inject,
+  DOCUMENT
 } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -15,7 +16,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { bannersAndmessagesService } from 'src/app/service/bannersAndmessages.service';
 import { Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+
 declare var $: any;
 export interface PhotosApi {
   albumId?: number;
