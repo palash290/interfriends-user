@@ -28,7 +28,6 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@types/jquery": "^3.5.5",
     "angular-gauge": "^4.0.0",
-    "angular-responsive-carousel": "^2.1.2",
     "angular2-multiselect-dropdown": "^5.0.4",
     "chart.js": "^2.9.3",
     "ckeditor4-angular": "^2.2.1",
