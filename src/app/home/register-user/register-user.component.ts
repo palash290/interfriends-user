@@ -10,9 +10,10 @@ declare const require: any;
 const { PhoneNumberUtil } = require('google-libphonenumber');
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css']
+    selector: 'app-register-user',
+    templateUrl: './register-user.component.html',
+    styleUrls: ['./register-user.component.css'],
+    standalone: false
 })
 export class RegisterUserComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-contact-investment',
-  templateUrl: './contact-investment.component.html',
-  styleUrls: ['./contact-investment.component.css']
+    selector: 'app-contact-investment',
+    templateUrl: './contact-investment.component.html',
+    styleUrls: ['./contact-investment.component.css'],
+    standalone: false
 })
 export class ContactInvestmentComponent implements OnInit, OnChanges {
 

@@ -4,9 +4,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-welcome-page',
-  templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.css']
+    selector: 'app-welcome-page',
+    templateUrl: './welcome-page.component.html',
+    styleUrls: ['./welcome-page.component.css'],
+    standalone: false
 })
 export class WelcomePageComponent implements OnInit {
 

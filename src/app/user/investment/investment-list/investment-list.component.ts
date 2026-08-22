@@ -5,9 +5,10 @@ import { UserService } from 'src/app/service/user.service';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-investment-list',
-  templateUrl: './investment-list.component.html',
-  styleUrls: ['./investment-list.component.css']
+    selector: 'app-investment-list',
+    templateUrl: './investment-list.component.html',
+    styleUrls: ['./investment-list.component.css'],
+    standalone: false
 })
 export class InvestmentListComponent implements OnInit {
   lists: InvestmentList[] = [];

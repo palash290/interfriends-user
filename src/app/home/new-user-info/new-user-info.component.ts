@@ -5,9 +5,10 @@ import { SharedService } from 'src/app/service/shared.service';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
-  selector: 'app-new-user-info',
-  templateUrl: './new-user-info.component.html',
-  styleUrls: ['./new-user-info.component.css']
+    selector: 'app-new-user-info',
+    templateUrl: './new-user-info.component.html',
+    styleUrls: ['./new-user-info.component.css'],
+    standalone: false
 })
 export class NewUserInfoComponent implements OnInit {
 

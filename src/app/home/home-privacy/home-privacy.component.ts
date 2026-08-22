@@ -4,9 +4,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-home-privacy',
-  templateUrl: './home-privacy.component.html',
-  styleUrls: ['./home-privacy.component.css']
+    selector: 'app-home-privacy',
+    templateUrl: './home-privacy.component.html',
+    styleUrls: ['./home-privacy.component.css'],
+    standalone: false
 })
 export class HomePrivacyComponent implements OnInit {
 

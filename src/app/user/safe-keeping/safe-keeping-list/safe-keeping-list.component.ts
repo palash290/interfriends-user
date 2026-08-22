@@ -6,9 +6,10 @@ import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-safe-keeping-list',
-  templateUrl: './safe-keeping-list.component.html',
-  styleUrls: ['./safe-keeping-list.component.css']
+    selector: 'app-safe-keeping-list',
+    templateUrl: './safe-keeping-list.component.html',
+    styleUrls: ['./safe-keeping-list.component.css'],
+    standalone: false
 })
 export class SafeKeepingListComponent implements OnInit {
 

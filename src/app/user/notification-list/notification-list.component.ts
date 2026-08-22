@@ -6,9 +6,10 @@ import { NotificationList } from 'src/app/model/notificationList.model';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-notification-list',
-  templateUrl: './notification-list.component.html',
-  styleUrls: ['./notification-list.component.css']
+    selector: 'app-notification-list',
+    templateUrl: './notification-list.component.html',
+    styleUrls: ['./notification-list.component.css'],
+    standalone: false
 })
 export class NotificationListComponent implements OnInit {
 

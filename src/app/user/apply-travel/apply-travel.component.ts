@@ -7,9 +7,10 @@ import { LoanService } from 'src/app/service/loan.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-apply-travel',
-  templateUrl: './apply-travel.component.html',
-  styleUrls: ['./apply-travel.component.css']
+    selector: 'app-apply-travel',
+    templateUrl: './apply-travel.component.html',
+    styleUrls: ['./apply-travel.component.css'],
+    standalone: false
 })
 export class ApplyTravelComponent implements OnInit {
 

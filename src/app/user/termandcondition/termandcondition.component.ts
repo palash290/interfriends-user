@@ -3,9 +3,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TermandconditionService } from 'src/app/service/termandcondition.service';
 
 @Component({
-  selector: 'app-termandcondition',
-  templateUrl: './termandcondition.component.html',
-  styleUrls: ['./termandcondition.component.css']
+    selector: 'app-termandcondition',
+    templateUrl: './termandcondition.component.html',
+    styleUrls: ['./termandcondition.component.css'],
+    standalone: false
 })
 export class TermandconditionComponent implements OnInit {
 

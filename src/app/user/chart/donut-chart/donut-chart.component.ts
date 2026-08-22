@@ -3,9 +3,10 @@ import { ChartType } from 'chart.js';
 import { UserService} from '../../../service/user.service';
 
 @Component({
-  selector: 'app-donut-chart',
-  templateUrl: './donut-chart.component.html',
-  styleUrls: ['./donut-chart.component.css']
+    selector: 'app-donut-chart',
+    templateUrl: './donut-chart.component.html',
+    styleUrls: ['./donut-chart.component.css'],
+    standalone: false
 })
 export class DonutChartComponent implements OnInit {
 

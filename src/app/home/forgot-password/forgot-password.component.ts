@@ -6,9 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+    selector: 'app-forgot-password',
+    templateUrl: './forgot-password.component.html',
+    styleUrls: ['./forgot-password.component.css'],
+    standalone: false
 })
 export class ForgotPasswordComponent implements OnInit {
 

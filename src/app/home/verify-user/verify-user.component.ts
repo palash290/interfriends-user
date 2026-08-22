@@ -7,9 +7,10 @@ import { Router} from '@angular/router';
 
 
 @Component({
-  selector: 'app-verify-user',
-  templateUrl: './verify-user.component.html',
-  styleUrls: ['./verify-user.component.css']
+    selector: 'app-verify-user',
+    templateUrl: './verify-user.component.html',
+    styleUrls: ['./verify-user.component.css'],
+    standalone: false
 })
 export class VerifyUserComponent implements OnInit {
 

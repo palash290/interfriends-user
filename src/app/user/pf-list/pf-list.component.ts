@@ -6,9 +6,10 @@ import { Location } from '@angular/common';
 import { GroupCycle } from '../../model/groupCycle.model';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-pf-list',
-  templateUrl: './pf-list.component.html',
-  styleUrls: ['./pf-list.component.css']
+    selector: 'app-pf-list',
+    templateUrl: './pf-list.component.html',
+    styleUrls: ['./pf-list.component.css'],
+    standalone: false
 })
 export class PfListComponent implements OnInit {
   pfList: Pf[] = [];

@@ -11,9 +11,10 @@ import { finalize } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-welfare-loan',
-  templateUrl: './welfare-loan.component.html',
-  styleUrls: ['./welfare-loan.component.css']
+    selector: 'app-welfare-loan',
+    templateUrl: './welfare-loan.component.html',
+    styleUrls: ['./welfare-loan.component.css'],
+    standalone: false
 })
 export class WelfareLoanComponent implements OnInit {
 

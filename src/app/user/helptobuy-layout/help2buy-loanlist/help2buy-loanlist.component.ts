@@ -6,9 +6,10 @@ import {Location} from '@angular/common';
 import { ActivatedRoute, ParamMap} from '@angular/router'
 
 @Component({
-  selector: 'app-help2buy-loanlist',
-  templateUrl: './help2buy-loanlist.component.html',
-  styleUrls: ['./help2buy-loanlist.component.css']
+    selector: 'app-help2buy-loanlist',
+    templateUrl: './help2buy-loanlist.component.html',
+    styleUrls: ['./help2buy-loanlist.component.css'],
+    standalone: false
 })
 export class Help2buyLoanlistComponent implements OnInit {
 

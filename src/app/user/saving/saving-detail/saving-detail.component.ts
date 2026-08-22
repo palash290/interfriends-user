@@ -7,9 +7,10 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-saving-detail',
-  templateUrl: './saving-detail.component.html',
-  styleUrls: ['./saving-detail.component.css']
+    selector: 'app-saving-detail',
+    templateUrl: './saving-detail.component.html',
+    styleUrls: ['./saving-detail.component.css'],
+    standalone: false
 })
 export class SavingDetailComponent implements OnInit {
   groupId: string;

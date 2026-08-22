@@ -9,9 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
-  selector: 'app-payout-page',
-  templateUrl: './payout-page.component.html',
-  styleUrls: ['./payout-page.component.css']
+    selector: 'app-payout-page',
+    templateUrl: './payout-page.component.html',
+    styleUrls: ['./payout-page.component.css'],
+    standalone: false
 })
 export class PayoutPageComponent implements OnInit {
 

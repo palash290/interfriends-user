@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-how-work',
-  templateUrl: './how-work.component.html',
-  styleUrls: ['./how-work.component.css']
+    selector: 'app-how-work',
+    templateUrl: './how-work.component.html',
+    styleUrls: ['./how-work.component.css'],
+    standalone: false
 })
 export class HowWorkComponent implements OnInit {
 

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-image-magnify-page',
-  templateUrl: './image-magnify-page.component.html',
-  styleUrls: ['./image-magnify-page.component.css']
+    selector: 'app-image-magnify-page',
+    templateUrl: './image-magnify-page.component.html',
+    styleUrls: ['./image-magnify-page.component.css'],
+    standalone: false
 })
 export class ImageMagnifyPageComponent implements OnInit {
   myThumbnail="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg";

@@ -7,9 +7,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
-  selector: 'app-investment-opportunity',
-  templateUrl: './investment-opportunity.component.html',
-  styleUrls: ['./investment-opportunity.component.css']
+    selector: 'app-investment-opportunity',
+    templateUrl: './investment-opportunity.component.html',
+    styleUrls: ['./investment-opportunity.component.css'],
+    standalone: false
 })
 export class InvestmentOpportunityComponent implements OnInit {
   lists: Property[] = [];

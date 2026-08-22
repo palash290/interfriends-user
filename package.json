@@ -11,20 +11,20 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.2.14",
-    "@angular/cdk": "^18.2.14",
-    "@angular/cli": "^18.2.21",
-    "@angular/common": "^18.2.14",
-    "@angular/compiler": "^18.2.14",
-    "@angular/core": "^18.2.14",
+    "@angular/animations": "^19.2.25",
+    "@angular/cdk": "^19.2.19",
+    "@angular/cli": "^19.2.27",
+    "@angular/common": "^19.2.25",
+    "@angular/compiler": "^19.2.25",
+    "@angular/core": "^19.2.25",
     "@angular/fire": "7.3.0",
-    "@angular/forms": "^18.2.14",
-    "@angular/google-maps": "^18.2.14",
-    "@angular/material": "^16.2.14",
-    "@angular/platform-browser": "^18.2.14",
-    "@angular/platform-browser-dynamic": "^18.2.14",
-    "@angular/router": "^18.2.14",
-    "@angular/service-worker": "^18.2.14",
+    "@angular/forms": "^19.2.25",
+    "@angular/google-maps": "^19.2.19",
+    "@angular/material": "^19.2.19",
+    "@angular/platform-browser": "^19.2.25",
+    "@angular/platform-browser-dynamic": "^19.2.25",
+    "@angular/router": "^19.2.25",
+    "@angular/service-worker": "^19.2.25",
     "@ng-bootstrap/ng-bootstrap": "15.0.1",
     "@popperjs/core": "2.11.8",
     "@types/jquery": "^3.5.5",
@@ -52,11 +52,11 @@
     "rxjs": "~6.6.7",
     "sweetalert2": "^11.7.3",
     "tslib": "^2.2.0",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.21",
-    "@angular/compiler-cli": "^18.2.14",
+    "@angular-devkit/build-angular": "^19.2.27",
+    "@angular/compiler-cli": "^19.2.25",
     "@types/google.maps": "3.55.12",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
@@ -66,6 +66,6 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.6.3"
   }
 }

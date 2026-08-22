@@ -5,9 +5,10 @@ import { Miscellaneous } from 'src/app/model/miscellaneous.model';
 import { MiscellaneousService } from 'src/app/service/miscellaneous.service';
 
 @Component({
-  selector: 'app-miscellaneous-list',
-  templateUrl: './miscellaneous-list.component.html',
-  styleUrls: ['./miscellaneous-list.component.css']
+    selector: 'app-miscellaneous-list',
+    templateUrl: './miscellaneous-list.component.html',
+    styleUrls: ['./miscellaneous-list.component.css'],
+    standalone: false
 })
 export class MiscellaneousListComponent implements OnInit {
 

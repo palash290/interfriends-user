@@ -2,9 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-co-op',
-  templateUrl: './co-op.component.html',
-  styleUrls: ['./co-op.component.css']
+    selector: 'app-co-op',
+    templateUrl: './co-op.component.html',
+    styleUrls: ['./co-op.component.css'],
+    standalone: false
 })
 export class CoOpComponent implements OnInit {
 

@@ -3,9 +3,10 @@ import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-apply-loan',
-  templateUrl: './apply-loan.component.html',
-  styleUrls: ['./apply-loan.component.css'],
+    selector: 'app-apply-loan',
+    templateUrl: './apply-loan.component.html',
+    styleUrls: ['./apply-loan.component.css'],
+    standalone: false
 })
 export class ApplyLoanComponent implements OnInit {
 

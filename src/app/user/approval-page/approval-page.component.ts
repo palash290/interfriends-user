@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-approval-page',
-  templateUrl: './approval-page.component.html',
-  styleUrls: ['./approval-page.component.css']
+    selector: 'app-approval-page',
+    templateUrl: './approval-page.component.html',
+    styleUrls: ['./approval-page.component.css'],
+    standalone: false
 })
 export class ApprovalPageComponent implements OnInit {
 

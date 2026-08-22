@@ -5,9 +5,10 @@ import { LoanService } from 'src/app/service/loan.service';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-my-loans',
-  templateUrl: './my-loans.component.html',
-  styleUrls: ['./my-loans.component.css']
+    selector: 'app-my-loans',
+    templateUrl: './my-loans.component.html',
+    styleUrls: ['./my-loans.component.css'],
+    standalone: false
 })
 export class MyLoansComponent implements OnInit {
   isLoading = true;

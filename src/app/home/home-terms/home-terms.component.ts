@@ -3,9 +3,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TermandconditionService } from 'src/app/service/termandcondition.service';
 
 @Component({
-  selector: 'app-home-terms',
-  templateUrl: './home-terms.component.html',
-  styleUrls: ['./home-terms.component.css']
+    selector: 'app-home-terms',
+    templateUrl: './home-terms.component.html',
+    styleUrls: ['./home-terms.component.css'],
+    standalone: false
 })
 export class HomeTermsComponent implements OnInit {
 

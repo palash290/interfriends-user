@@ -7,9 +7,10 @@ import { LoanService } from 'src/app/service/loan.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-emergency-loan-request',
-  templateUrl: './emergency-loan-request.component.html',
-  styleUrls: ['./emergency-loan-request.component.css']
+    selector: 'app-emergency-loan-request',
+    templateUrl: './emergency-loan-request.component.html',
+    styleUrls: ['./emergency-loan-request.component.css'],
+    standalone: false
 })
 export class EmergencyLoanRequestComponent implements OnInit {
   userList: UserList[] = [];

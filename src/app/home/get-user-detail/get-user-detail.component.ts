@@ -6,9 +6,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
-  selector: 'app-get-user-detail',
-  templateUrl: './get-user-detail.component.html',
-  styleUrls: ['./get-user-detail.component.css']
+    selector: 'app-get-user-detail',
+    templateUrl: './get-user-detail.component.html',
+    styleUrls: ['./get-user-detail.component.css'],
+    standalone: false
 })
 export class GetUserDetailComponent implements OnInit {
 

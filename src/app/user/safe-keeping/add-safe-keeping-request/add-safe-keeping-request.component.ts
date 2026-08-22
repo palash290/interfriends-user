@@ -5,9 +5,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-add-safe-keeping-request',
-  templateUrl: './add-safe-keeping-request.component.html',
-  styleUrls: ['./add-safe-keeping-request.component.css']
+    selector: 'app-add-safe-keeping-request',
+    templateUrl: './add-safe-keeping-request.component.html',
+    styleUrls: ['./add-safe-keeping-request.component.css'],
+    standalone: false
 })
 export class AddSafeKeepingRequestComponent implements OnInit {
 

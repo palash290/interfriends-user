@@ -7,9 +7,10 @@ import { Location } from '@angular/common';
 declare var $: any;
 
 @Component({
-  selector: 'app-help',
-  templateUrl: './help.component.html',
-  styleUrls: ['./help.component.css']
+    selector: 'app-help',
+    templateUrl: './help.component.html',
+    styleUrls: ['./help.component.css'],
+    standalone: false
 })
 export class HelpComponent implements OnInit {
 

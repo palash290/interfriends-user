@@ -6,9 +6,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-circle-list',
-  templateUrl: './circle-list.component.html',
-  styleUrls: ['./circle-list.component.css']
+    selector: 'app-circle-list',
+    templateUrl: './circle-list.component.html',
+    styleUrls: ['./circle-list.component.css'],
+    standalone: false
 })
 export class CircleListComponent implements OnInit {
 

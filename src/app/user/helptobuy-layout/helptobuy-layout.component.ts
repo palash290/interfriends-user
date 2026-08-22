@@ -4,9 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { LoanService } from 'src/app/service/loan.service';
 
 @Component({
-  selector: 'app-helptobuy-layout',
-  templateUrl: './helptobuy-layout.component.html',
-  styleUrls: ['./helptobuy-layout.component.css']
+    selector: 'app-helptobuy-layout',
+    templateUrl: './helptobuy-layout.component.html',
+    styleUrls: ['./helptobuy-layout.component.css'],
+    standalone: false
 })
 export class HelptobuyLayoutComponent implements OnInit {
 

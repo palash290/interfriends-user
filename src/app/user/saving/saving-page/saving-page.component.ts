@@ -8,9 +8,10 @@ import { SavingService } from 'src/app/service/saving.service';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
-  selector: 'app-saving-page',
-  templateUrl: './saving-page.component.html',
-  styleUrls: ['./saving-page.component.css']
+    selector: 'app-saving-page',
+    templateUrl: './saving-page.component.html',
+    styleUrls: ['./saving-page.component.css'],
+    standalone: false
 })
 export class SavingPageComponent implements OnInit {
 

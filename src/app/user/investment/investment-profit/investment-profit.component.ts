@@ -6,9 +6,10 @@ import { UserService } from 'src/app/service/user.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-investment-profit',
-  templateUrl: './investment-profit.component.html',
-  styleUrls: ['./investment-profit.component.css']
+    selector: 'app-investment-profit',
+    templateUrl: './investment-profit.component.html',
+    styleUrls: ['./investment-profit.component.css'],
+    standalone: false
 })
 export class InvestmentProfitComponent implements OnInit {
 

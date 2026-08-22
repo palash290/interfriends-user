@@ -4,9 +4,10 @@ import { UserService } from 'src/app/service/user.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-my-recommendations',
-  templateUrl: './my-recommendations.component.html',
-  styleUrls: ['./my-recommendations.component.css']
+    selector: 'app-my-recommendations',
+    templateUrl: './my-recommendations.component.html',
+    styleUrls: ['./my-recommendations.component.css'],
+    standalone: false
 })
 export class MyRecommendationsComponent implements OnInit {
 

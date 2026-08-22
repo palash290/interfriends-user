@@ -6,9 +6,10 @@ import {Location} from '@angular/common';
 
 
 @Component({
-  selector: 'app-emergency-loan-list',
-  templateUrl: './emergency-loan-list.component.html',
-  styleUrls: ['./emergency-loan-list.component.css']
+    selector: 'app-emergency-loan-list',
+    templateUrl: './emergency-loan-list.component.html',
+    styleUrls: ['./emergency-loan-list.component.css'],
+    standalone: false
 })
 export class EmergencyLoanListComponent implements OnInit {
 

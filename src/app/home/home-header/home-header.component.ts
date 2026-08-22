@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
-  selector: 'app-home-header',
-  templateUrl: './home-header.component.html',
-  styleUrls: ['./home-header.component.css']
+    selector: 'app-home-header',
+    templateUrl: './home-header.component.html',
+    styleUrls: ['./home-header.component.css'],
+    standalone: false
 })
 export class HomeHeaderComponent implements OnInit {
 

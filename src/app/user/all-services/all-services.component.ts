@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
-  selector: 'app-all-services',
-  templateUrl: './all-services.component.html',
-  styleUrls: ['./all-services.component.css']
+    selector: 'app-all-services',
+    templateUrl: './all-services.component.html',
+    styleUrls: ['./all-services.component.css'],
+    standalone: false
 })
 export class AllServicesComponent implements OnInit {
 

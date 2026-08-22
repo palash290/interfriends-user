@@ -5,9 +5,10 @@ import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
-  selector: 'app-change-user-password',
-  templateUrl: './change-user-password.component.html',
-  styleUrls: ['./change-user-password.component.css']
+    selector: 'app-change-user-password',
+    templateUrl: './change-user-password.component.html',
+    styleUrls: ['./change-user-password.component.css'],
+    standalone: false
 })
 export class ChangeUserPasswordComponent implements OnInit {
 

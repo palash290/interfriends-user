@@ -14,9 +14,10 @@ import { LoanService } from 'src/app/service/loan.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-add-loan-request',
-  templateUrl: './add-loan-request.component.html',
-  styleUrls: ['./add-loan-request.component.css'],
+    selector: 'app-add-loan-request',
+    templateUrl: './add-loan-request.component.html',
+    styleUrls: ['./add-loan-request.component.css'],
+    standalone: false
 })
 export class AddLoanRequestComponent implements OnInit {
   userList: UserList[] = [];

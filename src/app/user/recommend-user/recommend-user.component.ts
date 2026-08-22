@@ -8,9 +8,10 @@ import { Location } from '@angular/common';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
-  selector: 'app-recommend-user',
-  templateUrl: './recommend-user.component.html',
-  styleUrls: ['./recommend-user.component.css']
+    selector: 'app-recommend-user',
+    templateUrl: './recommend-user.component.html',
+    styleUrls: ['./recommend-user.component.css'],
+    standalone: false
 })
 export class RecommendUserComponent implements OnInit {
   userList: UserList[] = [];
