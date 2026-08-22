@@ -21,9 +21,11 @@
                 <div class="icon">
                   <img src="assets/images/amt.png" align="" alt="" title="">
                 </div>
-                <span class="error-form" *ngIf="form.get('amount').invalid && form.get('amount').touched">
-                  Please enter a amount.
-                </span>
+                @if (form.get('amount').invalid && form.get('amount').touched) {
+                  <span class="error-form">
+                    Please enter a amount.
+                  </span>
+                }
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -33,17 +35,21 @@
                 <div class="icon">
                   <img src="assets/images/calendar.png" align="" alt="" title="">
                 </div>
-                <span class="error-form" *ngIf="form.get('date').invalid && form.get('date').touched">
-                  Please enter a date.
-                </span>
+                @if (form.get('date').invalid && form.get('date').touched) {
+                  <span class="error-form">
+                    Please enter a date.
+                  </span>
+                }
               </div>
             </div>
             <div class="offset-lg-3 col-lg-6 col-md-6 col-sm-12">
               <div class="form-group">
                 <textarea formControlName="reason" placeholder="Any comments/notes" class="form-control"></textarea>
-                <span class="error-form" *ngIf="form.get('reason').invalid && form.get('reason').touched">
-                  Please enter a reason.
-                </span>
+                @if (form.get('reason').invalid && form.get('reason').touched) {
+                  <span class="error-form">
+                    Please enter a reason.
+                  </span>
+                }
               </div>
             </div>
           </div>
@@ -51,14 +57,16 @@
       </div>
       <div class="modal-footer justify-content-center border-0">
         <!-- <button class="btn-cstm btn-blue mt-3 min-width-230" type="submit" [disabled]="isLoading">
-          <span>Apply</span>
-        </button> -->
+        <span>Apply</span>
+      </button> -->
 
-        <button type="submit" [disabled]="isLoading" class="btn-cstm btn-blue mt-3 min-width-230">
-          <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-          {{ isLoading ? '' : 'Apply' }}
-        </button>
-      </div>
-    </form>
-  </div>
+      <button type="submit" [disabled]="isLoading" class="btn-cstm btn-blue mt-3 min-width-230">
+        @if (isLoading) {
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        }
+        {{ isLoading ? '' : 'Apply' }}
+      </button>
+    </div>
+  </form>
+</div>
 </div>

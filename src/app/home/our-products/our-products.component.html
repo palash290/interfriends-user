@@ -1,192 +1,192 @@
 <app-home-header></app-home-header>
 
 <!-- <div class="et_main_banner_bg" style="height: 395px;">
-    
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 mx-auto">
-                    <div class="et_banner_section text-center">
-                        <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">Our Products</h2>
-                        <ul class="et_breadcrumb">
-                            <li>
-                                <a routerLink="/" class="et_orange_text">Home</a>
-                            </li>
-                            <li><i class="fa-solid fa-angle-right"></i></li>
-                            <li>Our Products</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <div class="et_banner_section text-center">
+          <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">Our Products</h2>
+          <ul class="et_breadcrumb">
+            <li>
+              <a routerLink="/" class="et_orange_text">Home</a>
+            </li>
+            <li><i class="fa-solid fa-angle-right"></i></li>
+            <li>Our Products</li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
 </div> -->
 
 <owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
-    <ng-container *ngFor="let banner of banners">
-        <ng-template carouselSlide>
-            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
-                <section>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-10 mx-auto">
-                                <div class="et_banner_section text-center">
-                                    <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">Our Products</h2>
-                                    <ul class="et_breadcrumb">
-                                        <li>
-                                            <a routerLink="/" class="et_orange_text">Home</a>
-                                        </li>
-                                        <li><i class="fa-solid fa-angle-right"></i></li>
-                                        <li>Our Products</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+  @for (banner of banners; track banner) {
+    <ng-template carouselSlide>
+      <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 mx-auto">
+                <div class="et_banner_section text-center">
+                  <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">Our Products</h2>
+                  <ul class="et_breadcrumb">
+                    <li>
+                      <a routerLink="/" class="et_orange_text">Home</a>
+                    </li>
+                    <li><i class="fa-solid fa-angle-right"></i></li>
+                    <li>Our Products</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </ng-template>
-    </ng-container>
+          </div>
+        </section>
+      </div>
+    </ng-template>
+  }
 </owl-carousel-o>
 
 
 <!-- Our Product Section S -->
 <section class="et_pt_83 et_pb_83">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">Our Products</h2>
-                <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">Smart Money Saving Products
-                    Tailored For You</h4>
-                <p class="et_dark_blue_text et_fs_18">Discover a range of flexible and community-centrd savings
-                    solutions designed to help you achieve financial stability. Whether you're saving for the
-                    future, an emergency, or a specific goal, our products are built to support you every step of
-                    the way.</p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_1.jpg" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_1.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Monthly Savings</h5>
-                        <p class="mb-0">Fixed monthly savings that meet your needs</p>
-                    </figcaption>
-                </figure>
-
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_2.jpg" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_2.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Junior/Christmas Savings</h5>
-                        <p class="mb-0">Small regular savings for your young ones towards Christmas spending </p>
-                    </figcaption>
-
-                </figure>
-
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_3.png" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_3.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Safekeeping</h5>
-                        <p class="mb-0">Request to divert your Payout into your Safekeeping account</p>
-                    </figcaption>
-                </figure>
-
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_4.png" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_4.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Emergency</h5>
-                        <p class="mb-0">Instant financial support when you need it most.</p>
-                    </figcaption>
-                </figure>
-
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_5.png" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_5.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Help2Buy</h5>
-                        <p class="mb-0">Helping you to save towards your property purchase</p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/Proud.png" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/co-op.png" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Co-operative</h5>
-                        <p class="mb-0">Become a shareholder in our co-operative business</p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_7.png" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_7.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Property</h5>
-                        <p class="mb-0">Jointly acquiring properties as shareholders</p>
-                    </figcaption>
-                </figure>
-
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <figure class="et_product_card">
-                    <div class="et_product_img">
-                        <img src="assets/img/our-products/product_8.png" alt="">
-                    </div>
-                    <figcaption>
-                        <div class="et_product_icon">
-                            <img src="assets/img/our-products/product_icon_8.svg" alt="">
-                        </div>
-                        <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Welfare</h5>
-                        <p class="mb-0">Helping you in bereavement and sickness </p>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">Our Products</h2>
+        <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">Smart Money Saving Products
+        Tailored For You</h4>
+        <p class="et_dark_blue_text et_fs_18">Discover a range of flexible and community-centrd savings
+          solutions designed to help you achieve financial stability. Whether you're saving for the
+          future, an emergency, or a specific goal, our products are built to support you every step of
+        the way.</p>
+      </div>
     </div>
+    <div class="row mt-5">
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_1.jpg" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_1.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Monthly Savings</h5>
+            <p class="mb-0">Fixed monthly savings that meet your needs</p>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_2.jpg" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_2.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Junior/Christmas Savings</h5>
+            <p class="mb-0">Small regular savings for your young ones towards Christmas spending </p>
+          </figcaption>
+
+        </figure>
+
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_3.png" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_3.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Safekeeping</h5>
+            <p class="mb-0">Request to divert your Payout into your Safekeeping account</p>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_4.png" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_4.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Emergency</h5>
+            <p class="mb-0">Instant financial support when you need it most.</p>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_5.png" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_5.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Help2Buy</h5>
+            <p class="mb-0">Helping you to save towards your property purchase</p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/Proud.png" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/co-op.png" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Co-operative</h5>
+            <p class="mb-0">Become a shareholder in our co-operative business</p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_7.png" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_7.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Property</h5>
+            <p class="mb-0">Jointly acquiring properties as shareholders</p>
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <figure class="et_product_card">
+          <div class="et_product_img">
+            <img src="assets/img/our-products/product_8.png" alt="">
+          </div>
+          <figcaption>
+            <div class="et_product_icon">
+              <img src="assets/img/our-products/product_icon_8.svg" alt="">
+            </div>
+            <h5 class="et_fs_20 et_ff_Gilroy-semi-bold mt-4">Interfriends Welfare</h5>
+            <p class="mb-0">Helping you in bereavement and sickness </p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Faq Section E -->
 

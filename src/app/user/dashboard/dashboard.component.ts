@@ -132,7 +132,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   infoModalTitle = '';
   infoModalMessage = '';
 
-  apiData: PhotosApi;
+  apiData: PhotosApi[];
   limit: number = 10; // <==== Edit this number to limit API results
   customOptions: OwlOptions = {
     loop: true,

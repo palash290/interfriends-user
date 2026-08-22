@@ -20,30 +20,38 @@
               <div class="icon">
                 <img src="assets/images/mail.png" align="" alt="" title="">
               </div>
-              <span class="error-message" *ngIf="form.get('email').invalid && form.get('email').touched">Please Enter
+              @if (form.get('email').invalid && form.get('email').touched) {
+                <span class="error-message">Please Enter
                 Email</span>
+              }
             </div>
             <!-- <div class="form-group fp-grp">
-              <input type="password" formControlName="password" placeholder="Enter password" class="form-control">
-              <div class="icon">
-                <img src="assets/images/unlock.png" align="" alt="" title="">
-              </div>
-              <span class="error-message" *ngIf="form.get('password').invalid && form.get('password').touched">Please
-                Enter Password</span>
-            </div> -->
+            <input type="password" formControlName="password" placeholder="Enter password" class="form-control">
+            <div class="icon">
+              <img src="assets/images/unlock.png" align="" alt="" title="">
+            </div>
+            <span class="error-message" *ngIf="form.get('password').invalid && form.get('password').touched">Please
+            Enter Password</span>
+          </div> -->
 
-            <div class="form-group fp-grp">
-              <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter password"
-                class="form-control" />
+          <div class="form-group fp-grp">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter password"
+              class="form-control" />
 
               <div class="icon" (click)="togglePasswordVisibility()" style="cursor: pointer;">
-                <i class="fa fa-lock" aria-hidden="true" *ngIf="!showPassword" style="font-size: 25px;"></i>
-                <i class="fa fa-unlock-alt" aria-hidden="true" *ngIf="showPassword" style="font-size: 25px;"></i>
+                @if (!showPassword) {
+                  <i class="fa fa-lock" aria-hidden="true" style="font-size: 25px;"></i>
+                }
+                @if (showPassword) {
+                  <i class="fa fa-unlock-alt" aria-hidden="true" style="font-size: 25px;"></i>
+                }
               </div>
 
-              <span class="error-message" *ngIf="form.get('password').invalid && form.get('password').touched">
-                Please Enter Password
-              </span>
+              @if (form.get('password').invalid && form.get('password').touched) {
+                <span class="error-message">
+                  Please Enter Password
+                </span>
+              }
             </div>
 
 
@@ -51,8 +59,12 @@
               <a routerLink="/forgotPassword" class="fp-link">Forgot password?</a>
             </div>
             <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center" [disabled]="isLoading">
-              <span *ngIf="!isLoading">Login</span>
-              <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+              @if (!isLoading) {
+                <span>Login</span>
+              }
+              @if (isLoading) {
+                <span><i class="fa fa-refresh fa-spin"></i></span>
+              }
             </button>
           </form>
         </div>

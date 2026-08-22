@@ -8,14 +8,26 @@
       <div class="inner-box">
         <h6 class="extra-hding">Emergency Loan</h6>
         <h2 class="main-hding">
-          <span *ngIf="!isLoading">
-            <span *ngIf="status == '1'">{{avgAmount| currency:'GBP': 'symbol' : '1.0-0'}}</span>
-            <span *ngIf="status == '2'">{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
-          </span>
-          <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+          @if (!isLoading) {
+            <span>
+              @if (status == '1') {
+                <span>{{avgAmount| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              }
+              @if (status == '2') {
+                <span>{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              }
+            </span>
+          }
+          @if (isLoading) {
+            <span><i class="fa fa-refresh fa-spin"></i></span>
+          }
         </h2>
-        <p class="sub-para m-0" *ngIf="status == '1'">Total Active emergency loans</p>
-        <p class="sub-para m-0" *ngIf="status == '2'">Total Complete emergency loans</p>
+        @if (status == '1') {
+          <p class="sub-para m-0">Total Active emergency loans</p>
+        }
+        @if (status == '2') {
+          <p class="sub-para m-0">Total Complete emergency loans</p>
+        }
       </div>
     </div>
   </div>
@@ -28,7 +40,7 @@
       <ul class="nav nav-tabs bg-blue" id="myTab">
         <li class="nav-item">
           <a class="nav-link active" id="savings-tab" data-toggle="tab" href="#savings"
-            (click)="onSetStatus('1')">Active</a>
+          (click)="onSetStatus('1')">Active</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" (click)="onSetStatus('2')">History</a>
@@ -40,46 +52,58 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="savings">
           <div class="row">
-            <div class="col-lg-12" *ngIf="isLoading">
-              <mat-spinner class="mx-auto"></mat-spinner>
-            </div>
-            <div class="col-lg-12" *ngIf="laonActive.length > 0 && !isLoading">
-              <div class="box-line-white active-emloan-box rounded-0 py-4 click-accordion"
-                *ngFor="let data of laonActive; let i = index">
-                <div class="row d-flex align-items-center pl-lg-5 pl-0">
-                  <div class="col-sm-6 mb-sm-0 mb-4">
-                    <div class="row">
-                      <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4">
-                        <h6 class="loan-sm-text">Loan Date</h6>
-                        <h5 class="loan-hl-text">{{data.active_date | date: 'dd MMM yyyy'}}</h5>
+            @if (isLoading) {
+              <div class="col-lg-12">
+                <mat-spinner class="mx-auto"></mat-spinner>
+              </div>
+            }
+            @if (laonActive.length > 0 && !isLoading) {
+              <div class="col-lg-12">
+                @for (data of laonActive; track data; let i = $index) {
+                  <div class="box-line-white active-emloan-box rounded-0 py-4 click-accordion"
+                    >
+                    <div class="row d-flex align-items-center pl-lg-5 pl-0">
+                      <div class="col-sm-6 mb-sm-0 mb-4">
+                        <div class="row">
+                          <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4">
+                            <h6 class="loan-sm-text">Loan Date</h6>
+                            <h5 class="loan-hl-text">{{data.active_date | date: 'dd MMM yyyy'}}</h5>
+                          </div>
+                          <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
+                            <h6 class="loan-sm-text">Pay by</h6>
+                            <h5 class="loan-hl-text">{{data.pay_by| date: 'dd MMM yyyy'}}</h5>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2">
-                        <h6 class="loan-sm-text">Pay by</h6>
-                        <h5 class="loan-hl-text">{{data.pay_by| date: 'dd MMM yyyy'}}</h5>
+                      <div class="col-sm-6">
+                        <div class="row">
+                          <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
+                            <h6 class="loan-sm-text">Loan Amt</h6>
+                            <h5 class="loan-hl-text">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                          </div>
+                          <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
+                            <h6 class="loan-sm-text">Status</h6>
+                            @if (data.status == 4) {
+                              <h5 class="loan-hl-text text-success">Active/<span
+                              class="text-danger">Late</span></h5>
+                            }
+                            @if (data.status == 2) {
+                              <h5 class="loan-hl-text text-success">complete</h5>
+                            }
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                        <h6 class="loan-sm-text">Loan Amt</h6>
-                        <h5 class="loan-hl-text">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h5>
-                      </div>
-                      <div class="col-lg-6 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-4 mt-sm-0 mt-2">
-                        <h6 class="loan-sm-text">Status</h6>
-                        <h5 class="loan-hl-text text-success" *ngIf="data.status == 4">Active/<span
-                            class="text-danger">Late</span></h5>
-                        <h5 class="loan-hl-text text-success" *ngIf="data.status == 2">complete</h5>
-                      </div>
-                    </div>
+                }
+                @if (laonActive.length <= 0 && !isLoading) {
+                  <div class=" mt-5 d-block text-center">
+                    <img src="assets/images/no-data.png" class="img-fluid mb-2">
+                    <h1 class="">Oops! No Data Found</h1>
                   </div>
-                </div>
+                }
               </div>
-              <div class=" mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
-                <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                <h1 class="">Oops! No Data Found</h1>
-              </div>
-            </div>
+            }
           </div>
         </div>
         <div class="tab-pane fade show" id="history">
@@ -88,55 +112,79 @@
               <h3 class="mt-5">Total emergency collected to date</h3>
             </div>
           </div>
-          <div class="row" *ngIf="laonComplete.length > 0 && !isLoading">
-            <div class="col-lg-4 col-sm-6" *ngFor="let data of laonComplete;let i = index">
-              <div class="box-line-white red-line py-4" *ngIf="data.paid_status==='2'">
-                <div class="mb-3">
-                  <img src="assets/images/investment.png" class="img-fluid">
+          @if (laonComplete.length > 0 && !isLoading) {
+            <div class="row">
+              @for (data of laonComplete; track data; let i = $index) {
+                <div class="col-lg-4 col-sm-6">
+                  @if (data.paid_status==='2') {
+                    <div class="box-line-white red-line py-4">
+                      <div class="mb-3">
+                        <img src="assets/images/investment.png" class="img-fluid">
+                      </div>
+                      <h4 class="main-hding">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+                      <p class="sub-para">{{data.complete_date| date: 'dd MMM yyyy'}}</p>
+                      <div class="bg-payment">Fully Paid</div>
+                    </div>
+                  }
+                  @if (data.paid_status!=='2') {
+                    <div class="box-line-white blue-line py-4">
+                      <div class="mb-3">
+                        <img src="assets/images/investment.png" class="img-fluid">
+                      </div>
+                      <h4 class="main-hding">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+                      <p class="sub-para">{{data.complete_date| date: 'dd MMM yyyy'}}</p>
+                      <div class="bg-payment">Fully Paid</div>
+                    </div>
+                  }
                 </div>
-                <h4 class="main-hding">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
-                <p class="sub-para">{{data.complete_date| date: 'dd MMM yyyy'}}</p>
-                <div class="bg-payment">Fully Paid</div>
-              </div>
-              <div class="box-line-white blue-line py-4" *ngIf="data.paid_status!=='2'">
-                <div class="mb-3">
-                  <img src="assets/images/investment.png" class="img-fluid">
-                </div>
-                <h4 class="main-hding">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
-                <p class="sub-para">{{data.complete_date| date: 'dd MMM yyyy'}}</p>
-                <div class="bg-payment">Fully Paid</div>
-              </div>
+              }
             </div>
-          </div>
-          <div class=" mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
-            <img src="assets/images/no-data.png" class="img-fluid mb-2">
-            <h1 class="">Oops! No Data Found</h1>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="status">
-          <div class="tab-pane fade show active" id="savings">
-            <div class="row" *ngIf="laonPending.length > 0 && !isLoading">
-              <div class="col-lg-4 col-sm-6" *ngFor="let data of laonPending">
-                <div class="box-line-white blue-line py-4 position-relative">
-                  <div class="mb-3">
-                    <img src="assets/images/investment.png" class="img-fluid">
-                  </div>
-                  <h4 class="main-hding">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
-                  <p class="sub-para">{{data.created_at| date: 'dd MMM yyyy'}}</p>
-                  <div class="bg-payment">Pay by: {{data.pay_by| date: 'dd MMM yyyy'}}</div>
-                  <div class="status status-pending">
-                    <span *ngIf="data.status === '1'">Pending</span>
-                    <span *ngIf="data.status === '4'">Accepted</span>
-                    <span *ngIf="data.status === '3'">Declined</span>
-                    <span *ngIf="data.status === '2'">Completed</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
+          }
+          @if (laonComplete.length <= 0 && !isLoading) {
+            <div class=" mt-5 d-block text-center">
               <img src="assets/images/no-data.png" class="img-fluid mb-2">
               <h1 class="">Oops! No Data Found</h1>
             </div>
+          }
+        </div>
+        <div class="tab-pane fade" id="status">
+          <div class="tab-pane fade show active" id="savings">
+            @if (laonPending.length > 0 && !isLoading) {
+              <div class="row">
+                @for (data of laonPending; track data) {
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="box-line-white blue-line py-4 position-relative">
+                      <div class="mb-3">
+                        <img src="assets/images/investment.png" class="img-fluid">
+                      </div>
+                      <h4 class="main-hding">{{data.loan_amount| currency:'GBP': 'symbol' : '1.0-0'}}</h4>
+                      <p class="sub-para">{{data.created_at| date: 'dd MMM yyyy'}}</p>
+                      <div class="bg-payment">Pay by: {{data.pay_by| date: 'dd MMM yyyy'}}</div>
+                      <div class="status status-pending">
+                        @if (data.status === '1') {
+                          <span>Pending</span>
+                        }
+                        @if (data.status === '4') {
+                          <span>Accepted</span>
+                        }
+                        @if (data.status === '3') {
+                          <span>Declined</span>
+                        }
+                        @if (data.status === '2') {
+                          <span>Completed</span>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            @if (laonPending.length <= 0 && !isLoading) {
+              <div class="mt-5 d-block text-center">
+                <img src="assets/images/no-data.png" class="img-fluid mb-2">
+                <h1 class="">Oops! No Data Found</h1>
+              </div>
+            }
           </div>
         </div>
       </div>

@@ -1,330 +1,423 @@
 <app-header></app-header>
 <a href="javascript:void(0);" (click)="backClicked()" class="back_navigator">
-   <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
+  <img src="assets/images/back-btn.png" alt="back button" title="Back to prevoius view">
 </a>
 <section class="top-space container">
-   <div class="row padd-t-b pb-0">
-      <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 saving-acc-box">
-         <div class="inner-box">
-            <h6 class="extra-hding">Loan Account</h6>
-            <h2 class="main-hding">
-               <span *ngIf="!isLoading">
-                  <span *ngIf="status == '1'" class="ct_textcolor">-{{avgAmount| currency:'GBP': 'symbol' :
-                     '1.0-0'}}</span>
-                  <span *ngIf="status == '2'">{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
-               </span>
-               <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
-            </h2>
-            <p class="sub-para m-0" *ngIf="status == '1'">Active Loans</p>
-            <p class="sub-para m-0" *ngIf="status == '2'">Complete Loans</p>
-         </div>
+  <div class="row padd-t-b pb-0">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 saving-acc-box">
+      <div class="inner-box">
+        <h6 class="extra-hding">Loan Account</h6>
+        <h2 class="main-hding">
+          @if (!isLoading) {
+            <span>
+              @if (status == '1') {
+                <span class="ct_textcolor">-{{avgAmount| currency:'GBP': 'symbol' :
+                '1.0-0'}}</span>
+              }
+              @if (status == '2') {
+                <span>{{avgComplete| currency:'GBP': 'symbol' : '1.0-0'}}</span>
+              }
+            </span>
+          }
+          @if (isLoading) {
+            <span><i class="fa fa-refresh fa-spin"></i></span>
+          }
+        </h2>
+        @if (status == '1') {
+          <p class="sub-para m-0">Active Loans</p>
+        }
+        @if (status == '2') {
+          <p class="sub-para m-0">Complete Loans</p>
+        }
       </div>
-   </div>
+    </div>
+  </div>
 </section>
 <section class="savings-box container">
-   <div class="row">
-      <div class="col-md-12">
-         <h2 class="section-title mb-5">Assistance</h2>
-         <ul class="nav nav-tabs bg-blue" id="myTab">
-            <li class="nav-item">
-               <a class="nav-link" [ngClass]="{'active': status == '1'}" href="javascript:void(0)"
-                  (click)="onSetStatus('1')">Active</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" [ngClass]="{'active': status == '2'}" href="javascript:void(0)"
-                  (click)="onSetStatus('2')">Historic</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" [ngClass]="{'active': status == '3'}" href="javascript:void(0)"
-                  (click)="onSetStatus('3')">Application Status</a>
-            </li>
-         </ul>
-         <div class="tab-content loan-tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="savings">
-               <div class="row">
-                  <div class="col-lg-12" *ngIf="isLoading">
-                     <mat-spinner class="mx-auto"></mat-spinner>
-                  </div>
-                  <div class="col-lg-12" *ngIf="status === '1'">
-                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"
-                        *ngIf="laonActive.length > 0 && !isLoading">
-                        <div class="panel panel-default" *ngFor="let data of laonActive; let i = index">
-                           <div class="panel-heading" role="tab" id="headingOne">
-                              <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
-                                 <a class="position-relative" role="button" data-toggle="collapse"
-                                    data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
-                                    aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
-                                    <div class="ct_grid_6 position-relative">
-                                       <div>
-                                          <h6 class="loan-sm-text text-center">Loan Type</h6>
-                                          <h5 class="loan-hl-text text-center">
-                                             <span *ngIf="data.loan_type === '1'">Simple Loan</span>
-                                             <span *ngIf="data.loan_type === '2'">Help2 Buy</span>
-                                             <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
-                                             <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit
-                                                Card</span>
-                                             <span *ngIf="data.loan_type === '5'">Help Me Pay Something
-                                                Else</span>
-                                             <span *ngIf="data.loan_type === '6'">Help Me Raise My House
-                                                Deposit</span>
-                                          </h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text text-center">Start Date</h6>
-                                          <h5 class="loan-hl-text text-center">{{data.start_date}}</h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text text-center">Total to pay</h6>
-                                          <h5 class="ct_textcolor text-center">{{data.total_payment | currency:'GBP':
-                                             'symbol'
-                                             : '1.0-0'}}</h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text text-center">Amt Paid</h6>
-                                          <h5 class="loan-hl-text text-center">{{data.paid_amount | currency:'GBP':
-                                             'symbol' :
-                                             '1.0-0'}}</h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text text-center">Remaining Amt</h6>
-                                          <h5 class="ct_textcolor text-center">{{data.total_payment - data.paid_amount |
-                                             currency:'GBP': 'symbol' : '1.0-0'}}</h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text text-center">Term</h6>
-                                          <h5 class="loan-hl-text text-center">{{data.tenure}} months</h5>
-                                       </div>
-
-
-
-                                       <!-- <img src="assets/images/caret-red.png" height="10px" width="10px" class="caret-open"> -->
-                                    </div>
-
-                                    <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
-                                       <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
-                                    </button>
-
-                                 </a>
-                              </h4>
-                           </div>
-                           <div id="collapse{{data.id}}" class="panel-collapse collapse in" role="tabpanel"
-                              aria-labelledby="headingOne">
-                              <div class="panel-body">
-                                 <div *ngIf="data.payment_list_status === false && data.payment_list.length > 0">
-                                    <div class="box-line-white second-line-none orange-line rounded-0 py-3 mt-0"
-                                       *ngFor="let item of data.payment_list; let it = index">
-                                       <div class="row">
-                                          <div class="col-6 left-box">
-                                             <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
-                                             <p class="sub-para">{{item.emi_date}}</p>
-                                          </div>
-                                          <div class="col-6 right-box">
-                                             <div class="d-flex align-items-center">
-                                                <!-- <img src="assets/images/chevron.png" class="img-fluid mr-3"> -->
-                                                <h4 class="main-hding my-0">{{item.amount | currency:'GBP': 'symbol' :
-                                                   '1.0-0'}}</h4>
-                                             </div>
-                                             <span style="color: #048227; font-weight: 900;"
-                                                *ngIf="item.status == '1'">Paid On Time</span>
-                                             <span style="color: #F2994A; font-weight: 900;"
-                                                *ngIf="item.status == '2'">Paid Late</span>
-                                             <span style="color: #E20000; font-weight: 900;"
-                                                *ngIf="item.status == '3'">Missed Payment Deadline</span>
-                                             <!-- <p class="sub-para">
-                                             <span class="extra-para mr-2">Remaning Amount </span> €60,000
-                                          </p> -->
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div *ngIf="data.payment_list_status === false && data.payment_list.length <= 0">
-                                    <p>Data not found</p>
-                                 </div>
-                                 <div *ngIf="data.payment_list_status === true">
-                                    <mat-spinner class="mx-auto"></mat-spinner>
-                                 </div>
-
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="section-title mb-5">Assistance</h2>
+      <ul class="nav nav-tabs bg-blue" id="myTab">
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': status == '1'}" href="javascript:void(0)"
+          (click)="onSetStatus('1')">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': status == '2'}" href="javascript:void(0)"
+          (click)="onSetStatus('2')">Historic</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': status == '3'}" href="javascript:void(0)"
+          (click)="onSetStatus('3')">Application Status</a>
+        </li>
+      </ul>
+      <div class="tab-content loan-tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="savings">
+          <div class="row">
+            @if (isLoading) {
+              <div class="col-lg-12">
+                <mat-spinner class="mx-auto"></mat-spinner>
+              </div>
+            }
+            @if (status === '1') {
+              <div class="col-lg-12">
+                @if (laonActive.length > 0 && !isLoading) {
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"
+                    >
+                    @for (data of laonActive; track data; let i = $index) {
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
+                            <a class="position-relative" role="button" data-toggle="collapse"
+                              data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
+                              aria-controls="collapseOne" (click)="onAddHistory('1', i, data.id)">
+                              <div class="ct_grid_6 position-relative">
+                                <div>
+                                  <h6 class="loan-sm-text text-center">Loan Type</h6>
+                                  <h5 class="loan-hl-text text-center">
+                                    @if (data.loan_type === '1') {
+                                      <span>Simple Loan</span>
+                                    }
+                                    @if (data.loan_type === '2') {
+                                      <span>Help2 Buy</span>
+                                    }
+                                    @if (data.loan_type === '3') {
+                                      <span>Help Me Buy a Car</span>
+                                    }
+                                    @if (data.loan_type === '4') {
+                                      <span>Help Me Pay Off Credit
+                                      Card</span>
+                                    }
+                                    @if (data.loan_type === '5') {
+                                      <span>Help Me Pay Something
+                                      Else</span>
+                                    }
+                                    @if (data.loan_type === '6') {
+                                      <span>Help Me Raise My House
+                                      Deposit</span>
+                                    }
+                                  </h5>
+                                </div>
+                                <div>
+                                  <h6 class="loan-sm-text text-center">Start Date</h6>
+                                  <h5 class="loan-hl-text text-center">{{data.start_date}}</h5>
+                                </div>
+                                <div>
+                                  <h6 class="loan-sm-text text-center">Total to pay</h6>
+                                  <h5 class="ct_textcolor text-center">{{data.total_payment | currency:'GBP':
+                                    'symbol'
+                                  : '1.0-0'}}</h5>
+                                </div>
+                                <div>
+                                  <h6 class="loan-sm-text text-center">Amt Paid</h6>
+                                  <h5 class="loan-hl-text text-center">{{data.paid_amount | currency:'GBP':
+                                    'symbol' :
+                                  '1.0-0'}}</h5>
+                                </div>
+                                <div>
+                                  <h6 class="loan-sm-text text-center">Remaining Amt</h6>
+                                  <h5 class="ct_textcolor text-center">{{data.total_payment - data.paid_amount |
+                                  currency:'GBP': 'symbol' : '1.0-0'}}</h5>
+                                </div>
+                                <div>
+                                  <h6 class="loan-sm-text text-center">Term</h6>
+                                  <h5 class="loan-hl-text text-center">{{data.tenure}} months</h5>
+                                </div>
+                                <!-- <img src="assets/images/caret-red.png" height="10px" width="10px" class="caret-open"> -->
                               </div>
-                           </div>
+                              <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+                                <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+                              </button>
+                            </a>
+                          </h4>
                         </div>
-                     </div>
-                     <div class=" mt-5 d-block text-center" *ngIf="laonActive.length <= 0 && !isLoading">
-                        <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops! No Data Found</h1>
-                     </div>
-                  </div>
-                  <div class="col-lg-12" *ngIf="status === '2'">
-                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"
-                        *ngIf="laonComplete.length > 0 && !isLoading">
-                        <div class="panel panel-default" *ngFor="let data of laonComplete;let i = index">
-                           <div class="panel-heading" role="tab" id="headingOne">
-                              <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
-                                 <a class="position-relative" role="button" data-toggle="collapse"
-                                    data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
-                                    aria-controls="collapseOne" (click)="onAddHistory('2', i, data.id)">
-                                    <div class="ct_grid_6 position-relative">
-                                       <div>
-                                          <h6 class="loan-sm-text">Loan Type</h6>
-                                          <h5 class="loan-hl-text">
-                                             <span *ngIf="data.loan_type === '1'">Simple Loan</span>
-                                             <span *ngIf="data.loan_type === '2'">Car Insurance Loan</span>
-                                             <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
-                                             <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit
-                                                Card</span>
-                                             <span *ngIf="data.loan_type === '5'">Help Me Pay Something
-                                                Else</span>
-                                             <span *ngIf="data.loan_type === '6'">Help Me Raise My House
-                                                Deposit</span>
-                                          </h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text">Start Date</h6>
-                                          <h5 class="loan-hl-text">{{data.start_date}}</h5>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text">End Date</h6>
-                                          <h5 class="loan-hl-text">{{data.end_date}}</h5>
-                                       </div>
-                                       <div class=" center-box">
-                                          <div class="img-loan-head">
-                                             <img src="assets/images/loans.png" class="img-fluid">
-                                          </div>
-                                          <h4 class="loan-lg-text mt-3">Loan Amount</h4>
-                                          <h4 class="main-hding">{{data.total_payment | currency:'GBP': 'symbol' :
-                                             '1.0-0'}}</h4>
-                                          <h4 class="loan-sm-text mt-2">&#64;{{data.interest_rate}}%</h4>
-                                       </div>
-                                       <div>
-                                          <h6 class="loan-sm-text">Status</h6>
-                                          <h5 class="loan-hl-text">Fully Paid</h5>
-                                       </div>
-                                       <!-- <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
-                                                <h6 class="loan-sm-text">Loan ID</h6>
-                                                <h5 class="loan-hl-text">{{data.id}}</h5>
-                                             </div> -->
-                                       <div>
-                                          <h6 class="loan-sm-text">Loan Term</h6>
-                                          <h5 class="loan-hl-text">{{data.tenure}} Months</h5>
-                                       </div>
-                                       <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
+                        <div id="collapse{{data.id}}" class="panel-collapse collapse in" role="tabpanel"
+                          aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            @if (data.payment_list_status === false && data.payment_list.length > 0) {
+                              <div>
+                                @for (item of data.payment_list; track item; let it = $index) {
+                                  <div class="box-line-white second-line-none orange-line rounded-0 py-3 mt-0"
+                                    >
+                                    <div class="row">
+                                      <div class="col-6 left-box">
+                                        <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
+                                        <p class="sub-para">{{item.emi_date}}</p>
+                                      </div>
+                                      <div class="col-6 right-box">
+                                        <div class="d-flex align-items-center">
+                                          <!-- <img src="assets/images/chevron.png" class="img-fluid mr-3"> -->
+                                          <h4 class="main-hding my-0">{{item.amount | currency:'GBP': 'symbol' :
+                                          '1.0-0'}}</h4>
+                                        </div>
+                                        @if (item.status == '1') {
+                                          <span style="color: #048227; font-weight: 900;"
+                                          >Paid On Time</span>
+                                        }
+                                        @if (item.status == '2') {
+                                          <span style="color: #F2994A; font-weight: 900;"
+                                          >Paid Late</span>
+                                        }
+                                        @if (item.status == '3') {
+                                          <span style="color: #E20000; font-weight: 900;"
+                                          >Missed Payment Deadline</span>
+                                        }
+                                        <!-- <p class="sub-para">
+                                        <span class="extra-para mr-2">Remaning Amount </span> €60,000
+                                      </p> -->
                                     </div>
-
-                                    <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
-                                       <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
-                                    </button>
-
-                                 </a>
-                              </h4>
-                           </div>
-                           <div id="collapse{{data.id}}" class="panel-collapse collapse in" role="tabpanel"
-                              aria-labelledby="headingOne">
-                              <div class="panel-body">
-                                 <div *ngIf="data.payment_list_status === false && data.payment_list.length > 0">
-                                    <div class="box-line-white second-line-none orange-line rounded-0 py-3 mt-0"
-                                       *ngFor="let item of data.payment_list; let it = index">
-                                       <div class="row">
-                                          <div class="col-6 left-box">
-                                             <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
-                                             <p class="sub-para">{{item.emi_date}}</p>
-                                          </div>
-                                          <div class="col-6 right-box">
-                                             <div class="d-flex align-items-center">
-                                                <!-- <img src="assets/images/chevron.png" class="img-fluid mr-3"> -->
-                                                <h4 class="main-hding my-0">{{item.amount | currency:'GBP': 'symbol' :
-                                                   '1.0-0'}}</h4>
-                                             </div>
-
-                                             <!-- <span style="color: #048227; font-weight: 900;"
-                                                *ngIf="item.status == '1'">Paid On Time</span>
-                                             <span style="color: #F2994A; font-weight: 900;"
-                                                *ngIf="item.status == '2'">Paid Late</span>
-                                             <span style="color: #E20000; font-weight: 900;"
-                                                *ngIf="item.status == '3'">Missed Payment Deadline</span> -->
-
-                                             <!-- <p class="sub-para">
-                                           <span class="extra-para mr-2">Remaning Amount </span> €60,000
-                                        </p> -->
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div *ngIf="data.payment_list_status === false && data.payment_list.length <= 0">
-                                    <p>Data not found</p>
-                                 </div>
-                                 <div *ngIf="data.payment_list_status === true">
-                                    <mat-spinner class="mx-auto"></mat-spinner>
-                                 </div>
-
-                              </div>
-                           </div>
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                          }
+                          @if (data.payment_list_status === false && data.payment_list.length <= 0) {
+                            <div>
+                              <p>Data not found</p>
+                            </div>
+                          }
+                          @if (data.payment_list_status === true) {
+                            <div>
+                              <mat-spinner class="mx-auto"></mat-spinner>
+                            </div>
+                          }
                         </div>
-                     </div>
-                     <div class=" mt-5 d-block text-center" *ngIf="laonComplete.length <= 0 && !isLoading">
-                        <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops! No Data Found</h1>
-                     </div>
-                  </div>
-                  <div class="col-lg-12" *ngIf="status === '3'">
-                     <div *ngIf="laonPending.length > 0 && !isLoading">
-                        <div class="box-line-white orange-line rounded-0 py-4 click-accordion"
-                           *ngFor="let data of laonPending">
-                           <div>
-                              <div class="ct_grid_5 ">
-                                 <div>
-                                    <h6 class="loan-sm-text">Loan Type</h6>
-                                    <h5 class="loan-hl-text">
-                                       <span *ngIf="data.loan_type === '1'">Simple Loan</span>
-                                       <span *ngIf="data.loan_type === '2'">Car Insurance Loan</span>
-                                       <span *ngIf="data.loan_type === '3'">Help Me Buy a Car</span>
-                                       <span *ngIf="data.loan_type === '4'">Help Me Pay Off Credit Card</span>
-                                       <span *ngIf="data.loan_type === '5'">Help Me Pay Something Else</span>
-                                       <span *ngIf="data.loan_type === '6'">Help Me Raise My House Deposit</span>
-                                    </h5>
-                                 </div>
-                                 <div>
-                                    <h6 class="loan-sm-text">Application Date</h6>
-                                    <h5 class="loan-hl-text">{{data.created_at}}</h5>
-                                 </div>
-                                 <div>
-                                    <h6 class="loan-sm-text">Loan Amt</h6>
-                                    <h5 class="loan-hl-text">{{data.loan_amount | currency:'GBP': 'symbol' :
-                                       '1.0-0'}}</h5>
-                                 </div>
-                                 <div>
-                                    <h6 class="loan-sm-text">Term</h6>
-                                    <h5 class="loan-hl-text">{{data.tenure}} Month</h5>
-                                 </div>
-                                 <div>
-                                    <h6 class="loan-sm-text">Status</h6>
-                                    <h5 class="loan-hl-text text-danger">
-                                       <span *ngIf="data.status === '1'">Pending</span>
-                                       <span *ngIf="data.status === '4'">Accepted</span>
-                                       <span *ngIf="data.status === '3'">Declined</span>
-                                       <span *ngIf="data.status === '2'">Complete</span>
-                                    </h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class=" mt-5 d-block text-center" *ngIf="laonPending.length <= 0 && !isLoading">
-                        <img src="assets/images/no-data.png" class="img-fluid mb-2">
-                        <h1 class="">Oops! No Data Found</h1>
-                     </div>
-                  </div>
-               </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+              @if (laonActive.length <= 0 && !isLoading) {
+                <div class=" mt-5 d-block text-center">
+                  <img src="assets/images/no-data.png" class="img-fluid mb-2">
+                  <h1 class="">Oops! No Data Found</h1>
+                </div>
+              }
             </div>
-         </div>
+          }
+          @if (status === '2') {
+            <div class="col-lg-12">
+              @if (laonComplete.length > 0 && !isLoading) {
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"
+                  >
+                  @for (data of laonComplete; track data; let i = $index) {
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title box-line-white orange-line rounded-0 py-3 click-accordion">
+                          <a class="position-relative" role="button" data-toggle="collapse"
+                            data-parent="#accordion" href="#collapse{{data.id}}" aria-expanded="true"
+                            aria-controls="collapseOne" (click)="onAddHistory('2', i, data.id)">
+                            <div class="ct_grid_6 position-relative">
+                              <div>
+                                <h6 class="loan-sm-text">Loan Type</h6>
+                                <h5 class="loan-hl-text">
+                                  @if (data.loan_type === '1') {
+                                    <span>Simple Loan</span>
+                                  }
+                                  @if (data.loan_type === '2') {
+                                    <span>Car Insurance Loan</span>
+                                  }
+                                  @if (data.loan_type === '3') {
+                                    <span>Help Me Buy a Car</span>
+                                  }
+                                  @if (data.loan_type === '4') {
+                                    <span>Help Me Pay Off Credit
+                                    Card</span>
+                                  }
+                                  @if (data.loan_type === '5') {
+                                    <span>Help Me Pay Something
+                                    Else</span>
+                                  }
+                                  @if (data.loan_type === '6') {
+                                    <span>Help Me Raise My House
+                                    Deposit</span>
+                                  }
+                                </h5>
+                              </div>
+                              <div>
+                                <h6 class="loan-sm-text">Start Date</h6>
+                                <h5 class="loan-hl-text">{{data.start_date}}</h5>
+                              </div>
+                              <div>
+                                <h6 class="loan-sm-text">End Date</h6>
+                                <h5 class="loan-hl-text">{{data.end_date}}</h5>
+                              </div>
+                              <div class=" center-box">
+                                <div class="img-loan-head">
+                                  <img src="assets/images/loans.png" class="img-fluid">
+                                </div>
+                                <h4 class="loan-lg-text mt-3">Loan Amount</h4>
+                                <h4 class="main-hding">{{data.total_payment | currency:'GBP': 'symbol' :
+                                '1.0-0'}}</h4>
+                                <h4 class="loan-sm-text mt-2">&#64;{{data.interest_rate}}%</h4>
+                              </div>
+                              <div>
+                                <h6 class="loan-sm-text">Status</h6>
+                                <h5 class="loan-hl-text">Fully Paid</h5>
+                              </div>
+                              <!-- <div class="col-lg-4 col-sm-12 col-6 mb-lg-0 mb-sm-4 mb-2 mt-sm-0 mt-2">
+                              <h6 class="loan-sm-text">Loan ID</h6>
+                              <h5 class="loan-hl-text">{{data.id}}</h5>
+                            </div> -->
+                            <div>
+                              <h6 class="loan-sm-text">Loan Term</h6>
+                              <h5 class="loan-hl-text">{{data.tenure}} Months</h5>
+                            </div>
+                            <!-- <img src="assets/images/caret-red.png" class="caret-open"> -->
+                          </div>
+                          <button type="button" class="et_info_top_icon btn btn-link p-0 border-0 text-white">
+                            <i class="fa fa-info-circle" aria-hidden="true" style="padding-bottom:10px"></i>
+                          </button>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse{{data.id}}" class="panel-collapse collapse in" role="tabpanel"
+                      aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        @if (data.payment_list_status === false && data.payment_list.length > 0) {
+                          <div>
+                            @for (item of data.payment_list; track item; let it = $index) {
+                              <div class="box-line-white second-line-none orange-line rounded-0 py-3 mt-0"
+                                >
+                                <div class="row">
+                                  <div class="col-6 left-box">
+                                    <h4 class="main-hding mt-0">{{it +1}} Payment</h4>
+                                    <p class="sub-para">{{item.emi_date}}</p>
+                                  </div>
+                                  <div class="col-6 right-box">
+                                    <div class="d-flex align-items-center">
+                                      <!-- <img src="assets/images/chevron.png" class="img-fluid mr-3"> -->
+                                      <h4 class="main-hding my-0">{{item.amount | currency:'GBP': 'symbol' :
+                                      '1.0-0'}}</h4>
+                                    </div>
+                                    <!-- <span style="color: #048227; font-weight: 900;"
+                                  *ngIf="item.status == '1'">Paid On Time</span>
+                                  <span style="color: #F2994A; font-weight: 900;"
+                                  *ngIf="item.status == '2'">Paid Late</span>
+                                  <span style="color: #E20000; font-weight: 900;"
+                                  *ngIf="item.status == '3'">Missed Payment Deadline</span> -->
+                                  <!-- <p class="sub-para">
+                                  <span class="extra-para mr-2">Remaning Amount </span> €60,000
+                                </p> -->
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                    @if (data.payment_list_status === false && data.payment_list.length <= 0) {
+                      <div>
+                        <p>Data not found</p>
+                      </div>
+                    }
+                    @if (data.payment_list_status === true) {
+                      <div>
+                        <mat-spinner class="mx-auto"></mat-spinner>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+        @if (laonComplete.length <= 0 && !isLoading) {
+          <div class=" mt-5 d-block text-center">
+            <img src="assets/images/no-data.png" class="img-fluid mb-2">
+            <h1 class="">Oops! No Data Found</h1>
+          </div>
+        }
       </div>
-   </div>
+    }
+    @if (status === '3') {
+      <div class="col-lg-12">
+        @if (laonPending.length > 0 && !isLoading) {
+          <div>
+            @for (data of laonPending; track data) {
+              <div class="box-line-white orange-line rounded-0 py-4 click-accordion"
+                >
+                <div>
+                  <div class="ct_grid_5 ">
+                    <div>
+                      <h6 class="loan-sm-text">Loan Type</h6>
+                      <h5 class="loan-hl-text">
+                        @if (data.loan_type === '1') {
+                          <span>Simple Loan</span>
+                        }
+                        @if (data.loan_type === '2') {
+                          <span>Car Insurance Loan</span>
+                        }
+                        @if (data.loan_type === '3') {
+                          <span>Help Me Buy a Car</span>
+                        }
+                        @if (data.loan_type === '4') {
+                          <span>Help Me Pay Off Credit Card</span>
+                        }
+                        @if (data.loan_type === '5') {
+                          <span>Help Me Pay Something Else</span>
+                        }
+                        @if (data.loan_type === '6') {
+                          <span>Help Me Raise My House Deposit</span>
+                        }
+                      </h5>
+                    </div>
+                    <div>
+                      <h6 class="loan-sm-text">Application Date</h6>
+                      <h5 class="loan-hl-text">{{data.created_at}}</h5>
+                    </div>
+                    <div>
+                      <h6 class="loan-sm-text">Loan Amt</h6>
+                      <h5 class="loan-hl-text">{{data.loan_amount | currency:'GBP': 'symbol' :
+                      '1.0-0'}}</h5>
+                    </div>
+                    <div>
+                      <h6 class="loan-sm-text">Term</h6>
+                      <h5 class="loan-hl-text">{{data.tenure}} Month</h5>
+                    </div>
+                    <div>
+                      <h6 class="loan-sm-text">Status</h6>
+                      <h5 class="loan-hl-text text-danger">
+                        @if (data.status === '1') {
+                          <span>Pending</span>
+                        }
+                        @if (data.status === '4') {
+                          <span>Accepted</span>
+                        }
+                        @if (data.status === '3') {
+                          <span>Declined</span>
+                        }
+                        @if (data.status === '2') {
+                          <span>Complete</span>
+                        }
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+        @if (laonPending.length <= 0 && !isLoading) {
+          <div class=" mt-5 d-block text-center">
+            <img src="assets/images/no-data.png" class="img-fluid mb-2">
+            <h1 class="">Oops! No Data Found</h1>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <app-sub-menu></app-sub-menu>
 <app-mobile-menu></app-mobile-menu>
 <app-footer></app-footer>
 
 <a routerLink="/user/all-services" class="business-directory-fab" aria-label="Member Directory">
-   <span class="business-directory-fab__icon">
-      <i class="fa fa-briefcase" aria-hidden="true"></i>
-   </span>
-   <span class="business-directory-fab__text">Member Directory</span>
+  <span class="business-directory-fab__icon">
+    <i class="fa fa-briefcase" aria-hidden="true"></i>
+  </span>
+  <span class="business-directory-fab__text">Member Directory</span>
 </a>

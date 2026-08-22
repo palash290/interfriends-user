@@ -1,412 +1,400 @@
 <app-header></app-header>
 
 <div class="recommendations-page">
-    <div class="recommendations-page__glow recommendations-page__glow--one"></div>
-    <div class="recommendations-page__glow recommendations-page__glow--two"></div>
+  <div class="recommendations-page__glow recommendations-page__glow--one"></div>
+  <div class="recommendations-page__glow recommendations-page__glow--two"></div>
 
-    <div class="recommendations-shell">
-        <div class="loader-panel" *ngIf="isLoader">
-            <mat-spinner class="mx-auto"></mat-spinner>
+  <div class="recommendations-shell">
+    @if (isLoader) {
+      <div class="loader-panel">
+        <mat-spinner class="mx-auto"></mat-spinner>
+      </div>
+    }
+
+    @if (!isLoader) {
+      <div class="ct_recommended_user">
+        <div class="d-flex gap-3 ct_flex_575 justify-content-between mb-4 align-items-center">
+          <h4 class="mb-0">All Business Directories</h4>
+          <div class="ct_w_100_575">
+            @if (!isLoading) {
+              <input type="text" class="form-control  ct_w_100_575 rounded  ml-auto mb-2"
+                placeholder="Search.." [(ngModel)]="search" (keyup)="onSearchChange()">
+            }
+          </div>
         </div>
-
-        <ng-container *ngIf="!isLoader">
-            <div class="ct_recommended_user">
-                <div class="d-flex gap-3 ct_flex_575 justify-content-between mb-4 align-items-center">
-                    <h4 class="mb-0">All Business Directories</h4>
-                    <div class="ct_w_100_575">
-                        <input type="text" class="form-control  ct_w_100_575 rounded  ml-auto mb-2" *ngIf="!isLoading"
-                            placeholder="Search.." [(ngModel)]="search" (keyup)="onSearchChange()">
-                    </div>
-                </div>
-                <!-- new -->
-                <div class="row w-100 justify-content-center">
-
-
-                    <!-- Card 1 -->
-                    <div class="col-lg-6 col-md-8 col-sm-10" *ngFor="let service of serviceList">
-                        <div class="pro-card d-flex justify-content-between align-items-start gap-3">
-                            <div class=" d-flex">
-                                <div class="avatar-wrap me-3">
-                                    <img [src]="service?.profile_image_thumb" class="img-fluid">
-                                </div>
-                                <div class="flex-grow-1">
-
-                                    <h3 class="pro-name">{{service?.service_name}}</h3>
-
-                                    <p class="category-text mb-2">
-                                        <span class="category">{{service?.category_name}}</span>
-                                        <i class="fa fa-angle-right mx-1"></i>
-                                        <span class="subcategory">{{service?.subcategory_name}}</span>
-                                    </p>
-
-                                    <!-- <p class="mb-0">
-                                        <i class="fa fa-envelope me-1" aria-hidden="true"></i>
-                                        <ng-container *ngIf="service?.email; else noEmail">
-                                            <a [href]="'mailto:' + service.email">
-                                                {{ service.email }}
-                                            </a>
-                                        </ng-container>
-                                        <ng-template #noEmail>-</ng-template>
-                                    </p>
-
-                                    <p class="mb-0">
-                                        <i class="fa fa-phone me-1" aria-hidden="true"></i>
-                                        <ng-container *ngIf="service?.mobile; else noMobile">
-                                            <a [href]="'tel:' + service.mobile">
-                                                {{ service.mobile }}
-                                            </a>
-                                        </ng-container>
-                                        <ng-template #noMobile>-</ng-template>
-                                    </p> -->
-
-                                    <p class="mb-0">
-                                        <i class="fa fa-globe me-1" aria-hidden="true"></i>
-                                        <ng-container *ngIf="service?.website; else noWebsite">
-                                            <a [href]="service.website.startsWith('http') ? service.website : 'https://' + service.website"
-                                                target="_blank" rel="noopener noreferrer">
-                                                {{ service.website }}
-                                            </a>
-                                        </ng-container>
-                                        <ng-template #noWebsite>-</ng-template>
-                                    </p>
-
-                                    <!-- <h6>{{service?.category_name}}</h6>
-                                        <h6>{{service?.subcategory_name}}</h6> -->
-
-                                    <!-- <div class="rating-line mt-3">
-                                        <span class="stars">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </span>
-                                        <div><span class="rating-score">5</span><span>/5</span></div>
-                                        <span class="review-count"> (29
-                                            reviews)</span>
-                                    </div> -->
-                                    <div class="active-line"><strong><i class="fa fa-map-marker mr-1"
-                                                aria-hidden="true"></i>
-                                            {{service?.location}}</strong></div>
-                                </div>
-                            </div>
-                            <div> <span class="check-badge ms-2">
-                                    <a href="javascript:void(0);" class="" data-toggle="modal"
-                                        data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-                                </span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <mat-paginator [length]="totalServices" [pageSize]="servicesPerPage" [pageIndex]="currentPage"
-                    (page)="onChangedPage($event)" *ngIf="serviceList?.length > 0"></mat-paginator>
+        <!-- new -->
+        <div class="row w-100 justify-content-center">
+          <!-- Card 1 -->
+          @for (service of serviceList; track service) {
+            <div class="col-lg-6 col-md-8 col-sm-10">
+              <div class="pro-card d-flex justify-content-between align-items-start gap-3">
+                <div class=" d-flex">
+                  <div class="avatar-wrap me-3">
+                    <img [src]="service?.profile_image_thumb" class="img-fluid">
+                  </div>
+                  <div class="flex-grow-1">
+                    <h3 class="pro-name">{{service?.service_name}}</h3>
+                    <p class="category-text mb-2">
+                      <span class="category">{{service?.category_name}}</span>
+                      <i class="fa fa-angle-right mx-1"></i>
+                      <span class="subcategory">{{service?.subcategory_name}}</span>
+                    </p>
+                    <!-- <p class="mb-0">
+                    <i class="fa fa-envelope me-1" aria-hidden="true"></i>
+                    <ng-container *ngIf="service?.email; else noEmail">
+                      <a [href]="'mailto:' + service.email">
+                        {{ service.email }}
+                      </a>
+                    </ng-container>
+                  </p>
+                  <p class="mb-0">
+                    <i class="fa fa-phone me-1" aria-hidden="true"></i>
+                    <ng-container *ngIf="service?.mobile; else noMobile">
+                      <a [href]="'tel:' + service.mobile">
+                        {{ service.mobile }}
+                      </a>
+                    </ng-container>
+                  </p> -->
+                  <p class="mb-0">
+                    <i class="fa fa-globe me-1" aria-hidden="true"></i>
+                    @if (service?.website) {
+                      <a [href]="service.website.startsWith('http') ? service.website : 'https://' + service.website"
+                        target="_blank" rel="noopener noreferrer">
+                        {{ service.website }}
+                      </a>
+                    } @else {
+                      -
+                    }
+                  </p>
+                  <!-- <h6>{{service?.category_name}}</h6>
+                  <h6>{{service?.subcategory_name}}</h6> -->
+                  <!-- <div class="rating-line mt-3">
+                  <span class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <div><span class="rating-score">5</span><span>/5</span></div>
+                  <span class="review-count"> (29
+                  reviews)</span>
+                </div> -->
+                <div class="active-line"><strong><i class="fa fa-map-marker mr-1"
+                aria-hidden="true"></i>
+              {{service?.location}}</strong></div>
             </div>
-
-            <div class="empty-state w-100 " *ngIf="serviceList?.length == 0;">
-
-                <h2>No Member Directory yet</h2>
-                <p>When a Member Directory is added for this account, they will appear here with their category,
-                    status,
-                    and
-                    creation date.</p>
-            </div>
-
-        </ng-container>
-    </div>
+          </div>
+          <div> <span class="check-badge ms-2">
+            <a href="javascript:void(0);" class="" data-toggle="modal"
+              data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </a>
+          </span></div>
+        </div>
+      </div>
+    }
+  </div>
+  @if (serviceList?.length > 0) {
+    <mat-paginator [length]="totalServices" [pageSize]="servicesPerPage" [pageIndex]="currentPage"
+    (page)="onChangedPage($event)"></mat-paginator>
+  }
+</div>
+@if (serviceList?.length == 0;) {
+  <div class="empty-state w-100 ">
+    <h2>No Member Directory yet</h2>
+    <p>When a Member Directory is added for this account, they will appear here with their category,
+      status,
+      and
+    creation date.</p>
+  </div>
+}
+}
+</div>
 </div>
 
 
 
 <!-- new modal -->
 <div class="modal fade" id="serviceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="serviceDetailsModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <div *ngIf="selectedService; else noServiceSelected">
-                        <div class="detail-card detail-card--company mb-3 justify-content-center">
-                            <div>
-                                <div class="detail-card__avatar-group justify-content-center">
-                                    <div class="company-logo-preview" style="width: 100px;height: 100px;">
-                                        <img *ngIf="selectedService?.company_logo; else profileImagePlaceholder"
-                                            [src]="selectedService.company_logo" alt="Profile image"
-                                            class="company-logo-preview__img">
-                                        <ng-template #profileImagePlaceholder>
-                                            <span class="company-logo-preview__placeholder">
-                                                <i class="fa fa-user" aria-hidden="true"></i>
-                                            </span>
-                                        </ng-template>
-                                    </div>
-                                </div>
-                                <h5 class="ct_fs_18 mt-2 text-center">{{ selectedService.company_name || '-' }}</h5>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h5 class="ct_fs_18 mt-2">Profile</h5>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="company-logo-preview">
-                                            <img *ngIf="getCompanyLogoUrl(selectedService); else companyLogoPlaceholder"
-                                                [src]="getCompanyLogoUrl(selectedService)" alt="Company logo"
-                                                class="company-logo-preview__img">
-                                            <ng-template #companyLogoPlaceholder>
-                                                <span class="company-logo-preview__placeholder">
-                                                    <i class="fa fa-image" aria-hidden="true"></i>
-                                                </span>
-                                            </ng-template>
-                                        </div>
-                                        <div>
-                                            <div class="company-details">
-                                                <h5 class="ct_fs_18 mb-1">{{ selectedService.first_name || '-' }}
-                                                    {{selectedService.last_name || '-'}}</h5>
-                                                <!-- <p class="mb-0 text-muted">Profile image and company logo</p> -->
-                                            </div>
-
-                                            <div class="rating-line mb-1 ">
-                                                <i class="fa fa-envelope me-1" aria-hidden="true"></i>
-                                                <ng-container *ngIf="selectedService?.email; else noEmail">
-                                                    <a class="text-dark text-underline"
-                                                        [href]="'mailto:' + selectedService.email">
-                                                        {{ selectedService.email }}
-                                                    </a>
-                                                </ng-container>
-                                                <ng-template #noEmail>-</ng-template>
-                                            </div>
-
-                                            <div class="rating-line mb-1 ">
-                                                <i class="fa fa-phone me-1" aria-hidden="true"></i>
-                                                <ng-container *ngIf="selectedService?.mobile; else noMobile">
-                                                    <a class="text-dark text-underline"
-                                                        [href]="'tel:' + selectedService.mobile">
-                                                        {{ selectedService.mobile }}
-                                                    </a>
-                                                </ng-container>
-                                                <ng-template #noMobile>-</ng-template>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <h5 class="ct_fs_18 mt-2">{{ selectedService.service_name }}</h5>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <!-- <div class="rating-line mb-1">
-                                    <span class="stars">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-
-                                    </span>
-                                    <div><span class="rating-score">5</span><span>/5</span></div>
-                                    <span class="review-count"> (29
-                                        reviews)</span>
-                                </div> -->
-                                <div class="rating-line mb-1">
-                                    <span class="stars">
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    </span>
-                                    <div class="active-line mt-0"><strong>{{ selectedService.location || '-' }}</strong>
-                                    </div>
-                                </div>
-                                <!-- <div class="rating-line mb-1">
-                                    <span class="stars">
-                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                    </span>
-                                    <div class="active-line mt-0">29x recommended</div>
-                                </div> -->
-                            </div>
-
-                        </div>
-
-                        <h6 class="ct_fs_16 mt-3 mb-0"> Category</h6>
-                        <div class="rating-line mb-1">
-                            <div class="active-line mt-0">{{ selectedService.category_name }}</div>
-                        </div>
-                        <h6 class="ct_fs_16 mt-3 mb-0"> Sub Category</h6>
-                        <div class="rating-line mb-1">
-                            <div class="active-line mt-0">{{ selectedService.subcategory_name }}</div>
-                        </div>
-                        <!-- <h6 class="ct_fs_16 mt-3 mb-0"> Trades</h6>
-                        <div class="rating-line mb-1">
-                            <div class="active-line mt-0">Architectural Designer</div>
-                        </div> -->
-
-                        <!-- <h6 class="ct_fs_16 mt-3 mb-0"> About this company</h6>
-                        <div class="rating-line mb-1">
-
-                            <div class="active-line mt-0 mb-1">{{ selectedService.service_description || '-' }}</div>
-                        </div> -->
-
-                        <h6 class="ct_fs_16 mt-3 mb-0"> About this company/person</h6>
-                        <div class="rating-line mb-1">
-
-                            <div class="active-line mt-0 mb-1">{{ selectedService.provider_description || '-' }}</div>
-                        </div>
-
-                        <div class="mt-3" *ngIf="selectedServiceImages.length > 0">
-                            <div class="detail-card">
-                                <label>Portfolio</label>
-                                <div class="service-image-grid mt-2">
-                                    <div class="service-image-card"
-                                        *ngFor="let image of selectedServiceImages; let i = index">
-                                        <button type="button" class="service-image-card__preview-btn" *ngIf="image.url"
-                                            (click)="openImagePreview(image)">
-                                            <img [src]="image.url" alt="Service image" class="service-image-card__img">
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <h6 class="ct_fs_16 mb-2 mt-3">Reviews (29)</h6>
-
-                        <div class="rating-line mb-1">
-
-                            <div class="mb-3">
-                                <div class="active-line mt-0 ">
-                                    BJ Manchester
-
-                                </div>
-                                <span class="stars">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-
-                                </span>
-                                <span class="ct_fs_12 ct_fw_300 ms-2">Review left on 21 May 2026</span>
-                            </div>
-
-                        </div> -->
-                    </div>
-
-                    <ng-template #noServiceSelected>
-                        <p class="mb-0 text-muted">No service selected.</p>
-                    </ng-template>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="image-preview-modal" *ngIf="previewImageUrl" (click)="closeImagePreview()">
-    <div class="image-preview-modal__content" (click)="$event.stopPropagation()">
-        <button type="button" class="image-preview-modal__close" (click)="closeImagePreview()">
-            <span aria-hidden="true">&times;</span>
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
         </button>
-        <img [src]="previewImageUrl" [alt]="previewImageName" class="image-preview-modal__img">
-        <p class="image-preview-modal__name">{{ previewImageName }}</p>
-    </div>
+      </div>
+      <div class="modal-body">
+        <div>
+          @if (selectedService) {
+            <div>
+              <div class="detail-card detail-card--company mb-3 justify-content-center">
+                <div>
+                  <div class="detail-card__avatar-group justify-content-center">
+                    <div class="company-logo-preview" style="width: 100px;height: 100px;">
+                      @if (selectedService?.company_logo) {
+                        <img
+                          [src]="selectedService.company_logo" alt="Profile image"
+                          class="company-logo-preview__img">
+                      } @else {
+                        <span class="company-logo-preview__placeholder">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                      }
+                    </div>
+                  </div>
+                  <h5 class="ct_fs_18 mt-2 text-center">{{ selectedService.company_name || '-' }}</h5>
+                </div>
+              </div>
+              <div>
+                <h5 class="ct_fs_18 mt-2">Profile</h5>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="company-logo-preview">
+                        @if (getCompanyLogoUrl(selectedService)) {
+                          <img
+                            [src]="getCompanyLogoUrl(selectedService)" alt="Company logo"
+                            class="company-logo-preview__img">
+                        } @else {
+                          <span class="company-logo-preview__placeholder">
+                            <i class="fa fa-image" aria-hidden="true"></i>
+                          </span>
+                        }
+                      </div>
+                      <div>
+                        <div class="company-details">
+                          <h5 class="ct_fs_18 mb-1">{{ selectedService.first_name || '-' }}
+                          {{selectedService.last_name || '-'}}</h5>
+                          <!-- <p class="mb-0 text-muted">Profile image and company logo</p> -->
+                        </div>
+                        <div class="rating-line mb-1 ">
+                          <i class="fa fa-envelope me-1" aria-hidden="true"></i>
+                          @if (selectedService?.email) {
+                            <a class="text-dark text-underline"
+                              [href]="'mailto:' + selectedService.email">
+                              {{ selectedService.email }}
+                            </a>
+                          } @else {
+                            -
+                          }
+                          <ng-template #noEmail>-</ng-template>
+                        </div>
+                        <div class="rating-line mb-1 ">
+                          <i class="fa fa-phone me-1" aria-hidden="true"></i>
+                          @if (selectedService?.mobile) {
+                            <a class="text-dark text-underline"
+                              [href]="'tel:' + selectedService.mobile">
+                              {{ selectedService.mobile }}
+                            </a>
+                          } @else {
+                            -
+                          }
+                          <ng-template #noMobile>-</ng-template>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h5 class="ct_fs_18 mt-2">{{ selectedService.service_name }}</h5>
+              <div class="row">
+                <div class="col-lg-6">
+                  <!-- <div class="rating-line mb-1">
+                  <span class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                  <div><span class="rating-score">5</span><span>/5</span></div>
+                  <span class="review-count"> (29
+                  reviews)</span>
+                </div> -->
+                <div class="rating-line mb-1">
+                  <span class="stars">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  </span>
+                  <div class="active-line mt-0"><strong>{{ selectedService.location || '-' }}</strong>
+                </div>
+              </div>
+              <!-- <div class="rating-line mb-1">
+              <span class="stars">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+              </span>
+              <div class="active-line mt-0">29x recommended</div>
+            </div> -->
+          </div>
+        </div>
+        <h6 class="ct_fs_16 mt-3 mb-0"> Category</h6>
+        <div class="rating-line mb-1">
+          <div class="active-line mt-0">{{ selectedService.category_name }}</div>
+        </div>
+        <h6 class="ct_fs_16 mt-3 mb-0"> Sub Category</h6>
+        <div class="rating-line mb-1">
+          <div class="active-line mt-0">{{ selectedService.subcategory_name }}</div>
+        </div>
+        <!-- <h6 class="ct_fs_16 mt-3 mb-0"> Trades</h6>
+        <div class="rating-line mb-1">
+          <div class="active-line mt-0">Architectural Designer</div>
+        </div> -->
+        <!-- <h6 class="ct_fs_16 mt-3 mb-0"> About this company</h6>
+        <div class="rating-line mb-1">
+          <div class="active-line mt-0 mb-1">{{ selectedService.service_description || '-' }}</div>
+        </div> -->
+        <h6 class="ct_fs_16 mt-3 mb-0"> About this company/person</h6>
+        <div class="rating-line mb-1">
+          <div class="active-line mt-0 mb-1">{{ selectedService.provider_description || '-' }}</div>
+        </div>
+        @if (selectedServiceImages.length > 0) {
+          <div class="mt-3">
+            <div class="detail-card">
+              <label>Portfolio</label>
+              <div class="service-image-grid mt-2">
+                @for (image of selectedServiceImages; track image; let i = $index) {
+                  <div class="service-image-card"
+                    >
+                    @if (image.url) {
+                      <button type="button" class="service-image-card__preview-btn"
+                        (click)="openImagePreview(image)">
+                        <img [src]="image.url" alt="Service image" class="service-image-card__img">
+                      </button>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+        <!-- <h6 class="ct_fs_16 mb-2 mt-3">Reviews (29)</h6>
+        <div class="rating-line mb-1">
+          <div class="mb-3">
+            <div class="active-line mt-0 ">
+              BJ Manchester
+            </div>
+            <span class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <span class="ct_fs_12 ct_fw_300 ms-2">Review left on 21 May 2026</span>
+          </div>
+        </div> -->
+      </div>
+    } @else {
+      <p class="mb-0 text-muted">No service selected.</p>
+    }
+
+  </div>
 </div>
+</div>
+</div>
+</div>
+
+@if (previewImageUrl) {
+  <div class="image-preview-modal" (click)="closeImagePreview()">
+    <div class="image-preview-modal__content" (click)="$event.stopPropagation()">
+      <button type="button" class="image-preview-modal__close" (click)="closeImagePreview()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <img [src]="previewImageUrl" [alt]="previewImageName" class="image-preview-modal__img">
+      <p class="image-preview-modal__name">{{ previewImageName }}</p>
+    </div>
+  </div>
+}
 <!-- old modal -->
 <!-- <div class="modal fade" id="serviceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="serviceDetailsModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row g-3" *ngIf="selectedService; else noServiceSelected">
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Service Name</label>
-                            <p>{{ selectedService.service_name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Category Name</label>
-                            <p>{{ selectedService.category_name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Sub Category Name</label>
-                            <p>{{ selectedService.subcategory_name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Price</label>
-                            <p>{{ selectedService.price || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Mobile</label>
-                            <p>{{ selectedService.mobile || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Email</label>
-                            <p>{{ selectedService.email || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="detail-card">
-                            <label>Service Description</label>
-                            <p class="mb-0">{{ selectedService.service_description || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="detail-card">
-                            <label>Provided Description</label>
-                            <p class="mb-0">{{ selectedService.provider_description || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Website</label>
-                            <p>{{ selectedService.website || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Location</label>
-                            <p>{{ selectedService.location || '-' }}</p>
-                        </div>
-                    </div>
-
-                    <div class="col-12" *ngIf="selectedServiceImages.length > 0">
-                        <div class="detail-card">
-                            <label>Images</label>
-                            <div class="service-image-grid mt-2">
-                                <div class="service-image-card"
-                                    *ngFor="let image of selectedServiceImages; let i = index">
-                                    <img *ngIf="image.url" [src]="image.url" alt="Service image"
-                                        class="service-image-card__img">
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <ng-template #noServiceSelected>
-                    <p class="mb-0 text-muted">No service selected.</p>
-                </ng-template>
-            </div>
-        </div>
+aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header border-0">
+      <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+    <div class="modal-body">
+      <div class="row g-3" *ngIf="selectedService; else noServiceSelected">
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Service Name</label>
+            <p>{{ selectedService.service_name }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Category Name</label>
+            <p>{{ selectedService.category_name }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Sub Category Name</label>
+            <p>{{ selectedService.subcategory_name }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Price</label>
+            <p>{{ selectedService.price || '-' }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Mobile</label>
+            <p>{{ selectedService.mobile || '-' }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Email</label>
+            <p>{{ selectedService.email || '-' }}</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="detail-card">
+            <label>Service Description</label>
+            <p class="mb-0">{{ selectedService.service_description || '-' }}</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="detail-card">
+            <label>Provided Description</label>
+            <p class="mb-0">{{ selectedService.provider_description || '-' }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Website</label>
+            <p>{{ selectedService.website || '-' }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Location</label>
+            <p>{{ selectedService.location || '-' }}</p>
+          </div>
+        </div>
+
+        <div class="col-12" *ngIf="selectedServiceImages.length > 0">
+          <div class="detail-card">
+            <label>Images</label>
+            <div class="service-image-grid mt-2">
+              <div class="service-image-card"
+                *ngFor="let image of selectedServiceImages; let i = index">
+                <img *ngIf="image.url" [src]="image.url" alt="Service image"
+                  class="service-image-card__img">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <ng-template #noServiceSelected>
+        <p class="mb-0 text-muted">No service selected.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
 </div> -->
 
 <app-sub-menu></app-sub-menu>

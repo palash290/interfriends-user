@@ -1,171 +1,171 @@
 <app-home-header></app-home-header>
 
 <owl-carousel-o [options]="bannerOptions" class="et_key_fact_slider et_home_banner_slider">
-    <ng-container *ngFor="let banner of banners">
-        <ng-template carouselSlide>
-            <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
-                <section>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-10 mx-auto">
-                                <div class="et_banner_section text-center">
-                                    <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">About Us</h2>
-                                    <ul class="et_breadcrumb">
-                                        <li>
-                                            <a routerLink="/" class="et_orange_text">Home</a>
-                                        </li>
-                                        <li><i class="fa-solid fa-angle-right"></i></li>
-                                        <li>About Us</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+  @for (banner of banners; track banner) {
+    <ng-template carouselSlide>
+      <div class="et_main_banner_bg" [ngStyle]="{ 'background-image': 'url(' + banner.image + ')' }">
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 mx-auto">
+                <div class="et_banner_section text-center">
+                  <h2 class="et_fs_40 et_ff_Gilroy-Bold text-white mb-0">About Us</h2>
+                  <ul class="et_breadcrumb">
+                    <li>
+                      <a routerLink="/" class="et_orange_text">Home</a>
+                    </li>
+                    <li><i class="fa-solid fa-angle-right"></i></li>
+                    <li>About Us</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </ng-template>
-    </ng-container>
+          </div>
+        </section>
+      </div>
+    </ng-template>
+  }
 </owl-carousel-o>
 
 <!-- Our Product Section S -->
 <section class="et_pt_83 et_pb_83">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-5 mb-4 mb-md-0">
-                <div class="et_about_img">
-                    <img src="assets/img/about/about_img.png" alt="">
-                </div>
-            </div>
-            <div class="col-md-6 offset-md-1 mb-4 mb-md-0">
-                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Who We Are</h3>
-                <!-- <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Interfriends is a Smart, digitised and
-                    modernised (ROSCA)
-                </p> -->
-                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Interfriends is a modernised and digitised Rotating
-                    Savings and Credit Association (ROSCA).</p>
-                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">We are a savings club (ROSCA) that
-                    helps you manage your money, and access it when needed.</p>
-                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Whether you need a reliable savings circle
-                    account, emergency financial
-                    help, or want to purchase your first property, we ensure a smooth and transparent experience for
-                    all our users.</p>
-                <ul class="et_grid_2 mb-4">
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Smart Dashboard</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Secure & Safe Transactions</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative/ROSCA</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Efficient Customer Support</p>
-                    </li>
-                </ul>
-                <hr>
-            </div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-5 mb-4 mb-md-0">
+        <div class="et_about_img">
+          <img src="assets/img/about/about_img.png" alt="">
         </div>
+      </div>
+      <div class="col-md-6 offset-md-1 mb-4 mb-md-0">
+        <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">Who We Are</h3>
+        <!-- <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Interfriends is a Smart, digitised and
+        modernised (ROSCA)
+      </p> -->
+      <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Interfriends is a modernised and digitised Rotating
+      Savings and Credit Association (ROSCA).</p>
+      <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">We are a savings club (ROSCA) that
+      helps you manage your money, and access it when needed.</p>
+      <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">Whether you need a reliable savings circle
+        account, emergency financial
+        help, or want to purchase your first property, we ensure a smooth and transparent experience for
+      all our users.</p>
+      <ul class="et_grid_2 mb-4">
+        <li class="d-flex gap-2">
+          <img src="assets/img/check_icon.svg" alt="">
+          <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Smart Dashboard</p>
+        </li>
+        <li class="d-flex gap-2">
+          <img src="assets/img/check_icon.svg" alt="">
+          <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Secure & Safe Transactions</p>
+        </li>
+        <li class="d-flex gap-2">
+          <img src="assets/img/check_icon.svg" alt="">
+          <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative/ROSCA</p>
+        </li>
+        <li class="d-flex gap-2">
+          <img src="assets/img/check_icon.svg" alt="">
+          <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Efficient Customer Support</p>
+        </li>
+      </ul>
+      <hr>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="et_pb_83">
-    <section class="et_trust_community_bg et_pt_68">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">Founded on Trust & Community</h2>
-                    <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">A Legacy of Shared Growth
-                        & Financial Support</h4>
-                    <p class="et_dark_blue_text et_fs_18">"Interfriends was built on the values of trust,
-                        reliability, and community-centred financial empowerment. Since 2012, we’ve helped members
-                        through secure savings circles, ensuring that everyone has access to the financial help they
-                        need—without any hidden fees. Together, we grow, save, and succeed."</p>
-                    <h4 class="et_dark_blue_text et_fs_18">It has been proven that you are most likely to realise your
-                        savings goal
-                        if you join a Saving Circle (ROSCA) than saving alone.</h4>
-                </div>
-            </div>
-            <div class="et_overlay_trust">
-                <div class="row gap-5 justify-content-center">
-                    <div class="col-lg-4">
-                        <div class="et_key_fact_card">
-                            <div class="et_trusted_icon">
-                                <img src="assets/img/about/Manchester_icon.svg" alt="">
-                            </div>
-                            <div class="text-center mt-4">
-                                <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Founded in Manchester
-                                </h4>
-                                <p class="et_ff_Gilroy-Regular mb-0">2012 - Started with 9 close friends & family
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="et_key_fact_card">
-                            <div class="et_trusted_icon">
-                                <img src="assets/img/about/trusted_network_icon.svg" alt="">
-                            </div>
-                            <div class="text-center mt-4">
-                                <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Trusted Network
-                                </h4>
-                                <p class="et_ff_Gilroy-Regular mb-0">Now - A growing financial support network
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section class="et_trust_community_bg et_pt_68">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text mb-2">Founded on Trust & Community</h2>
+          <h4 class="et_dark_blue_text et_ff_Gilroy-SemiBold et_fs_28 et_fw_600">A Legacy of Shared Growth
+          & Financial Support</h4>
+          <p class="et_dark_blue_text et_fs_18">"Interfriends was built on the values of trust,
+            reliability, and community-centred financial empowerment. Since 2012, we’ve helped members
+            through secure savings circles, ensuring that everyone has access to the financial help they
+          need—without any hidden fees. Together, we grow, save, and succeed."</p>
+          <h4 class="et_dark_blue_text et_fs_18">It has been proven that you are most likely to realise your
+            savings goal
+          if you join a Saving Circle (ROSCA) than saving alone.</h4>
         </div>
-    </section>
+      </div>
+      <div class="et_overlay_trust">
+        <div class="row gap-5 justify-content-center">
+          <div class="col-lg-4">
+            <div class="et_key_fact_card">
+              <div class="et_trusted_icon">
+                <img src="assets/img/about/Manchester_icon.svg" alt="">
+              </div>
+              <div class="text-center mt-4">
+                <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Founded in Manchester
+                </h4>
+                <p class="et_ff_Gilroy-Regular mb-0">2012 - Started with 9 close friends & family
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="et_key_fact_card">
+              <div class="et_trusted_icon">
+                <img src="assets/img/about/trusted_network_icon.svg" alt="">
+              </div>
+              <div class="text-center mt-4">
+                <h4 class="et_fs_18 et_ff_Gilroy-semi-bold et_dark_blue_text">Trusted Network
+                </h4>
+                <p class="et_ff_Gilroy-Regular mb-0">Now - A growing financial support network
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
 
 
 <section class="et_pt_83 et_pb_83 et_pt_res_0">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">What We Do</h3>
-                <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Empowering Financial Security & Growth
-                </h4>
-                <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">We provide a trusted platform where
-                    members can save, support each other, and achieve financial stability through community-centerd
-                    savings.</p>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h3 class="et_fs_34 et_ff_Gilroy-Bold et_orange_text">What We Do</h3>
+        <h4 class="et_fs_28 et_dark_blue_text et_ff_Gilroy-semi-bold">Empowering Financial Security & Growth
+        </h4>
+        <p class="et_ff_Gilroy-Regular et_fs_18 et_text_clr_212529">We provide a trusted platform where
+          members can save, support each other, and achieve financial stability through community-centerd
+        savings.</p>
 
-                <h6 class="et_orange_text et_ff_Gilroy-semi-bold mb-0">Our Key Pillars:</h6>
-                <ul class="et_grid_2 mb-4 mt-3">
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Community First</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular"> Smart Savings</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular"> Trust & Security</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Mutual Support</p>
-                    </li>
-                    <li class="d-flex gap-2">
-                        <img src="assets/img/check_icon.svg" alt="">
-                        <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative Mindset
-                </ul>
+        <h6 class="et_orange_text et_ff_Gilroy-semi-bold mb-0">Our Key Pillars:</h6>
+        <ul class="et_grid_2 mb-4 mt-3">
+          <li class="d-flex gap-2">
+            <img src="assets/img/check_icon.svg" alt="">
+            <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Community First</p>
+          </li>
+          <li class="d-flex gap-2">
+            <img src="assets/img/check_icon.svg" alt="">
+            <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular"> Smart Savings</p>
+          </li>
+          <li class="d-flex gap-2">
+            <img src="assets/img/check_icon.svg" alt="">
+            <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular"> Trust & Security</p>
+          </li>
+          <li class="d-flex gap-2">
+            <img src="assets/img/check_icon.svg" alt="">
+            <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Mutual Support</p>
+          </li>
+          <li class="d-flex gap-2">
+            <img src="assets/img/check_icon.svg" alt="">
+            <p class="et_text_clr_212529 mb-0 et_ff_Gilroy-Regular">Co-operative Mindset
+            </ul>
+          </div>
+          <div class="col-md-5 mb-4 mb-md-0 offset-md-1">
+            <div class="et_about_img">
+              <img src="assets/img/about/what_we_do.png" alt="">
             </div>
-            <div class="col-md-5 mb-4 mb-md-0 offset-md-1">
-                <div class="et_about_img">
-                    <img src="assets/img/about/what_we_do.png" alt="">
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<app-home-footer></app-home-footer>
+    <app-home-footer></app-home-footer>

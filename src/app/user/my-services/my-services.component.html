@@ -1,234 +1,244 @@
 <app-header></app-header>
 
 <div class="recommendations-page">
-    <div class="recommendations-page__glow recommendations-page__glow--one"></div>
-    <div class="recommendations-page__glow recommendations-page__glow--two"></div>
+  <div class="recommendations-page__glow recommendations-page__glow--one"></div>
+  <div class="recommendations-page__glow recommendations-page__glow--two"></div>
 
-    <div class="recommendations-shell">
-        <div class="loader-panel" *ngIf="isLoader">
-            <mat-spinner class="mx-auto"></mat-spinner>
-        </div>
+  <div class="recommendations-shell">
+    @if (isLoader) {
+      <div class="loader-panel">
+        <mat-spinner class="mx-auto"></mat-spinner>
+      </div>
+    }
 
-        <ng-container *ngIf="!isLoader">
-            <div class="ct_recommended_user" *ngIf="serviceList.length > 0; else emptyState">
-                <div class="d-flex align-items-center justify-content-between mb-4" style=gap:20px>
-                    <h4 class="mb-0">My Directories</h4>
-                    <button type="button" class="btn-cstm btn-orange py-2 px-5" data-toggle="modal"
-                        data-target="#exampleModal" (click)="onOpenCreate()">
-                        Add
-                    </button>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-striped align-middle">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th class="d_none_576">Category</th>
-                                <th class="d_none_576">Subcategory</th>
-                                <!-- <th>Status</th> -->
-                                <th>Approval Status</th>
-                                <th class="d_none_576">Created On</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let service of serviceList">
-                                <td>
-                                    <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
-                                </td>
-                                <td class="d_none_576">{{ service.category_name || '-' }}</td>
-                                <td class="d_none_576">{{ service.subcategory_name || '-' }}</td>
-                                <!-- <td>
-                                    <span class="badge"
-                                        [ngClass]="service.service_status === '1' ? 'bg-success' : 'bg-secondary'">
-                                        {{ service.service_status === '1' ? 'Active' : 'Inactive' }}
-                                    </span>
-                                </td> -->
-                                <td>
+    @if (!isLoader) {
+      @if (serviceList.length > 0) {
+        <div class="ct_recommended_user">
+          <div class="d-flex align-items-center justify-content-between mb-4" style=gap:20px>
+            <h4 class="mb-0">My Directories</h4>
+            <button type="button" class="btn-cstm btn-orange py-2 px-5" data-toggle="modal"
+              data-target="#exampleModal" (click)="onOpenCreate()">
+              Add
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th class="d_none_576">Category</th>
+                  <th class="d_none_576">Subcategory</th>
+                  <!-- <th>Status</th> -->
+                  <th>Approval Status</th>
+                  <th class="d_none_576">Created On</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (service of serviceList; track service) {
+                  <tr>
+                    <td>
+                      <div class="fw-semibold text-nowrap">{{ service.service_name }}</div>
+                    </td>
+                    <td class="d_none_576">{{ service.category_name || '-' }}</td>
+                    <td class="d_none_576">{{ service.subcategory_name || '-' }}</td>
+                    <!-- <td>
+                    <span class="badge"
+                      [ngClass]="service.service_status === '1' ? 'bg-success' : 'bg-secondary'">
+                      {{ service.service_status === '1' ? 'Active' : 'Inactive' }}
+                    </span>
+                  </td> -->
+                  <td>
                                     <span class="badge" [ngClass]="{
                                     'bg-warning text-dark': service.approval_status === '0',
                                     'bg-success': service.approval_status === '1',
                                     'bg-danger': service.approval_status === '2'
                                         }">
-                                        {{
-                                        service.approval_status === '0' ? 'Pending' :
-                                        service.approval_status === '1' ? 'Approved' :
-                                        service.approval_status === '2' ? 'Rejected' :
-                                        'Unknown'
-                                        }}
-                                    </span>
-                                </td>
-                                <td class="d_none_576">{{ service.created_at | date: 'dd MMM yyyy' }}</td>
-                                <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <a type="button" class="service-view-btn " data-toggle="modal"
-                                            data-target="#exampleModal" (click)="onEdit(service)">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-
-                                        <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
-                                            data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <ng-template #emptyState>
-                <div class="empty-state">
-                    <div class="empty-state__icon">
-                        <i class="ti ti-inbox" aria-hidden="true"></i>
+                      {{
+                      service.approval_status === '0' ? 'Pending' :
+                      service.approval_status === '1' ? 'Approved' :
+                      service.approval_status === '2' ? 'Rejected' :
+                      'Unknown'
+                      }}
+                    </span>
+                  </td>
+                  <td class="d_none_576">{{ service.created_at | date: 'dd MMM yyyy' }}</td>
+                  <td>
+                    <div class="d-flex gap-1 align-items-center">
+                      <a type="button" class="service-view-btn " data-toggle="modal"
+                        data-target="#exampleModal" (click)="onEdit(service)">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a href="javascript:void(0);" class="service-view-btn" data-toggle="modal"
+                        data-target="#serviceDetailsModal" (click)="viewServiceDetails(service)">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
                     </div>
-                    <h2>No Member Directory yet</h2>
-                    <p>When a Member Directory is added for this account, they will appear here with their category,
-                        status, and
-                        creation date.</p>
-                </div>
-            </ng-template>
-        </ng-container>
-    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    } @else {
+      <div class="empty-state">
+        <div class="empty-state__icon">
+          <i class="ti ti-inbox" aria-hidden="true"></i>
+        </div>
+        <h2>No Member Directory yet</h2>
+        <p>When a Member Directory is added for this account, they will appear here with their category,
+          status, and
+        creation date.</p>
+      </div>
+    }
+  }
+</div>
 </div>
 
 <div class="modal fade" id="serviceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="serviceDetailsModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row g-3" *ngIf="selectedService; else noServiceSelected">
-                    <div class="col-12">
-                        <div class="detail-card d-flex align-items-center gap-3">
-                            <div class="company-logo-picker__preview company-logo-picker__preview--small">
-                                <img *ngIf="selectedService?.company_logo_url || selectedService?.company_logo_thumb || selectedService?.company_logo || selectedService?.logo_url || selectedService?.logo; else viewLogoPlaceholder"
-                                    [src]="selectedService?.company_logo_url || selectedService?.company_logo_thumb || selectedService?.company_logo || selectedService?.logo_url || selectedService?.logo"
-                                    alt="Company logo" class="company-logo-picker__image">
-                                <ng-template #viewLogoPlaceholder>
-                                    <span class="company-logo-picker__placeholder">
-                                        <i class="fa fa-image" aria-hidden="true"></i>
-                                    </span>
-                                </ng-template>
-                            </div>
-                            <div>
-                                <label>Company Name</label>
-                                <p>{{ selectedService.company_name || '-' }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Service Name</label>
-                            <p>{{ selectedService.service_name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Category Name</label>
-                            <p>{{ selectedService.category_name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Sub Category Name</label>
-                            <p>{{ selectedService.subcategory_name }}</p>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Price</label>
-                            <p>{{ selectedService.price || '-' }}</p>
-                        </div>
-                    </div> -->
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Mobile</label>
-                            <p>{{ selectedService.mobile || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Email</label>
-                            <p>{{ selectedService.email || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="detail-card">
-                            <label>Service Description</label>
-                            <p class="mb-0">{{ selectedService.service_description || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="detail-card">
-                            <label>Provided Description</label>
-                            <p class="mb-0">{{ selectedService.provider_description || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Website</label>
-                            <p>{{ selectedService.website || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Location</label>
-                            <p>{{ selectedService.location || '-' }}</p>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Latitude</label>
-                            <p>{{ selectedService.latitude || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Longitude</label>
-                            <p>{{ selectedService.longitude || '-' }}</p>
-                        </div>
-                    </div> -->
-                    <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Created On</label>
-                            <p>{{ selectedService.created_at || '-' }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12" *ngIf="selectedServiceImages.length > 0">
-                        <div class="detail-card">
-                            <label>Images</label>
-                            <div class="service-image-grid mt-2">
-                                <div class="service-image-card"
-                                    *ngFor="let image of selectedServiceImages; let i = index">
-                                    <img *ngIf="image.url" [src]="image.url" alt="Service image"
-                                        class="service-image-card__img">
-                                    <!-- <div class="service-image-card__name">{{ image.name }}</div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                        <div class="detail-card">
-                            <label>Updated At</label>
-                            <p>{{ selectedService.updated_at || '-' }}</p>
-                        </div>
-                    </div> -->
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @if (selectedService) {
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="detail-card d-flex align-items-center gap-3">
+                <div class="company-logo-picker__preview company-logo-picker__preview--small">
+                  @if (selectedService?.company_logo_url || selectedService?.company_logo_thumb || selectedService?.company_logo || selectedService?.logo_url || selectedService?.logo) {
+                    <img
+                      [src]="selectedService?.company_logo_url || selectedService?.company_logo_thumb || selectedService?.company_logo || selectedService?.logo_url || selectedService?.logo"
+                      alt="Company logo" class="company-logo-picker__image">
+                  } @else {
+                    <span class="company-logo-picker__placeholder">
+                      <i class="fa fa-image" aria-hidden="true"></i>
+                    </span>
+                  }
                 </div>
-
-                <ng-template #noServiceSelected>
-                    <p class="mb-0 text-muted">No service selected.</p>
-                </ng-template>
+                <div>
+                  <label>Company Name</label>
+                  <p>{{ selectedService.company_name || '-' }}</p>
+                </div>
+              </div>
             </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <label>Service Name</label>
+                <p>{{ selectedService.service_name }}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <label>Category Name</label>
+                <p>{{ selectedService.category_name }}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <label>Sub Category Name</label>
+                <p>{{ selectedService.subcategory_name }}</p>
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+            <div class="detail-card">
+              <label>Price</label>
+              <p>{{ selectedService.price || '-' }}</p>
+            </div>
+          </div> -->
+          <div class="col-md-6">
+            <div class="detail-card">
+              <label>Mobile</label>
+              <p>{{ selectedService.mobile || '-' }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-card">
+              <label>Email</label>
+              <p>{{ selectedService.email || '-' }}</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="detail-card">
+              <label>Service Description</label>
+              <p class="mb-0">{{ selectedService.service_description || '-' }}</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="detail-card">
+              <label>Provided Description</label>
+              <p class="mb-0">{{ selectedService.provider_description || '-' }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-card">
+              <label>Website</label>
+              <p>{{ selectedService.website || '-' }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-card">
+              <label>Location</label>
+              <p>{{ selectedService.location || '-' }}</p>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+          <div class="detail-card">
+            <label>Latitude</label>
+            <p>{{ selectedService.latitude || '-' }}</p>
+          </div>
         </div>
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Longitude</label>
+            <p>{{ selectedService.longitude || '-' }}</p>
+          </div>
+        </div> -->
+        <div class="col-md-6">
+          <div class="detail-card">
+            <label>Created On</label>
+            <p>{{ selectedService.created_at || '-' }}</p>
+          </div>
+        </div>
+        @if (selectedServiceImages.length > 0) {
+          <div class="col-12">
+            <div class="detail-card">
+              <label>Images</label>
+              <div class="service-image-grid mt-2">
+                @for (image of selectedServiceImages; track image; let i = $index) {
+                  <div class="service-image-card"
+                    >
+                    @if (image.url) {
+                      <img [src]="image.url" alt="Service image"
+                        class="service-image-card__img">
+                    }
+                    <!-- <div class="service-image-card__name">{{ image.name }}</div> -->
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+        <!-- <div class="col-md-6">
+        <div class="detail-card">
+          <label>Updated At</label>
+          <p>{{ selectedService.updated_at || '-' }}</p>
+        </div>
+      </div> -->
     </div>
+  } @else {
+    <p class="mb-0 text-muted">No service selected.</p>
+  }
+
+</div>
+</div>
+</div>
 </div>
 
 <app-sub-menu></app-sub-menu>
@@ -236,239 +246,280 @@
 <app-footer></app-footer>
 
 <div class="modal fade" id="exampleModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" *ngIf="mode === 'create'">Add Service</h5>
-                <h5 class="modal-title" *ngIf="mode === 'update'">Update Service</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePopup"
-                    (click)="closeModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if (mode === 'create') {
+          <h5 class="modal-title">Add Service</h5>
+        }
+        @if (mode === 'update') {
+          <h5 class="modal-title">Update Service</h5>
+        }
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePopup"
+          (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form role="form" [formGroup]="form" (ngSubmit)="onSave()">
+        <!-- <div class="box-body" *ngIf="isLoadingForm">
+        <mat-spinner class="mx-auto"></mat-spinner>
+      </div> -->
+
+      <div class="modal-body">
+        <div class="box-body">
+          <div class="company-logo-picker">
+            <div class="company-logo-picker__preview" role="button" tabindex="0"
+              aria-label="Upload company logo" (click)="triggerCompanyLogoPicker(companyLogoInput)"
+              (keydown.enter)="triggerCompanyLogoPicker(companyLogoInput)"
+              (keydown.space)="$event.preventDefault(); triggerCompanyLogoPicker(companyLogoInput)">
+              @if (companyLogoPreviewUrl) {
+                <img
+                  [src]="companyLogoPreviewUrl" alt="Company logo preview"
+                  class="company-logo-picker__image">
+              } @else {
+                <span class="company-logo-picker__placeholder">
+                  <i class="fa fa-image" aria-hidden="true"></i>
+                </span>
+              }
             </div>
+            <div class="company-logo-picker__content">
+              <label class="d-block mb-2">Company Logo</label>
+              <input #companyLogoInput type="file" class="d-none"
+                accept="image/jpeg,image/png,image/jpg,image/webp,image/*"
+                (change)="onCompanyLogoSelected($event)" />
+              <small class="form-text text-muted">
+                Click the circle to upload or change the logo.
+              </small>
+            </div>
+          </div>
 
-            <form role="form" [formGroup]="form" (ngSubmit)="onSave()">
-                <!-- <div class="box-body" *ngIf="isLoadingForm">
-                    <mat-spinner class="mx-auto"></mat-spinner>
-                </div> -->
+          <input type="hidden" formControlName="user_service_id" />
 
-                <div class="modal-body">
-                    <div class="box-body">
-                        <div class="company-logo-picker">
-                            <div class="company-logo-picker__preview" role="button" tabindex="0"
-                                aria-label="Upload company logo" (click)="triggerCompanyLogoPicker(companyLogoInput)"
-                                (keydown.enter)="triggerCompanyLogoPicker(companyLogoInput)"
-                                (keydown.space)="$event.preventDefault(); triggerCompanyLogoPicker(companyLogoInput)">
-                                <img *ngIf="companyLogoPreviewUrl; else companyLogoPlaceholder"
-                                    [src]="companyLogoPreviewUrl" alt="Company logo preview"
-                                    class="company-logo-picker__image">
-                                <ng-template #companyLogoPlaceholder>
-                                    <span class="company-logo-picker__placeholder">
-                                        <i class="fa fa-image" aria-hidden="true"></i>
-                                    </span>
-                                </ng-template>
-                            </div>
-                            <div class="company-logo-picker__content">
-                                <label class="d-block mb-2">Company Logo</label>
-                                <input #companyLogoInput type="file" class="d-none"
-                                    accept="image/jpeg,image/png,image/jpg,image/webp,image/*"
-                                    (change)="onCompanyLogoSelected($event)" />
-                                <small class="form-text text-muted">
-                                    Click the circle to upload or change the logo.
-                                </small>
-                            </div>
-                        </div>
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" class="form-control" placeholder="Enter company name"
+              formControlName="company_name" />
+          </div>
 
-                        <input type="hidden" formControlName="user_service_id" />
+          <div class="form-group"
+            [ngClass]="{'has-error': form.get('service_id').invalid  && form.get('service_id').touched}">
+            <label>Service</label>
+            <select class="form-control" formControlName="service_id" (change)="onServiceChange()">
+              <option value="">Select service</option>
+              @for (service of serviceOptions; track service) {
+                <option [value]="service.id">
+                  {{ service.service_name || service.name || ('Service #' + service.id) }}
+                </option>
+              }
+            </select>
+            @if (form.get('service_id').invalid  && form.get('service_id').touched) {
+              <span class="help-block"
+                >
+                Please select a service.
+              </span>
+            }
+          </div>
 
-                        <div class="form-group">
-                            <label>Company Name</label>
-                            <input type="text" class="form-control" placeholder="Enter company name"
-                                formControlName="company_name" />
-                        </div>
+          @if (form.get('service_id')?.value) {
+            <div class="form-group">
+              <label>Category</label>
+              <input type="text" class="form-control" formControlName="category_name" />
+            </div>
+          }
 
-                        <div class="form-group"
-                            [ngClass]="{'has-error': form.get('service_id').invalid  && form.get('service_id').touched}">
-                            <label>Service</label>
-                            <select class="form-control" formControlName="service_id" (change)="onServiceChange()">
-                                <option value="">Select service</option>
-                                <option *ngFor="let service of serviceOptions" [value]="service.id">
-                                    {{ service.service_name || service.name || ('Service #' + service.id) }}
-                                </option>
-                            </select>
-                            <span class="help-block"
-                                *ngIf="form.get('service_id').invalid  && form.get('service_id').touched">
-                                Please select a service.
-                            </span>
-                        </div>
+          @if (form.get('service_id')?.value) {
+            <div class="form-group">
+              <label>Subcategory</label>
+              <input type="text" class="form-control" formControlName="subcategory_name" />
+            </div>
+          }
 
-                        <div class="form-group" *ngIf="form.get('service_id')?.value">
-                            <label>Category</label>
-                            <input type="text" class="form-control" formControlName="category_name" />
-                        </div>
+          <!-- <div class="form-group"
+          [ngClass]="{'has-error': form.get('price').invalid  && form.get('price').touched}">
+          <label>Price</label>
+          <input type="number" class="form-control" placeholder="Enter price"
+            formControlName="price" />
+          <span class="help-block" *ngIf="form.get('price').invalid  && form.get('price').touched">
+            Please enter a price.
+          </span>
+        </div> -->
 
-                        <div class="form-group" *ngIf="form.get('service_id')?.value">
-                            <label>Subcategory</label>
-                            <input type="text" class="form-control" formControlName="subcategory_name" />
-                        </div>
-
-                        <!-- <div class="form-group"
-                            [ngClass]="{'has-error': form.get('price').invalid  && form.get('price').touched}">
-                            <label>Price</label>
-                            <input type="number" class="form-control" placeholder="Enter price"
-                                formControlName="price" />
-                            <span class="help-block" *ngIf="form.get('price').invalid  && form.get('price').touched">
-                                Please enter a price.
-                            </span>
-                        </div> -->
-
-                        <div class="form-group"
-                            [ngClass]="{'has-error': form.get('description').invalid  && form.get('description').touched}">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="3" placeholder="Enter description"
-                                formControlName="description"></textarea>
-                            <span class="help-block"
-                                *ngIf="form.get('description').invalid  && form.get('description').touched">
-                                Please enter a description.
-                            </span>
-                        </div>
-
-                        <div class="form-group my-services-mobile-field"
-                            [ngClass]="{'has-error': form.get('mobile').invalid  && form.get('mobile').touched}">
-                            <label>Mobile</label>
-                            <ngx-intl-tel-input formControlName="mobile" [cssClass]="'form-control'"
-                                [preferredCountries]="preferredCountries" [selectedCountryISO]="mobileCountryISO"
-                                [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
-                                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-                                [selectFirstCountry]="false" [separateDialCode]="true" [phoneValidation]="false"
-                                inputId="my_services_mobile_phone" (countryChange)="onMobileCountryChange($event)">
-                            </ngx-intl-tel-input>
-                            <input type="hidden" formControlName="country_code" />
-                            <span class="help-block" *ngIf="form.get('mobile').invalid  && form.get('mobile').touched">
-                                Please enter a mobile number.
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                            [ngClass]="{'has-error': form.get('email').invalid  && form.get('email').touched}">
-                            <label>Email</label>
-                            <input type="email" class="form-control" placeholder="Enter email"
-                                formControlName="email" />
-                            <span class="help-block" *ngIf="form.get('email').invalid  && form.get('email').touched">
-                                Please enter a valid email.
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                            [ngClass]="{'has-error': form.get('website').invalid  && form.get('website').touched}">
-                            <label>Website</label>
-                            <input type="url" class="form-control" placeholder="Enter website URL"
-                                formControlName="website" />
-                            <!-- <span class="help-block"
-                                *ngIf="form.get('website').invalid  && form.get('website').touched">
-                                Please enter a website.
-                            </span> -->
-                        </div>
-
-                        <div class="form-group"
-                            [ngClass]="{'has-error': form.get('location').invalid  && form.get('location').touched}">
-                            <label>Location</label>
-                            <input type="text" class="form-control" placeholder="Enter location"
-                                formControlName="location" />
-                            <span class="help-block"
-                                *ngIf="form.get('location').invalid  && form.get('location').touched">
-                                Please enter a location.
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Images</label>
-                            <input type="file" class="form-control"
-                                accept="image/jpeg,image/png,image/jpg,image/webp,image/*" multiple
-                                (change)="onImagesSelected($event)" />
-                            <small class="form-text text-muted">
-                                Upload up to 5 images total. Current: {{ getCurrentImageCount() }}/{{ maxImages }}.
-                            </small>
-                            <div class="text-danger mt-1" *ngIf="imageError">{{ imageError }}</div>
-
-                            <div class="mt-3" *ngIf="existingImages.length > 0">
-                                <label class="d-block mb-2">Existing Images</label>
-                                <div class="service-image-grid">
-                                    <div class="service-image-card" *ngFor="let image of existingImages; let i = index">
-                                        <button type="button" class="service-image-card__remove"
-                                            (click)="removeExistingImage(image)" aria-label="Remove existing image">
-                                            ×
-                                        </button>
-                                        <img *ngIf="image.url" [src]="image.url" alt="Service image"
-                                            class="service-image-card__img">
-                                        <div class="service-image-card__name">{{ image.name }}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-3" *ngIf="selectedImages.length > 0">
-                                <label class="d-block mb-2">New Images</label>
-                                <div class="service-image-grid">
-                                    <div class="service-image-card" *ngFor="let image of selectedImages; let i = index">
-                                        <button type="button" class="service-image-card__remove"
-                                            (click)="removeNewImage(i)" aria-label="Remove new image">
-                                            ×
-                                        </button>
-                                        <img [src]="image.previewUrl" [alt]="image.file.name"
-                                            class="service-image-card__img">
-                                        <div class="service-image-card__name">{{ image.file.name }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="form-group"
-                            [ngClass]="{'has-error': form.get('latitude').invalid  && form.get('latitude').touched}">
-                            <label>Latitude</label>
-                            <input type="text" class="form-control" placeholder="Enter latitude"
-                                formControlName="latitude" />
-                            <span class="help-block"
-                                *ngIf="form.get('latitude').invalid  && form.get('latitude').touched">
-                                Please enter latitude.
-                            </span>
-                        </div>
-
-                        <div class="form-group"
-                            [ngClass]="{'has-error': form.get('longitude').invalid  && form.get('longitude').touched}">
-                            <label>Longitude</label>
-                            <input type="text" class="form-control" placeholder="Enter longitude"
-                                formControlName="longitude" />
-                            <span class="help-block"
-                                *ngIf="form.get('longitude').invalid  && form.get('longitude').touched">
-                                Please enter longitude.
-                            </span>
-                        </div> -->
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal"
-                        (click)="closeModal()">
-                        Close
-                    </button>
-                    <button type="submit" class="btn btn-primary" [disabled]="isLoadingForm">
-                        <span *ngIf="!isLoadingForm">
-                            <span *ngIf="mode === 'create'">Add</span>
-                            <span *ngIf="mode === 'update'">Update</span>
-                        </span>
-                        <span *ngIf="isLoadingForm">
-                            <i class="fa fa-refresh fa-spin"></i>
-                        </span>
-                    </button>
-                </div>
-            </form>
+        <div class="form-group"
+          [ngClass]="{'has-error': form.get('description').invalid  && form.get('description').touched}">
+          <label>Description</label>
+          <textarea class="form-control" rows="3" placeholder="Enter description"
+          formControlName="description"></textarea>
+          @if (form.get('description').invalid  && form.get('description').touched) {
+            <span class="help-block"
+              >
+              Please enter a description.
+            </span>
+          }
         </div>
+
+        <div class="form-group my-services-mobile-field"
+          [ngClass]="{'has-error': form.get('mobile').invalid  && form.get('mobile').touched}">
+          <label>Mobile</label>
+          <ngx-intl-tel-input formControlName="mobile" [cssClass]="'form-control'"
+            [preferredCountries]="preferredCountries" [selectedCountryISO]="mobileCountryISO"
+            [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+            [selectFirstCountry]="false" [separateDialCode]="true" [phoneValidation]="false"
+            inputId="my_services_mobile_phone" (countryChange)="onMobileCountryChange($event)">
+          </ngx-intl-tel-input>
+          <input type="hidden" formControlName="country_code" />
+          @if (form.get('mobile').invalid  && form.get('mobile').touched) {
+            <span class="help-block">
+              Please enter a mobile number.
+            </span>
+          }
+        </div>
+
+        <div class="form-group"
+          [ngClass]="{'has-error': form.get('email').invalid  && form.get('email').touched}">
+          <label>Email</label>
+          <input type="email" class="form-control" placeholder="Enter email"
+            formControlName="email" />
+          @if (form.get('email').invalid  && form.get('email').touched) {
+            <span class="help-block">
+              Please enter a valid email.
+            </span>
+          }
+        </div>
+
+        <div class="form-group"
+          [ngClass]="{'has-error': form.get('website').invalid  && form.get('website').touched}">
+          <label>Website</label>
+          <input type="url" class="form-control" placeholder="Enter website URL"
+            formControlName="website" />
+          <!-- <span class="help-block"
+          *ngIf="form.get('website').invalid  && form.get('website').touched">
+          Please enter a website.
+        </span> -->
+      </div>
+
+      <div class="form-group"
+        [ngClass]="{'has-error': form.get('location').invalid  && form.get('location').touched}">
+        <label>Location</label>
+        <input type="text" class="form-control" placeholder="Enter location"
+          formControlName="location" />
+        @if (form.get('location').invalid  && form.get('location').touched) {
+          <span class="help-block"
+            >
+            Please enter a location.
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>Images</label>
+        <input type="file" class="form-control"
+          accept="image/jpeg,image/png,image/jpg,image/webp,image/*" multiple
+          (change)="onImagesSelected($event)" />
+        <small class="form-text text-muted">
+          Upload up to 5 images total. Current: {{ getCurrentImageCount() }}/{{ maxImages }}.
+        </small>
+        @if (imageError) {
+          <div class="text-danger mt-1">{{ imageError }}</div>
+        }
+
+        @if (existingImages.length > 0) {
+          <div class="mt-3">
+            <label class="d-block mb-2">Existing Images</label>
+            <div class="service-image-grid">
+              @for (image of existingImages; track image; let i = $index) {
+                <div class="service-image-card">
+                  <button type="button" class="service-image-card__remove"
+                    (click)="removeExistingImage(image)" aria-label="Remove existing image">
+                    ×
+                  </button>
+                  @if (image.url) {
+                    <img [src]="image.url" alt="Service image"
+                      class="service-image-card__img">
+                  }
+                  <div class="service-image-card__name">{{ image.name }}</div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (selectedImages.length > 0) {
+          <div class="mt-3">
+            <label class="d-block mb-2">New Images</label>
+            <div class="service-image-grid">
+              @for (image of selectedImages; track image; let i = $index) {
+                <div class="service-image-card">
+                  <button type="button" class="service-image-card__remove"
+                    (click)="removeNewImage(i)" aria-label="Remove new image">
+                    ×
+                  </button>
+                  <img [src]="image.previewUrl" [alt]="image.file.name"
+                    class="service-image-card__img">
+                  <div class="service-image-card__name">{{ image.file.name }}</div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- <div class="form-group"
+      [ngClass]="{'has-error': form.get('latitude').invalid  && form.get('latitude').touched}">
+      <label>Latitude</label>
+      <input type="text" class="form-control" placeholder="Enter latitude"
+        formControlName="latitude" />
+      <span class="help-block"
+        *ngIf="form.get('latitude').invalid  && form.get('latitude').touched">
+        Please enter latitude.
+      </span>
     </div>
+
+    <div class="form-group"
+      [ngClass]="{'has-error': form.get('longitude').invalid  && form.get('longitude').touched}">
+      <label>Longitude</label>
+      <input type="text" class="form-control" placeholder="Enter longitude"
+        formControlName="longitude" />
+      <span class="help-block"
+        *ngIf="form.get('longitude').invalid  && form.get('longitude').touched">
+        Please enter longitude.
+      </span>
+    </div> -->
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal"
+    (click)="closeModal()">
+    Close
+  </button>
+  <button type="submit" class="btn btn-primary" [disabled]="isLoadingForm">
+    @if (!isLoadingForm) {
+      <span>
+        @if (mode === 'create') {
+          <span>Add</span>
+        }
+        @if (mode === 'update') {
+          <span>Update</span>
+        }
+      </span>
+    }
+    @if (isLoadingForm) {
+      <span>
+        <i class="fa fa-refresh fa-spin"></i>
+      </span>
+    }
+  </button>
+</div>
+</form>
+</div>
+</div>
 </div>
 
 <a routerLink="/user/all-services" class="business-directory-fab" aria-label="Member Directory">
-    <span class="business-directory-fab__icon">
-        <i class="fa fa-briefcase" aria-hidden="true"></i>
-    </span>
-    <span class="business-directory-fab__text">Member Directory</span>
+  <span class="business-directory-fab__icon">
+    <i class="fa fa-briefcase" aria-hidden="true"></i>
+  </span>
+  <span class="business-directory-fab__text">Member Directory</span>
 </a>

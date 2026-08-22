@@ -1,5 +1,5 @@
 <!-- <header class="header-menu header-auth">
-  <h1 class="logo logo-auth">InterFriends</h1>
+<h1 class="logo logo-auth">InterFriends</h1>
 </header> -->
 <header class="header-menu header-auth text-center pb-4">
   <div class="et_logo_200">
@@ -21,7 +21,9 @@
               <div class="icon">
                 <img src="assets/images/lock.png" align="" alt="" title="">
               </div>
-              <span class="error-message" *ngIf="form.get('password').invalid && form.get('password').touched">Please Enter Password</span>
+              @if (form.get('password').invalid && form.get('password').touched) {
+                <span class="error-message">Please Enter Password</span>
+              }
             </div>
             <div class="form-group fp-grp">
               <input type="password" formControlName="confirmPassword" placeholder="Confirm password"
@@ -29,15 +31,23 @@
               <div class="icon">
                 <img src="assets/images/lock.png" align="" alt="" title="">
               </div>
-              <span class="error-message" *ngIf="form.get('confirmPassword').invalid && form.get('confirmPassword').touched">Please enter a
+              @if (form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
+                <span class="error-message">Please enter a
                 Confirm password.</span>
-              <span class="error-message"
-                *ngIf="checkPasswords() && !form.get('confirmPassword').invalid && form.get('confirmPassword').touched">Passwords
+              }
+              @if (checkPasswords() && !form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
+                <span class="error-message"
+                  >Passwords
                 do not match</span>
+              }
             </div>
             <button type="submit" class="btn-cstm btn-orange mt-4 w-100 d-block text-center" [disabled]="isLoading">
-              <span *ngIf="!isLoading">Reset Password</span>
-              <span *ngIf="isLoading"><i class="fa fa-refresh fa-spin"></i></span>
+              @if (!isLoading) {
+                <span>Reset Password</span>
+              }
+              @if (isLoading) {
+                <span><i class="fa fa-refresh fa-spin"></i></span>
+              }
             </button>
           </form>
         </div>
