@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
-import { HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from '@angular/material/legacy-progress-spinner';
 import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -34,47 +34,41 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 
 
 
-@NgModule({
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule,
-    CarouselModule,
-    NgxIntlTelInputModule
-  ],
-  declarations: [
-    HomePageComponent,
-    // FooterComponent,
-    // HeaderComponent,
-    LoginComponent,
-    ResetPasswordComponent,
-    ForgotPasswordComponent,
-    VerifyUserComponent,
-    RegisterUserComponent,
-    LandingPageComponent,
-    HomeHeaderComponent,
-    AboutUsComponent,
-    HowWorkComponent,
-    OurProductsComponent,
-    FaqComponent,
-    GetUserDetailComponent,
-    ContactUsComponent,
-    NewUserInfoComponent,
-    CoOpComponent,
-    SharedFaqComponent,
-    HomeFooterComponent,
-    HomePrivacyComponent,
-    HomeTermsComponent,
-    UserSignupComponent
-  ],
-  providers: [
-  ],
-  exports: [],
-})
+@NgModule({ declarations: [
+        HomePageComponent,
+        // FooterComponent,
+        // HeaderComponent,
+        LoginComponent,
+        ResetPasswordComponent,
+        ForgotPasswordComponent,
+        VerifyUserComponent,
+        RegisterUserComponent,
+        LandingPageComponent,
+        HomeHeaderComponent,
+        AboutUsComponent,
+        HowWorkComponent,
+        OurProductsComponent,
+        FaqComponent,
+        GetUserDetailComponent,
+        ContactUsComponent,
+        NewUserInfoComponent,
+        CoOpComponent,
+        SharedFaqComponent,
+        HomeFooterComponent,
+        HomePrivacyComponent,
+        HomeTermsComponent,
+        UserSignupComponent
+    ],
+    exports: [], imports: [CommonModule,
+        HomeRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatPaginatorModule,
+        CarouselModule,
+        NgxIntlTelInputModule], providers: [
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 
 export class HomeModule { }
