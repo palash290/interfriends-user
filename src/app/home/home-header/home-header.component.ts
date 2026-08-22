@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/service/shared.service';
@@ -12,20 +12,20 @@ import { SharedService } from 'src/app/service/shared.service';
 export class HomeHeaderComponent implements OnInit {
 
   @ViewChild('closeModal') closeModal!: ElementRef;
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
   isLoading = false;
 
   constructor(private router: Router, public sharedService: SharedService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.userForm = new FormGroup({
-      first_name: new FormControl(null, { validators: [Validators.required] }),
-      last_name: new FormControl(null, { validators: [Validators.required] }),
-      email: new FormControl(null, { validators: [Validators.required, Validators.email] }),
-      country_of_residence: new FormControl(null, { validators: [Validators.required] }),
-      mobile_number: new FormControl(null, { validators: [Validators.required] }),
-      profession: new FormControl(null, { validators: [Validators.required] }),
-      type_of_employment: new FormControl(null, { validators: [Validators.required] })
+    this.userForm = new UntypedFormGroup({
+      first_name: new UntypedFormControl(null, { validators: [Validators.required] }),
+      last_name: new UntypedFormControl(null, { validators: [Validators.required] }),
+      email: new UntypedFormControl(null, { validators: [Validators.required, Validators.email] }),
+      country_of_residence: new UntypedFormControl(null, { validators: [Validators.required] }),
+      mobile_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      profession: new UntypedFormControl(null, { validators: [Validators.required] }),
+      type_of_employment: new UntypedFormControl(null, { validators: [Validators.required] })
     });
   }
 

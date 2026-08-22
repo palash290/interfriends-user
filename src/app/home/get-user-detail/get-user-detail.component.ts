@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
@@ -13,7 +13,7 @@ import { SharedService } from 'src/app/service/shared.service';
 export class GetUserDetailComponent implements OnInit {
 
   isLoading = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
     public authService: AuthService,
@@ -24,9 +24,9 @@ export class GetUserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = false;
-    this.form = new FormGroup({
-      email: new FormControl(null, { validators: [Validators.required] }),
-      name: new FormControl(null, { validators: [Validators.required] })
+    this.form = new UntypedFormGroup({
+      email: new UntypedFormControl(null, { validators: [Validators.required] }),
+      name: new UntypedFormControl(null, { validators: [Validators.required] })
     });
   }
 

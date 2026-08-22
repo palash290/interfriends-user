@@ -6,7 +6,7 @@ import {
   EventEmitter,
   SimpleChange,
 } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -20,7 +20,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class AddLoanRequestComponent implements OnInit {
   userList: UserList[] = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   @Input() eachChange: string;
   @Input() loanType: string;
   @Input() add: string;
@@ -202,21 +202,21 @@ export class AddLoanRequestComponent implements OnInit {
       localStorage.setItem('userUniqueIdE', this.unique_ID.toString());
     });
 
-    this.form = new FormGroup({
-      loan_amount: new FormControl(null, { validators: [Validators.required] }),
-      tenure: new FormControl('', { validators: [Validators.required] }),
-      contact_number: new FormControl(null, {
+    this.form = new UntypedFormGroup({
+      loan_amount: new UntypedFormControl(null, { validators: [Validators.required] }),
+      tenure: new UntypedFormControl('', { validators: [Validators.required] }),
+      contact_number: new UntypedFormControl(null, {
         validators: [Validators.required],
       }),
-      loan_type: new FormControl(null, { validators: [Validators.required] }),
-      gurarantor: new FormControl('', { validators: [Validators.required] }),
-      emi: new FormControl(null, {}),
-      document_image: new FormControl(null, {}),
-      pay_date: new FormControl(null, {}),
-      creditCardImage: new FormControl(null, {}),
-      total40Months: new FormControl(null, {}),
-      provident: new FormControl(null, {}),
-      admin_risk: new FormControl(null, {}),
+      loan_type: new UntypedFormControl(null, { validators: [Validators.required] }),
+      gurarantor: new UntypedFormControl('', { validators: [Validators.required] }),
+      emi: new UntypedFormControl(null, {}),
+      document_image: new UntypedFormControl(null, {}),
+      pay_date: new UntypedFormControl(null, {}),
+      creditCardImage: new UntypedFormControl(null, {}),
+      total40Months: new UntypedFormControl(null, {}),
+      provident: new UntypedFormControl(null, {}),
+      admin_risk: new UntypedFormControl(null, {}),
     });
 
     if (this.mainId == '2') {

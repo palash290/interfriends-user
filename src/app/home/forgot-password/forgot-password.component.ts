@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { AuthService} from '../../service/auth.service';
 import {ActivatedRoute} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/service/user.service';
 export class ForgotPasswordComponent implements OnInit {
 
   isLoading = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
     public authService: AuthService,
@@ -24,8 +24,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = false;
-    this.form = new FormGroup({
-      email: new FormControl(null, { validators: [Validators.required] })
+    this.form = new UntypedFormGroup({
+      email: new UntypedFormControl(null, { validators: [Validators.required] })
     });
   }
 

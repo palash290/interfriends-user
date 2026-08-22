@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -11,18 +11,18 @@ import { SharedService } from 'src/app/service/shared.service';
 export class LandingPageComponent implements OnInit {
 
   isLoading = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(public sharedService: SharedService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.isLoading = false;
-    this.form = new FormGroup({
-      name: new FormControl(null, { validators: [Validators.required] }),
-      email: new FormControl(null, { validators: [Validators.required, Validators.email] }),
-      mobile_number: new FormControl(null, { validators: [Validators.required] }),
-      country: new FormControl(null, { validators: [Validators.required] }),
-      message: new FormControl(null, { validators: [Validators.required] })
+    this.form = new UntypedFormGroup({
+      name: new UntypedFormControl(null, { validators: [Validators.required] }),
+      email: new UntypedFormControl(null, { validators: [Validators.required, Validators.email] }),
+      mobile_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      country: new UntypedFormControl(null, { validators: [Validators.required] }),
+      message: new UntypedFormControl(null, { validators: [Validators.required] })
     });
   }
 

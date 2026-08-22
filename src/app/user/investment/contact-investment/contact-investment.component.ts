@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChange, OnChanges} from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -14,7 +14,7 @@ export class ContactInvestmentComponent implements OnInit, OnChanges {
   @Input() uniqueId: string;
   @Input() eachChange: string;
   mainId: string;
-  form: FormGroup;
+  form: UntypedFormGroup;
   isLoading = false;
   userId: string;
   groupId: string;
@@ -29,10 +29,10 @@ export class ContactInvestmentComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
     this.groupId = this.authService.getgroupId();
-    this.form = new FormGroup({
-      amount: new FormControl(null, { validators: [Validators.pattern(this.positiveAmountPattern)] }),
-      phone_number	: new FormControl(null, { validators: [Validators.required] }),
-      message	: new FormControl(null, { validators: [Validators.required] })
+    this.form = new UntypedFormGroup({
+      amount: new UntypedFormControl(null, { validators: [Validators.pattern(this.positiveAmountPattern)] }),
+      phone_number	: new UntypedFormControl(null, { validators: [Validators.required] }),
+      message	: new UntypedFormControl(null, { validators: [Validators.required] })
     });
   }
 

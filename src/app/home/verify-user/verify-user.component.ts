@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { UserService} from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import {ActivatedRoute, ParamMap} from '@angular/router';
@@ -13,7 +13,7 @@ import { Router} from '@angular/router';
 })
 export class VerifyUserComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   isLoading = false;
   showStatus = false;
   token: string;
@@ -26,9 +26,9 @@ export class VerifyUserComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      password: new FormControl(null, {validators: [Validators.required]}),
-      confirmPassword: new FormControl(null, {validators: [Validators.required]})
+    this.form = new UntypedFormGroup({
+      password: new UntypedFormControl(null, {validators: [Validators.required]}),
+      confirmPassword: new UntypedFormControl(null, {validators: [Validators.required]})
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {

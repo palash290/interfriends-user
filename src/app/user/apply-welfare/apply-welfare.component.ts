@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/service/user.service';
 export class ApplyWelfareComponent implements OnInit {
 
   userList: UserList[] = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   @Input() eachChange: string;
   @Input() add: string;
   @Output() valueChange = new EventEmitter();
@@ -54,15 +54,15 @@ export class ApplyWelfareComponent implements OnInit {
       });
 
 
-    this.form = new FormGroup({
-      loan_amount: new FormControl('', { validators: [Validators.required] }),
-      tenure: new FormControl('', { validators: [Validators.required] }),
-      emi: new FormControl(null, {}),
-      pay_date: new FormControl(null, {}),
-      adminrisk: new FormControl(null, {}),
-      total40Months: new FormControl(null, {}),
-      provident: new FormControl(null, {}),
-      admin_risk: new FormControl(null, {}),
+    this.form = new UntypedFormGroup({
+      loan_amount: new UntypedFormControl('', { validators: [Validators.required] }),
+      tenure: new UntypedFormControl('', { validators: [Validators.required] }),
+      emi: new UntypedFormControl(null, {}),
+      pay_date: new UntypedFormControl(null, {}),
+      adminrisk: new UntypedFormControl(null, {}),
+      total40Months: new UntypedFormControl(null, {}),
+      provident: new UntypedFormControl(null, {}),
+      admin_risk: new UntypedFormControl(null, {}),
       // gurarantor: new FormControl('', { validators: [Validators.required] })
     });
   }

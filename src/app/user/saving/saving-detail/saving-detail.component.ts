@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { SavingService } from 'src/app/service/saving.service';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class SavingDetailComponent implements OnInit {
   totalAvgAmount = '0';
   isLoading = true;
   status = '1';
-  form: FormGroup;
+  form: UntypedFormGroup;
   // isLoading = false;
   // userId: string;
   // groupId: string;
@@ -33,10 +33,10 @@ export class SavingDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      amount: new FormControl(null, { validators: [Validators.required] }),
-      date	: new FormControl(null, { validators: [Validators.required] }),
-      reason	: new FormControl(null, { validators: [Validators.required] })
+    this.form = new UntypedFormGroup({
+      amount: new UntypedFormControl(null, { validators: [Validators.required] }),
+      date	: new UntypedFormControl(null, { validators: [Validators.required] }),
+      reason	: new UntypedFormControl(null, { validators: [Validators.required] })
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.get('lifeCycleType')) {

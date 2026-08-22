@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
 
   isLoading = true;
   isLoadingUpdate = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
   userId: string;
   user: UserList;
   imagePreview = 'assets/img/default-user-icon.jpg';
@@ -45,23 +45,23 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.userId = this.authService.getUserId();
-    this.form = new FormGroup({
-      first_name: new FormControl(null, { validators: [Validators.required] }),
-      last_name: new FormControl(null, { validators: [Validators.required] }),
-      email: new FormControl(null, { validators: [Validators.required] }),
-      dob: new FormControl(null, { validators: [Validators.required] }),
-      mobile_number: new FormControl(null, { validators: [Validators.required] }),
-      home_number: new FormControl(null, { validators: [Validators.required] }),
-      emergency_number: new FormControl(null, { validators: [Validators.required] }),
-      kin_name: new FormControl(null, { validators: [Validators.required] }),
-      kin_number: new FormControl(null, { validators: [Validators.required] }),
-      address_line_1: new FormControl(null, { validators: [Validators.required] }),
-      address_line_2: new FormControl(null, { validators: [Validators.required] }),
-      post_code: new FormControl(null, { validators: [Validators.required] }),
-      city: new FormControl(null, { validators: [Validators.required] }),
-      employement_type: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl(null, {}),
-      Uniqueid: new FormControl(null, { validators: [Validators.required] }),
+    this.form = new UntypedFormGroup({
+      first_name: new UntypedFormControl(null, { validators: [Validators.required] }),
+      last_name: new UntypedFormControl(null, { validators: [Validators.required] }),
+      email: new UntypedFormControl(null, { validators: [Validators.required] }),
+      dob: new UntypedFormControl(null, { validators: [Validators.required] }),
+      mobile_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      home_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      emergency_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      kin_name: new UntypedFormControl(null, { validators: [Validators.required] }),
+      kin_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      address_line_1: new UntypedFormControl(null, { validators: [Validators.required] }),
+      address_line_2: new UntypedFormControl(null, { validators: [Validators.required] }),
+      post_code: new UntypedFormControl(null, { validators: [Validators.required] }),
+      city: new UntypedFormControl(null, { validators: [Validators.required] }),
+      employement_type: new UntypedFormControl(null, { validators: [Validators.required] }),
+      image: new UntypedFormControl(null, {}),
+      Uniqueid: new UntypedFormControl(null, { validators: [Validators.required] }),
     });
 
 

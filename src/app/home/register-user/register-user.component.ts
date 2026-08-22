@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, VERSION, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { City, Country, State } from 'country-state-city';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +17,7 @@ const { PhoneNumberUtil } = require('google-libphonenumber');
 export class RegisterUserComponent implements OnInit {
 
   isLoading = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
   token: string = '';
   recommend_id: any;
   private readonly defaultProfileImage = 'https://creativethoughtsinfo.com/interfriendsApp/assets/img/np_pro.png';
@@ -49,31 +49,31 @@ export class RegisterUserComponent implements OnInit {
 
     this.recommend_id = this.route.snapshot.queryParamMap.get('recommend_id') || '';
 
-    this.form = new FormGroup({
-      first_name: new FormControl('', { validators: [Validators.required] }),
-      last_name: new FormControl('', { validators: [Validators.required] }),
-      email: new FormControl('', { validators: [Validators.required, Validators.email] }),
-      dob: new FormControl(null, { validators: [Validators.required] }),
-      password: new FormControl(null, { validators: [Validators.required] }),
-      mobile_number: new FormControl('', { validators: [Validators.required] }),
-      country_code: new FormControl(this.mobileCountryCode, { validators: [Validators.required] }),
-      home_number: new FormControl('', { validators: [Validators.required] }),
-      home_country_code: new FormControl(this.homeCountryCode, { validators: [Validators.required] }),
-      emergency_number: new FormControl('', { validators: [Validators.required] }),
-      emergency_country_code: new FormControl(this.emergencyCountryCode, { validators: [Validators.required] }),
-      kin_name: new FormControl('', { validators: [Validators.required] }),
-      kin_number: new FormControl('', { validators: [Validators.required] }),
-      kin_country_code: new FormControl(this.kinCountryCode, { validators: [Validators.required] }),
-      address_line_1: new FormControl('', { validators: [Validators.required] }),
-      address_line_2: new FormControl('', { validators: [Validators.required] }),
-      post_code: new FormControl('', { validators: [Validators.required] }),
+    this.form = new UntypedFormGroup({
+      first_name: new UntypedFormControl('', { validators: [Validators.required] }),
+      last_name: new UntypedFormControl('', { validators: [Validators.required] }),
+      email: new UntypedFormControl('', { validators: [Validators.required, Validators.email] }),
+      dob: new UntypedFormControl(null, { validators: [Validators.required] }),
+      password: new UntypedFormControl(null, { validators: [Validators.required] }),
+      mobile_number: new UntypedFormControl('', { validators: [Validators.required] }),
+      country_code: new UntypedFormControl(this.mobileCountryCode, { validators: [Validators.required] }),
+      home_number: new UntypedFormControl('', { validators: [Validators.required] }),
+      home_country_code: new UntypedFormControl(this.homeCountryCode, { validators: [Validators.required] }),
+      emergency_number: new UntypedFormControl('', { validators: [Validators.required] }),
+      emergency_country_code: new UntypedFormControl(this.emergencyCountryCode, { validators: [Validators.required] }),
+      kin_name: new UntypedFormControl('', { validators: [Validators.required] }),
+      kin_number: new UntypedFormControl('', { validators: [Validators.required] }),
+      kin_country_code: new UntypedFormControl(this.kinCountryCode, { validators: [Validators.required] }),
+      address_line_1: new UntypedFormControl('', { validators: [Validators.required] }),
+      address_line_2: new UntypedFormControl('', { validators: [Validators.required] }),
+      post_code: new UntypedFormControl('', { validators: [Validators.required] }),
       //country: new FormControl(null, { validators: [Validators.required] }),
       //state: new FormControl(null, { validators: [Validators.required] }),
-      city: new FormControl('', { validators: [Validators.required] }),
-      image: new FormControl(null, { validators: [Validators.required] }),
-      id_proof: new FormControl(null, { validators: [Validators.required] }),
-      employement_type: new FormControl(null, { validators: [Validators.required] }),
-      acceptTerms: new FormControl(false, { validators: [Validators.requiredTrue] })
+      city: new UntypedFormControl('', { validators: [Validators.required] }),
+      image: new UntypedFormControl(null, { validators: [Validators.required] }),
+      id_proof: new UntypedFormControl(null, { validators: [Validators.required] }),
+      employement_type: new UntypedFormControl(null, { validators: [Validators.required] }),
+      acceptTerms: new UntypedFormControl(false, { validators: [Validators.requiredTrue] })
     });
 
     this.getUsers();

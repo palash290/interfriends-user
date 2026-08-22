@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -14,7 +14,7 @@ import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 })
 export class RecommendUserComponent implements OnInit {
   userList: UserList[] = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   isLoading = false;
   userId: string;
   groupId: string;
@@ -50,19 +50,19 @@ export class RecommendUserComponent implements OnInit {
     });
 
 
-    this.form = new FormGroup({
+    this.form = new UntypedFormGroup({
       // name: new FormControl(null, { validators: [Validators.required] }),
-      firstName: new FormControl(null, { validators: [Validators.required] }),
-      lastName: new FormControl(null, { validators: [Validators.required] }),
-      email: new FormControl(null, { validators: [Validators.required, Validators.email] }),
-      mobile_number: new FormControl(null, { validators: [Validators.required] }),
-      country_code: new FormControl(this.countryCode, { validators: [Validators.required] }),
-      friend_employed: new FormControl(null, { validators: [Validators.required] }),
-      employement_type: new FormControl(null, { validators: [Validators.required] }),
-      know_this_person: new FormControl(null, { validators: [Validators.required] }),
-      know_them_as_what: new FormControl(null, { validators: [Validators.required] }),
-      recommending_this_person: new FormControl(null, { validators: [Validators.required] }),
-      recommend_user_by: new FormControl('', { validators: [Validators.required] })
+      firstName: new UntypedFormControl(null, { validators: [Validators.required] }),
+      lastName: new UntypedFormControl(null, { validators: [Validators.required] }),
+      email: new UntypedFormControl(null, { validators: [Validators.required, Validators.email] }),
+      mobile_number: new UntypedFormControl(null, { validators: [Validators.required] }),
+      country_code: new UntypedFormControl(this.countryCode, { validators: [Validators.required] }),
+      friend_employed: new UntypedFormControl(null, { validators: [Validators.required] }),
+      employement_type: new UntypedFormControl(null, { validators: [Validators.required] }),
+      know_this_person: new UntypedFormControl(null, { validators: [Validators.required] }),
+      know_them_as_what: new UntypedFormControl(null, { validators: [Validators.required] }),
+      recommending_this_person: new UntypedFormControl(null, { validators: [Validators.required] }),
+      recommend_user_by: new UntypedFormControl('', { validators: [Validators.required] })
     });
   };
 

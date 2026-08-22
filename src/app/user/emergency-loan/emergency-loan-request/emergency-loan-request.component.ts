@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserList } from 'src/app/model/userList.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class EmergencyLoanRequestComponent implements OnInit {
   userList: UserList[] = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   @Input() eachChange: string;
   @Input() add: string;
   @Output() valueChange = new EventEmitter();
@@ -51,11 +51,11 @@ export class EmergencyLoanRequestComponent implements OnInit {
     });
 
 
-    this.form = new FormGroup({
-      loan_amount: new FormControl(null, { validators: [Validators.required] }),
-      pay_by	: new FormControl(null, { validators: [Validators.required] }),
-      contact_number	: new FormControl(null, { validators: [Validators.required] }),
-      gurarantor	: new FormControl('', {})
+    this.form = new UntypedFormGroup({
+      loan_amount: new UntypedFormControl(null, { validators: [Validators.required] }),
+      pay_by	: new UntypedFormControl(null, { validators: [Validators.required] }),
+      contact_number	: new UntypedFormControl(null, { validators: [Validators.required] }),
+      gurarantor	: new UntypedFormControl('', {})
     });
   }
 

@@ -3,7 +3,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/service/auth.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { finalize } from 'rxjs/operators';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 declare const require: any;
@@ -23,7 +23,7 @@ export class MyServicesComponent implements OnInit {
   serviceOptions: any[] = [];
   selectedService: any = null;
   selectedServiceImages: Array<{ id: string | number | null; name: string; url: string }> = [];
-  form: FormGroup;
+  form: UntypedFormGroup;
   mode = 'create';
   selectedServiceId = '';
   selectedImages: Array<{ file: File; previewUrl: any }> = [];
@@ -56,21 +56,21 @@ export class MyServicesComponent implements OnInit {
   }
 
   initForm(): void {
-    this.form = new FormGroup({
-      user_service_id: new FormControl(''),
-      service_id: new FormControl('', { validators: [Validators.required] }),
-      category_name: new FormControl({ value: '', disabled: true }),
-      subcategory_name: new FormControl({ value: '', disabled: true }),
+    this.form = new UntypedFormGroup({
+      user_service_id: new UntypedFormControl(''),
+      service_id: new UntypedFormControl('', { validators: [Validators.required] }),
+      category_name: new UntypedFormControl({ value: '', disabled: true }),
+      subcategory_name: new UntypedFormControl({ value: '', disabled: true }),
       // price: new FormControl('', { validators: [Validators.required] }),
-      company_name: new FormControl(''),
-      description: new FormControl(null, { validators: [Validators.required] }),
-      mobile: new FormControl('', { validators: [Validators.required] }),
-      country_code: new FormControl(this.mobileCountryCode, { validators: [Validators.required] }),
-      email: new FormControl('', { validators: [Validators.required, Validators.email] }),
-      website: new FormControl('', {}),
-      location: new FormControl('', { validators: [Validators.required] }),
-      latitude: new FormControl('0.0000'),
-      longitude: new FormControl('0.0000')
+      company_name: new UntypedFormControl(''),
+      description: new UntypedFormControl(null, { validators: [Validators.required] }),
+      mobile: new UntypedFormControl('', { validators: [Validators.required] }),
+      country_code: new UntypedFormControl(this.mobileCountryCode, { validators: [Validators.required] }),
+      email: new UntypedFormControl('', { validators: [Validators.required, Validators.email] }),
+      website: new UntypedFormControl('', {}),
+      location: new UntypedFormControl('', { validators: [Validators.required] }),
+      latitude: new UntypedFormControl('0.0000'),
+      longitude: new UntypedFormControl('0.0000')
     });
   }
 

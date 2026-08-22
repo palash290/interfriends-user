@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 export class ChangeUserPasswordComponent implements OnInit {
 
   userId: string;
-  form: FormGroup;
+  form: UntypedFormGroup;
   isLoading = true;
   showStatus = false;
   checkPassword: boolean;
@@ -24,9 +24,9 @@ export class ChangeUserPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      password: new FormControl(null, {validators: [Validators.required]}),
-      confirmPassword: new FormControl(null, {validators: [Validators.required]})
+    this.form = new UntypedFormGroup({
+      password: new UntypedFormControl(null, {validators: [Validators.required]}),
+      confirmPassword: new UntypedFormControl(null, {validators: [Validators.required]})
     });
     this.userId = this.authService.getUserId();
   }

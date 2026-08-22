@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class AddSafeKeepingRequestComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   isLoading = false;
   userId: string;
   groupId: string;
@@ -26,10 +26,10 @@ export class AddSafeKeepingRequestComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
     this.groupId = this.authService.getgroupId();
-    this.form = new FormGroup({
-      amount: new FormControl(null, { validators: [Validators.required] }),
-      date: new FormControl(null, { validators: [Validators.required] }),
-      reason: new FormControl(null, { validators: [Validators.required] })
+    this.form = new UntypedFormGroup({
+      amount: new UntypedFormControl(null, { validators: [Validators.required] }),
+      date: new UntypedFormControl(null, { validators: [Validators.required] }),
+      reason: new UntypedFormControl(null, { validators: [Validators.required] })
     });
   }
 
