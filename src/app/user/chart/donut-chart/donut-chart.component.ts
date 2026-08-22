@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
 import { UserService} from '../../../service/user.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class DonutChartComponent implements OnInit {
     public userService: UserService
   ) { }
 
-  public doughnutChartLabels: Label[];
+  public doughnutChartLabels: string[];
   public doughnutChartData: any;
   public doughnutChartType: ChartType = 'doughnut';
   public doughnutChartOptions: any = {

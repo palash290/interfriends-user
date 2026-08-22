@@ -44,7 +44,7 @@ import { NotificationListComponent } from './notification-list/notification-list
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ProgessBarComponent } from './progess-bar/progess-bar.component';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { DonutChartComponent } from './chart/donut-chart/donut-chart.component';
 import { GaugeModule } from 'angular-gauge';
 import { HelpComponent } from './help/help.component';
@@ -102,7 +102,7 @@ import { ApplyTravelComponent } from './apply-travel/apply-travel.component';
       "imageHeight": 87,
       "imageWidth": 99,
       "responsive": true}),
-    ChartsModule,
+    NgChartsModule,
     GaugeModule.forRoot(),
     NgxIntlTelInputModule
   ],
@@ -142,7 +142,6 @@ import { ApplyTravelComponent } from './apply-travel/apply-travel.component';
   BlockUserComponent,
   TermandconditionComponent,
   PrivacyPolicyComponent,
-  WelfareLoanComponent,
   HelptobuyLayoutComponent,
   Help2buyLoanlistComponent,
   WelcomePageComponent,
