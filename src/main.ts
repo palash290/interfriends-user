@@ -2,6 +2,8 @@ import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+(BsDropdownModule as any).forRoot = () => ({ ngModule: BsDropdownModule, providers: [] as any[] });
 import { environment } from './environments/environment';
 
 if (environment.production) {
